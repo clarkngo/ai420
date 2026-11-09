@@ -1,0 +1,179 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AI 420 — HOS 4 Hands-On Guide: Multi-Agent Orchestration &amp; Evaluation</title>
+    <link rel="stylesheet" href="../assets/course.css">
+    <style>
+        .goal-box { background:var(--blue-bg); border-left:5px solid var(--blue); padding:15px 18px; margin:18px 0; border-radius:4px; }
+        .goal-box h4 { margin:0 0 6px; color:var(--blue); font-size:0.95rem; }
+        .needs-list li { margin-bottom:6px; }
+        .stage-tagline { color:var(--muted); font-size:0.85rem; margin:0 0 14px; }
+        pre { background:var(--code-bg); color:var(--code-text); padding:14px 16px; border-radius:6px; overflow-x:auto; font-size:0.8rem; line-height:1.5; }
+        code { font-family: 'SFMono-Regular', Consolas, 'Liberation Mono', Menlo, monospace; }
+        p code, li code { background:var(--surface2); color:var(--rose); padding:1px 5px; border-radius:4px; font-size:0.88em; }
+        .not-graded { background:var(--surface2); border-left:3px solid var(--border); padding:8px 14px; margin:10px 0; font-size:0.85rem; border-radius:0 4px 4px 0; color:var(--muted); }
+        .submit-box { background:var(--accent-light); border-left:5px solid var(--accent); padding:14px 18px; margin:14px 0 0; border-radius:0 4px 4px 0; font-size:0.9rem; }
+        .submit-box h5 { margin:0 0 8px; color:var(--accent2); font-size:0.85rem; text-transform:uppercase; letter-spacing:0.03em; }
+        .submit-box ul { margin:0; padding-left:20px; }
+        .snag-box { background:var(--amber-bg); border-left:5px solid var(--amber); padding:15px 18px; margin:20px 0; border-radius:4px; }
+        .snag-box h4 { margin:0 0 8px; color:var(--amber); }
+        .shot { margin:14px 0; }
+        .shot img { max-width:100%; height:auto; border:1px solid var(--border); border-radius:6px; display:block; }
+        .shot figcaption { font-size:0.84rem; color:var(--muted); margin-top:6px; }
+        .shot-grid { display:grid; grid-template-columns:repeat(auto-fit, minmax(min(280px, 100%), 1fr)); gap:14px; align-items:start; }
+        .shot-grid .shot { margin:0; }
+        details.sample-run { background:var(--surface2); border:1px solid var(--border); border-radius:8px; padding:12px 16px; margin:16px 0; }
+        details.sample-run summary { cursor:pointer; font-weight:600; color:var(--text); }
+        details.sample-run > p { font-size:0.88rem; }
+        .guide-nav { display:flex; justify-content:space-between; margin-top:30px; padding-top:16px; border-top:1px solid var(--border); font-size:0.9rem; }
+        .guide-nav a { color:var(--link); text-decoration:none; font-weight:600; }
+    
+        .ref-box { background:var(--surface2); border:1px solid var(--border); padding:12px 16px; margin:16px 0; border-radius:6px; font-size:0.9rem; }
+        .ref-box h4 { margin:0 0 6px; font-size:0.9rem; }
+        blockquote { border-left:4px solid var(--border); margin:12px 0; padding:4px 14px; color:var(--text); }
+</style>
+</head>
+<body>
+<a class="skip-link" href="#main">Skip to content</a>
+<header class="top">
+  <div class="top-inner">
+    <a class="brand" href="../index.html"><span class="brand-icon">420</span><span><b>AI 420: Agentic AI</b><small>Course guides</small></span></a>
+    <div class="top-right"><a class="pill-btn" href="../index.html">Course home</a><button class="pill-btn" id="themeToggle" type="button">🌙 Dark</button></div>
+  </div>
+</header>
+<section class="hero">
+  <div class="hero-inner">
+    <div class="eyebrow">AI 420 · Module 4 · Hands-On Skill (HOS) guide</div>
+    <h1>HOS 4: Multi-Agent Orchestration &amp; Evaluation</h1>
+    <p class="lede">Turn Harbor Supply Co.'s single support agent into a team — a coordinator plus specialists — and then find out, <strong>with numbers</strong>, whether the team is actually better. Test both versions the way industry does: a simulated customer talks to each one, a judge agent grades every conversation, and you report success rate, cost per task, and latency.</p>
+    <div class="chips"><span class="chip">Est. 4–5 hrs</span><span class="chip">Outcome 4</span><span class="chip">Module 4 · Weeks 7–8</span><span class="chip">10% of final grade</span></div>
+  </div>
+</section>
+<main id="main">
+
+<nav class="secnav no-print" aria-label="Page sections">
+  <div class="secnav-inner">
+    <a href="#before">Before you start</a>
+    <a href="#create">Create</a>
+    <a href="#evaluate">Evaluate</a>
+    <a href="#analyze">Analyze</a>
+    <a href="#refine">Understand &amp; Refine</a>
+    <a href="#snags">Common snags</a>
+  </div>
+</nav>
+
+<section class="module card" id="before">
+  <div class="module-head"><div class="module-icon">🧭</div><div><h2>Before you start</h2></div></div>
+        <div class="before-box">
+            <ol>
+                <li><b>Check your account setup.</b> Nothing new: your <a href="../start-here/accounts.html#github">GitHub account</a> and <a href="../start-here/accounts.html#google">Gemini API key</a>. Your HOS 3 trace recorder is optional here.</li>
+                <li><b>Know the concepts.</b> Read <a href="../reference/concept-companion.html#module-4">Concept Companion → Module 4</a> before you open the starter code.</li>
+            </ol>
+        </div>
+
+        <h4>What you'll need</h4>
+        <ul class="needs-list">
+            <li><strong>Starter code:</strong> your <b>HOS 4</b> repo, created when you <a href="https://classroom50.org/cityuseattle/ai420/assignments/hos04/accept?k=ai420" target="_blank" rel="noopener">accept the HOS 4 invite</a>. Clone it, open the folder in Antigravity, make the <code>.venv</code> and run <code>pip install -r requirements.txt</code> (or open it in a Codespace, where that happens for you). Not sure what a file does? See the <a href="../reference/starter-code-walkthrough.html#hos4">starter code walkthrough for this HOS</a>.</li>
+            <li>Your free Gemini API key (no credit card) from <a href="https://aistudio.google.com/apikey" target="_blank" rel="noopener">aistudio.google.com/apikey</a>. In the HOS folder: <code>cp .env.example .env</code>, then paste it in as <code>GOOGLE_API_KEY</code>.</li>
+            <li>Google Antigravity, the free desktop app, for Stage 1 (<a href="../start-here/tools.html#install">install guide</a>). In a Codespace, use Copilot instead.</li>
+        </ul>
+        <div class="ref-box"><h4>Reference reading (optional, before you start)</h4><ul>
+            <li><a href="https://adk.dev/" target="_blank" rel="noopener">Google ADK documentation</a>: the pages on <b>multi-agent systems</b> (<code>sub_agents</code> and transfer), <b>workflow agents</b> (sequential, parallel, loop, and graph workflows), and <b>evaluation</b> (<code>adk eval</code>, eval sets, criteria and user simulation).</li>
+        </ul></div>
+
+        <p>This HOS is graded across four stages instead of on code correctness alone: <strong>Engagement</strong> (Create/Scaffold) is 20% of the HOS grade, and <strong>Skills</strong> is 80%: Evaluate, Analyze, Apply (the change you make by hand in Understand &amp; Refine) and Understand (your own explanation of it), 20% each. Each stage below says exactly what to submit. Everything goes in your Module 4 GitHub Classroom repo: written work under the matching heading in <code>NOTES.md</code>, screenshots in <code>screenshots/</code>. Commit and push as you go, then submit the repo link to the HOS 4 assignment in Brightspace by the end of Week 8.</p>
+</section>
+
+<section class="module card" id="create">
+  <div class="module-head"><div class="module-icon">🛠️</div><div><h2>1 · Create / Scaffold</h2></div></div>
+            <p class="stage-tagline">Graded as Engagement: 20% of this HOS. The AI-assisted starting point, not the deliverable.</p>
+            <p>The starter gives you the repaired single agent from HOS 3 (<code>single_agent/</code>), twelve test scenarios (<code>evals/scenarios.json</code>: a persona, a goal, and a success rule each), and a price sheet (<code>evals/pricing.json</code>). <strong>There's no prompt this time.</strong> Here's the goal. You decide the design and direct Antigravity; start with <code>/plan</code> and read the plan before you approve it:</p>
+            <ol>
+                <li><strong>A team version</strong> in <code>team_agent/</code>: a coordinator with no tools whose <code>sub_agents</code> are the specialists, each specialist holding only the tools it needs. Reuse <code>single_agent/tools.py</code> and <code>guards.py</code>; don't copy them. Try it in <code>adk web</code> and watch the transfer in the Events tab.</li>
+                <li><strong>An eval set</strong> (<code>evals/support.evalset.json</code>): each scenario as a <em>conversation scenario</em> for ADK's simulated user, with a starting prompt and a conversation plan built from the persona and goal. The plan says when the customer is done.</li>
+                <li><strong>Judge and metric settings</strong> (<code>evals/test_config.json</code>): a rubric-based criterion, so an LLM <em>judge</em> grades each conversation against that scenario's success rule, plus ADK's efficiency criteria for tokens, model calls and time. Then run both systems:
+<pre tabindex="0">adk eval single_agent evals/support.evalset.json --config_file_path evals/test_config.json --print_detailed_results
+adk eval team_agent evals/support.evalset.json --config_file_path evals/test_config.json --print_detailed_results</pre></li>
+                <li><strong>A report</strong> (<code>evals/report.py</code>) that reads the results <code>adk eval</code> saved, writes <code>evals/results/&lt;system&gt;.json</code> (one row per scenario: the conversation, the verdict and its reason, tokens, seconds), and prints, side by side: success rate; cost per task (input and output tokens × the prices in <code>pricing.json</code>); and latency per agent reply, as p50 and p95. These numbers cover the agent only; the simulated user and the judge are the cost of testing.</li>
+            </ol>
+            <p><strong>Free-tier budget:</strong> a full run is roughly 10–15 model calls per scenario, so all twelve scenarios on both systems is about 250–350 calls. Get it working with 2–3 scenarios first: add their ids after the eval set's file name, as in <code>evals/support.evalset.json:refund-cancelled,order-status</code>. Consider a smaller model for the simulated user and the judge; the config file sets both.</p>
+            <div class="submit-box"><h5>Submit (Engagement)</h5>
+                <ul><li>The prompts you gave Antigravity and a two-line summary of its plan, and a screenshot of a team run in <code>adk web</code> showing a transfer to a specialist.</li></ul>
+            </div>
+</section>
+
+<section class="module card" id="evaluate">
+  <div class="module-head"><div class="module-icon">🔍</div><div><h2>2 · Evaluate</h2></div></div>
+            <p class="stage-tagline">The critical gate — is the AI-produced result actually correct?</p>
+            <p>Before you trust any number, check the harness itself:</p>
+            <ul>
+                <li>Read three simulated conversations end to end (<code>--print_detailed_results</code> prints them). Does the simulated customer stay in character and stop when its goal is met, or wander off and pad the conversation?</li>
+                <li>Check the metric math by hand for one scenario: tokens × price = the cost it reported? Is p95 really the 95th percentile of the reply times, or something else?</li>
+                <li>Find a scenario where the judge's verdict looks wrong to you, if there is one. What in the success rule or the rubric let it happen?</li>
+            </ul>
+            <div class="submit-box"><h5>Submit</h5>
+                <ul>
+                    <li>Your side-by-side report (all three metrics for both systems).</li>
+                    <li>A short note on what you checked in the harness, and anything you had to fix before trusting the numbers.</li>
+                </ul>
+            </div>
+</section>
+
+<section class="module card" id="analyze">
+  <div class="module-head"><div class="module-icon">🔬</div><div><h2>3 · Analyze</h2></div></div>
+            <p class="stage-tagline">Why do the numbers come out the way they do?</p>
+            <p>Explain your results. Did the team beat the single agent on success rate? Whatever the answer, it probably cost more tokens and time. Using one or two specific traces, explain <em>where</em> the extra cost comes from (hint: count the model calls the coordinator adds on each turn), and name one kind of request where splitting into specialists helps and one where it only adds overhead.</p>
+            <div class="submit-box"><h5>Submit</h5>
+                <ul>
+                    <li>A short written analysis, in your own words, citing at least one specific conversation.</li>
+                </ul>
+            </div>
+</section>
+
+<section class="module card" id="refine">
+  <div class="module-head"><div class="module-icon">✋</div><div><h2>4 · Understand &amp; Refine</h2></div></div>
+            <p class="stage-tagline">The mastery check — by hand, no AI assistance for this stage.</p>
+            <div class="not-graded">By hand this time — no AI assistance for this stage.</div>
+            <p>An LLM judge is only worth trusting as far as it agrees with careful human grading. Measure that yourself:</p>
+            <ul>
+                <li>Read at least six transcripts from one run and record your own pass/fail in <code>evals/human_labels.json</code> (e.g. <code>{"vhf-price": true, "refund-cancelled": false}</code>).</li>
+                <li>Write <code>evals/agreement.py</code>: it compares your labels with the judge's verdicts in <code>evals/results/</code> and prints the agreement rate, which scenarios the judge passed that you failed (too lenient), and which it failed that you passed (too strict), with the judge's stated reason for each.</li>
+            </ul>
+            <div class="submit-box"><h5>Submit</h5>
+                <ul>
+                    <li>Your <code>agreement.py</code> and <code>human_labels.json</code>.</li>
+                    <li>The agreement rate, and two or three sentences: would you report this judge's success rate to a manager as-is? If not, what would you change first?</li>
+                </ul>
+            </div>
+</section>
+
+<section class="module card" id="snags">
+  <div class="module-head"><div class="module-icon">🧯</div><div><h2>Common snags</h2></div></div>
+        <div class="snag-box">
+            <ul>
+                <li><strong>The coordinator answers questions itself instead of transferring</strong> — its instruction has to say plainly that it doesn't answer, only routes, and each specialist's <code>description</code> has to make ownership obvious. The coordinator reads those descriptions to decide where to send a request.</li>
+                <li><strong>A two-part question only gets half answered</strong> — after transferring, the specialist owns the conversation. Tell specialists to transfer back to the coordinator when the rest of the request isn't theirs.</li>
+                <li><strong>The simulated customer never stops</strong> — its conversation plan has to say when it's done, and the simulator needs a turn limit (check the ADK eval docs for the setting in your version). Without one, one confused conversation can use up your free-tier quota.</li>
+                <li><strong>A criterion errors or scores nothing</strong> — criteria that compare against an expected tool trajectory or an expected reply need a fixed, scripted conversation. A simulated user never follows a script, so use rubric-based criteria with it.</li>
+                <li><strong><code>report.py</code> can't find the results</strong> — print where <code>adk eval</code> saved them on your machine (the path is in its output or in the ADK docs) rather than guessing.</li>
+                <li><strong>Your costs look impossibly low</strong> — <code>pricing.json</code> ships with <em>example</em> prices. Look up your model's current list price and update it before you report cost per task.</li>
+                <li><strong><code>429 RESOURCE_EXHAUSTED</code></strong> — you hit the free tier's per-minute limit. Wait a minute and rerun; or run fewer scenarios at a time.</li>
+                <li><strong>In a Codespace only: <code>adk web</code> opens a blank page, and the terminal shows <code>403 Forbidden</code> for <code>/dev-ui/...js</code> files</strong> — ADK blocks requests that arrive through Codespaces' forwarded URL. Stop it and start it as <code>adk web --allow_origins "*"</code>, then hard-refresh the tab. That's safe here: Codespace ports are private to your GitHub account by default.</li>
+                                <li><strong><code>502 Bad Gateway</code>, a 404 or "model not found"</strong> — almost always the model name. Coding agents, Antigravity included, default to whatever model was current in their training data, such as <code>gemini-2.5-flash</code>, which new API keys can't use. Set it back to <code>gemini-3.8-flash</code>. If that ever stops working, check the current list at <a href="https://ai.google.dev/gemini-api/docs/models" target="_blank" rel="noopener">ai.google.dev/gemini-api/docs/models</a>.</li>
+            </ul>
+            <p class="small" style="margin:10px 0 0">Most snags trace back to a concept. If one doesn't make sense, see <a href="../reference/concept-companion.html#module-4">Concept Companion → Module 4</a>.</p>
+        </div>
+</section>
+
+<div class="guide-nav">
+            <span></span>
+            <a href="index.html">Module 4 lesson →</a>
+        </div>
+
+</main>
+<footer class="foot">AI 420: Agentic AI · City University of Seattle, School of Technology &amp; Computing<br>Course design &amp; materials: Clark Ngo · Simulators are illustrative HTML models — no real LLM, database, or network calls. <br>© 2026 Clark Ngo · Free to reuse and adapt under <a href="https://creativecommons.org/licenses/by/4.0/" rel="license">CC BY 4.0</a>, except where noted · <a href="https://github.com/cityuseattle/ai420/blob/main/LICENSE.md">How to credit</a></footer>
+<script src="../assets/course.js"></script>
+</body>
+</html>

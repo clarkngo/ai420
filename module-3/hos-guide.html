@@ -1,0 +1,189 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AI 420 — HOS 3 Hands-On Guide: Traces &amp; Self-Correction</title>
+    <link rel="stylesheet" href="../assets/course.css">
+    <style>
+        .goal-box { background:var(--blue-bg); border-left:5px solid var(--blue); padding:15px 18px; margin:18px 0; border-radius:4px; }
+        .goal-box h4 { margin:0 0 6px; color:var(--blue); font-size:0.95rem; }
+        .needs-list li { margin-bottom:6px; }
+        .stage-tagline { color:var(--muted); font-size:0.85rem; margin:0 0 14px; }
+        pre { background:var(--code-bg); color:var(--code-text); padding:14px 16px; border-radius:6px; overflow-x:auto; font-size:0.8rem; line-height:1.5; }
+        code { font-family: 'SFMono-Regular', Consolas, 'Liberation Mono', Menlo, monospace; }
+        p code, li code { background:var(--surface2); color:var(--rose); padding:1px 5px; border-radius:4px; font-size:0.88em; }
+        .not-graded { background:var(--surface2); border-left:3px solid var(--border); padding:8px 14px; margin:10px 0; font-size:0.85rem; border-radius:0 4px 4px 0; color:var(--muted); }
+        .submit-box { background:var(--accent-light); border-left:5px solid var(--accent); padding:14px 18px; margin:14px 0 0; border-radius:0 4px 4px 0; font-size:0.9rem; }
+        .submit-box h5 { margin:0 0 8px; color:var(--accent2); font-size:0.85rem; text-transform:uppercase; letter-spacing:0.03em; }
+        .submit-box ul { margin:0; padding-left:20px; }
+        .snag-box { background:var(--amber-bg); border-left:5px solid var(--amber); padding:15px 18px; margin:20px 0; border-radius:4px; }
+        .snag-box h4 { margin:0 0 8px; color:var(--amber); }
+        .shot { margin:14px 0; }
+        .shot img { max-width:100%; height:auto; border:1px solid var(--border); border-radius:6px; display:block; }
+        .shot figcaption { font-size:0.84rem; color:var(--muted); margin-top:6px; }
+        .shot-grid { display:grid; grid-template-columns:repeat(auto-fit, minmax(min(280px, 100%), 1fr)); gap:14px; align-items:start; }
+        .shot-grid .shot { margin:0; }
+        details.sample-run { background:var(--surface2); border:1px solid var(--border); border-radius:8px; padding:12px 16px; margin:16px 0; }
+        details.sample-run summary { cursor:pointer; font-weight:600; color:var(--text); }
+        details.sample-run > p { font-size:0.88rem; }
+        .guide-nav { display:flex; justify-content:space-between; margin-top:30px; padding-top:16px; border-top:1px solid var(--border); font-size:0.9rem; }
+        .guide-nav a { color:var(--link); text-decoration:none; font-weight:600; }
+    
+        .ref-box { background:var(--surface2); border:1px solid var(--border); padding:12px 16px; margin:16px 0; border-radius:6px; font-size:0.9rem; }
+        .ref-box h4 { margin:0 0 6px; font-size:0.9rem; }
+        blockquote { border-left:4px solid var(--border); margin:12px 0; padding:4px 14px; color:var(--text); }
+</style>
+</head>
+<body>
+<a class="skip-link" href="#main">Skip to content</a>
+<header class="top">
+  <div class="top-inner">
+    <a class="brand" href="../index.html"><span class="brand-icon">420</span><span><b>AI 420: Agentic AI</b><small>Course guides</small></span></a>
+    <div class="top-right"><a class="pill-btn" href="../index.html">Course home</a><button class="pill-btn" id="themeToggle" type="button">🌙 Dark</button></div>
+  </div>
+</header>
+<section class="hero">
+  <div class="hero-inner">
+    <div class="eyebrow">AI 420 · Module 3 · Hands-On Skill (HOS) guide</div>
+    <h1>HOS 3: Traces &amp; Self-Correction</h1>
+    <p class="lede">Harbor Supply Co.'s customer-support agent looks fine and fails in several different ways. Find every failure <strong>from the traces alone</strong>, before you read its source code — the way on-call engineers debug agents they didn't write. Then make it correct itself.</p>
+    <div class="chips"><span class="chip">Est. 3–4 hrs</span><span class="chip">Outcome 3</span><span class="chip">Module 3 · Weeks 5–6</span><span class="chip">10% of final grade</span></div>
+  </div>
+</section>
+<main id="main">
+
+<nav class="secnav no-print" aria-label="Page sections">
+  <div class="secnav-inner">
+    <a href="#before">Before you start</a>
+    <a href="#create">Create</a>
+    <a href="#evaluate">Evaluate</a>
+    <a href="#analyze">Analyze</a>
+    <a href="#refine">Understand &amp; Refine</a>
+    <a href="#snags">Common snags</a>
+  </div>
+</nav>
+
+<section class="module card" id="before">
+  <div class="module-head"><div class="module-icon">🧭</div><div><h2>Before you start</h2></div></div>
+        <div class="before-box">
+            <ol>
+                <li><b>Check your setup.</b> No new accounts this module: your GitHub account, Antigravity and your Gemini key are enough. If <code>adk web</code> hasn't run on your computer since HOS 2, run through <a href="../start-here/tools.html#first-run">your first run</a> again before Week 5.</li>
+                <li><b>Know the concepts.</b> Read <a href="../reference/concept-companion.html#module-3">Concept Companion → Module 3</a> before you open the starter code.</li>
+            </ol>
+        </div>
+
+        <h4>What you'll need</h4>
+        <ul class="needs-list">
+            <li><strong>Starter code:</strong> your <b>HOS 3</b> repo, created when you <a href="https://classroom50.org/cityuseattle/ai420/assignments/hos03/accept?k=ai420" target="_blank" rel="noopener">accept the HOS 3 invite</a>. Clone it, open the folder in Antigravity, make the <code>.venv</code> and run <code>pip install -r requirements.txt</code> (or open it in a Codespace, where that happens for you). Not sure what a file does? See the <a href="../reference/starter-code-walkthrough.html#hos3">starter code walkthrough for this HOS</a>.</li>
+            <li>Your free Gemini API key (no credit card) from <a href="https://aistudio.google.com/apikey" target="_blank" rel="noopener">aistudio.google.com/apikey</a>. In the HOS folder: <code>cp .env.example .env</code>, then paste it in as <code>GOOGLE_API_KEY</code>.</li>
+            <li>Google Antigravity, the free desktop app, for Stage 1 (<a href="../start-here/tools.html#install">install guide</a>). In a Codespace, use Copilot instead.</li>
+        </ul>
+        <div class="ref-box"><h4>Reference reading (optional, before you start)</h4><ul>
+            <li><a href="https://adk.dev/" target="_blank" rel="noopener">Google ADK documentation</a>: read the pages on <b>callbacks</b> (the before/after hooks you'll use in Stages 1 and 4) and on <b>loop agents</b> (how a loop is <em>supposed</em> to end, with <code>exit_loop</code> or <code>max_iterations</code>).</li>
+        </ul></div>
+
+        <p>This HOS is graded across four stages instead of on code correctness alone: <strong>Engagement</strong> (Create/Scaffold) is 20% of the HOS grade, and <strong>Skills</strong> is 80%: Evaluate, Analyze, Apply (the change you make by hand in Understand &amp; Refine) and Understand (your own explanation of it), 20% each. Each stage below says exactly what to submit. Everything goes in your Module 3 GitHub Classroom repo: written work under the matching heading in <code>NOTES.md</code>, screenshots in <code>screenshots/</code>. Commit and push as you go, then submit the repo link to the HOS 3 assignment in Brightspace by the end of Week 6.</p>
+</section>
+
+<section class="module card" id="create">
+  <div class="module-head"><div class="module-icon">🛠️</div><div><h2>1 · Create / Scaffold</h2></div></div>
+            <p class="stage-tagline">Graded as Engagement: 20% of this HOS. The AI-assisted starting point, not the deliverable.</p>
+            <p><strong>Don't open <code>support_agent/tools.py</code> or <code>agent.py</code> yet.</strong> First run the six scenarios and read what comes out:</p>
+<pre tabindex="0">python run_scenarios.py</pre>
+            <p>Each scenario prints only its final reply, and every reply sounds reasonable. To see what the agent actually did, you need a trace. Open one scenario in the dev UI first:</p>
+<pre tabindex="0">adk web</pre>
+            <p>Pick <code>support_agent</code>, type the s1 request ("Where is order #1004?"), then open the <b>Trace</b> view: each model call and each tool call is a timed span. That's ADK's own trace. Now you'll build a recorder that writes the same steps to a file for every scenario, so you can compare runs. <strong>This time you write the prompt for Antigravity yourself</strong>, from this spec:</p>
+            <blockquote><p>Add <code>support_agent/tracing.py</code>, which records a run with ADK callbacks (<code>before_model_callback</code>, <code>after_model_callback</code>, <code>before_tool_callback</code>, <code>after_tool_callback</code>): one line per model call and per tool call, with seconds since the run started, each tool's arguments and result (or error), and the tokens each model call used. <code>run_scenarios.py</code> already imports <code>support_agent.tracing</code> if it exists; it should save each scenario's trace to <code>traces/&lt;id&gt;.txt</code> and print it. Recording turns on only when <code>TRACE=1</code> is set. The callbacks only record and always return <code>None</code>. Don't open or change <code>tools.py</code>, or what <code>agent.py</code> does.</p></blockquote>
+            <p>Use <code>/plan</code> and read Antigravity's plan before you approve it. Check one thing in particular: does it attach the callbacks to the agent without changing its instruction or tools? Then run the scenarios with recording on:</p>
+<pre tabindex="0">TRACE=1 python run_scenarios.py</pre>
+            <p>On Windows PowerShell, run <code>$env:TRACE=1</code> first, then <code>python run_scenarios.py</code>. Keep your prompt; you'll submit it.</p>
+            <div class="submit-box"><h5>Submit (Engagement)</h5>
+                <ul><li>The prompt you wrote from the spec and a two-line summary of Antigravity's plan, under <b>Create</b> in <code>NOTES.md</code>.</li><li>Screenshots of one file in <code>traces/</code> and of the same scenario in <code>adk web</code>'s Trace view.</li></ul>
+            </div>
+</section>
+
+<section class="module card" id="evaluate">
+  <div class="module-head"><div class="module-icon">🔍</div><div><h2>2 · Evaluate</h2></div></div>
+            <p class="stage-tagline">The critical gate — find every failure from the traces, not the code.</p>
+            <p>For each scenario, decide from the trace alone: did it succeed? If not, fill in one row of a failure log:</p>
+            <div class="table-wrap" tabindex="0"><table class="mini">
+                <tr><th>Scenario</th><th>Failure type</th><th>First step where it shows</th><th>Symptom</th><th>Likely root cause</th></tr>
+                <tr><td><code>s1-…</code></td><td>tool-call error / logic loop / invented action / wrong data / wrong tool / none</td><td>e.g. step 2, the first <code>check_shipment</code> result</td><td>What you actually see</td><td>Your best guess, before reading the code</td></tr>
+            </table></div>
+            <p>Not every failure crashes. Watch for runs that finish politely and are still wrong. For any number the agent states, check it against what the tools actually returned. Run each scenario twice: the model isn't deterministic, so note which failures reproduce. For one failing scenario, also compare your file with the Trace view in <code>adk web</code>: if your recorder missed a step, fix the recorder before you trust the log.</p>
+            <div class="submit-box"><h5>Submit</h5>
+                <ul>
+                    <li>A screenshot of one failing run in <code>adk web</code>'s Trace view.</li>
+                    <li>Your failure log, one row per scenario, written <em>before</em> you opened the source.</li>
+                </ul>
+            </div>
+</section>
+
+<section class="module card" id="analyze">
+  <div class="module-head"><div class="module-icon">🔬</div><div><h2>3 · Analyze</h2></div></div>
+            <p class="stage-tagline">Why does this happen, mechanically?</p>
+            <p>Now open the source. Pick the <strong>one</strong> failure you think is most dangerous in production and explain it fully:</p>
+            <ul>
+                <li>Which line of code or instruction causes it, and why does the model behave the way it does given what it was told?</li>
+                <li>Why didn't it crash, or, if it did, why is crashing actually the <em>less</em> dangerous outcome here?</li>
+                <li>How would a real customer or manager find out, and how long might that take?</li>
+            </ul>
+            <div class="submit-box"><h5>Submit</h5>
+                <ul>
+                    <li>A short written walkthrough of the one failure you chose, in your own words.</li>
+                </ul>
+            </div>
+</section>
+
+<section class="module card" id="refine">
+  <div class="module-head"><div class="module-icon">✋</div><div><h2>4 · Understand &amp; Refine</h2></div></div>
+            <p class="stage-tagline">The mastery check — by hand, no AI assistance for this stage.</p>
+            <div class="not-graded">By hand this time — no AI assistance for this stage.</div>
+            <p>Fix each root cause you found in <code>tools.py</code> and the instruction. Then add two <strong>generic</strong> guards that don't know about any specific bug, in <code>support_agent/guards.py</code>, attached as ADK callbacks:</p>
+            <ul>
+                <li><code>on_tool_error_callback</code>: when a tool raises, return an error dict the model can read instead of crashing the run.</li>
+                <li><code>before_tool_callback</code>: count identical calls (same tool, same arguments) within one run. After two, skip the real call and tell the model the result won't change. (Hint: returning a dict skips the tool; returning <code>None</code> lets it run. Keys starting with <code>temp:</code> in <code>tool_context.state</code> last for one run only.)</li>
+            </ul>
+            <p>Attach both with the agent's callback arguments, alongside your recorder. Rerun all six scenarios with <code>TRACE=1</code>. Keep the <code>--max-calls</code> budget in place (it sets <code>RunConfig(max_llm_calls=...)</code>): it's the last line of defense if a model ignores your guard.</p>
+            <p><b>Optional, if you have time:</b> try one of ADK's heavier self-correction tools on the failure your guards still miss, and say what it cost in model calls:</p>
+            <ul>
+                <li>A <strong>reflection loop</strong>: a <code>LoopAgent</code> with your agent and a short reviewer agent that checks the answer against the tool results and calls <code>exit_loop</code> when it passes, with <code>max_iterations=2</code>.</li>
+                <li><strong>Tool confirmation</strong>: add a real <code>issue_refund</code> tool that asks a person to approve it before it runs. Check the current ADK docs for how your version requests confirmation.</li>
+            </ul>
+            <div class="submit-box"><h5>Submit</h5>
+                <ul>
+                    <li>Your <code>guards.py</code> and a short list of the fixes you made to <code>tools.py</code> and the instruction.</li>
+                    <li>Before/after traces for two scenarios, showing the agent now recovering on its own.</li>
+                </ul>
+            </div>
+</section>
+
+<section class="module card" id="snags">
+  <div class="module-head"><div class="module-icon">🧯</div><div><h2>Common snags</h2></div></div>
+        <div class="snag-box">
+            <ul>
+                <li><strong>A scenario ends with <code>LlmCallsLimitExceededError</code></strong> — that's the step budget from <code>--max-calls</code> stopping a runaway loop. It's a finding, not a problem with the script.</li>
+                <li><strong>A trace looks different each run</strong> — expected; the model isn't deterministic. If a failure doesn't show up, run that scenario again with <code>--only</code>. Base your log on what you saw, and note when behavior varied.</li>
+                <li><strong><code>traces/</code> stays empty</strong> — recording is off. Check that <code>TRACE=1</code> is set in the same terminal (on PowerShell, <code>$env:TRACE=1</code>), and that the callbacks are attached to the agent <code>run_scenarios.py</code> actually runs.</li>
+                <li><strong>The scenarios behave differently with recording on</strong> — one of your callbacks returns something. A recorder must return <code>None</code>; a dict from <code>before_tool_callback</code> replaces the tool's result.</li>
+                <li><strong>Token counts are all zero or missing</strong> — they're on the model response (its usage metadata), so read them in <code>after_model_callback</code>, not before.</li>
+                <li><strong>Huge red tracebacks in the terminal</strong> — ADK logs every tool error. <code>run_scenarios.py</code> quiets that logger and records the error in the trace instead. If Antigravity rewrote the script, check it kept that line.</li>
+                <li><strong><code>429 RESOURCE_EXHAUSTED</code></strong> — you hit the free tier's per-minute limit. Wait a minute and rerun; the scripts' <code>--pause</code> option adds a gap between runs.</li>
+                <li><strong>In a Codespace only: <code>adk web</code> opens a blank page, and the terminal shows <code>403 Forbidden</code> for <code>/dev-ui/...js</code> files</strong> — ADK blocks requests that arrive through Codespaces' forwarded URL. Stop it and start it as <code>adk web --allow_origins "*"</code>, then hard-refresh the tab. That's safe here: Codespace ports are private to your GitHub account by default.</li>
+                                <li><strong><code>502 Bad Gateway</code>, a 404 or "model not found"</strong> — almost always the model name. Coding agents, Antigravity included, default to whatever model was current in their training data, such as <code>gemini-2.5-flash</code>, which new API keys can't use. Set it back to <code>gemini-3.8-flash</code>. If that ever stops working, check the current list at <a href="https://ai.google.dev/gemini-api/docs/models" target="_blank" rel="noopener">ai.google.dev/gemini-api/docs/models</a>.</li>
+            </ul>
+            <p class="small" style="margin:10px 0 0">Most snags trace back to a concept. If one doesn't make sense, see <a href="../reference/concept-companion.html#module-3">Concept Companion → Module 3</a>.</p>
+        </div>
+</section>
+
+<div class="guide-nav">
+            <span></span>
+            <a href="index.html">Module 3 lesson →</a>
+        </div>
+
+</main>
+<footer class="foot">AI 420: Agentic AI · City University of Seattle, School of Technology &amp; Computing<br>Course design &amp; materials: Clark Ngo · Simulators are illustrative HTML models — no real LLM, database, or network calls. <br>© 2026 Clark Ngo · Free to reuse and adapt under <a href="https://creativecommons.org/licenses/by/4.0/" rel="license">CC BY 4.0</a>, except where noted · <a href="https://github.com/cityuseattle/ai420/blob/main/LICENSE.md">How to credit</a></footer>
+<script src="../assets/course.js"></script>
+</body>
+</html>

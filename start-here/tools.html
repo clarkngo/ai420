@@ -1,0 +1,257 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AI 420 — Tools You'll Use All Term</title>
+    <link rel="stylesheet" href="../assets/course.css">
+    <style>
+        .intro-box { background:var(--blue-bg); border-left:5px solid var(--blue); padding:15px 18px; margin:18px 0; border-radius:0 6px 6px 0; font-size:0.92rem; }
+        .intro-box h4 { margin:0 0 6px; color:var(--blue); font-size:0.95rem; }
+
+        /* Map table — the "modular" jump nav */
+        table.map-table { width:100%; border-collapse:collapse; margin:14px 0 6px; font-size:0.85rem; }
+        table.map-table th, table.map-table td { border:1px solid var(--border); padding:9px 12px; text-align:left; vertical-align:top; }
+        table.map-table th { background:var(--surface2); font-size:0.72rem; text-transform:uppercase; letter-spacing:0.03em; color:var(--muted); }
+        table.map-table td.mod-name { font-weight:700; color:var(--accent); white-space:nowrap; }
+        table.map-table a.jump { font-weight:600; text-decoration:none; color:var(--blue); }
+        table.map-table a.jump:hover { text-decoration:underline; }
+
+        /* Module blocks */
+        .module-pills { display:flex; flex-wrap:wrap; gap:6px; margin-bottom:14px; }
+        .mod-pill { font-size:0.74rem; font-weight:700; padding:3px 10px; border-radius:999px; }
+        .mod-pill.hos { background:var(--blue-bg); color:var(--violet); }
+        .mod-pill.wk { background:var(--blue-bg); color:var(--blue); }
+        .mod-pill.outcome { background:var(--accent-light); color:var(--accent2); }
+        .why-line { font-size:0.92rem; color:var(--text); margin:0 0 18px; }
+        .why-line strong { color:var(--text); }
+
+        /* Concept cards */
+        .concept-grid { display:grid; grid-template-columns:1fr; gap:12px; margin:14px 0; }
+        .concept-card { background:var(--surface2); border:1px solid var(--border); border-radius:8px; padding:13px 16px; }
+        .concept-card h4 { margin:0 0 5px; font-size:0.95rem; color:var(--text); }
+        .concept-card p { margin:0; font-size:0.88rem; color:var(--text); }
+        .concept-card .why { margin-top:6px; font-size:0.82rem; color:var(--muted); }
+        .concept-card .why strong { color:var(--muted); }
+
+        /* Diagrams */
+        .diagram-box { background:var(--surface); border:1px solid var(--border); border-radius:8px; padding:16px; margin:18px 0; text-align:center; }
+        .diagram-box svg { max-width:100%; height:auto; }
+        .diagram-caption { font-size:0.8rem; color:var(--muted); margin-top:6px; }
+        .flow-line { stroke-dasharray:6 4; animation:flowdash 1s linear infinite; }
+        .flow-line.slow { animation-duration:1.8s; }
+        @keyframes flowdash { to { stroke-dashoffset:-20; } }
+        .flow-dot { animation:dotmove linear infinite; }
+        .pulse-box { animation:pulsebox 2.2s ease-in-out infinite; }
+        @keyframes pulsebox { 0%,100% { opacity:1; } 50% { opacity:0.45; } }
+        @media (prefers-reduced-motion: reduce) {
+            .flow-line, .flow-dot, .pulse-box { animation:none !important; }
+        }
+
+        /* Glossary / self-check boxes — matching AI-410.html's vocabulary */
+        .glossary-box { background:var(--surface2); border:1px solid var(--border); border-radius:6px; padding:12px 16px; margin:14px 0; font-size:0.85rem; }
+        .glossary-box h5 { margin:0 0 6px; font-size:0.78rem; text-transform:uppercase; letter-spacing:0.04em; color:var(--muted); }
+        .glossary-box dl { margin:0; }
+        .glossary-box dt { font-weight:700; color:var(--text); display:inline; }
+        .glossary-box dd { display:inline; margin:0 0 0 4px; color:var(--muted); }
+        .glossary-box dd::after { content:""; display:block; margin-bottom:4px; }
+        .check-box { background:var(--blue-bg); border-left:5px solid var(--blue); padding:12px 16px; margin:16px 0 0; border-radius:0 4px 4px 0; font-size:0.85rem; }
+        .check-box h5 { margin:0 0 6px; font-size:0.78rem; text-transform:uppercase; letter-spacing:0.04em; color:var(--blue); }
+        .check-box ul { margin:0; padding-left:18px; }
+        .check-box li { margin-bottom:4px; }
+
+        .module-nav { text-align:right; margin-top:16px; font-size:0.82rem; }
+        .module-nav a { color:var(--link); text-decoration:none; font-weight:600; }
+        .back-to-top { display:inline-block; margin-top:34px; font-size:0.85rem; color:var(--link); text-decoration:none; font-weight:600; }
+    </style>
+</head>
+<body>
+<a class="skip-link" href="#main">Skip to content</a>
+<header class="top">
+  <div class="top-inner">
+    <a class="brand" href="../index.html"><span class="brand-icon">420</span><span><b>AI 420: Agentic AI</b><small>Course guides</small></span></a>
+    <div class="top-right"><a class="pill-btn" href="../index.html">Course home</a><button class="pill-btn" id="themeToggle" type="button">🌙 Dark</button></div>
+  </div>
+</header>
+<section class="hero">
+  <div class="hero-inner">
+    <div class="eyebrow">AI 420 · Start here · Read before Week 1</div>
+    <h1>Tools You'll Use All Term</h1>
+    <p class="lede">Google Antigravity, the terminal, Python environments, Google ADK, keys and git: the tools every module uses. Set them up once here instead of under deadline pressure in HOS 1.</p>
+    <div class="chips"><span class="chip">Read before Week 1</span><span class="chip">Antigravity on your own computer</span><span class="chip">Free tiers only</span></div>
+  </div>
+</section>
+<main id="main">
+
+<nav class="secnav no-print" aria-label="Page sections">
+  <div class="secnav-inner">
+    <a href="#start">Start here</a>
+    <a href="#install">Install</a>
+    <a href="#first-run">First run</a>
+    <a href="#codespaces">No install? Codespaces</a>
+    <a href="#module-0">Universal tooling</a>
+  </div>
+</nav>
+
+<section class="module card" id="start">
+  <div class="module-head"><div class="module-icon">🚦</div><div><h2>Start here, in this order</h2></div></div>
+        <div class="before-box">
+            <h4>Start here, in this order</h4>
+            <ol>
+                <li><b>Set up your accounts</b> with the <a href="accounts.html">Account &amp; Service Setup Guide</a>. Week 1 needs a GitHub account, a personal Google account for Antigravity, and a free Gemini API key.</li>
+                <li><b>Install the tools</b> below on your own computer, then do the <a href="#first-run">first run</a> to prove they work.</li>
+                <li><b>Read the <a href="ai-use.html">AI Use Guide</a>.</b> It says where Antigravity may help and where you work without it.</li>
+                <li>Then open <a href="../module-1/index.html">Module 1</a>.</li>
+            </ol>
+        </div>
+        <div class="intro-box">
+            <h4>Two tools, two jobs</h4>
+            <p style="margin:0"><b>Google Antigravity</b> is the coding agent you work <em>with</em>: you give it a task, review its plan, and check what it builds. <b>Google ADK</b> (Agent Development Kit) is the framework you build agents <em>in</em>. Antigravity is itself an agent, so the first thing you'll do in Module 1 is watch one work before you build your own.</p>
+        </div>
+</section>
+
+<section class="module card" id="install">
+  <div class="module-head"><div class="module-icon">💻</div><div><h2>Install on your computer</h2><div class="module-meta"><span class="tag blue">About 30 minutes, once</span></div></div></div>
+        <p class="why-line">You need a Mac, Windows or Linux computer you can install software on. Can't install? Use <a href="#codespaces">Codespaces</a> instead and skip this section.</p>
+        <ol class="steps">
+            <li><b>Google Antigravity.</b> Download it from <a href="https://antigravity.google/" rel="noopener">antigravity.google</a> and sign in with a <b>personal</b> Google account. The free Individual plan is enough for this course. Its usage limit resets weekly, so don't leave a whole HOS for the last night.</li>
+            <li><b>Python 3.11 or newer</b> from <a href="https://www.python.org/downloads/" rel="noopener">python.org</a>. On Windows, tick <b>Add python.exe to PATH</b> in the installer.</li>
+            <li><b>Git</b> from <a href="https://git-scm.com/downloads" rel="noopener">git-scm.com</a> (macOS: run <code>git --version</code> once and accept the prompt to install the developer tools).</li>
+            <li><b>Google Chrome</b>, if you don't have it. Antigravity's browser agent drives Chrome.</li>
+        </ol>
+        <p>Check it in Antigravity's terminal (<b>Terminal → New Terminal</b>):</p>
+<pre><code>python3 --version    # Windows: py --version
+git --version</code></pre>
+</section>
+
+<section class="module card" id="first-run">
+  <div class="module-head"><div class="module-icon">▶️</div><div><h2>First run: one HOS repo, start to finish</h2></div></div>
+        <p class="why-line">Every HOS starts with these same six steps. The repo URL comes from the HOS invite link in each module.</p>
+        <ol class="steps">
+            <li><b>Clone your repo.</b> In Antigravity: <b>File → Open Folder</b> on an empty folder for the course, then in the terminal: <code>git clone &lt;your repo URL&gt;</code>, and open the cloned folder.</li>
+            <li><b>Make a virtual environment and install.</b>
+<pre><code>python3 -m venv .venv
+source .venv/bin/activate        # Windows: .venv\Scripts\activate
+pip install -r requirements.txt  # includes google-adk</code></pre></li>
+            <li><b>Add your key.</b> Copy <code>.env.example</code> to <code>.env</code> and paste your Gemini key after <code>GOOGLE_API_KEY=</code>. Leave <code>GOOGLE_GENAI_USE_VERTEXAI=FALSE</code> as it is.</li>
+            <li><b>Start the developer UI.</b> From the repo's top folder: <code>adk web</code>, then open <code>http://localhost:8000</code> in your browser, pick the agent, and say hello.</li>
+            <li><b>Look at the Events tab.</b> Every model call and tool call is listed there. You'll use it in every HOS.</li>
+            <li><b>Commit and push</b> when you finish a stage: <code>git add -A &amp;&amp; git commit -m "Stage 1" &amp;&amp; git push</code>. Your NOTES.md and code in the repo are what gets graded.</li>
+        </ol>
+        <div class="intro-box">
+            <h4>When the agent is about to run a command</h4>
+            <p style="margin:0">Antigravity can run terminal commands, edit files and open a browser on your computer. Keep its default of asking you before it runs terminal commands, and read each one before you approve it. Never let it put your API key in a file other than <code>.env</code>.</p>
+        </div>
+</section>
+
+<section class="module card" id="codespaces">
+  <div class="module-head"><div class="module-icon">☁️</div><div><h2>No install? Use Codespaces</h2></div></div>
+        <p class="why-line">On a Chromebook, a locked work laptop, or when Antigravity won't install, open the same repo in GitHub Codespaces (<b>Code → Codespaces → Create codespace on main</b>). Everything is graded the same way.</p>
+        <ul>
+            <li>The coding assistant there is <b>GitHub Copilot</b> (free for verified students) instead of Antigravity. In Module 1's Antigravity warm-up, watch the demo video and answer from it.</li>
+            <li>The Codespace installs the requirements for you. Add your key to <code>.env</code> as above.</li>
+            <li>Start the UI with <code>adk web --allow_origins "*"</code>. Plain <code>adk web</code> returns 403 errors in Codespaces. Open the forwarded port 8000 when VS Code offers it.</li>
+            <li>Stop the Codespace when you finish (<b>Codespaces → Stop current codespace</b>) to save your free monthly hours.</li>
+        </ul>
+</section>
+
+<section class="module card" id="module-0">
+  <div class="module-head"><div class="module-icon">🧰</div><div><h2>Universal tooling</h2><div class="module-meta"><span class="tag blue">Read before Week 1</span></div></div></div>
+            <p class="why-line">These tools show up in <strong>every HOS</strong> of this course, not just one. Get comfortable with them once, here.</p>
+
+            <div class="diagram-box">
+                <svg viewBox="0 0 700 130" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="The setup path: clone the repo, create a venv, pip install the requirements, add your key to .env, run adk web. Every HOS starts with it.">
+                    <defs><marker id="m0arrow" markerWidth="8" markerHeight="8" refX="6" refY="3" orient="auto"><path d="M0,0 L6,3 L0,6 Z" style="fill:var(--code-bg)"/></marker></defs>
+                    <g font-family="Inter,system-ui,sans-serif">
+                        <rect x="0" y="35" width="120" height="50" rx="8" style="fill:var(--blue-bg);stroke:var(--blue)"/>
+                        <text x="60" y="65" text-anchor="middle" font-size="11" font-weight="700" style="fill:var(--blue)">git clone</text>
+                        <line x1="120" y1="60" x2="148" y2="60" class="flow-line" style="stroke:var(--border)" stroke-width="1.5" marker-end="url(#m0arrow)"/>
+                        <rect x="152" y="35" width="120" height="50" rx="8" style="fill:var(--accent-light);stroke:var(--accent)"/>
+                        <text x="212" y="65" text-anchor="middle" font-size="11" font-weight="700" style="fill:var(--accent2)">venv</text>
+                        <line x1="272" y1="60" x2="300" y2="60" class="flow-line" style="stroke:var(--border)" stroke-width="1.5" marker-end="url(#m0arrow)"/>
+                        <rect x="304" y="35" width="120" height="50" rx="8" style="fill:var(--amber-bg);stroke:var(--amber)"/>
+                        <text x="364" y="65" text-anchor="middle" font-size="11" font-weight="700" style="fill:var(--amber)">pip install</text>
+                        <line x1="424" y1="60" x2="452" y2="60" class="flow-line" style="stroke:var(--border)" stroke-width="1.5" marker-end="url(#m0arrow)"/>
+                        <rect x="456" y="35" width="120" height="50" rx="8" style="fill:var(--blue-bg);stroke:var(--violet)"/>
+                        <text x="516" y="65" text-anchor="middle" font-size="11" font-weight="700" style="fill:var(--violet)">.env key</text>
+                        <line x1="576" y1="60" x2="604" y2="60" class="flow-line" style="stroke:var(--border)" stroke-width="1.5" marker-end="url(#m0arrow)"/>
+                        <rect x="608" y="35" width="90" height="50" rx="8" style="fill:var(--accent-light);stroke:var(--accent)"/>
+                        <text x="653" y="65" text-anchor="middle" font-size="11" font-weight="700" style="fill:var(--accent2)">adk web</text>
+                    </g>
+                    <text x="350" y="115" text-anchor="middle" font-size="11" style="fill:var(--muted)" font-family="Inter,system-ui,sans-serif">Every HOS starts with this same setup path.</text>
+                </svg>
+                <div class="diagram-caption">The setup path you'll repeat at the start of every HOS.</div>
+            </div>
+
+            <div class="concept-grid">
+                <div class="concept-card">
+                    <h4>Google Antigravity: an agent-first IDE</h4>
+                    <p>An editor with a coding agent built in. You describe a task in the Agent panel; with <code>/plan</code> it first writes an <b>Implementation Plan</b> and a <b>task list</b> for you to review, then edits files, runs commands, and ends with a <b>walkthrough</b> of what it did. These reviewable outputs are called artifacts.</p>
+                    <div class="why"><strong>Why it matters:</strong> you are responsible for everything it builds. Read the plan before you approve it, and comment on it when it's wrong. That habit is the Evaluate stage of every HOS.</div>
+                </div>
+                <div class="concept-card">
+                    <h4>Google ADK (Agent Development Kit)</h4>
+                    <p>Google's open-source Python framework for agents. An agent is a <code>root_agent = Agent(name=..., model=..., instruction=..., tools=[...])</code> in <code>agent.py</code>; ADK runs the loop of model calls and tool calls for you and records each step as an <b>event</b>.</p>
+                    <div class="why"><strong>Why it matters:</strong> ADK is what this course teaches. Antigravity writes code fast, but the HOS ask you to explain, test and extend the ADK parts yourself.</div>
+                </div>
+                <div class="concept-card">
+                    <h4><code>adk web</code>, <code>adk run</code> and <code>adk eval</code></h4>
+                    <p><code>adk web</code> starts a local developer UI with a chat window and the Events and Trace views. <code>adk run my_agent</code> chats in the terminal. <code>adk eval</code> runs a saved set of test conversations (Module 4).</p>
+                    <div class="why"><strong>Why it matters:</strong> run <code>adk web</code> from the folder <em>above</em> your agent folders, or it won't find them. That is the most common Week 1 snag.</div>
+                </div>
+                <div class="concept-card">
+                    <h4>Terminal / command line</h4>
+                    <p>A text-based way to run programs and commands. This course uses it constantly: starting <code>adk web</code>, installing packages, running scripts. Opening a <b>new</b> terminal tab starts you back at the folder you opened, so <code>cd</code> into the folder you need first, every time.</p>
+                </div>
+                <div class="concept-card">
+                    <h4>Python virtual environment (<code>.venv</code>)</h4>
+                    <p>A private copy of Python and its packages for one project. <code>python3 -m venv .venv</code> creates it; activating it switches your terminal to use it. You'll see <code>(.venv)</code> at the start of the prompt.</p>
+                    <div class="why"><strong>Why it matters:</strong> "adk: command not found" almost always means the venv isn't active in that terminal tab.</div>
+                </div>
+                <div class="concept-card">
+                    <h4>Environment variables &amp; <code>.env</code> files</h4>
+                    <p>A <code>.env</code> file holds settings and secrets such as <code>GOOGLE_API_KEY=...</code> as plain <code>NAME=value</code> lines, outside your code. ADK reads the <code>.env</code> in the agent's folder when it starts.</p>
+                    <div class="why"><strong>Why it matters:</strong> every repo's <code>.gitignore</code> already excludes <code>.env</code>, so your key never reaches GitHub. Treat the key like a password: never paste it into a chat, a prompt, or a screenshot.</div>
+                </div>
+                <div class="concept-card">
+                    <h4>Git and your Classroom repo</h4>
+                    <p>Each HOS and AC has its own GitHub repo, created from the invite link. You clone it, work locally, then <code>commit</code> and <code>push</code>. The pushed repo, with your NOTES.md, is your submission.</p>
+                </div>
+                <div class="concept-card">
+                    <h4>Working with a coding agent</h4>
+                    <p>The first stage of each HOS (<strong>Create/Scaffold</strong>) is deliberately agent-driven: Antigravity builds with you. The rest of the HOS proves, in writing and by hand, that you understand what was built.</p>
+                    <div class="why"><strong>Why it matters:</strong> getting the agent-built code running is only 20% of each HOS grade (Create). The other 80% is whether <em>you</em> can evaluate it, explain it, and extend it without AI help.</div>
+                </div>
+            </div>
+
+            <div class="check-box">
+                <h5>Quick self-check before you continue</h5>
+                <ul>
+                    <li>Does <code>adk web</code> open in your browser, and can you find the Events tab?</li>
+                    <li>Do you know where your Gemini API key is stored, and why it's not inside a <code>.py</code> file?</li>
+                    <li>Do you know which part of each HOS is done with Antigravity, and which parts you must do and explain yourself?</li>
+                </ul>
+            </div>
+            <p class="module-nav"><a href="../module-1/index.html">Next: Module 1 — Anatomy of an Agent →</a></p>
+</section>
+
+<div class="guide-nav" style="display:flex;justify-content:space-between;gap:12px;margin-top:30px;padding-top:16px;border-top:1px solid var(--border)">
+            <a href="../index.html">← Course home</a>
+            <a href="../module-1/index.html">Module 1 →</a>
+        </div>
+
+</main>
+<footer class="foot">AI 420: Agentic AI · City University of Seattle, School of Technology &amp; Computing<br>Course design &amp; materials: Clark Ngo <br>© 2026 Clark Ngo · Free to reuse and adapt under <a href="https://creativecommons.org/licenses/by/4.0/" rel="license">CC BY 4.0</a>, except where noted · <a href="https://github.com/cityuseattle/ai420/blob/main/LICENSE.md">How to credit</a></footer>
+<script src="../assets/course.js"></script>
+<script>
+/* section nav highlight (scrolls only the nav row, never the page) */
+(function(){
+  var links=[].slice.call(document.querySelectorAll('.secnav a')); var map={};
+  links.forEach(function(a){ map[a.getAttribute('href').slice(1)]=a; });
+  if(!('IntersectionObserver' in window)) return;
+  var io=new IntersectionObserver(function(es){ es.forEach(function(e){ if(e.isIntersecting){ links.forEach(function(l){l.classList.remove('active');}); var a=map[e.target.id]; if(a){ a.classList.add('active'); var c=a.parentElement, ar=a.getBoundingClientRect(), cr=c.getBoundingClientRect(); c.scrollLeft += (ar.left+ar.width/2)-(cr.left+cr.width/2); } } }); },{rootMargin:'-45% 0px -50% 0px'});
+  Object.keys(map).forEach(function(id){ var s=document.getElementById(id); if(s) io.observe(s); });
+})();
+</script>
+</body>
+</html>

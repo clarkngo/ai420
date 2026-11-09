@@ -1,0 +1,334 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="description" content="AI 420 example Term Project: Campus Event Promoter, a fictional finished project you can click through. An interactive demo of all 4 HOS working together, its three releases, and a demo video storyboard.">
+<title>Example Term Project: Campus Event Promoter</title>
+<link rel="stylesheet" href="../assets/course.css">
+<style>
+.demo-layout { display:grid; grid-template-columns:minmax(250px,320px) 1fr; gap:16px; align-items:start; }
+@media (max-width:860px){ .demo-layout { grid-template-columns:1fr; } }
+.panel { background:var(--surface); border:1px solid var(--border); border-radius:var(--radius); padding:16px 18px; box-shadow:var(--shadow); margin-bottom:16px; min-width:0; }
+.panel h3 { font-size:.95rem; margin:0 0 8px; }
+
+.steps-pick { display:grid; grid-template-columns:repeat(auto-fit,minmax(150px,1fr)); gap:8px; margin:10px 0 14px; }
+.steps-pick button { font-family:inherit; text-align:left; border:1px solid var(--border); background:var(--surface2); color:var(--text); border-radius:10px; padding:8px 10px; cursor:pointer; font-size:.8rem; }
+.steps-pick button .tm { display:block; font-size:.68rem; font-weight:800; letter-spacing:.06em; text-transform:uppercase; color:var(--accent2); }
+.steps-pick button b { display:block; font-size:.84rem; }
+.steps-pick button[aria-pressed="true"] { border-color:var(--accent); box-shadow:0 0 0 3px var(--accent-light); }
+.steps-pick button.seen .tm::after { content:" ✓"; }
+
+.phone { border:6px solid #1f2937; border-radius:14px; background:var(--surface2); max-width:320px; margin:0 auto; position:relative; overflow:hidden; }
+.phone .bar { background:#1f2937; color:#e5e7eb; font-size:.68rem; text-align:center; padding:2px 0 6px; }
+.phone .app-head { background:var(--accent); color:var(--on-accent); padding:8px 12px; font-weight:800; font-size:.86rem; display:flex; justify-content:space-between; align-items:center; }
+.phone .screen { height:380px; overflow-y:auto; padding:10px; display:flex; flex-direction:column; gap:8px; }
+.bub { max-width:85%; padding:7px 10px; border-radius:12px; font-size:.8rem; line-height:1.4; }
+.bub.user { align-self:flex-end; background:var(--blue-bg); color:var(--text); border:1px solid var(--blue); border-bottom-right-radius:4px; }
+.bub.bot { align-self:flex-start; background:var(--surface); border:1px solid var(--border); border-bottom-left-radius:4px; }
+.bub.sys { align-self:center; background:none; color:var(--muted); font-size:.72rem; text-align:center; }
+.bub .cite { display:block; font-size:.68rem; color:var(--muted); margin-top:4px; }
+.fc { border:1px solid var(--border); border-left:4px solid var(--accent); border-radius:8px; padding:5px 8px; margin-top:5px; background:var(--surface2); font-size:.74rem; }
+.notif { position:absolute; left:8px; right:8px; top:26px; background:var(--surface); border:1px solid var(--border); border-radius:12px; box-shadow:var(--shadow); padding:8px 10px; font-size:.76rem; transform:translateY(-140%); transition:transform .35s; }
+.notif.show { transform:translateY(0); }
+.phone-empty { margin:auto; text-align:center; color:var(--muted); font-size:.8rem; }
+
+.lanes { display:grid; grid-template-columns:repeat(auto-fit,minmax(88px,1fr)); gap:6px; margin-bottom:12px; }
+.lane { border:2px solid var(--border); border-radius:10px; padding:6px; text-align:center; font-size:.72rem; background:var(--surface2); transition:all .2s; min-width:0; }
+.lane b { display:block; font-size:.76rem; }
+.lane .ic { font-size:1.1rem; display:block; }
+.lane.from { border-color:var(--blue); background:var(--blue-bg); }
+.lane.to { border-color:var(--accent); background:var(--accent-light); box-shadow:0 0 0 3px var(--accent-light); }
+.lane.err { border-color:var(--bad); background:var(--bad-bg); }
+.stepbox { border:1px solid var(--border); border-left:5px solid var(--accent); border-radius:8px; padding:10px 14px; background:var(--surface2); margin-bottom:12px; min-height:84px; }
+.stepbox.warn { border-left-color:var(--amber); }
+.stepbox .k { font-size:.7rem; font-weight:800; letter-spacing:.08em; text-transform:uppercase; color:var(--muted); }
+.steps-list { list-style:none; margin:0; padding:0; font-size:.8rem; }
+.steps-list li { padding:5px 8px; border-radius:6px; color:var(--muted); display:flex; gap:8px; align-items:baseline; }
+.steps-list li.cur { background:var(--accent-light); color:var(--text); font-weight:700; }
+.steps-list li.past { color:var(--text); }
+.steps-list li .n { flex:none; width:20px; text-align:right; }
+.hos1 { background:var(--blue-bg); color:var(--blue); } .hos2 { background:var(--violet-bg); color:var(--violet); }
+.hos3 { background:var(--amber-bg); color:var(--amber); } .hos4 { background:var(--rose-bg); color:var(--rose); }
+.say { border-left:5px solid var(--violet); background:var(--violet-bg); border-radius:0 8px 8px 0; padding:10px 14px; font-size:.88rem; margin:0 0 12px; }
+.say .label { display:block; font-size:.7rem; font-weight:800; letter-spacing:.08em; text-transform:uppercase; color:var(--violet); margin-bottom:2px; }
+
+.wf-row { display:grid; grid-template-columns:150px 1fr 60px; gap:8px; align-items:center; font-size:.76rem; margin-bottom:4px; }
+.wf-row .nm { overflow:hidden; text-overflow:ellipsis; white-space:nowrap; }
+.wf-track { height:12px; background:var(--surface2); border:1px solid var(--border); border-radius:6px; position:relative; }
+.wf-fill { position:absolute; top:0; bottom:0; border-radius:5px; background:var(--accent); }
+@media (max-width:520px){ .wf-row { grid-template-columns:100px 1fr 50px; } }
+
+.rel { display:grid; grid-template-columns:repeat(auto-fit,minmax(220px,1fr)); gap:12px; }
+.rel .card { margin:0; }
+.rel h3 { margin:0 0 2px; font-size:1rem; }
+.rel ul { padding-left:18px; margin:6px 0 0; font-size:.86rem; }
+.shot { display:grid; grid-template-columns:86px 1fr; gap:10px; border-bottom:1px dashed var(--border); padding:8px 0; font-size:.86rem; }
+.shot .tm { font-weight:800; color:var(--accent2); }
+</style>
+</head>
+<body>
+<a class="skip-link" href="#main">Skip to content</a>
+<header class="top">
+  <div class="top-inner">
+    <a class="brand" href="../index.html"><span class="brand-icon">420</span><span><b>AI 420: Agentic AI</b><small>Course home</small></span></a>
+    <div class="top-right"><a class="pill-btn" href="../index.html">Course home</a><button class="pill-btn" id="themeToggle" type="button">🌙 Dark</button></div>
+  </div>
+</header>
+<section class="hero">
+  <div class="hero-inner">
+    <div class="eyebrow">AI 420 · Module 5 · Example Term Project</div>
+    <h1>Example Term Project: Campus Event Promoter</h1>
+    <p class="lede">A fictional, finished Term Project you can click through. See all four HOS working together in one system, play its live demo step by step with what the presenter says, and see what each of its three releases contained.</p>
+    <div class="chips"><span class="chip">Outcomes CO1–CO5</span><span class="chip">Interactive demo</span><span class="chip">3 releases: v0.3 · v0.7 · v1.0</span><span class="chip">Demo video storyboard</span></div>
+  </div>
+</section>
+<main id="main">
+
+<nav class="secnav no-print" aria-label="Page sections">
+  <div class="secnav-inner">
+    <a href="#overview">The project</a>
+    <a href="#demo">Live demo</a>
+    <a href="#releases">Three releases</a>
+    <a href="#video">Demo video</a>
+    <a href="#strong">What makes it strong</a>
+  </div>
+</nav>
+
+<p class="sim-note" style="margin-top:18px">⚠ Illustrative example only. Campus Event Promoter, its college, its team and its numbers are made up, and the demo is a scripted HTML model: no real model, database or network calls. Your project doesn't have to look like this. It has to combine all four HOS to automate a real, multi-step process.</p>
+
+<section class="module card" id="overview">
+  <div class="module-head"><div class="module-icon">🗂️</div><div><h2>The project at a glance</h2><div class="module-meta"><span class="tag">Group of three</span><span class="tag blue">All 4 HOS</span></div></div></div>
+  <p><strong>The process.</strong> At a small, fictional college, one events coordinator promotes about ten events a month by hand: look up the event, see what worked before, write a post, check it against the style guide, and schedule it. Campus Event Promoter is a small autonomous marketing department that runs those steps from a single trigger. It's the course description's marketing example, cut to a size a team can finish.</p>
+  <div class="table-wrap" tabindex="0"><table>
+    <thead><tr><th>Step in the process</th><th>Now done by</th><th>Why</th></tr></thead>
+    <tbody>
+      <tr><td>Look up the event and past posts</td><td><span class="tag">Agent</span> Researcher</td><td>What's relevant varies by event and audience.</td></tr>
+      <tr><td>Write the post</td><td><span class="tag">Agent</span> Writer</td><td>It takes judgment and changes every time.</td></tr>
+      <tr><td>Check it against the brand rules and the record</td><td><span class="tag">Agent</span> Brand Reviewer</td><td>A separate agent, because a writer is a poor judge of its own work.</td></tr>
+      <tr><td>Approve anything naming a speaker</td><td><span class="tag amber">Human checkpoint</span></td><td>A wrong name is a real harm to a real person. Only these posts stop for it.</td></tr>
+      <tr><td>Pick the time and schedule it</td><td><span class="tag ok">Deterministic code</span></td><td>"9 a.m. the Tuesday before" is a fixed rule. No agent needed.</td></tr>
+    </tbody>
+  </table></div>
+  <div class="table-wrap" tabindex="0"><table>
+    <thead><tr><th>HOS</th><th>What it is in Campus Event Promoter</th><th>Litmus test: why it's really that HOS</th></tr></thead>
+    <tbody>
+      <tr><td><span class="tag hos1">HOS 1 · loop &amp; patterns</span></td><td>A plan-and-execute coordinator built from ADK workflow agents, and a reflection <code>LoopAgent</code> between Writer and Reviewer.</td><td>The team can say why each pattern fits its step, and the plan is real state a later step can change.</td></tr>
+      <tr><td><span class="tag hos2">HOS 2 · tools, MCP &amp; memory</span></td><td><code>get_event</code>, <code>search_past_posts</code> and <code>get_brand_rules</code> on an MCP server, plus long-term memory of what worked per audience, kept in <code>app:</code> state in a SQLite session store.</td><td>The tools reach the process's real data over MCP, not a hardcoded list. Memory changes a later run's output.</td></tr>
+      <tr><td><span class="tag hos3">HOS 3 · traces &amp; self-correction</span></td><td>A trace of every run (ADK callbacks to a file, and <code>adk web</code>'s Trace view), a repeat-call guard, a two-round cap on review, and a hand-off when either trips.</td><td>The guard exists because of a real failure trace, and that trace is in the demo.</td></tr>
+      <tr><td><span class="tag hos4">HOS 4 · team &amp; evaluation</span></td><td>Three cooperating agents and a coordinator, with an eval of 18 agent-on-agent scenarios.</td><td>The team is compared with a single agent on success, cost and latency, and the judge was checked by hand.</td></tr>
+    </tbody>
+  </table></div>
+  <h3>The team and who owned what</h3>
+  <p class="small">One owner per area, not per week, as the <a href="index.html#roles">Roles section</a> suggests. With three people, one person takes two areas.</p>
+  <div class="table-wrap" tabindex="0"><table>
+    <thead><tr><th>Member (fictional)</th><th>Owned</th></tr></thead>
+    <tbody>
+      <tr><td>Member A</td><td>Agents &amp; orchestration (HOS 1 + the HOS 4 team)</td></tr>
+      <tr><td>Member B</td><td>Tools &amp; MCP server, and memory (HOS 2)</td></tr>
+      <tr><td>Member C</td><td>Traces &amp; guards (HOS 3), the evaluation (HOS 4), and the demo script</td></tr>
+    </tbody>
+  </table></div>
+</section>
+
+<section class="module card" id="demo">
+  <div class="module-head"><div class="module-icon">🎬</div><div><h2>Live demo: play it step by step</h2><div class="module-meta"><span class="tag">Follows the Demo plan</span><span class="tag blue">≈ 5–6 min</span></div></div></div>
+  <p>This is the live-demo part of Campus Event Promoter's presentation, in the order the <a href="index.html#demo">Demo plan</a> suggests. Pick a step, then press <b>Next ▸</b> to play it one event at a time. The run console shows what the audience sees; <b>Behind the scenes</b> shows what the presenter points at, with the HOS each event belongs to.</p>
+
+  <div class="steps-pick" id="pick" role="group" aria-label="Demo steps"></div>
+
+  <div class="say" id="say"><span class="label">The presenter says</span><span id="sayText"></span></div>
+
+  <div class="demo-layout">
+    <div>
+      <div class="phone" role="group" aria-label="Run console of Campus Event Promoter">
+        <div class="bar">Terminal · run console</div>
+        <div class="notif" id="notif"><b>Scheduler</b><br><span id="notifText"></span></div>
+        <div class="app-head"><span>📣 Campus Event Promoter</span><span style="font-weight:600;font-size:.72rem">v1.0</span></div>
+        <div class="screen" id="screen" tabindex="0" role="log" aria-label="Run log"></div>
+      </div>
+      <div class="row" style="justify-content:center;margin-top:12px">
+        <button class="btn" id="next" type="button">Next ▸</button>
+        <button class="btn secondary" id="toEnd" type="button">Play to end</button>
+        <button class="btn secondary" id="replay" type="button">Replay step</button>
+      </div>
+    </div>
+    <div>
+      <div class="panel">
+        <h3>Behind the scenes</h3>
+        <div class="lanes">
+          <div class="lane" id="L-run"><span class="ic">▶️</span><b>Trigger</b>run.py</div>
+          <div class="lane" id="L-orch"><span class="ic">🧭</span><b>Coordinator</b>+ Researcher</div>
+          <div class="lane" id="L-writer"><span class="ic">✍️</span><b>Writer</b>ADK agent</div>
+          <div class="lane" id="L-review"><span class="ic">🛡️</span><b>Reviewer</b>ADK agent</div>
+          <div class="lane" id="L-tools"><span class="ic">🔧</span><b>Tools</b>MCP server</div>
+          <div class="lane" id="L-mem"><span class="ic">🗄️</span><b>Memory</b>app: state</div>
+          <div class="lane" id="L-trace"><span class="ic">🔭</span><b>Traces</b>ADK callbacks</div>
+        </div>
+        <div class="stepbox" id="stepbox"><span class="k">Ready</span><p style="margin:0">Pick a demo step above, then press <b>Next ▸</b>.</p></div>
+        <ol class="steps-list" id="events"></ol>
+        <div id="extra"></div>
+        <p class="sr-only" id="live" aria-live="polite"></p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="module card" id="releases">
+  <div class="module-head"><div class="module-icon">🚀</div><div><h2>Three releases: what was in each</h2><div class="module-meta"><span class="tag amber">Phase 1 · 2 · 3</span></div></div></div>
+  <p>Campus Event Promoter didn't appear in Week 10. Each phase released a working system version and a report, the same as yours will.</p>
+  <div class="rel">
+    <div class="card"><span class="tag">End of Week 3 · Phase 1</span><h3>System v0.3</h3>
+      <ul><li>Repo with a README, a <code>.gitignore</code> and no keys committed</li><li>One HOS 1 agent that turns a pasted event brief into a draft post, running from a fresh clone</li><li>A one-page proposal with 3 references: the process, the first map of its steps, which HOS goes where, and who owns what</li></ul></div>
+    <div class="card"><span class="tag">End of Week 7 · Phase 2</span><h3>System v0.7</h3>
+      <ul><li>The MCP server with its three tools, and memory across runs</li><li>Writer and Reviewer running from one trigger, with a trace recorded for every run</li><li>No guards yet, so a run can spin until the step limit. Listed honestly as a known issue.</li><li>A 3–4 page progress report with 12+ references</li></ul></div>
+    <div class="card"><span class="tag ok">End of Week 10 · Phase 3</span><h3>System v1.0</h3>
+      <ul><li>Repeat-call guard, review cap and hand-off, each from a failure they saw in a trace</li><li>Coordinator, three agents, the checkpoint and scheduling code, end to end</li><li>18 scenarios with success, cost and latency, compared with a single agent</li><li>One-click Codespace launch and a README execution guide with an AI tool disclosure</li><li>Final report, presentation and demo video</li></ul></div>
+  </div>
+  <div class="callout blue" style="margin-top:14px">
+    <span class="label">What they cut, and said so</span>
+    <p>Posting to real social accounts (v1.0 writes to a schedule file) and support for events in two rooms, which is why 2 of the 18 scenarios still fail. Both are on the "what didn't make it" slide. That's the Integration Debate in practice: they cut features, not traces or the eval.</p>
+  </div>
+</section>
+
+<section class="module card" id="video">
+  <div class="module-head"><div class="module-icon">📹</div><div><h2>The demo video: a storyboard</h2><div class="module-meta"><span class="tag">1–2 minutes</span><span class="tag">Public YouTube link</span></div></div></div>
+  <p>The video is separate from the live demo. It needs the problem, how the system works, and a title card naming who built what. Here is Campus Event Promoter's shot list, about 1:45 in all.</p>
+  <div class="shot"><span class="tm">0:00–0:08</span><span><b>Title card.</b> "Campus Event Promoter · AI 420 Term Project · Member A: agents and orchestration · Member B: tools, MCP and memory · Member C: traces, guards and evaluation".</span></div>
+  <div class="shot"><span class="tm">0:08–0:25</span><span><b>The problem.</b> The process map and a voice-over: "One coordinator, ten events a month, two hours each, by hand."</span></div>
+  <div class="shot"><span class="tm">0:25–0:55</span><span><b>One trigger.</b> A screen recording: <code>run.py --event EV-204</code>, the plan, the tool calls, and draft 1.</span></div>
+  <div class="shot"><span class="tm">0:55–1:15</span><span><b>Review and schedule.</b> The Reviewer rejects the invented price, draft 2 passes, and the post lands in the schedule.</span></div>
+  <div class="shot"><span class="tm">1:15–1:35</span><span><b>How we know it works.</b> The failure trace with the guard, then the eval table.</span></div>
+  <div class="shot" style="border-bottom:none"><span class="tm">1:35–1:45</span><span><b>Close.</b> The repo link and one sentence on what's next.</span></div>
+</section>
+
+<section class="module card" id="strong">
+  <div class="module-head"><div class="module-icon">✅</div><div><h2>What makes this a strong example</h2><div class="module-meta"><span class="tag">Use it as a checklist</span></div></div></div>
+  <ul>
+    <li><b>It starts from a real process.</b> Every step in the map is justified as an agent, as code, or as a person, and not everything is an agent.</li>
+    <li><b>Every HOS is real, not a token mention.</b> For each one the team can point to a specific part of the system and say why it's that HOS (the litmus test in the second table).</li>
+    <li><b>One run shows all four.</b> The demo doesn't tour features one by one. A single trigger moves through the plan, the tools, the team and the guardrails, and the trace shows it.</li>
+    <li><b>It shows a real failure.</b> The trace from Week 9 proves the guard earned its place, which is more convincing than a demo where nothing goes wrong.</li>
+    <li><b>Its numbers include the cost.</b> The team wins on success and loses on cost and latency, and the presenters say both.</li>
+    <li><b>It's honest about what's missing.</b> The cut features and the two failing scenarios are named, with what the team would do next.</li>
+    <li><b>Every member is visible.</b> Owners per area, commits from all three, everyone speaks, and the title card names who built what.</li>
+  </ul>
+  <p>Now plan yours: <a href="index.html#map">map your process</a>, <a href="index.html#backlog">write your backlog</a>, then use the <a href="index.html#freeze">freeze checklist</a> and the <a href="index.html#demo">Demo plan</a>.</p>
+</section>
+
+
+</main>
+<footer class="foot">AI 420: Agentic AI · City University of Seattle, School of Technology &amp; Computing<br>Course design &amp; materials: Clark Ngo · Simulators are illustrative HTML models — no real LLM, database, or network calls. <br>© 2026 Clark Ngo · Free to reuse and adapt under <a href="https://creativecommons.org/licenses/by/4.0/" rel="license">CC BY 4.0</a>, except where noted · <a href="https://github.com/cityuseattle/ai420/blob/main/LICENSE.md">How to credit</a></footer>
+<script>
+(function(){
+  var root=document.documentElement, btn=document.getElementById('themeToggle');
+  try { var saved=localStorage.getItem('ai420-theme'); if(saved) root.setAttribute('data-theme',saved); } catch(e){}
+  function isDark(){ var t=root.getAttribute('data-theme'); return t ? t==='dark' : window.matchMedia('(prefers-color-scheme: dark)').matches; }
+  function label(){ if(btn) btn.textContent = isDark() ? '☀️ Light' : '🌙 Dark'; }
+  label();
+  try { window.matchMedia('(prefers-color-scheme: dark)').addEventListener('change',label); } catch(e){}
+  var hdr=document.querySelector('header.top');
+  function hh(){ if(hdr) root.style.setProperty('--header-h',hdr.offsetHeight+'px'); }
+  hh(); window.addEventListener('resize',hh);
+  if(btn) btn.addEventListener('click',function(){
+    var next=isDark()?'light':'dark'; root.setAttribute('data-theme',next);
+    try { localStorage.setItem('ai420-theme',next); } catch(e){}
+    label();
+  });
+})();
+</script>
+<script>
+(function(){
+  var $=function(id){return document.getElementById(id);};
+  var HOS={1:'HOS 1 · loop & patterns',2:'HOS 2 · tools, MCP & memory',3:'HOS 3 · traces & self-correction',4:'HOS 4 · team & evaluation'};
+  function wf(rows){ return rows.map(function(r){ return '<div class="wf-row"><span class="nm">'+r[0]+'</span><div class="wf-track"><div class="wf-fill" style="left:'+r[1]+'%;width:'+r[2]+'%"></div></div><span>'+r[3]+'</span></div>'; }).join(''); }
+  var POST='<div class="fc"><b>Draft 2 · approved by Brand Reviewer</b><br>Meet the people building Seattle\'s robots. Open lab night, Thursday 6 p.m., Science Hall 110. Free, snacks included.</div>';
+  var BAD='<h3 style="margin-top:14px">Trace · run-0087 (Week 9, before the guard)</h3>'+
+    wf([['run EV-118',0,100,'94 s'],['coordinator · plan',0,4,'1.8 s'],['researcher',5,6,'4.9 s'],['writer · draft 1',12,8,'6.1 s'],['get_event × 14',21,77,'71 s']])+
+    '<p class="small" style="margin-top:8px"><span class="tag" style="background:var(--bad-bg);color:var(--bad)">14 identical calls</span> <span class="tag">same arguments · same empty result</span> <span class="tag">stopped by the step limit</span></p>';
+  var GOOD='<h3 style="margin-top:14px">Trace · run-0163 (same event, with the guard)</h3>'+
+    wf([['run EV-118',0,100,'11 s'],['coordinator · plan',0,16,'1.8 s'],['researcher',17,40,'4.4 s'],['writer · get_event',58,5,'0.5 s'],['guard → hand-off',64,3,'0.2 s']])+
+    '<p class="small" style="margin-top:8px"><span class="tag ok">guard fired on call 2</span> <span class="tag">hand-off: "no room listed for EV-118"</span></p>';
+  var NUM='<h3 style="margin-top:14px">Final eval · 18 scenarios, one seed</h3><div class="table-wrap" tabindex="0"><table><thead><tr><th>Metric</th><th>Single agent</th><th>Team + guards</th></tr></thead><tbody><tr><td>Success rate</td><td>11 / 18</td><td>16 / 18</td></tr><tr><td>Cost per task</td><td>$0.004</td><td>$0.011</td></tr><tr><td>p95 latency</td><td>9 s</td><td>21 s</td></tr></tbody></table></div><p class="small" style="margin-top:8px">Judge checked by hand on 6 transcripts: agreed on 5.</p>';
+  var STEPS=[
+    {time:'~0:30', title:'The process and the map', say:'"Today one coordinator at the college promotes about ten events a month, by hand, around two hours each: look up the event, check what worked before, write the post, get it checked against the style guide, schedule it. We mapped each step: agents where it takes judgment, code where a rule does the job, and one human checkpoint."',
+     ev:[{from:'run',to:'run',t:'Show the process map',d:'Research, drafting and brand review are agents. Picking the post time is deterministic code. A person approves any post that names a speaker, because a wrong name is a real harm and a reviewer agent can miss it.',hos:1,out:{sys:'events.csv · EV-204 "Open Lab Night" · no post yet'}}]},
+    {time:'~1:30', title:'One trigger: research and draft', say:'"One command, nothing else. The coordinator agent plans the run. Watch the tool calls: every one goes through our MCP server to the events list, past posts and brand rules. It also remembers what worked for this audience last term."',
+     ev:[{from:'run',to:'orch',t:'python run.py --event EV-204',d:'The single trigger. From here, nobody clicks anything unless the checkpoint fires.',hos:1,out:{user:'▶ run.py --event EV-204'}},
+         {from:'orch',to:'orch',t:'The coordinator writes a plan',d:'Plan-and-execute: research → draft → review → schedule, kept in the run\'s state so a later step can replan.',hos:1,out:{bot:'Plan: 1 research · 2 draft · 3 brand review · 4 schedule'}},
+         {from:'orch',to:'tools',t:'get_event("EV-204") over MCP',d:'A custom tool served from <code>mcp_server/server.py</code>. It returns the date, room and audience, and that nothing about a speaker is listed.',hos:2},
+         {from:'orch',to:'tools',t:'search_past_posts("engineering students")',d:'The second custom tool. It finds three past posts and their click counts.',hos:2},
+         {from:'orch',to:'mem',t:'Recall what worked for this audience',d:'Long-term memory from earlier runs: "evening events do better when the post mentions food". <code>should_remember()</code> decided that was worth keeping.',hos:2,out:{sys:'Researcher finished · 3 past posts · 1 memory'}},
+         {from:'orch',to:'writer',t:'Hand the brief to the Writer agent',d:'The Researcher\'s notes go in as the Writer\'s input. It writes draft 1.',hos:4,out:{bot:'Draft 1: Build robots with us! Open lab night, Thursday 6 p.m. Free pizza, $5 for guests.'}}]},
+    {time:'~1:00', title:'Brand review, then schedule', say:'"The Brand Reviewer is a separate agent with one job. It catches a price that isn\'t in the event record and sends the draft back. Round two passes. Scheduling is plain code, not an agent, because a fixed rule does that job."',
+     ev:[{from:'writer',to:'review',t:'Brand Reviewer checks draft 1',d:'It reads the draft against <code>get_brand_rules</code>, the third custom tool, and against the event record.',hos:4},
+         {from:'review',to:'writer',t:'Rejected: "$5 for guests" isn\'t in the record',d:'A reflection loop between two agents. The feedback goes back to the Writer, capped at two rounds.',hos:1,warn:true,out:{sys:'Brand Reviewer: rejected · invented price · round 1 of 2'}},
+         {from:'writer',to:'review',t:'Draft 2 passes',d:'The Writer drops the price. The Reviewer approves.',hos:4,out:{bot:POST}},
+         {from:'orch',to:'run',t:'Checkpoint check: no named speaker, so no pause',d:'The rule is code, not a model\'s choice. Had this post named a speaker, the run would stop here for a person to approve.',hos:3},
+         {from:'orch',to:'tools',t:'schedule.py: Tuesday 9 a.m. before the event',d:'Deterministic code writes the post to the schedule file. No model call.',hos:1,out:{notif:'Scheduled: Tue 9:00 a.m. · EV-204 · run-0142'}}]},
+    {time:'~1:30', title:'One real failure trace', say:'"This one really happened in Week 9. An event had no room listed, and the Writer called get_event fourteen times with the same arguments. Nothing crashed. It just burned 71 seconds, and we only saw it in the trace. Here\'s the fix: a repeat-call guard. Same event today: the guard fires on the second call and hands off to a person."',
+     ev:[{from:'trace',to:'trace',t:'Open the saved trace from Week 9',d:'Have it open in a tab before the demo starts. Don\'t search for it live.',hos:3,extra:BAD},
+         {from:'trace',to:'tools',t:'Point at the fourteen identical spans',d:'Same tool, same arguments, same empty result. That\'s the failure signature from Module 3.',hos:3,warn:true},
+         {from:'trace',to:'trace',t:'Open the same event with the guard on',d:'The guard fires on the repeat, and <code>needs_handoff()</code> sends a clear note to the coordinator. It fixes this failure; it doesn\'t make the agent smarter.',hos:3,extra:GOOD,out:{sys:'run-0163 · EV-118 · handed to a person: no room listed'}}]},
+    {time:'~0:30', title:'The numbers', say:'"Eighteen scenarios, where a simulated coordinator submits event briefs and a judge grades the result. The team plus guards beats our single agent on success, 16 to 11, and costs almost three times as much. We hand-checked the judge on six transcripts. Those two failures are both events with two rooms."',
+     ev:[{from:'trace',to:'trace',t:'Show the eval table',d:'The comparison, not just the winner: what the team buys, and what it costs.',hos:4,extra:NUM}]},
+    {time:'~0:30', title:'What didn\'t make it, and next', say:'"Two things didn\'t make it: posting to real social accounts, so today it writes a schedule file, and two-room events, which still fail. Next we\'d fix the two-room case and run 50 scenarios before anyone trusted this with a real account."',
+     ev:[{from:'run',to:'run',t:'Close on an honest slide',d:'A sprint review, not a sales pitch. Name the corner you cut. It\'s your Integration Debate synthesis in practice.',hos:4,out:{sys:'Not yet: real social posting · two-room events'}}]}
+  ];
+  var cur=0, idx=-1, seen={};
+
+  function laneReset(){ ['run','orch','writer','review','tools','mem','trace'].forEach(function(l){ $('L-'+l).className='lane'; }); }
+  function bubble(cls,html){ var d=document.createElement('div'); d.className='bub '+cls; d.innerHTML=html; $('screen').appendChild(d); $('screen').scrollTop=$('screen').scrollHeight; }
+  function outFor(e){
+    var p=e.out; if(!p) return;
+    if(p.user) bubble('user',p.user); if(p.bot) bubble('bot',p.bot); if(p.sys) bubble('sys',p.sys);
+    if(p.notif){ $('notifText').textContent=p.notif; $('notif').classList.add('show'); }
+  }
+  function pickHtml(){
+    $('pick').innerHTML=STEPS.map(function(s,i){ return '<button type="button" aria-pressed="'+(i===cur)+'" class="'+(seen[i]?'seen':'')+'" data-i="'+i+'"><span class="tm">Step '+(i+1)+' · '+s.time+'</span><b>'+s.title+'</b></button>'; }).join('');
+    [].slice.call($('pick').querySelectorAll('button')).forEach(function(b){ b.addEventListener('click',function(){ load(+b.dataset.i); }); });
+  }
+  function load(i){
+    cur=i; idx=-1; $('screen').innerHTML=''; $('notif').classList.remove('show'); $('extra').innerHTML='';
+    // replay the phone history of earlier steps so the chat reads as one conversation
+    for(var k=0;k<i;k++) STEPS[k].ev.forEach(function(e){ if(e.out && !e.out.notif) outFor(e); });
+    if(!$('screen').children.length) $('screen').innerHTML='<p class="phone-empty">Press Next ▸ to start the demo.</p>';
+    $('sayText').textContent=STEPS[i].say; pickHtml(); render();
+  }
+  function render(){
+    var s=STEPS[cur]; laneReset();
+    $('events').innerHTML=s.ev.map(function(e,i){ return '<li class="'+(i===idx?'cur':i<idx?'past':'')+'"><span class="n">'+(i+1)+'</span><span>'+e.t+' <span class="tag hos'+e.hos+'">'+HOS[e.hos]+'</span></span></li>'; }).join('');
+    var done=idx===s.ev.length-1;
+    $('next').textContent= done ? (cur<STEPS.length-1 ? 'Next demo step ▸' : 'Start over ▸') : 'Next ▸';
+    $('toEnd').disabled=done;
+    if(idx<0){ $('stepbox').className='stepbox'; $('stepbox').innerHTML='<span class="k">Step '+(cur+1)+' of '+STEPS.length+' · '+s.time+'</span><p style="margin:2px 0 0"><b>'+s.title+'</b></p><p class="small" style="margin:4px 0 0">Press <b>Next ▸</b> to play the first event.</p>'; return; }
+    var e=s.ev[idx];
+    $('L-'+e.from).classList.add('from'); if(e.to!==e.from) $('L-'+e.to).classList.add(e.warn?'err':'to'); else if(e.warn) $('L-'+e.to).classList.add('err');
+    $('stepbox').className='stepbox'+(e.warn?' warn':'');
+    $('stepbox').innerHTML='<span class="k">Event '+(idx+1)+' of '+s.ev.length+' · <span class="tag hos'+e.hos+'">'+HOS[e.hos]+'</span></span><p style="margin:4px 0 0"><b>'+e.t+'</b></p><p class="small" style="margin:4px 0 0">'+e.d+'</p>';
+    $('live').textContent='Event '+(idx+1)+' of '+s.ev.length+': '+e.t.replace(/<[^>]+>/g,'');
+    if(done){ seen[cur]=true; pickHtml(); }
+  }
+  function step(){
+    var s=STEPS[cur];
+    if(idx>=s.ev.length-1){ load(cur<STEPS.length-1?cur+1:0); return; }
+    if(idx<0 && $('screen').querySelector('.phone-empty')) $('screen').innerHTML='';
+    idx++; var e=s.ev[idx]; outFor(e); if(e.extra) $('extra').innerHTML=e.extra; render();
+  }
+  $('next').addEventListener('click',step);
+  $('toEnd').addEventListener('click',function(){ var s=STEPS[cur]; while(idx<s.ev.length-1) step(); });
+  $('replay').addEventListener('click',function(){ load(cur); });
+  load(0);
+})();
+
+/* section nav highlight */
+(function(){
+  var links=[].slice.call(document.querySelectorAll('.secnav a')); var map={};
+  links.forEach(function(a){ map[a.getAttribute('href').slice(1)]=a; });
+  if(!('IntersectionObserver' in window)) return;
+  var io=new IntersectionObserver(function(es){ es.forEach(function(e){ if(e.isIntersecting){ links.forEach(function(l){l.classList.remove('active');}); var a=map[e.target.id]; if(a){ a.classList.add('active'); var c=a.parentElement, ar=a.getBoundingClientRect(), cr=c.getBoundingClientRect(); c.scrollLeft+=ar.left-cr.left-cr.width/2+ar.width/2; } } }); },{rootMargin:'-30% 0px -60% 0px'});
+  Object.keys(map).forEach(function(id){ var s=document.getElementById(id); if(s) io.observe(s); });
+})();
+</script>
+</body>
+</html>

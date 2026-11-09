@@ -1,0 +1,190 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AI 420 — Account &amp; Service Setup Guide</title>
+    <link rel="stylesheet" href="../assets/course.css">
+    <style>
+        .intro-box { background:var(--blue-bg); border-left:5px solid var(--blue); padding:15px 18px; margin:18px 0; border-radius:0 6px 6px 0; font-size:0.92rem; }
+        .intro-box h4 { margin:0 0 6px; color:var(--blue); font-size:0.95rem; }
+
+        table.map-table { width:100%; border-collapse:collapse; margin:14px 0 6px; font-size:0.85rem; }
+        table.map-table th, table.map-table td { border:1px solid var(--border); padding:9px 12px; text-align:left; vertical-align:top; }
+        table.map-table th { background:var(--surface2); font-size:0.72rem; text-transform:uppercase; letter-spacing:0.03em; color:var(--muted); }
+        table.map-table td.svc-name { font-weight:700; color:var(--accent); white-space:nowrap; }
+        table.map-table a.jump { font-weight:600; text-decoration:none; color:var(--blue); }
+        table.map-table a.jump:hover { text-decoration:underline; }
+
+        .service-head { display:flex; flex-wrap:wrap; align-items:baseline; gap:10px; margin-bottom:6px; }
+        .service-head h2 { margin:0; border-bottom:none; padding-bottom:0; }
+        .service-pills { display:flex; flex-wrap:wrap; gap:6px; margin-bottom:14px; }
+        .svc-pill { font-size:0.74rem; font-weight:700; padding:3px 10px; border-radius:999px; }
+        .svc-pill.when { background:var(--blue-bg); color:var(--violet); }
+        .svc-pill.cost { background:var(--accent-light); color:var(--accent2); }
+        .why-line { font-size:0.92rem; color:var(--text); margin:0 0 18px; }
+        .why-line strong { color:var(--text); }
+
+        ol.steps { padding-left:1.3em; }
+        ol.steps > li { margin-bottom:14px; }
+        pre { background:var(--code-bg); color:var(--code-text); padding:14px 16px; border-radius:6px; overflow-x:auto; font-size:0.8rem; line-height:1.5; }
+        code { font-family: 'SFMono-Regular', Consolas, 'Liberation Mono', Menlo, monospace; }
+        p code, li code, dd code { background:var(--surface2); color:var(--rose); padding:1px 5px; border-radius:4px; font-size:0.88em; }
+        .explain { background:var(--surface2); border-left:3px solid var(--border); padding:8px 14px; margin:10px 0; font-size:0.9rem; border-radius:0 4px 4px 0; }
+        .explain strong { color:var(--text); }
+        .snag-box { background:var(--amber-bg); border-left:5px solid var(--amber); padding:15px 18px; margin:18px 0 0; border-radius:4px; font-size:0.88rem; }
+        .snag-box h4 { margin:0 0 8px; color:var(--amber); font-size:0.9rem; }
+        .done-box { background:var(--accent-light); border-left:5px solid var(--accent); padding:13px 18px; margin:16px 0 0; border-radius:4px; font-size:0.88rem; }
+        .done-box h4 { margin:0 0 6px; color:var(--accent2); font-size:0.85rem; text-transform:uppercase; letter-spacing:0.03em; }
+        .done-box ul { margin:0; padding-left:20px; }
+        .anatomy-box { background:var(--surface); border:1px solid var(--border); border-radius:8px; padding:20px 16px 16px; margin:18px 0; overflow-x:auto; }
+        .anatomy-string { font-family:'SFMono-Regular',Consolas,'Liberation Mono',Menlo,monospace; font-size:0.95rem; white-space:nowrap; text-align:center; margin-bottom:4px; }
+        .anatomy-part { padding:2px 4px; border-radius:3px; }
+        .part-scheme { background:var(--blue-bg); color:var(--violet); }
+        .part-user { background:var(--blue-bg); color:var(--blue); }
+        .part-pass { background:var(--bad-bg); color:var(--bad); }
+        .part-host { background:var(--accent-light); color:var(--accent2); }
+        .part-port { background:var(--amber-bg); color:var(--amber); }
+        .anatomy-legend { display:flex; flex-wrap:wrap; gap:14px; justify-content:center; margin-top:14px; font-size:0.8rem; }
+        .anatomy-legend span.swatch { display:inline-block; width:10px; height:10px; border-radius:2px; margin-right:5px; vertical-align:middle; }
+
+        .glossary-box { background:var(--surface2); border:1px solid var(--border); border-radius:6px; padding:12px 16px; margin:14px 0; font-size:0.85rem; }
+        .glossary-box h5 { margin:0 0 6px; font-size:0.78rem; text-transform:uppercase; letter-spacing:0.04em; color:var(--muted); }
+        .glossary-box dl { margin:0; }
+        .glossary-box dt { font-weight:700; color:var(--text); display:inline; }
+        .glossary-box dd { display:inline; margin:0 0 0 4px; color:var(--muted); }
+        .glossary-box dd::after { content:""; display:block; margin-bottom:4px; }
+
+        .env-example { overflow-x:auto; background:var(--code-bg); color:var(--code-text); padding:16px 18px; border-radius:8px; font-size:0.82rem; line-height:1.7; margin:14px 0; }
+        .env-example .comment { color:var(--code-text); opacity:.6; }
+        .env-example .key { color:#93c5fd; }
+
+        .back-to-top { display:inline-block; margin-top:30px; font-size:0.85rem; color:var(--link); text-decoration:none; font-weight:600; }
+    </style>
+</head>
+<body>
+<a class="skip-link" href="#main">Skip to content</a>
+<header class="top">
+  <div class="top-inner">
+    <a class="brand" href="../index.html"><span class="brand-icon">420</span><span><b>AI 420: Agentic AI</b><small>Course guides</small></span></a>
+    <div class="top-right"><a class="pill-btn" href="../index.html">Course home</a><button class="pill-btn" id="themeToggle" type="button">🌙 Dark</button></div>
+  </div>
+</header>
+<section class="hero">
+  <div class="hero-inner">
+    <div class="eyebrow">AI 420 · Start here · Before you need each service</div>
+    <h1>Account &amp; Service Setup</h1>
+    <p class="lede">Every external account the course asks you to create, in one place: what to click, what each one is for, and when you first need it. All three are needed in Week 1.</p>
+    <div class="chips"><span class="chip">Do this once, before you need it</span><span class="chip">Every service has a free tier — no credit card required anywhere</span><span class="chip">3 services</span></div>
+  </div>
+</section>
+<main id="main">
+<nav class="secnav no-print" aria-label="Page sections">
+  <div class="secnav-inner">
+    <a href="#find">Find your service</a>
+    <a href="#github">GitHub</a>
+    <a href="#antigravity">Antigravity</a>
+    <a href="#google">Gemini key</a>
+    <a href="#together">All together</a>
+  </div>
+</nav>
+<section class="module card" id="find">
+  <div class="module-head"><div class="module-icon">🗺️</div><div><h2>Find your service</h2></div></div>
+        <div class="intro-box">
+            <h4>What this page is</h4>
+            <p>Every account this course asks you to create, in one place, with exactly what to click. There are three, all free and all needed in Week 1. The tools the agents use (Open-Meteo weather, Wikipedia, SQLite) need no account at all.</p>
+        </div>
+        <div class="table-wrap" tabindex="0"><table class="map-table">
+            <tr><th>Service</th><th>What it's for</th><th>First needed</th><th>Jump</th></tr>
+            <tr>
+                <td class="svc-name">GitHub</td>
+                <td>Your repo for each HOS and Application Challenge; Codespaces if you can't install software</td>
+                <td>HOS 1</td>
+                <td><a class="jump" href="#github">Read →</a></td>
+            </tr>
+            <tr>
+                <td class="svc-name">Google Antigravity</td>
+                <td>The coding agent you build with, on your own computer</td>
+                <td>HOS 1</td>
+                <td><a class="jump" href="#antigravity">Read →</a></td>
+            </tr>
+            <tr>
+                <td class="svc-name">Google AI Studio</td>
+                <td>Your Gemini API key: every model call your ADK agents make runs through it</td>
+                <td>HOS 1</td>
+                <td><a class="jump" href="#google">Read →</a></td>
+            </tr>
+        </table></div>
+</section>
+<section class="module card" id="github">
+  <div class="module-head"><div class="module-icon">🐙</div><div><h2>GitHub</h2><div class="module-meta"><span class="tag blue">First needed: HOS 1</span><span class="tag">Free — no credit card</span></div></div></div>
+            <p class="why-line"><strong>What it's for:</strong> your own repo for each HOS and Application Challenge, created from the invite link in each module. If you can't install software on your computer, <strong>GitHub Codespaces</strong> gives you the same setup in the browser.</p>
+            <ol class="steps">
+                <li>Go to <a href="https://github.com" target="_blank" rel="noopener">github.com</a> and click <strong>Sign up</strong> (top right).</li>
+                <li>Enter an email, create a password, and pick a username. Use something professional: this account is worth keeping for internships and job applications.</li>
+                <li>Verify your email when GitHub sends the confirmation.</li>
+                <li>Optional but useful: apply for the free <a href="https://education.github.com/pack" target="_blank" rel="noopener">GitHub Student Developer Pack</a>, which adds Copilot and more Codespaces hours.</li>
+            </ol>
+            <div class="explain"><strong>Already have a GitHub account</strong> from another course or personal projects? Use that one. One consistent GitHub profile is more useful to you later than several scattered ones.</div>
+            <div class="done-box">
+                <h4>You'll know it worked when…</h4>
+                <ul><li>You can sign in at github.com and <code>git clone</code> a repo in Antigravity's terminal. The first push asks you to sign in to GitHub in the browser.</li></ul>
+            </div>
+</section>
+<section class="module card" id="antigravity">
+  <div class="module-head"><div class="module-icon">🚀</div><div><h2>Google Antigravity</h2><div class="module-meta"><span class="tag blue">First needed: HOS 1</span><span class="tag">Free Individual plan</span></div></div></div>
+            <p class="why-line"><strong>What it's for:</strong> the agent-first editor you build with all term. Its coding agent plans, edits and tests with you; you review and decide.</p>
+            <ol class="steps">
+                <li>Download it from <a href="https://antigravity.google/" target="_blank" rel="noopener">antigravity.google</a> for macOS, Windows or Linux and install it.</li>
+                <li>Open it and choose <strong>Continue with Google</strong>. Use a <strong>personal</strong> Google account (a Gmail address). School and work Google accounts may be refused.</li>
+                <li>Accept the default settings, including the one that asks before the agent runs terminal commands.</li>
+            </ol>
+            <div class="explain"><strong>Usage limits.</strong> The free plan has a weekly limit on agent requests. Start each HOS early in its first week. If you hit the limit, the HOS steps still work by hand or with Copilot, and nothing is graded on how much the agent did.</div>
+            <div class="done-box">
+                <h4>You'll know it worked when…</h4>
+                <ul><li>The Agent panel answers a question about an open folder, for example "What files are in this folder?"</li></ul>
+            </div>
+</section>
+<section class="module card" id="google">
+  <div class="module-head"><div class="module-icon">🔑</div><div><h2>Google AI Studio: Gemini API key</h2><div class="module-meta"><span class="tag blue">First needed: HOS 1</span><span class="tag">Free — no credit card</span></div></div></div>
+            <p class="why-line"><strong>What it's for:</strong> the key that lets your ADK agents call Gemini. It is separate from Antigravity's own sign-in: Antigravity's agent runs on Google's plan, your agents run on your key. You get it once and reuse it for every HOS.</p>
+            <ol class="steps">
+                <li>Go to <a href="https://aistudio.google.com/apikey" target="_blank" rel="noopener">aistudio.google.com/apikey</a> and sign in with the same personal Google account.</li>
+                <li>Click <strong>Create API key</strong>.</li>
+                <li>Copy the long string it gives you. It starts with something like <code>AIza...</code>.</li>
+                <li>Paste it into your project's <code>.env</code> file:
+<pre tabindex="0">GOOGLE_GENAI_USE_VERTEXAI=FALSE
+GOOGLE_API_KEY=AIzaSyD-your-real-key-goes-right-here</pre>
+                </li>
+            </ol>
+            <div class="explain"><strong>Treat this like a password.</strong> Never paste it into a file you commit, a chat, an Antigravity prompt, or a screenshot. That's exactly why it lives in <code>.env</code> and not in your code. The free tier needs no billing account; if a call fails with a rate-limit error, wait a minute and try again.</div>
+            <div class="done-box">
+                <h4>You'll know it worked when…</h4>
+                <ul><li>Your agent answers in <code>adk web</code>. A missing or wrong key shows an error in the chat panel on the first message.</li></ul>
+            </div>
+</section>
+<section class="module card" id="together">
+  <div class="module-head"><div class="module-icon">🧩</div><div><h2>Putting it all together</h2></div></div>
+        <p style="font-size:0.9rem;color:var(--muted)">Each HOS repo has its own <code>.env</code>, copied from <code>.env.example</code>. It holds the same two lines all term:</p>
+        <div class="env-example" tabindex="0">
+<span class="key">GOOGLE_GENAI_USE_VERTEXAI</span>=FALSE<br>
+<span class="key">GOOGLE_API_KEY</span>=AIzaSyD-your-real-key-goes-right-here
+        </div>
+        <p style="font-size:0.85rem;color:var(--muted)">This file is excluded from Git by each repo's <code>.gitignore</code>. It stays on your computer (or your Codespace) and is never committed.</p>
+        <a class="back-to-top" href="#find">↑ Back to Find your service</a>
+</section>
+</main>
+<footer class="foot">AI 420: Agentic AI · City University of Seattle, School of Technology &amp; Computing<br>Course design &amp; materials: Clark Ngo <br>© 2026 Clark Ngo · Free to reuse and adapt under <a href="https://creativecommons.org/licenses/by/4.0/" rel="license">CC BY 4.0</a>, except where noted · <a href="https://github.com/cityuseattle/ai420/blob/main/LICENSE.md">How to credit</a></footer>
+<script src="../assets/course.js"></script>
+<script>
+/* section nav highlight (scrolls only the nav row, never the page) */
+(function(){
+  var links=[].slice.call(document.querySelectorAll('.secnav a')); var map={};
+  links.forEach(function(a){ map[a.getAttribute('href').slice(1)]=a; });
+  if(!('IntersectionObserver' in window)) return;
+  var io=new IntersectionObserver(function(es){ es.forEach(function(e){ if(e.isIntersecting){ links.forEach(function(l){l.classList.remove('active');}); var a=map[e.target.id]; if(a){ a.classList.add('active'); var c=a.parentElement, ar=a.getBoundingClientRect(), cr=c.getBoundingClientRect(); c.scrollLeft += (ar.left+ar.width/2)-(cr.left+cr.width/2); } } }); },{rootMargin:'-45% 0px -50% 0px'});
+  Object.keys(map).forEach(function(id){ var s=document.getElementById(id); if(s) io.observe(s); });
+})();
+</script>
+</body>
+</html>

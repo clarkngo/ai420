@@ -1,0 +1,211 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AI 420 — HOS 2 Hands-On Guide: Custom Tools, MCP &amp; Memory</title>
+    <link rel="stylesheet" href="../assets/course.css">
+    <style>
+        .goal-box { background:var(--blue-bg); border-left:5px solid var(--blue); padding:15px 18px; margin:18px 0; border-radius:4px; }
+        .goal-box h4 { margin:0 0 6px; color:var(--blue); font-size:0.95rem; }
+        .needs-list li { margin-bottom:6px; }
+        .stage-tagline { color:var(--muted); font-size:0.85rem; margin:0 0 14px; }
+        pre { background:var(--code-bg); color:var(--code-text); padding:14px 16px; border-radius:6px; overflow-x:auto; font-size:0.8rem; line-height:1.5; }
+        code { font-family: 'SFMono-Regular', Consolas, 'Liberation Mono', Menlo, monospace; }
+        p code, li code { background:var(--surface2); color:var(--rose); padding:1px 5px; border-radius:4px; font-size:0.88em; }
+        .not-graded { background:var(--surface2); border-left:3px solid var(--border); padding:8px 14px; margin:10px 0; font-size:0.85rem; border-radius:0 4px 4px 0; color:var(--muted); }
+        .submit-box { background:var(--accent-light); border-left:5px solid var(--accent); padding:14px 18px; margin:14px 0 0; border-radius:0 4px 4px 0; font-size:0.9rem; }
+        .submit-box h5 { margin:0 0 8px; color:var(--accent2); font-size:0.85rem; text-transform:uppercase; letter-spacing:0.03em; }
+        .submit-box ul { margin:0; padding-left:20px; }
+        .snag-box { background:var(--amber-bg); border-left:5px solid var(--amber); padding:15px 18px; margin:20px 0; border-radius:4px; }
+        .snag-box h4 { margin:0 0 8px; color:var(--amber); }
+        .shot { margin:14px 0; }
+        .shot img { max-width:100%; height:auto; border:1px solid var(--border); border-radius:6px; display:block; }
+        .shot figcaption { font-size:0.84rem; color:var(--muted); margin-top:6px; }
+        .shot-grid { display:grid; grid-template-columns:repeat(auto-fit, minmax(min(280px, 100%), 1fr)); gap:14px; align-items:start; }
+        .shot-grid .shot { margin:0; }
+        details.sample-run { background:var(--surface2); border:1px solid var(--border); border-radius:8px; padding:12px 16px; margin:16px 0; }
+        details.sample-run summary { cursor:pointer; font-weight:600; color:var(--text); }
+        details.sample-run > p { font-size:0.88rem; }
+        .guide-nav { display:flex; justify-content:space-between; margin-top:30px; padding-top:16px; border-top:1px solid var(--border); font-size:0.9rem; }
+        .guide-nav a { color:var(--link); text-decoration:none; font-weight:600; }
+    
+        .ref-box { background:var(--surface2); border:1px solid var(--border); padding:12px 16px; margin:16px 0; border-radius:6px; font-size:0.9rem; }
+        .ref-box h4 { margin:0 0 6px; font-size:0.9rem; }
+        blockquote { border-left:4px solid var(--border); margin:12px 0; padding:4px 14px; color:var(--text); }
+</style>
+</head>
+<body>
+<a class="skip-link" href="#main">Skip to content</a>
+<header class="top">
+  <div class="top-inner">
+    <a class="brand" href="../index.html"><span class="brand-icon">420</span><span><b>AI 420: Agentic AI</b><small>Course guides</small></span></a>
+    <div class="top-right"><a class="pill-btn" href="../index.html">Course home</a><button class="pill-btn" id="themeToggle" type="button">🌙 Dark</button></div>
+  </div>
+</header>
+<section class="hero">
+  <div class="hero-inner">
+    <div class="eyebrow">AI 420 · Module 2 · Hands-On Skill (HOS) guide</div>
+    <h1>HOS 2: Custom Tools, MCP &amp; Memory</h1>
+    <p class="lede">Give an operations agent for Harbor Supply Co., a marine supply store, the three kinds of external tools the course description names — an API, a web browser, and a database — served from your own MCP server. Then give it memory: short-term for the current conversation, long-term that survives a restart.</p>
+    <div class="chips"><span class="chip">Est. 3.5–4.5 hrs</span><span class="chip">CO1 · CO2</span><span class="chip">Module 2 · Weeks 3–4</span><span class="chip">10% of final grade</span></div>
+  </div>
+</section>
+<main id="main">
+
+<nav class="secnav no-print" aria-label="Page sections">
+  <div class="secnav-inner">
+    <a href="#before">Before you start</a>
+    <a href="#create">Create</a>
+    <a href="#evaluate">Evaluate</a>
+    <a href="#analyze">Analyze</a>
+    <a href="#refine">Understand &amp; Refine</a>
+    <a href="#snags">Common snags</a>
+  </div>
+</nav>
+
+<section class="module card" id="before">
+  <div class="module-head"><div class="module-icon">🧭</div><div><h2>Before you start</h2></div></div>
+        <div class="before-box">
+            <ol>
+                <li><b>Check your account setup.</b> Nothing new: the same <a href="../start-here/accounts.html#github">GitHub account</a> and <a href="../start-here/accounts.html#google">Gemini API key</a> as HOS 1. Open-Meteo, the web pages and SQLite need no account.</li>
+                <li><b>Know the concepts.</b> Read <a href="../reference/concept-companion.html#module-2">Concept Companion → Module 2</a> before you open the starter code.</li>
+            </ol>
+        </div>
+
+        <h4>What you'll need</h4>
+        <ul class="needs-list">
+            <li><strong>Starter code:</strong> your <b>HOS 2</b> repo, created when you <a href="https://classroom50.org/cityuseattle/ai420/assignments/hos02/accept?k=ai420" target="_blank" rel="noopener">accept the HOS 2 invite</a>. Clone it and open the folder in Antigravity, then make the <code>.venv</code> and <code>pip install -r requirements.txt</code>. Not sure what a file does? See the <a href="../reference/starter-code-walkthrough.html#hos2">starter code walkthrough for this HOS</a>.</li>
+            <li>Your free Gemini API key (no credit card) from <a href="https://aistudio.google.com/apikey" target="_blank" rel="noopener">aistudio.google.com/apikey</a>. In the HOS folder: <code>cp .env.example .env</code>, then paste it in as <code>GOOGLE_API_KEY</code>.</li>
+            <li>Google Antigravity, signed in (or the repo's Codespace with Copilot if you can't install it).</li>
+            <li>Nothing else to sign up for: the weather API (Open-Meteo), the web pages, and the SQLite databases (the store's data and your agent's sessions) are all free and need no account.</li>
+        </ul>
+        <div class="ref-box"><h4>Reference reading (optional, before you start)</h4><ul>
+            <li><a href="https://github.com/clarkngo/agent-development/tree/main/hos-google-adk/hos05-question-answering-stateful-agent" target="_blank" rel="noopener">agent-development hos05 — stateful agent</a>: ADK session state, the short-term memory used here.</li>
+            <li><a href="https://github.com/clarkngo/agent-development/tree/main/hos-google-adk/hos06-memory-agent" target="_blank" rel="noopener">agent-development hos06 — memory agent</a>: memory that persists across sessions.</li>
+            <li><a href="https://github.com/clarkngo/agent-development/tree/main/hos-google-adk/hos07-manager-supervisor-agent" target="_blank" rel="noopener">agent-development hos07 — manager agent</a>: tools that call real external APIs.</li>
+        </ul></div>
+
+        <p>This HOS is graded across four stages instead of on code correctness alone: <strong>Engagement</strong> (Create/Scaffold) is 20% of the HOS grade, and <strong>Skills</strong> is 80%: Evaluate, Analyze, Apply (the change you make by hand in Understand &amp; Refine) and Understand (your own explanation of it), 20% each. Each stage below says exactly what to submit. Everything goes in your Module 2 GitHub Classroom repo: written work under the matching heading in <code>NOTES.md</code>, screenshots in <code>screenshots/</code>. Commit and push as you go, then submit the repo link to the HOS 2 assignment in Brightspace by the end of Week 4.</p>
+</section>
+
+<section class="module card" id="create">
+  <div class="module-head"><div class="module-icon">🛠️</div><div><h2>1 · Create / Scaffold</h2></div></div>
+            <p class="stage-tagline">Graded as Engagement: 20% of this HOS. The AI-assisted starting point, not the deliverable.</p>
+            <p>What's already working: <code>data/harbor.db</code> (built automatically; rebuild any time with <code>python data/seed_db.py</code>), an MCP server with one finished tool (<code>get_marine_weather</code>, your worked example), and an ADK agent already connected to that server. Try it first: run <code>adk web --session_service_uri "sqlite:///./sessions.db"</code>, pick <code>ops_agent</code>, and ask about the wind in Anacortes. (In a Codespace, add <code>--allow_origins "*"</code>.)</p>
+            <p>What working looks like (from a faculty test in a Codespace; the <code>adk web</code> page is the same on your own computer):</p>
+            <div class="shot-grid">
+                <figure class="shot"><a href="../assets/files/ai-420-guides/images/hos-02-sample-run/02-codespace-adk-web-running.webp" target="_blank" rel="noopener"><img src="../assets/files/ai-420-guides/images/hos-02-sample-run/02-codespace-adk-web-running.webp" alt="VS Code in a Codespace: the terminal runs adk web --allow_origins "*" and logs 200 OK responses" loading="lazy"></a><figcaption>The terminal after <code>adk web --allow_origins "*"</code>: requests come back <code>200 OK</code>. If you see <code>403 Forbidden</code> instead, see Common snags below.</figcaption></figure>
+                <figure class="shot"><a href="../assets/files/ai-420-guides/images/hos-02-sample-run/01-worked-example-anacortes.webp" target="_blank" rel="noopener"><img src="../assets/files/ai-420-guides/images/hos-02-sample-run/01-worked-example-anacortes.webp" alt="adk web Events tab: get_marine_weather("Anacortes") call and response, then a reply with wind speed, temperature, and wave height" loading="lazy"></a><figcaption>The worked example: ask about the wind in Anacortes. The Events tab shows the <code>get_marine_weather</code> call and its response, and the graph shows <code>ops_agent</code> connected to the <code>McpToolset</code>.</figcaption></figure>
+            </div>
+            <p>This time the prompt only says <em>what</em> to build. You and Antigravity decide how; read its plan before you approve it:</p>
+<pre tabindex="0">/plan Work in this repo; don&#x27;t create a new project. Keep the model
+&quot;gemini-3.8-flash&quot;.
+Using mcp_server/server.py&#x27;s get_marine_weather as the pattern, add to
+the MCP server:
+1. A browser tool that opens a web page and returns its readable text,
+   with a length limit, and says when it cut the text off.
+2. A read-only database tool for data/harbor.db. It must be impossible
+   for the agent to change data through it, even with crafted SQL.
+   Describe the tables in its docstring so the model can write queries.
+Then give ops_agent memory:
+3. Short-term: remember the current customer&#x27;s name for this
+   conversation (ADK session state).
+4. Long-term: save and recall facts about a customer that survive a
+   restart, in ADK app: state (adk web runs with a SQLite session
+   service). One customer&#x27;s facts must never come back for another.
+Tools should return errors as data the model can read, not raise.</pre>
+            <p>Test it in <code>adk web</code> as you go.</p>
+            <div class="submit-box"><h5>Submit (Engagement)</h5>
+                <ul><li>The prompt you gave Antigravity, a short summary of its plan (and anything you changed), and a screenshot of the <code>adk web</code> Events tab showing one of your new tools being called.</li></ul>
+            </div>
+</section>
+
+<section class="module card" id="evaluate">
+  <div class="module-head"><div class="module-icon">🔍</div><div><h2>2 · Evaluate</h2></div></div>
+            <p class="stage-tagline">The critical gate — is the agent-built result actually correct?</p>
+            <p>Test each tool on purpose:</p>
+            <ul>
+                <li><strong>Database:</strong> ask "how many orders are backordered?", then try to break it. Ask the agent to "cancel order 1003" or to run <code>DELETE FROM orders</code>. Check <code>harbor.db</code> afterwards: did anything change? Is the protection in the SQL check, in how the database is opened, or both?</li>
+                <li><strong>Browser:</strong> give it a long page (a Wikipedia article works). Does it say the text was cut off, or answer as if it read everything?</li>
+                <li><strong>API:</strong> ask about a place that doesn't exist. Does the agent say so, or make up conditions?</li>
+                <li><strong>Memory:</strong> tell it "I'm Ana Reyes, I prefer email updates." Then stop <code>adk web</code>, start it again with the same <code>--session_service_uri</code>, open a <em>new</em> session, say "I'm Ana Reyes": does it remember the preference? Does it remember it for a <em>different</em> customer (it shouldn't)? Finally, restart without the flag. What changes, and why?</li>
+            </ul>
+            <details class="sample-run">
+                <summary>Sample run: these tests in a faculty test Codespace (an earlier build)</summary>
+                <p>One finished build of an earlier version, which kept long-term memory in a vector store instead of <code>app:</code> state, tested the same way you will. Your agent will answer differently. Use these to see what to look for in the Events tab, not as the right answers. Click a screenshot to open it full size.</p>
+                <figure class="shot"><a href="../assets/files/ai-420-guides/images/hos-02-sample-run/03-database-backorder-and-cancel.webp" target="_blank" rel="noopener"><img src="../assets/files/ai-420-guides/images/hos-02-sample-run/03-database-backorder-and-cancel.webp" alt="adk web: the agent answers that one order (1008) is backordered, then refuses "cancel order 1008" because its database tools are read-only" loading="lazy"></a><figcaption><strong>Database.</strong> “How many orders are backordered?” is answered with <code>query_database</code>. Asked to “cancel order 1008,” the agent refuses because its tools are read-only. A refusal is not proof, though: still check <code>harbor.db</code> to confirm order 1008 didn't change, and try raw <code>DELETE</code> SQL too.</figcaption></figure>
+                <figure class="shot"><a href="../assets/files/ai-420-guides/images/hos-02-sample-run/04-browser-wikipedia-summary.webp" target="_blank" rel="noopener"><img src="../assets/files/ai-420-guides/images/hos-02-sample-run/04-browser-wikipedia-summary.webp" alt="adk web: a long structured summary of a Wikipedia article on AI agents" loading="lazy"></a><figcaption><strong>Browser.</strong> Asked to summarize a Wikipedia article, the agent gives a polished summary but never says the page was cut off. Open the tool-call event: which tool ran, and did its result say the text was truncated? A confident summary of text the tool never returned is exactly the failure this test is looking for.</figcaption></figure>
+                <figure class="shot"><a href="../assets/files/ai-420-guides/images/hos-02-sample-run/05-api-nonexistent-place.webp" target="_blank" rel="noopener"><img src="../assets/files/ai-420-guides/images/hos-02-sample-run/05-api-nonexistent-place.webp" alt="adk web: 26 events for "Where Mistfall?", with repeated recall_customer_facts calls, get_marine_weather("Mistfall"), a query on orders, and a reply that starts with video-game lore" loading="lazy"></a><figcaption><strong>API.</strong> Asked “Where Mistfall?” (not a real place), the agent ran 26 events of tool calls: repeated <code>recall_customer_facts</code>, <code>get_marine_weather("Mistfall")</code>, even a query on orders. It does say Mistfall isn't a real port, but it opens with video-game lore. The wasted calls and the off-topic answer both belong in your write-up.</figcaption></figure>
+                <div class="shot-grid">
+                <figure class="shot"><a href="../assets/files/ai-420-guides/images/hos-02-sample-run/06-memory-save-preference.webp" target="_blank" rel="noopener"><img src="../assets/files/ai-420-guides/images/hos-02-sample-run/06-memory-save-preference.webp" alt="adk web: "I'm Clark Ngo and I prefer email updates" triggers set_current_customer, save_customer_fact, a State change to current_customer_name, and an extra query_database call" loading="lazy"></a><figcaption><strong>Memory, saving.</strong> <code>set_current_customer</code> sets session state (see <code>current_customer_name</code>) and <code>save_customer_fact</code> writes to long-term memory. It also runs a <code>query_database</code> call nobody asked for. Note extra calls like this.</figcaption></figure>
+                <figure class="shot"><a href="../assets/files/ai-420-guides/images/hos-02-sample-run/07-memory-recall-new-session.webp" target="_blank" rel="noopener"><img src="../assets/files/ai-420-guides/images/hos-02-sample-run/07-memory-recall-new-session.webp" alt="adk web: in a new session, "I'm Clark Ngo. Do you remember my preference?" triggers recall_customer_facts and the agent replies email updates" loading="lazy"></a><figcaption><strong>Memory, recalling.</strong> In a new session, <code>recall_customer_facts</code> brings back “email updates.” That passes. The other half of the test isn't shown: restart <code>adk web</code> first, then check that a <em>different</em> customer does not get this preference.</figcaption></figure>
+                </div>
+            </details>
+            <div class="submit-box"><h5>Submit</h5>
+                <ul>
+                    <li>A short written note: what you tested, what held up, and anything Antigravity got wrong or left open, especially on the database's read-only protection.</li>
+                </ul>
+            </div>
+</section>
+
+<section class="module card" id="analyze">
+  <div class="module-head"><div class="module-icon">🔬</div><div><h2>3 · Analyze</h2></div></div>
+            <p class="stage-tagline">Why does this work, mechanically?</p>
+            <p>Pick <strong>one</strong>:</p>
+            <ul>
+                <li>Trace one question end to end across the process boundary: the model decides to call <code>query_database</code> → ADK's <code>McpToolset</code> → the MCP server running as a separate process → SQLite → back. What travels between the two processes, and where did the tool's <em>schema</em> (name, description, parameter types) that the model reads come from?</li>
+                <li>Short-term vs. long-term memory: where does each physically live (which state prefix, which file), when is each one read, and why would storing everything in long-term memory make the agent <em>worse</em>?</li>
+            </ul>
+            <div class="submit-box"><h5>Submit</h5>
+                <ul>
+                    <li>A short written walkthrough of the one you chose, in your own words.</li>
+                </ul>
+            </div>
+</section>
+
+<section class="module card" id="refine">
+  <div class="module-head"><div class="module-icon">✋</div><div><h2>4 · Understand &amp; Refine</h2></div></div>
+            <p class="stage-tagline">The mastery check — by hand, no AI assistance for this stage.</p>
+            <div class="not-graded">By hand this time — no AI assistance for this stage.</div>
+            <p>Free-form SQL is flexible and risky: the model writes queries you've never seen, and a vague question can get a wrong-but-plausible query. Add two <strong>narrow, typed tools</strong> to the MCP server yourself:</p>
+            <ul>
+                <li><code>order_status(order_id: int)</code>: one order's status, date, customer, and items.</li>
+                <li><code>low_stock_report()</code>: every product at or below its reorder level, most urgent first.</li>
+            </ul>
+            <p>Write their docstrings so the model prefers them over <code>query_database</code> for these questions, and update the agent's instruction to say when to use which. Then show, in <code>adk web</code>, the agent choosing each new tool for the right question.</p>
+            <div class="submit-box"><h5>Submit</h5>
+                <ul>
+                    <li>The two tools' code.</li>
+                    <li>Screenshots of the Events tab showing each new tool being chosen.</li>
+                    <li>Two or three sentences: what did you give up by narrowing, and what did you gain?</li>
+                </ul>
+            </div>
+</section>
+
+<section class="module card" id="snags">
+  <div class="module-head"><div class="module-icon">🧯</div><div><h2>Common snags</h2></div></div>
+        <div class="snag-box">
+            <ul>
+                <li><strong><code>ModuleNotFoundError: No module named 'mcp.server.fastmcp'</code></strong> — you're on MCP 2.x, where <code>FastMCP</code> became <code>MCPServer</code> (<code>from mcp.server.mcpserver import MCPServer</code>). Most tutorials, and many coding agents, still write the 1.x import.</li>
+                <li><strong>The agent says it has no tools, or <code>adk web</code> hangs connecting</strong> — the MCP server crashed on startup. Run <code>python mcp_server/server.py</code> directly to see the error (then Ctrl+C). Anything the server <code>print()</code>s to stdout also corrupts the MCP connection: use logging (stderr) instead.</li>
+                <li><strong>Memory "forgets" after a restart</strong> — <code>adk web</code> was started without <code>--session_service_uri</code>, so sessions lived in memory. Or a tool edited <code>state["app:customer_facts"]</code> in place: change a copy and assign it back. <code>sessions.db</code> is gitignored on purpose (it can hold customer data).</li>
+                <li><strong>A page comes back with no text</strong> — some sites build their content with JavaScript, which a plain HTTP fetch never runs. Try a different page; a headless browser (Playwright) is the heavier fix.</li>
+                <li><strong><code>429 RESOURCE_EXHAUSTED</code></strong> — you hit the free tier's per-minute limit. Wait a minute and rerun; the scripts' <code>--pause</code> option adds a gap between runs.</li>
+                <li><strong>In Codespaces, <code>adk web</code> opens a blank page with <code>403 Forbidden</code></strong> — start it with <code>--allow_origins "*"</code> added, then hard-refresh. That's safe there: Codespace ports are private to your GitHub account by default.</li>
+                <li><strong><code>502 Bad Gateway</code>, a 404 or "model not found"</strong> — almost always the model name. Coding agents default to whatever model they learned about, such as <code>gemini-2.5-flash</code>, which new API keys can't use. Set it back to <code>gemini-3.8-flash</code>. If that ever stops working, check the current list at <a href="https://ai.google.dev/gemini-api/docs/models" target="_blank" rel="noopener">ai.google.dev/gemini-api/docs/models</a>.</li>
+            </ul>
+            <p class="small" style="margin:10px 0 0">Most snags trace back to a concept. If one doesn't make sense, see <a href="../reference/concept-companion.html#module-2">Concept Companion → Module 2</a>.</p>
+        </div>
+</section>
+
+<div class="guide-nav">
+            <span></span>
+            <a href="index.html">Module 2 lesson →</a>
+        </div>
+
+</main>
+<footer class="foot">AI 420: Agentic AI · City University of Seattle, School of Technology &amp; Computing<br>Course design &amp; materials: Clark Ngo · Simulators are illustrative HTML models — no real LLM, database, or network calls. <br>© 2026 Clark Ngo · Free to reuse and adapt under <a href="https://creativecommons.org/licenses/by/4.0/" rel="license">CC BY 4.0</a>, except where noted · <a href="https://github.com/cityuseattle/ai420/blob/main/LICENSE.md">How to credit</a></footer>
+<script src="../assets/course.js"></script>
+</body>
+</html>

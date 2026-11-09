@@ -1,0 +1,690 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="description" content="AI 420 Module 1 (Weeks 1-2): lecture, Muddiest Point, Concept Debate, CEAU stages, Application Challenge and knowledge check for Anatomy of an Agent.">
+<title>Module 1: Anatomy of an Agent</title>
+<link rel="stylesheet" href="../assets/course.css">
+<style>
+
+</style>
+</head>
+<body>
+<a class="skip-link" href="#main">Skip to content</a>
+<header class="top">
+  <div class="top-inner">
+    <a class="brand" href="../index.html"><span class="brand-icon">420</span><span><b>AI 420: Agentic AI</b><small>Course home</small></span></a>
+    <div class="top-right"><a class="pill-btn" href="../index.html">Course home</a><button class="pill-btn" id="themeToggle" type="button">🌙 Dark</button></div>
+  </div>
+</header>
+<section class="hero">
+  <div class="hero-inner">
+    <div class="eyebrow">AI 420 · Module 1 · Weeks 1–2</div>
+    <h1>Anatomy of an Agent</h1>
+    <p class="lede">Watch a working agent, Google Antigravity, do a real job. Then build your own research agent in Google ADK, solve the same task with a single model call and with your agent, and find reasoning, planning, tool use, and memory in what each one does. Built in Week 1, explained and extended by hand in Week 2.</p>
+    <div class="chips"><span class="chip">Outcomes CO1 · CO2</span><span class="chip">2 weeks</span><span class="chip">Lecture · Muddiest Point · Concept Debate</span><span class="chip">HOS 1 (Hands-On Skill): 4 stages</span><span class="chip">Application Challenge</span><span class="chip">Antigravity + ADK · free tier</span></div>
+  </div>
+</section>
+<main id="main">
+
+<nav class="secnav no-print" aria-label="Lesson sections">
+  <div class="secnav-inner"><a href="#overview">Overview</a><span class="sep">Week 1</span><a href="#preview">Preview</a><a href="#lecture">Lecture</a><a href="#muddiest">Muddiest Point</a><a href="#debate">Concept Debate</a><a href="#create">HOS 1 · Create</a><a href="#evaluate">HOS 1 · Evaluate</a><span class="sep">Week 2</span><a href="#analyze">HOS 1 · Analyze</a><a href="#refine">HOS 1 · Understand &amp; Refine</a><a href="#challenge">Application Challenge</a><a href="#check">Knowledge Check</a><a href="#project">Term Project</a></div>
+</nav>
+
+<p class="small muted" style="margin-top:18px">Everything in this HOS runs on your own computer in Antigravity (or in GitHub Codespaces) on free tiers, with no credit card. Which accounts you need, and when: <a href="../start-here/accounts.html">Account &amp; Service Setup Guide</a>.</p>
+
+<section class="module card" id="overview">
+  <div class="module-head"><div class="module-icon">🧭</div><div><h2>Lesson overview</h2><div class="module-meta"><span class="tag">CO1 · CO2</span><span class="tag blue">HOS 1: 10% of course</span><span class="tag">+ Muddiest Point · Concept Debate · Application Challenge · Knowledge Check</span></div></div></div>
+  <div class="callout blue">
+    <span class="label">What's the HOS?</span>
+    <p><strong>HOS 1 (Hands-On Skill)</strong> is this module's main build and 10% of your course grade. It has four stages across the two weeks: <a href="#create">Create / Scaffold</a> and <a href="#evaluate">Evaluate</a> in Week 1, then <a href="#analyze">Analyze</a> and <a href="#refine">Understand &amp; Refine</a> in Week 2. All four go in one GitHub repo, and you submit that repo's link once, in Brightspace, at the end of Week 2. The Muddiest Point, Concept Debate, Application Challenge and Knowledge Check are graded separately.</p>
+  </div>
+  <p>Most AI apps have a model inside them, and your code decides what happens next. In an agent, the model decides. That difference is the whole course, and this first HOS makes it concrete: first you watch Antigravity, an agent that writes code, plan and carry out a small job in your repo. Then the same five research questions go to a single Gemini call and to an ADK agent you build with Antigravity, and you compare what comes back, including how often the single call confidently guesses.</p>
+  <p>Week 1 builds the agent and judges it. Week 2 is the harder half: explaining what ADK does event by event, writing a second agentic pattern, plan-and-execute, by hand in ADK, and deciding when a business problem needs an agent at all. Each HOS repo ends as a working agent you can show; together, the four are the start of your portfolio.</p>
+  <div class="callout blue">
+    <span class="label">Anchoring analogy</span>
+    <p>A single model call is asking a well-read colleague a question in the hallway: you get an answer from memory, right or wrong, and they walk off. An agent is the same colleague at a desk with a browser and a calculator, allowed to look things up and check their math before answering, and to keep going until they're done. The desk, the browser, and the permission to keep going are what ADK and your tools provide.</p>
+  </div>
+  <h3>Learning objectives</h3>
+  <p class="small muted">By the end of the two weeks you will be able to:</p>
+  <ol class="lo">
+    <li>Distinguish standard LLM inference from an agent, with evidence from your own runs. <span class="tag">CO1</span></li>
+    <li>Point to where reasoning, planning, tool use, and memory show up in Antigravity and in an ADK agent's events. <span class="tag">CO1</span></li>
+    <li>Build an ADK agent with function tools and a step budget, and judge what a coding agent built for you. <span class="tag">CO2</span></li>
+    <li>Compare a tool-calling agent and plan-and-execute on accuracy, steps, tokens, and time. <span class="tag">CO1</span></li>
+    <li>Decide whether a business workflow needs an agent, a single call, or a fixed script. <span class="tag">CO1</span></li>
+  </ol>
+  <h3>Your two weeks at a glance</h3>
+  <div class="flow">
+    <a href="#preview"><span class="n">Wk 1 · Mon</span><span class="t">Preview the build</span><span class="w">simulator tour · ungraded</span></a>
+    <a href="#lecture"><span class="n">Wk 1 · Mon</span><span class="t">Lecture</span><span class="w">~60 min, 3 parts</span></a>
+    <a href="#muddiest"><span class="n">Wk 1 · by Wed</span><span class="t">Muddiest Point</span><span class="w">graded · 5% pool</span></a>
+    <a href="#debate"><span class="n">Wk 1 · Tue–Sat</span><span class="t">Concept Debate</span><span class="w">graded · 3 stages</span></a>
+    <a href="#create"><span class="n">Wk 1 · Wed–Thu</span><span class="t">HOS 1 · Create / Scaffold</span><span class="w">Engagement · 20% of HOS</span></a>
+    <a href="#evaluate"><span class="n">Wk 1 · Fri–Sun</span><span class="t">HOS 1 · Evaluate</span><span class="w">part of Skills (80%)</span></a>
+    <a href="#analyze"><span class="n">Wk 2 · Mon–Tue</span><span class="t">HOS 1 · Analyze</span><span class="w">part of Skills (80%)</span></a>
+    <a href="#refine"><span class="n">Wk 2 · Wed–Thu</span><span class="t">HOS 1 · Understand &amp; Refine</span><span class="w">part of Skills · no AI</span></a>
+    <a href="#challenge"><span class="n">Wk 2 · Fri–Sun</span><span class="t">Application Challenge</span><span class="w">5% of course</span></a>
+    <a href="#check"><span class="n">Wk 2 · any time</span><span class="t">Knowledge Check</span><span class="w">graded · 10% pool</span></a>
+  </div>
+  <p class="small muted" style="margin-top:10px">Days are a suggested pacing for an online term, not fixed deadlines — your instructor's Brightspace dates win.</p>
+</section>
+
+<!-- ========================= WEEK 1 ========================= -->
+<div class="week-tabs no-print" role="group" aria-label="Weeks"><button type="button" data-week="1" aria-controls="week-1">Week 1<span class="tab-sub"> · Build &amp; Judge</span></button><button type="button" data-week="2" aria-controls="week-2">Week 2<span class="tab-sub"> · Explain &amp; Master</span></button><button type="button" class="show-all">Show both weeks</button></div>
+<div class="week-panel" id="week-1" data-week="1">
+<div class="part-banner"><b>Week 1 · Build &amp; Judge</b><span>Lecture → Muddiest Point → Concept Debate → HOS 1: Create → Evaluate</span></div>
+<div class="due-card"><h3>Week 1: what's due</h3><label><input type="checkbox" data-k="l1-w0-0"><span><b>Set up and do the first run:</b> <a href="../start-here/accounts.html">GitHub, Antigravity and a free Gemini key</a>, then <a href="../start-here/tools.html#first-run">the first run</a></span><span class="when">before Mon</span></label><label><input type="checkbox" data-k="l1-w0-ai"><span><a href="../start-here/ai-use.html">Read the AI Use Guide</a> <span class="muted">(about 5 min)</span></span><span class="when">before Mon</span></label><label><input type="checkbox" data-k="l1-w0-1"><span><a href="#preview">Preview the build: the Agent Loop Simulator guided tour</a> <span class="muted">(ungraded, about 15 min)</span></span><span class="when">before the lecture</span></label><label><input type="checkbox" data-k="l1-w0-2"><span><a href="#muddiest">Muddiest Point</a></span><span class="when">by Wed</span></label><label><input type="checkbox" data-k="l1-w0-3"><span><a href="#debate">Concept Debate: Stage 1 · Stage 2 · Stage 3</a></span><span class="when">Tue · Thu · Sat</span></label><label><input type="checkbox" data-k="l1-w0-4"><span><a href="../reference/concept-companion.html#module-1">Concept Companion, Module 1: the self-check</a> <span class="muted">(ungraded, about 10 min)</span></span><span class="when">before you build</span></label><label><input type="checkbox" data-k="l1-w0-5"><span><a href="#create">HOS 1 · Create / Scaffold: the Antigravity warm-up, your prompt and its plan, and a screenshot of <code>compare.py</code></a></span><span class="when">Wed–Thu</span></label><label><input type="checkbox" data-k="l1-w0-6"><span><a href="#evaluate">HOS 1 · Evaluate: your Evaluate note</a></span><span class="when">Fri–Sun</span></label><p class="muted">Suggested days for an online term; your Brightspace dates win. Ticks stay in this browser.</p></div>
+
+<section class="module card" id="preview">
+  <div class="module-head"><div class="module-icon">🗺️</div><div><h2>Preview the build</h2><div class="module-meta"><span class="tag">Before the lecture</span><span class="tag">about 15 min · ungraded</span><span class="tag blue">Guided simulator tour</span></div></div></div>
+  <p>Before the lecture, see what HOS 1 builds and watch it run. The Agent Loop Simulator is a browser model of the finished HOS 1 comparison: no account, no API key and no code. A guided tour sets it up for you one scenario at a time, so you know what to look for in the lecture and in your own build.</p>
+  <h3>What you'll build in HOS 1</h3>
+  <p>A research agent in <strong>Google ADK</strong> that answers multi-step questions with three real tools: <strong>Wikipedia search</strong>, <strong>Wikipedia intro</strong>, and a <strong>calculator</strong>. You build it with Antigravity, then run each question three ways and compare them.</p>
+  <div class="table-wrap" tabindex="0"><table>
+    <thead><tr><th>Approach</th><th>What it does</th><th>Where you see it in the simulator</th></tr></thead>
+    <tbody><tr><td>Single call (<code>baseline.py</code>)</td><td>One request to Gemini, answered from memory. No tools.</td><td>Approach: <b>Single call</b>. One step, no tool calls.</td></tr><tr><td>ADK agent (<code>research_agent/</code>, built with Antigravity)</td><td>ADK runs the loop: the model asks for a tool, ADK runs it, the model reads the result, until it answers or hits the budget.</td><td>Approach: <b>ReAct loop</b>. The step list grows one tool call at a time, as the events do in <code>adk web</code>.</td></tr><tr><td>Plan-and-execute (<code>plan_execute/</code>, Week 2, by hand)</td><td>A planner agent writes the plan first, then an executor works through it.</td><td>Approach: <b>Plan-and-execute</b>. The plan appears before any tool call.</td></tr></tbody>
+  </table></div>
+  <h3>Take the guided tour</h3>
+  <p>Each tour step has a <b>Set this up for me</b> button, and then tells you what to do, what to watch and what you should see. The tour covers:</p>
+  <ol><li>One question as a single call: an answer with no evidence</li><li>The same question as a ReAct loop: steps, tool calls and growing memory</li><li>Plan-and-execute: the plan made visible</li><li>A step budget of 2: an honest stop</li><li>No calculator: right answers that were never checked</li></ol>
+  <p><a class="btn" href="simulator.html#tour" style="display:inline-block;text-decoration:none">Start the guided tour ▸</a></p>
+  <div class="callout blue">
+    <span class="label">After the tour, you should be able to answer</span>
+    <ul><li>What does the agent do that a single call can't, and what does it cost?</li><li>Where does the agent's memory come from, if the model remembers nothing between calls?</li><li>Why is "I couldn't finish" a better answer than the agent's best guess?</li></ul>
+    <p>If one of these still doesn't make sense, it's a good start for your <a href="#muddiest">Muddiest Point</a>.</p>
+  </div>
+  <p class="small muted">The simulator is a simplified model, not the real agent: no real model, Wikipedia or network calls. Your HOS 1 build in ADK is the real thing.</p>
+</section>
+
+<section class="module card" id="lecture">
+  <div class="module-head"><div class="module-icon">🎓</div><div><h2>Lecture: from one call to an agent</h2><div class="module-meta"><span class="tag">≈ 60 min with videos</span><span class="tag blue">3 short parts</span><span class="tag">CO1</span></div></div></div>
+  <p class="small muted">Three short segments instead of one long one: watch the video, read the notes, then try the quick check before moving on. The notes cover everything you need, so the videos are a second explanation rather than a requirement. If something stays fuzzy, that's exactly what your <a href="#muddiest">Muddiest Point</a> is for.</p>
+
+  <div class="lecture-part">
+    <h3>Part 1 — Inference vs. an agent <small>≈ 20 min</small></h3>
+    <div class="watch">
+      <div class="watch-head"><span class="label">Watch first</span><span class="small muted">12:28 · IBM Technology</span></div>
+      <div class="watch-frame"><iframe src="https://www.youtube-nocookie.com/embed/F8NKVhkZZWI" title="What are AI Agents? (IBM Technology)" loading="lazy" referrerpolicy="strict-origin-when-cross-origin" allow="encrypted-media; picture-in-picture; fullscreen" allowfullscreen></iframe></div>
+      <p class="watch-note">Watch for the shift from a model answering on its own to a system that reasons, acts with tools and keeps going until the task is done. That shift is this whole course. <a href="https://www.youtube.com/watch?v=F8NKVhkZZWI" target="_blank" rel="noopener">Open on YouTube</a> (human captions).</p>
+    </div>
+    <p><strong>Inference</strong> is one request and one response. The model answers from whatever it learned in training, with no way to check anything. An <strong>agent</strong> puts the model in a loop: it can ask for an action (a tool call), see the result (an observation), and decide what to do next, until it decides it's done or runs out of steps.</p>
+    <div class="callout">
+      <span class="label">Worked example</span>
+      <p>"How many years before the first iPhone was the Space Needle completed?" A single call often answers correctly from memory, and sometimes says 47, or confuses the Needle's opening with its design year, with the same confidence. The agent looks up the Space Needle (1962), looks up the iPhone (2007), and calls the calculator: 45. The interesting finding isn't that the agent is right; it's that the single call's right answers and wrong answers look identical.</p>
+    </div>
+    <div class="mistakes">
+      <h4>⚠ Common mistakes</h4>
+      <ul>
+        <li><b>Calling anything with a model in it an agent.</b> A chatbot that answers in one call is inference, however clever the prompt. The loop is what makes an agent.</li>
+        <li><b>Treating a right answer as proof.</b> A single call that's right from memory hasn't checked anything. Ask how the answer was reached.</li>
+        <li><b>Reaching for an agent first.</b> Agents cost more calls, tokens and time. Many tasks are better as one call or a fixed script (this week's <a href="#challenge">Application Challenge</a>).</li>
+      </ul>
+    </div>
+    <div class="callout violet">
+      <span class="label">Quick check</span>
+      <p>Name one question a single call can answer reliably and one it can't, and say what the second one needs that the model doesn't have.</p>
+    </div>
+  </div>
+
+  <div class="lecture-part">
+    <h3>Part 2 — The four components, in about 60 lines <small>≈ 20 min</small></h3>
+    <div class="watch">
+      <div class="watch-head"><span class="label">Watch first</span><span class="small muted">2:55 · Google Cloud Tech</span></div>
+      <div class="watch-frame"><iframe src="https://www.youtube-nocookie.com/embed/mVXrdvXplj0" title="Function calling with the Gemini API (Google Cloud Tech)" loading="lazy" referrerpolicy="strict-origin-when-cross-origin" allow="encrypted-media; picture-in-picture; fullscreen" allowfullscreen></iframe></div>
+      <p class="watch-note">This is the mechanism ADK runs for you on every turn. Watch for the moment the model asks for a function instead of answering, and who actually runs it. The model names in the video may be older; use <code>gemini-3.8-flash</code>, as in the hands-on guide. <a href="https://www.youtube.com/watch?v=mVXrdvXplj0" target="_blank" rel="noopener">Open on YouTube</a> (human captions).</p>
+      <p class="deeper"><b>Go deeper (optional):</b> IBM Technology, <a href="https://www.youtube.com/watch?v=h8gMhXYAv1k" target="_blank" rel="noopener">What is Tool Calling?</a> (4:56). The same idea without tying it to one vendor.</p>
+    </div>
+    <p>The course description names four components. In ADK, an agent is a few lines, and you can point at each component in the events it produces:</p>
+<pre tabindex="0"><code>from google.adk.agents import Agent
+from .tools import search_wikipedia, wikipedia_intro, calculate
+
+root_agent = Agent(
+    name="research_agent",
+    model="gemini-3.8-flash",
+    instruction=("Answer multi-step questions. Look facts up with your tools "
+                 "and do every calculation with calculate. If no tool "
+                 "confirms a fact, say so."),         # steers REASONING
+    tools=[search_wikipedia, wikipedia_intro, calculate],   # TOOL USE
+)</code></pre>
+    <p>One question in <code>adk web</code>'s Events tab:</p>
+<pre tabindex="0"><code>user   "How many years before the first iPhone was the Space Needle completed?"
+model  function_call      search_wikipedia("Space Needle")   # REASONING: next move
+tool   function_response  "...completed in 1962..."          # the OBSERVATION
+model  function_call      search_wikipedia("iPhone")
+tool   function_response  "...released June 29, 2007..."
+model  function_call      calculate("2007 - 1962")
+tool   function_response  45
+model  text  "The Space Needle was completed 45 years before the first iPhone."</code></pre>
+    <p><strong>Memory</strong> is the session: ADK sends all of these events back to the model on every call, because the model itself remembers nothing. <strong>Planning</strong> is the one you can't see: here it happens one step at a time, inside each model call. Plan-and-execute (your Week 2 build) makes the plan an explicit, inspectable list. And ADK builds each tool's description from the function's <strong>name, type hints and docstring</strong>, so those are what the model reads when it chooses.</p>
+    <div class="mistakes">
+      <h4>⚠ Common mistakes</h4>
+      <ul>
+        <li><b>A tool with no docstring.</b> The model sees only a name and argument types, so it guesses when to call it. Say what the tool does and when to use it.</li>
+        <li><b>Running <code>adk web</code> from the wrong folder.</b> Run it from the folder <em>above</em> <code>research_agent/</code>, or the agent list is empty.</li>
+        <li><b>No step budget.</b> A confused model can call tools again and again, and every call costs tokens. <code>compare.py</code> sets one with <code>RunConfig(max_llm_calls=...)</code>.</li>
+      </ul>
+    </div>
+    <div class="callout violet">
+      <span class="label">Quick check</span>
+      <p>Remove the budget. What's the worst case, and who pays for it?</p>
+    </div>
+  </div>
+
+  <div class="lecture-part">
+    <h3>Part 3 — Agentic patterns and frameworks <small>≈ 20 min</small></h3>
+    <div class="watch">
+      <div class="watch-head"><span class="label">Watch first</span><span class="small muted">8:47 · Google for Developers</span></div>
+      <div class="watch-frame"><iframe src="https://www.youtube-nocookie.com/embed/zgrOwow_uTQ" title="Introducing Agent Development Kit (Google for Developers)" loading="lazy" referrerpolicy="strict-origin-when-cross-origin" allow="encrypted-media; picture-in-picture; fullscreen" allowfullscreen></iframe></div>
+      <p class="watch-note">The framework you build in all term. Watch for what ADK takes off your hands (the loop, sessions, the web UI) and keep asking: where would I see that step in the Events tab? <a href="https://www.youtube.com/watch?v=zgrOwow_uTQ" target="_blank" rel="noopener">Open on YouTube</a> (human captions).</p>
+      <p class="deeper"><b>Go deeper (optional):</b> Google for Developers, <a href="https://www.youtube.com/watch?v=44C8u0CDtSo" target="_blank" rel="noopener">Getting started with Agent Development Kit</a> (18:45): defining an agent, the Runner, and running it locally with <code>adk web</code>.</p>
+    </div>
+    <div class="table-wrap" tabindex="0"><table class="t">
+      <tr><th>Pattern</th><th>How it works</th><th>Good for</th><th>Cost</th></tr>
+      <tr><td><b>ReAct</b></td><td>Reason, act, observe: one step at a time</td><td>Open-ended lookups where the next step depends on the last result</td><td>Many small model calls</td></tr>
+      <tr><td><b>Plan-and-execute</b></td><td>Write the whole plan first, then run each step</td><td>Tasks whose steps are predictable; plans you want to review</td><td>One planning call + steps</td></tr>
+      <tr><td><b>Reflection</b></td><td>Review your own output, then retry or accept</td><td>Quality checks (HOS 3)</td><td>An extra call per review</td></tr>
+      <tr><td><b>Routing</b></td><td>Classify the request, send it to a specialist</td><td>Different kinds of requests (HOS 4)</td><td>A routing call per request</td></tr>
+    </table></div>
+    <p>ADK gives you each pattern as a building block. An <code>Agent</code> with tools is a ReAct-style loop. A <code>SequentialAgent</code> runs fixed steps in order, which is how you'll write plan-and-execute in Week 2. A <code>LoopAgent</code> repeats until a check passes (reflection, HOS 3), and a coordinator with sub-agents or a workflow graph routes (HOS 4). Antigravity is an agent too: its <code>/plan</code> is plan-and-execute with you approving the plan. The rule all term: if you can't say which event a pattern produces, you can't debug it.</p>
+    <div class="mistakes">
+      <h4>⚠ Common mistakes</h4>
+      <ul>
+        <li><b>Working in Codespaces?</b> Plain <code>adk web</code> returns 403 Forbidden through the forwarded port there. Use <code>adk web --allow_origins "*"</code>. On your own computer, plain <code>adk web</code> is fine.</li>
+        <li><b>Picking a pattern by fashion.</b> Plan-and-execute isn't "more advanced" than ReAct; it suits different tasks. Measure both (Week 2).</li>
+      </ul>
+    </div>
+    <div class="callout violet">
+      <span class="label">Quick check</span>
+      <p>For "compare three competitors' pricing pages", would you choose ReAct or plan-and-execute? What would change your answer?</p>
+    </div>
+    <p class="try-it">▶ <b>Rehearse before the build:</b> Open the <a href="simulator.html"><strong>Agent Loop Simulator</strong></a>. Run the same question as a single call, as ReAct, and as plan-and-execute; then drop the step budget to 2.</p>
+  </div>
+
+  <details class="gloss-box"><summary>New words this week (6)</summary><dl class="gloss">
+    <dt>Inference</dt><dd>One request to the model, one response back. No actions, no second chances.</dd>
+    <dt>Agent</dt><dd>A model in a loop where it can take actions (tool calls), see the results, and decide what to do next until done.</dd>
+    <dt>ReAct</dt><dd>Reason + Act: alternating between deciding the next step and taking it. An ADK agent with tools works this way.</dd>
+    <dt>Plan-and-execute</dt><dd>Write the full plan first, then work through it step by step.</dd>
+    <dt>Event</dt><dd>One recorded step of an ADK run: a user message, a model reply or function call, or a tool result.</dd>
+    <dt>Step budget</dt><dd>The most model calls allowed before the run must stop (<code>max_llm_calls</code> in ADK).</dd>
+  </dl></details>
+</section>
+
+<section class="module card" id="muddiest">
+  <div class="module-head"><div class="module-icon">🌫️</div><div><h2>Muddiest Point</h2><div class="module-meta"><span class="tag">Due before the build begins</span></div></div></div>
+  <p>Not a blank box. Four short fields, because a specific confusion is much easier for your instructor to fix than "this week was confusing." Draft it here — your draft stays in this browser only — then <strong>copy it into the Brightspace submission</strong>.</p>
+  <div class="callout blue"><span class="label">AI use</span><p>You may ask Antigravity or another AI assistant about the material first. Often that clears up the confusion, which is a good outcome. Then write about what's still unclear. Write it yourself: don't paste AI text or ask an AI to come up with a confusion for you. If you asked an AI, say so under "What you already tried," along with what it told you and why that didn't settle it. <a href="../start-here/ai-use.html">AI Use Guide →</a></p></div>
+  <div class="two" style="margin-bottom:14px">
+    <div class="eg weak"><span class="label">Doesn't meet the bar</span>"I don't really understand how agents work."</div>
+    <div class="eg strong"><span class="label">Meets the bar</span>"Lecture Part 2: why does ADK send the model's own function-call event back to it before the tool's result? It already knows what it asked for. I re-read Part 2 and stepped through the simulator, but neither says what breaks without it."</div>
+  </div>
+  <details class="eg-toggle"><summary>See a full example answer, with AI use disclosed</summary>
+    <div class="eg strong"><span class="label">Meets the bar</span>
+      <p><b>1 · What I was doing:</b> Lecture Part 2, the Events tab example.</p>
+      <p><b>2 · Where I got stuck:</b> Why does ADK send the model's own <code>function_call</code> event back to it before the tool's result? It wrote that call a moment ago.</p>
+      <p><b>3 · What I already tried:</b> I re-read Part 2 and stepped through the simulator. The memory panel shows the history growing but not why. I asked Antigravity, and it said the model is stateless, so ADK sends the whole session every call. That explains the earlier chat turns, but not why the model's own call has to go back too.</p>
+      <p style="margin-bottom:0"><b>4 · My best guess:</b> Maybe the model needs its own call to match the result to it. Otherwise <code>45</code> is just a number with no question attached.</p>
+    </div>
+  </details>
+  <form id="mpForm" onsubmit="return false">
+    <label class="field" for="mp1">1 · What were you doing right before you got confused?</label>
+    <input type="text" id="mp1" placeholder="e.g. Lecture Part 2, the Events tab example — or a step in the hands-on guide">
+    <label class="field" for="mp2">2 · The exact place you got stuck</label>
+    <textarea id="mp2" placeholder="Not 'I don't get agents' — the specific thing that doesn't add up."></textarea>
+    <div class="counter" id="mp2count">0 words</div>
+    <label class="field" for="mp3">3 · What you already tried</label>
+    <textarea id="mp3" placeholder="Re-read a section, searched something specific, asked a classmate, tried the simulator, asked an AI assistant (say what it told you)…"></textarea>
+    <label class="field" for="mp4">4 · Optional: your best guess at the answer</label>
+    <textarea id="mp4" placeholder="Even if you think it's wrong."></textarea>
+  </form>
+  <div class="spec-meter"><b>Specificity</b><div class="spec-track"><div class="spec-fill" id="specFill"></div></div><span id="specLabel">—</span></div>
+  <ul class="hints" id="specHints"></ul>
+  <div class="row"><button class="btn" id="mpCopy" type="button">Copy for submission</button><button class="btn secondary" id="mpClear" type="button">Clear draft</button><span class="small muted" id="mpStatus" aria-live="polite"></span></div>
+  <p class="small muted" style="margin-top:10px"><b>Grading:</b> Participation — on time, addresses a genuine confusion (80%) · Writing — clear, specific, not generic (20%). The meter above is a nudge, not your grade.</p>
+</section>
+
+<section class="module card" id="debate">
+  <div class="module-head"><div class="module-icon">⚖️</div><div><h2>Concept Debate</h2><div class="module-meta"><span class="tag">Discussion board · 3 stages</span></div></div></div>
+  <div class="callout violet"><span class="label">This week's question</span><p style="font-size:1.02rem"><strong>For a multi-step business task, should you build an agent that decides its own steps, or a fixed workflow that calls the model only where needed?</strong></p></div>
+  <p>You'll argue a side you're <em>assigned</em>, then argue the other one, then drop advocacy and synthesize. Nobody gets to post "I agree" — by Stage 3 everyone has argued both sides.</p>
+  <div class="callout blue">
+    <span class="label">How your side is assigned</span>
+    <p>Before the first debate you join <b>Debate Group 1</b> or <b>Debate Group 2</b>, either assigned by your instructor or chosen yourself, as long as the two groups stay close to even. You stay in that group all term; find yours under <b>Communication → Groups</b>. The sides rotate each HOS, so nobody argues the same kind of position all term:</p>
+    <div class="table-wrap" tabindex="0"><table class="t" style="margin:6px 0 8px;background:var(--surface)">
+      <tr><th></th><th>HOS 1</th><th>HOS 2</th><th>HOS 3</th><th>HOS 4</th><th>Integration (Wk 8)</th></tr>
+      <tr><td><b>Group 1</b></td><td>Side A</td><td>Side B</td><td>Side A</td><td>Side B</td><td>Side A</td></tr>
+      <tr><td><b>Group 2</b></td><td>Side B</td><td>Side A</td><td>Side B</td><td>Side A</td><td>Side B</td></tr>
+    </table></div>
+    <p class="small"><b>Not in a group?</b> (for example, you added the course late) Before posting Stage 1, count the posts on each side and join the side with fewer; if they're tied, take Side A.</p>
+  </div>
+  <div class="row" style="margin-bottom:10px">
+    <label for="teamInput" class="small"><b>My Brightspace group:</b></label>
+    <select class="team" id="teamInput" style="width:auto"><option value="">—</option><option value="1">Debate Group 1</option><option value="2">Debate Group 2</option></select>
+    <span class="small" id="sideResult" aria-live="polite"></span>
+  </div>
+  <div class="two">
+    <div class="side a" id="sideA">
+      <h4><span>Side A — Let an agent decide the steps</span><span class="tag blue">Group 1 this HOS</span></h4>
+      <p>Give the model tools and a goal; let it choose the path.</p>
+      <ul class="small">
+        <li>Real requests vary; a fixed script breaks on the first unexpected case.</li>
+        <li>Adding a capability is adding a tool, not rewriting control flow.</li>
+        <li>The agent can recover from a failed step by trying another route.</li>
+      </ul>
+    </div>
+    <div class="side b" id="sideB">
+      <h4><span>Side B — A fixed workflow with LLM steps</span><span class="tag rose">Group 2 this HOS</span></h4>
+      <p>Hard-code the steps; use the model only for the parts that need language.</p>
+      <ul class="small">
+        <li>Predictable: the same input takes the same path, so it's testable.</li>
+        <li>Cheaper and faster: no model calls spent deciding what to do.</li>
+        <li>Easier to audit when something goes wrong.</li>
+      </ul>
+    </div>
+  </div>
+  <div class="callout blue"><span class="label">AI use</span><p>You may use an AI assistant to test your thinking, for example by asking it for the best objection to your side. Your posts must be your own words and your own reasoning: don't paste or lightly edit AI text. If AI changed your thinking, say how in one line. <a href="../start-here/ai-use.html">AI Use Guide →</a></p></div>
+  <div class="stages">
+    <div class="stage"><span class="day">Stage 1 · by Tue</span><h4>Initial position</h4>Argue your assigned side with one specific claim and one piece of evidence — a run you did, a line of the guide, a trace, a simulator setting, a reading, or a real-world example. Not a topic summary.</div>
+    <div class="stage"><span class="day">Stage 2 · by Thu</span><h4>Argue the opposite</h4>Before replying to anyone, post the <em>strongest</em> version of the side you didn't hold.</div>
+    <div class="stage"><span class="day">Stage 3 · by Sat</span><h4>Synthesis</h4>Drop advocacy. State a real position (it can be "it depends on X"), citing at least one specific point from a classmate's post.</div>
+  </div>
+  <details class="eg-toggle"><summary>See a weak vs. strong example</summary>
+  <div class="two">
+    <div class="eg weak"><span class="label">Weak synthesis</span>"Agents are more flexible but workflows are more reliable, so it depends."</div>
+    <div class="eg strong"><span class="label">Strong synthesis</span>"Kai's <code>compare.py</code> table convinced me: the ADK agent used 4x the tokens of the baseline on questions a two-step script could answer. My position: start with a fixed workflow, and promote a step to an agent only when the requests it handles genuinely vary — which is Priya's support-email example, not the weekly report. AI use: I asked Antigravity for the best objection to my position, and it pushed me to name which requests actually vary."</div>
+  </div>
+  </details>
+  <p class="small muted" style="margin-top:10px"><b>Grading:</b> Participation — initial position plus response to at least one peer (50%) · Writing — quality of argument and reasoning (50%). <a href="../reference/concept-debate-example.html">See a worked example: four students through one debate, with a timeline →</a> A reply that only affirms agreement without citing what it agrees with doesn't meet the Writing criterion.</p>
+</section>
+
+<section class="module card" id="create">
+  <div class="module-head"><div class="module-icon">🛠️</div><div><h2>Create / Scaffold</h2><div class="module-meta"><span class="tag blue">HOS 1 · Stage 1 of 4</span><span class="tag blue">Antigravity + Google ADK</span></div></div></div>
+  <div class="callout violet">
+    <span class="label">Before you build</span>
+    <p>Try the self-check at the end of <a href="../reference/concept-companion.html#module-1">Concept Companion, Module 1</a>. If you can answer every question, start building. If one stumps you, read that module first (about 10 minutes); it's quicker than untangling the same idea in the middle of the build.</p>
+  </div>
+  <p>Two parts. First you watch a working agent, Antigravity, do a small job. Then you use it to build your own agent in ADK. This is the starting point, not the deliverable: you don't hand-edit anything yet. It's also the only HOS where the full prompt is given to you.</p>
+  <ol>
+    <li>Accept the <a href="https://classroom50.org/cityuseattle/ai420/assignments/hos01/accept?k=ai420" target="_blank" rel="noopener">HOS 1 invite</a>, then clone your repo and open it in Antigravity (<a href="../start-here/tools.html#first-run">first run steps</a>). Make the <code>.venv</code>, <code>pip install -r requirements.txt</code>, and put your Gemini key in <code>.env</code>.</li>
+    <li>Run the single-call baseline first: <code>python baseline.py "How many years before the first iPhone was the Space Needle completed?"</code></li>
+  </ol>
+  <h3>Part A · Watch an agent work (about 20 minutes)</h3>
+  <p>In Antigravity's Agent panel, give it a small, safe job in your repo:</p>
+<pre tabindex="0"><code>/plan Add a "Tools" section to README.md that lists each function in
+research_agent/tools.py with a one-line description and one example
+call. Then run pytest and tell me the result. Don't change any .py file.</code></pre>
+  <ol>
+    <li><b>Before you approve:</b> read its Implementation Plan and task list. Is anything in it wrong or missing? Add a comment if so.</li>
+    <li><b>While it works:</b> notice each file it reads, each command it asks to run, and each edit. Approve the commands only after reading them.</li>
+    <li><b>After:</b> read its walkthrough, then check the README yourself. Did it do what the plan said?</li>
+  </ol>
+  <p>In <code>NOTES.md</code> under <b>Create</b>, write 3–4 lines: where you saw Antigravity <b>reason</b>, <b>plan</b>, <b>use a tool</b> and <b>remember</b> something. You'll compare that with your own agent in Analyze.</p>
+  <h3>Part B · Build your ADK agent with Antigravity</h3>
+  <p>Give Antigravity this prompt, review its plan before approving, then start <code>adk web</code> and ask the Space Needle question. Finally run <code>python compare.py --verbose</code> to send all five questions through the baseline and your agent.</p>
+<pre tabindex="0"><code>/plan In research_agent/agent.py, define root_agent with Google ADK:
+Agent(name="research_agent", model=MODEL from common.py,
+tools=[search_wikipedia, wikipedia_intro, calculate] from tools.py).
+Write an instruction that makes it answer multi-step questions by
+looking facts up with its tools, doing every calculation with
+calculate, and saying "I couldn't verify that" when no tool confirms
+a fact. Keep MODEL as "gemini-3.8-flash". Don't change tools.py,
+common.py or compare.py. Don't create a new project or folder.</code></pre>
+  <p class="small"><b>Three gotchas caught in testing:</b> (1) If <code>adk web</code> shows no agents, it was started from the wrong folder: run it from the repo's top folder, which contains <code>research_agent/</code>. (2) A <code>502</code> or "model not found" error usually means the agent picked a retired model like <code>gemini-2.5-flash</code>, which new keys can't use; set it back to <code>gemini-3.8-flash</code>. (3) A Wikipedia tool returning <code>403 Forbidden</code> means the descriptive User-Agent header was dropped; the starter's <code>HEADERS</code> already has one.</p>
+  <p class="small">Full step-by-step instructions, troubleshooting, and the exact submission list are in the <a href="hos-guide.html">HOS 1 hands-on guide</a>. Unsure what a file does? <a href="../reference/starter-code-walkthrough.html#hos1">Starter code walkthrough →</a></p>
+  <p class="small"><b>Graded as Engagement (20% of this HOS):</b> under <b>Create</b> in <code>NOTES.md</code>, your Part A notes, the Part B prompt and a short summary of the plan Antigravity proposed (and anything you changed in it). Add a screenshot of <code>compare.py</code>'s summary table to <code>screenshots/</code>, then commit and push.</p>
+</section>
+
+<section class="module card" id="evaluate">
+  <div class="module-head"><div class="module-icon">🔍</div><div><h2>Evaluate — the critical gate</h2><div class="module-meta"><span class="tag blue">HOS 1 · Stage 2 of 4</span></div></div></div>
+  <p>Is the agent-built result actually right? Check every answer against the expected line <code>compare.py</code> prints, and check <em>how</em> each answer was reached, in the Events tab, not just whether it's right. Tick each test as you run it and jot what happened: this becomes your Evaluate note.</p>
+  <div class="progress-line" id="evalProgress">0 / 5 tests run</div>
+  <div class="checklist" data-key="eval" data-prog="evalProgress" data-suffix="tests run">
+    <label><input type="checkbox"><span><b>Right from memory vs. right from evidence:</b> which questions did the baseline get right anyway? Which did it get wrong with total confidence?</span></label>
+    <label><input type="checkbox"><span><b>Calculator use:</b> in <code>adk web</code>'s Events tab, is every piece of arithmetic a <code>calculate</code> call, or does the agent do some math in its reply?</span></label>
+    <label><input type="checkbox"><span><b>Cost:</b> compare model calls, tool calls, tokens and seconds against the baseline in the summary table. What did the agent cost you?</span></label>
+    <label><input type="checkbox"><span><b>Honest stop:</b> run <code>python compare.py --max-llm-calls 2</code>. ADK stops the run when the budget is spent. What does the user see, and is it honest?</span></label>
+    <label><input type="checkbox"><span><b>The plan vs. what happened:</b> did Antigravity's plan in Part B match what it actually changed? Name one thing it did that the plan didn't say, or one thing it said and didn't do.</span></label>
+  </div>
+  <label class="field" for="evalNote">Draft your Evaluate note (stays in this browser)</label>
+  <textarea id="evalNote" data-save="evalnote" placeholder="Which answers were right · which were right for the wrong reason · what the agent cost compared with the baseline · where Antigravity's plan and its work differed"></textarea>
+  <p class="small"><b>Graded as Skills: Evaluate (20% of this HOS).</b> Paste this note under <b>Evaluate</b> in <code>NOTES.md</code>, add the comparison table to <code>screenshots/</code>, then commit and push by the end of Week 1. Your commit history is your Week 1 checkpoint.</p>
+</section>
+
+<section class="module card" id="week1-done">
+  <div class="module-head"><div class="module-icon">🏁</div><div><h2>End of Week 1</h2><div class="module-meta"><span class="tag">Before you stop for the week</span></div></div></div>
+  <ul>
+    <li><b>HOS 1</b>: Create and Evaluate are in <code>NOTES.md</code>, with screenshots, committed and pushed.</li>
+    <li>Muddiest Point posted.</li>
+    <li>Concept Debate: Stage 3 posted by Saturday.</li>
+  </ul>
+  <p><strong>Week 2 starts Monday with HOS 1 · Analyze.</strong> Take the weekend: explaining the code goes better after a break from it. Ahead of schedule? You can start now; your Brightspace dates are what count.</p>
+  <p><a class="btn" href="#analyze">Go to Week 2: Analyze →</a></p>
+</section>
+
+<!-- ========================= WEEK 2 ========================= -->
+</div>
+
+<div class="week-panel" id="week-2" data-week="2">
+<div class="part-banner"><b>Week 2 · Explain &amp; Master</b><span>HOS 1: Analyze → Understand &amp; Refine → Application Challenge → Knowledge Check</span></div>
+<div class="due-card"><h3>Week 2: what's due</h3><label><input type="checkbox" data-k="l1-w1-0"><span><a href="#analyze">HOS 1 · Analyze: your walkthrough of one mechanism</a></span><span class="when">Mon–Tue</span></label><label><input type="checkbox" data-k="l1-w1-1"><span><a href="#refine">HOS 1 · Understand &amp; Refine: plan-and-execute in ADK, by hand (no AI)</a></span><span class="when">Wed–Thu</span></label><label><input type="checkbox" data-k="l1-w1-2"><span><a href="#challenge">Application Challenge 1</a></span><span class="when">Fri–Sun</span></label><label><input type="checkbox" data-k="l1-w1-3"><span><a href="#check">Knowledge Check quiz, in Brightspace</a></span><span class="when">any time</span></label><label><input type="checkbox" data-k="l1-w1-4"><span><a href="#project">Term Project: decide solo or group (Phase 1 is due end of Week 3)</a></span><span class="when">this week</span></label><label><input type="checkbox" data-k="l1-w1-5"><span><a href="#refine">HOS 1: push your repo and submit its link in Brightspace</a></span><span class="when">end of week</span></label><p class="muted">Suggested days for an online term; your Brightspace dates win. Ticks stay in this browser.</p></div>
+
+<section class="module card" id="analyze">
+  <div class="module-head"><div class="module-icon">🔬</div><div><h2>Analyze — why does this work?</h2><div class="module-meta"><span class="tag blue">HOS 1 · Stage 3 of 4</span></div></div></div>
+  <p>Pick <strong>one</strong> specific piece and explain, in your own words, exactly how it works. Depth beats breadth: one mechanism explained well scores higher than a tour of every file.</p>
+  <div class="pick" id="analyzePick">
+    <button type="button" aria-pressed="false" data-k="components"><b>The four components in ADK</b>Point to the events and lines for reasoning, planning, tool use and memory.</button>
+    <button type="button" aria-pressed="false" data-k="adk"><b>Antigravity vs. your agent</b>Both are agents. Compare how each reasons, plans, uses tools and remembers.</button>
+    <button type="button" aria-pressed="false" data-k="budget"><b>The step budget</b>What it prevents, what the user sees, and what it costs.</button>
+  </div>
+  <div class="callout blue" id="analyzeFrame"><span class="label">Explain-it frame</span><p>Pick a piece above to see prompts that make a strong Analyze.</p></div>
+  <p class="small muted">Common trap: pasting the AI's own explanation of the code. Your instructor will ask a follow-up about one line — write it so you could answer.</p>
+  <p class="small"><b>Graded as Skills: Analyze (20% of this HOS).</b> Write your walkthrough under <b>Analyze</b> in <code>NOTES.md</code>, then commit and push.</p>
+</section>
+
+<section class="module card" id="refine">
+  <div class="module-head"><div class="module-icon">✋</div><div><h2>Understand &amp; Refine — by hand, no AI</h2><div class="module-meta"><span class="tag blue">HOS 1 · Stage 4 of 4</span><span class="tag bad">No AI assistant for this part</span></div></div></div>
+  <p>Your agent plans one step at a time. Write the other pattern yourself: <strong>plan-and-execute</strong>, in <code>plan_execute/agent.py</code>, using ADK's <code>SequentialAgent</code>. Then compare it with your agent on the same five questions. Close Antigravity's Agent panel for this part.</p>
+  <div class="progress-line" id="refineProgress">0 / 5 done</div>
+  <div class="checklist" data-key="refine" data-prog="refineProgress" data-suffix="done">
+    <label><input type="checkbox"><span>A <b>planner</b> <code>Agent</code> with no tools that writes a plan of 2–4 steps and saves it to session state with <code>output_key="plan"</code>.</span></label>
+    <label><input type="checkbox"><span>An <b>executor</b> <code>Agent</code> with the three tools whose instruction includes <code>{plan}</code>, so ADK inserts the saved plan, and saves what it finds with <code>output_key="findings"</code>.</span></label>
+    <label><input type="checkbox"><span>A <b>writer</b> <code>Agent</code> that answers from <code>{findings}</code> alone, and a <code>root_agent = SequentialAgent(sub_agents=[planner, executor, writer])</code>.</span></label>
+    <label><input type="checkbox"><span>Run <code>python compare.py --with-plan</code> and screenshot its table. In <code>adk web</code>, check that the plan appears before any tool call.</span></label>
+    <label><input type="checkbox"><span>Write 2–3 sentences: on these questions, which pattern was more accurate, and which was cheaper?</span></label>
+  </div>
+  <p class="small muted">This is the mastery check: can you change the system correctly without the agent doing it for you? Rehearse first in the <a href="simulator.html">simulator</a>: switch the approach to plan-and-execute and watch the plan appear before any tool call.</p>
+  <p class="small"><b>Graded as Skills: Apply and Understand (20% each of this HOS).</b> Apply: the <code>plan_execute/agent.py</code> you wrote by hand is committed in your repo and works as asked. Understand: your own explanation of it, under <b>Understand &amp; Refine</b> in <code>NOTES.md</code>, with its screenshots in <code>screenshots/</code>. When all four sections are in, push and submit your repo link to the HOS 1 assignment in Brightspace by the end of Week 2.</p>
+</section>
+
+<section class="module card" id="challenge">
+  <div class="module-head"><div class="module-icon">🧩</div><div><h2>Application Challenge — a travel agency's trip planner</h2><div class="module-meta"><span class="tag blue">Build to spec · 60–90 min</span></div></div></div>
+  <p>Build Evergreen Getaways' trip-planning agent in ADK from a written spec with provided tests, including its step budget and stopping rules. Make the one call the spec leaves open (what the agent tells a customer when it runs out of steps before the trip is fully planned), and decide which of the agency's five requests need an agent at all. Everything you need is in the <a href="application-challenge.html"><b>AC 1 guide</b></a>: the spec, the starter code, and the rubric.</p>
+  <p class="small"><b>Starter code:</b> <a href="https://classroom50.org/cityuseattle/ai420/assignments/ac01/accept?k=ai420" target="_blank" rel="noopener">accept the AC 1 invite</a>. It creates your own repo, which you clone and open in Antigravity (or a Codespace).</p>
+  <p class="small">Warm up first: the second half of the challenge asks the same question. For each workflow, pick the simplest thing that would work.</p>
+  <h3>Warm-up: agent, single call, or script?</h3>
+  <div id="sorter"></div>
+  <div class="row" style="margin:8px 0 16px"><button class="btn" id="sorterReveal" type="button">Reveal reasoning</button><span class="small" id="sorterScore" aria-live="polite"></span></div>
+  <div class="callout"><span class="label">What to submit</span>
+    <ul>
+      <li><code>planner/agent.py</code> and <code>tests/test_my_rules.py</code></li>
+      <li>The output of <code>pytest</code>, all tests passing (including yours)</li>
+      <li><code>TRANSCRIPT.md</code>: two runs with the tool calls showing, one of which hits the step budget</li>
+      <li><code>DECISIONS.md</code>: your out-of-steps message and why, and your agent / single call / script call on each of the agency's five requests</li>
+    </ul>
+  </div>
+  <p class="small muted"><b>Grading:</b> Application — genuinely applied to the new scenario, not a restatement of the research agent (10%) · Analysis — break the problem into its parts (20%) · Evaluation — justify your call against clear criteria (30%) · Design — your own original solution (40%).</p>
+</section>
+
+<section class="module card" id="check">
+  <div class="module-head"><div class="module-icon">✅</div><div><h2>Knowledge check</h2><div class="module-meta"><span class="tag">Practice · the graded quiz is in Brightspace</span></div></div></div>
+  <p>Five quick questions. Then answer the two open questions below out loud or in a notes file — they're the ones your instructor will ask in the Week 2 check-in.</p>
+  <div id="quiz"></div>
+  <p class="score" id="quizScore" aria-live="polite"></p>
+  <h3>Open questions</h3>
+  <ol>
+    <li>Point to the event in <code>adk web</code> where "reasoning" happens, and say where "memory" grows.</li>
+    <li>What would happen to your agent if you removed the <code>max_llm_calls</code> budget?</li>
+  </ol>
+</section>
+
+<section class="module card" id="project">
+  <div class="module-head"><div class="module-icon">🚀</div><div><h2>Term Project — Phase 1 begins</h2><div class="module-meta"><span class="tag amber">Phase 1 due end of Week 3</span></div></div></div>
+  <p>The Term Project automates one real, multi-step business process with a team of agents, built on your own or in a group of up to three (four with instructor approval) and presented in Week 10. <b>Phase 1 runs Weeks 1–3:</b> decide whether you're working solo or in a group, and lock your scope: the process you'll automate, which HOS pieces your project combines and why, who owns each piece if you're in a group, and a rough architecture sketch. <b>Due end of Week 3:</b> System v0.3 in a GitHub repository with a README, and a one-page proposal with three key references. Curious what a finished project looks like? <a href="../module-5/example-project.html">Click through the Campus Event Promoter example</a> (optional).</p>
+  <p>Start by noticing manual processes around you: at work, in an internship, in a CityU office. A good candidate has several steps, some judgment, and someone who does it by hand today. A good first question: <strong>which steps of that process need an agent, and which are better as a single call or a script?</strong> That's this week's Application Challenge, pointed at your own idea.</p>
+  <div class="callout blue"><span class="label">Example — an autonomous marketing department</span><p>"Promote next month's workshop" becomes research → draft → brand review → schedule. HOS 1 gives the plan-and-execute coordinator; HOS 2 the tools and brand-voice memory; HOS 3 a review step that catches off-voice drafts; HOS 4 the team and the eval suite. A self-healing coding assistant (read failing test → diagnose → patch → re-run) is the other example in the course description.</p></div>
+  <div class="table-wrap" tabindex="0"><table class="t project-map">
+    <tr><th>HOS</th><th>What it contributes to your project</th><th>Rehearse it in</th></tr>
+    <tr><td>HOS 1</td><td>An ADK agent and its pattern (tool loop or plan-and-execute)</td><td><a href="simulator.html">Agent Loop Simulator</a></td></tr>
+    <tr><td>HOS 2</td><td>Custom tools served over MCP, and what the agents remember</td><td><a href="../module-2/simulator.html">Tool Schemas &amp; MCP Simulator</a></td></tr>
+    <tr><td>HOS 3</td><td>Traces of every run, and guards so the agents correct themselves</td><td><a href="../module-3/simulator.html">Trace Detective Simulator</a></td></tr>
+    <tr><td>HOS 4</td><td>A team of agents, and the agent-on-agent eval that proves it works</td><td><a href="../module-4/simulator.html">Multi-Agent Eval Lab</a></td></tr>
+  </table></div>
+  <p class="small">Phases, deliverables and rubrics: the Term Project section of the syllabus (in Brightspace).</p>
+</section>
+
+</div>
+
+<section class="card">
+  <h2>Resources</h2>
+  <ul>
+    <li><a href="hos-guide.html">HOS 1 hands-on guide</a> — the full build, stage by stage</li>
+    <li><a href="../reference/concept-companion.html">Concept Companion</a> — every concept to know before starting a HOS</li>
+    <li><a href="../start-here/accounts.html">Account &amp; Service Setup Guide</a> — GitHub, Antigravity, free Gemini key</li>
+    <li><a href="../start-here/ai-use.html">AI Use Guide</a> — what's allowed in each activity</li>
+    <li><a href="simulator.html">Agent Loop Simulator</a></li>
+    <li>Next: <a href="../module-2/index.html">Module 2 lesson — Custom Tools, MCP &amp; Memory</a> →</li>
+  </ul>
+</section>
+
+</main>
+<footer class="foot">AI 420: Agentic AI · City University of Seattle, School of Technology &amp; Computing<br>Course design &amp; materials: Clark Ngo · Simulators are illustrative HTML models — no real LLM, database, or network calls. <br>© 2026 Clark Ngo · Free to reuse and adapt under <a href="https://creativecommons.org/licenses/by/4.0/" rel="license">CC BY 4.0</a>, except where noted · <a href="https://github.com/cityuseattle/ai420/blob/main/LICENSE.md">How to credit</a></footer>
+<script>
+(function(){
+  var root=document.documentElement, btn=document.getElementById('themeToggle');
+  try { var saved=localStorage.getItem('ai420-theme'); if(saved) root.setAttribute('data-theme',saved); } catch(e){}
+  function isDark(){ var t=root.getAttribute('data-theme'); return t ? t==='dark' : window.matchMedia('(prefers-color-scheme: dark)').matches; }
+  function label(){ if(btn) btn.textContent = isDark() ? '☀️ Light' : '🌙 Dark'; }
+  label();
+  try { window.matchMedia('(prefers-color-scheme: dark)').addEventListener('change',label); } catch(e){}
+  var hdr=document.querySelector('header.top');
+  function hh(){ if(hdr) root.style.setProperty('--header-h',hdr.offsetHeight+'px'); }
+  hh(); window.addEventListener('resize',hh);
+  if(btn) btn.addEventListener('click',function(){
+    var next=isDark()?'light':'dark'; root.setAttribute('data-theme',next);
+    try { localStorage.setItem('ai420-theme',next); } catch(e){}
+    label();
+  });
+})();
+</script>
+<script>window.LESSON={"hos": 1, "weekB": 2, "concrete": "(`|\\(|\\)|\\.py|\\/|step \\d|part \\d|line|function|loop|session|memory|tool|call|observation|react|plan|adk|event|antigravity|max_llm_calls|budget|token)", "debates": [{"a": "sideA", "b": "sideB", "out": "sideResult", "team1": "A", "prefix": "In HOS 1 you argue ", "nameA": "Side A — Agent decides the steps", "nameB": "Side B — Fixed workflow"}], "frames": {"components": ["Take one question in <code>adk web</code>'s Events tab. Which event shows reasoning, which shows tool use, and what does the model receive on its last call?", "Where does memory grow? What exactly is added to the session after each tool call, and in what order?", "Where is planning, given that your agent has no plan variable?"], "adk": ["Using your Part A notes: where did Antigravity reason, plan, use a tool and remember? Where does your ADK agent do each of those?", "Antigravity showed you its plan before acting; your agent didn't. What does that cost, and what does it buy?", "Which of Antigravity's tools (reading files, running commands, the browser) would be risky in a customer-facing agent, and why?"], "budget": ["Walk through a run that hits the <code>max_llm_calls</code> budget. What does the user see?", "Why is 'couldn't finish' better than returning the last partial answer silently?", "How would you choose the budget for a real product?"]}, "sorter": {"opts": [["script", "Fixed script"], ["call", "Single LLM call"], ["agent", "Agent loop"]], "items": [["Every Friday, pull last week's sales from the database and email the same 5-row table to managers.", "script", "No language judgment and no variation: a SQL query and an email template. Adding a model adds cost and a way to be wrong."], ["Translate each incoming support email into English before it's filed.", "call", "One input, one output, no lookups. A single call is all the reasoning it needs."], ["Answer \"will my order arrive before my trip on the 14th?\" by checking order status, carrier tracking, and the holiday calendar as needed.", "agent", "Which lookups are needed depends on what the first one returns (not shipped? no need for tracking). That's a loop."], ["Match an invoice's line items to the purchase order and flag any mismatch over $50.", "script", "The matching rule is exact and auditable. At most, use a single call to extract line items from a messy PDF, then let code compare."], ["Compare three competitors' pricing pages and summarize the differences.", "agent", "Finding the right pages and following links varies per competitor — several tool calls whose order isn't known in advance."], ["Draft a reply to a customer email for a human to edit before sending.", "call", "Language, but no actions and no lookups. A human is already the check."]], "after": "The strongest answers pick the simplest option that works and name what would change the call."}, "quiz": [["What most distinguishes an agent from standard inference?", ["It uses a bigger model", "It runs in a loop, taking actions and observing results until done", "It has a system prompt", "It streams its response"], 1, "The loop — act, observe, decide again — is the difference."], ["In an ADK agent, where does memory live during a conversation?", ["In the session's events, which ADK sends to the model on every call", "Inside the model's weights", "In the tool functions", "In the step budget"], 0, "The model remembers nothing between calls; the session ADK resends is the memory."], ["The agent returns 45 but the log shows no calculator call. What does that tell you?", ["The calculator is broken", "The answer is definitely wrong", "It did the arithmetic in its reply — right this time, but not from evidence", "The step budget was too low"], 2, "Right for the wrong reason is exactly what Evaluate is for."], ["Where does ADK get each tool's description and parameters?", ["From a JSON file you write by hand", "From the function's name, type hints and docstring", "The model guesses them", "From Antigravity's plan"], 1, "That's why a clear docstring changes how well the model uses a tool."], ["Which task is best as a fixed script rather than an agent?", ["A weekly report with the same query and format every time", "Researching competitors' pricing", "Answering varied customer questions", "Debugging a failing test"], 0, "No variation, no judgment: no agent needed."]], "paths": null};</script>
+<script>
+var L=window.LESSON;
+function store(k,v){ try{ if(v===undefined) return localStorage.getItem(k); localStorage.setItem(k,v);}catch(e){ return null; } }
+function $(id){ return document.getElementById(id); }
+function K(k){ return 'ai420-l'+L.hos+'-'+k; }
+
+/* section nav highlight */
+(function(){
+  var links=[].slice.call(document.querySelectorAll('.secnav a'));
+  var map={}; links.forEach(function(a){ map[a.getAttribute('href').slice(1)]=a; });
+  if(!('IntersectionObserver' in window)) return;
+  var io=new IntersectionObserver(function(es){ es.forEach(function(e){ if(e.isIntersecting){ links.forEach(function(l){l.classList.remove('active');}); var a=map[e.target.id]; if(a){ a.classList.add('active'); var c=a.parentElement, ar=a.getBoundingClientRect(), cr=c.getBoundingClientRect(); c.scrollLeft += (ar.left+ar.width/2)-(cr.left+cr.width/2); } } }); },{rootMargin:'-45% 0px -50% 0px'});
+  Object.keys(map).forEach(function(id){ var s=document.getElementById(id); if(s) io.observe(s); });
+})();
+
+/* Muddiest Point */
+(function(){
+  var els=['mp1','mp2','mp3','mp4'].map($); if(!els[0]) return;
+  els.forEach(function(el){ var v=store(K(el.id)); if(v) el.value=v; el.addEventListener('input',update); });
+  var vague=/\b(confus(ing|ed)|everything|all of it|the whole|in general|not sure about anything|kind of|stuff)\b/i, concrete=new RegExp(L.concrete,'i');
+  function words(s){ return (s.trim().match(/\S+/g)||[]).length; }
+  function update(){
+    els.forEach(function(el){ store(K(el.id), el.value); });
+    var stuck=els[1].value, w=words(stuck); $('mp2count').textContent=w+' words';
+    var checks=[
+      [words(els[0].value)>=3,'Context names where you were (a part, step, or line)'],
+      [w>=15,'Stuck point is at least ~15 words'],
+      [concrete.test(stuck),'Stuck point mentions a concrete thing (a step, function, file, term)'],
+      [!vague.test(stuck)||w>=30,'Avoids vague catch-alls like "confusing" or "everything"'],
+      [words(els[2].value)>=5,'Says what you already tried']
+    ];
+    var n=checks.filter(function(c){return c[0];}).length, pct=n/checks.length*100, f=$('specFill');
+    f.style.width=pct+'%'; f.style.background= pct>=80?'var(--ok)':pct>=40?'var(--amber)':'var(--bad)';
+    $('specLabel').textContent= pct>=80?'Specific':pct>=40?'Getting there':'Too vague';
+    $('specHints').innerHTML=checks.map(function(c){return '<li class="'+(c[0]?'ok':'no')+'">'+(c[0]?'✓ ':'○ ')+c[1]+'</li>';}).join('');
+  }
+  update();
+  $('mpCopy').addEventListener('click',function(){
+    var t='MUDDIEST POINT — AI 420 HOS '+L.hos+'\n\n1. Right before I got confused: '+els[0].value+'\n\n2. Where I got stuck: '+els[1].value+'\n\n3. What I already tried: '+els[2].value+'\n\n4. My best guess: '+(els[3].value||'(none)');
+    var s=$('mpStatus');
+    if(navigator.clipboard){ navigator.clipboard.writeText(t).then(function(){ s.textContent='Copied — paste it into Brightspace.'; },function(){ s.textContent='Copy blocked — select the fields manually.'; }); }
+    else s.textContent='Copy not supported — select the fields manually.';
+  });
+  $('mpClear').addEventListener('click',function(){ els.forEach(function(el){ el.value=''; }); update(); $('mpStatus').textContent='Draft cleared.'; });
+})();
+
+/* Debate sides: one Brightspace group all term; sides rotate by debate */
+(function(){
+  var sels=[].slice.call(document.querySelectorAll('select.team')); if(!sels.length) return;
+  function upd(val){
+    sels.forEach(function(s){ s.value=val; }); if(val) store('ai420-team',val);
+    (L.debates||[]).forEach(function(d){
+      var a=$(d.a), b=$(d.b), out=$(d.out); if(!a||!b||!out) return;
+      a.classList.remove('mine'); b.classList.remove('mine');
+      if(!val){ out.textContent=''; return; }
+      var sideA=(val==='1')===(d.team1==='A'); (sideA?a:b).classList.add('mine');
+      out.innerHTML=d.prefix+'<b>'+(sideA?d.nameA:d.nameB)+'</b> in Stage 1.';
+    });
+  }
+  sels.forEach(function(s){ s.addEventListener('change',function(){ upd(s.value); }); });
+  upd(store('ai420-team')||'');
+})();
+
+/* checklists and saved notes */
+[].slice.call(document.querySelectorAll('.checklist[data-key]')).forEach(function(list){
+  var boxes=[].slice.call(list.querySelectorAll('input')), key=K(list.dataset.key), prog=$(list.dataset.prog), suffix=list.dataset.suffix;
+  var saved=(store(key)||'').split(',');
+  boxes.forEach(function(b,i){ if(saved[i]==='1') b.checked=true; b.addEventListener('change',upd); });
+  function upd(){
+    boxes.forEach(function(b){ b.parentNode.classList.toggle('done',b.checked); });
+    if(prog) prog.textContent=boxes.filter(function(b){return b.checked;}).length+' / '+boxes.length+' '+suffix;
+    store(key,boxes.map(function(b){return b.checked?'1':'0';}).join(','));
+  }
+  upd();
+});
+[].slice.call(document.querySelectorAll('textarea[data-save]')).forEach(function(t){ var k=K(t.dataset.save); var v=store(k); if(v) t.value=v; t.addEventListener('input',function(){ store(k,t.value); }); });
+
+/* Analyze frames */
+(function(){
+  var btns=[].slice.call(document.querySelectorAll('#analyzePick button')), box=$('analyzeFrame'); if(!box) return;
+  btns.forEach(function(b){ b.addEventListener('click',function(){
+    btns.forEach(function(x){x.setAttribute('aria-pressed','false');}); b.setAttribute('aria-pressed','true');
+    box.innerHTML='<span class="label">Explain-it frame</span><ul>'+L.frames[b.dataset.k].map(function(q){return '<li>'+q+'</li>';}).join('')+'</ul><p class="small">Aim for 250–400 words. Quote the line(s) or trace step(s) you are explaining.</p>';
+  }); });
+})();
+
+/* Application Challenge warm-up sorter */
+(function(){
+  var S=L.sorter, host=$('sorter'); if(!S||!host) return;
+  var answers={}, score=$('sorterScore'), cls=['auto','confirm','never'];
+  host.innerHTML=S.items.map(function(t,i){
+    return '<div class="sorter-row" data-i="'+i+'"><span>'+t[0]+'</span><div class="opts">'+S.opts.map(function(o,j){ return '<button type="button" class="'+cls[j]+'" aria-pressed="false" data-o="'+o[0]+'">'+o[1]+'</button>'; }).join('')+'</div><div class="why"></div></div>';
+  }).join('');
+  [].slice.call(host.querySelectorAll('.opts button')).forEach(function(b){ b.addEventListener('click',function(){
+    var row=b.closest('.sorter-row'); [].slice.call(row.querySelectorAll('button')).forEach(function(x){x.setAttribute('aria-pressed','false');});
+    b.setAttribute('aria-pressed','true'); answers[row.dataset.i]=b.dataset.o;
+  }); });
+  $('sorterReveal').addEventListener('click',function(){
+    var right=0;
+    [].slice.call(host.querySelectorAll('.sorter-row')).forEach(function(row){
+      var t=S.items[row.dataset.i]; if(answers[row.dataset.i]===t[1]) right++;
+      var lbl=S.opts.filter(function(o){return o[0]===t[1];})[0][1];
+      row.querySelector('.why').innerHTML='<b>Suggested: '+lbl+'.</b> '+t[2]; row.classList.add('revealed');
+    });
+    score.textContent=right+' / '+S.items.length+' match the suggested call — disagreeing is fine if you can defend it. '+(S.after||'');
+  });
+})();
+
+/* Quiz */
+(function(){
+  var host=$('quiz'); if(!host) return; var qs=L.quiz, right=0, done=0;
+  host.innerHTML=qs.map(function(q,i){
+    return '<div class="q" data-i="'+i+'"><div class="stem">'+(i+1)+'. '+q[0]+'</div>'+q[1].map(function(o,j){return '<button type="button" class="opt" data-j="'+j+'">'+o+'</button>';}).join('')+'<div class="fb"></div></div>';
+  }).join('');
+  [].slice.call(host.querySelectorAll('.q')).forEach(function(card){
+    var q=qs[card.dataset.i];
+    [].slice.call(card.querySelectorAll('.opt')).forEach(function(b){ b.addEventListener('click',function(){
+      if(card.classList.contains('answered')) return;
+      card.classList.add('answered'); done++;
+      var ok=+b.dataset.j===q[2]; if(ok) right++;
+      b.classList.add(ok?'right':'wrong'); card.querySelectorAll('.opt')[q[2]].classList.add('right');
+      card.querySelector('.fb').innerHTML=(ok?'✓ ':'✗ ')+q[3];
+      $('quizScore').textContent= done===qs.length ? 'Score: '+right+' / '+qs.length+(right===qs.length?' — ready for the Week '+L.weekB+' check-in.':' — revisit the lecture parts you missed.') : '';
+    }); });
+  });
+})();
+
+/* Term Project Phase 2 check-in (Module 3) */
+(function(){
+  var team=$('cpTeam'); if(!team) return; var idea=$('cpIdea');
+  var rows=[].slice.call(document.querySelectorAll('#cpHos .hos-tick'));
+  function key(k){ return 'ai420-checkpoint-'+k; }
+  var v=store(key('team')); if(v) team.value=v; v=store(key('idea')); if(v) idea.value=v;
+  rows.forEach(function(r){ var cb=r.querySelector('input[type=checkbox]'), tx=r.querySelector('input[type=text]'), h=cb.dataset.h;
+    if(store(key('h'+h))==='1') cb.checked=true; var t=store(key('t'+h)); if(t) tx.value=t;
+    cb.addEventListener('change',upd); tx.addEventListener('input',function(){ if(tx.value && !cb.checked) cb.checked=true; upd(); }); });
+  team.addEventListener('input',upd); idea.addEventListener('input',upd);
+  function words(s){ return (s.trim().match(/\S+/g)||[]).length; }
+  function upd(){
+    store(key('team'),team.value); store(key('idea'),idea.value);
+    var ticked=0, described=0;
+    rows.forEach(function(r){ var cb=r.querySelector('input[type=checkbox]'), tx=r.querySelector('input[type=text]'), h=cb.dataset.h;
+      store(key('h'+h),cb.checked?'1':'0'); store(key('t'+h),tx.value); if(cb.checked){ ticked++; if(words(tx.value)>=3) described++; } });
+    var checks=[
+      [team.value.trim().length>0,'Team named (or "Solo")'],
+      [words(idea.value)>=30,'Idea is a real paragraph (~30+ words)'],
+      [/\b(process|workflow|manual|by hand|steps?)\b/i.test(idea.value),'Names the manual process and its steps'],
+      [ticked>=2,'Combines at least two HOS pieces (all four by Week 10)'],
+      [ticked>0 && described===ticked,'Each ticked HOS says what it does in your project — not just "uses MCP"']
+    ];
+    $('cpLitmus').innerHTML=checks.map(function(c){return '<li class="'+(c[0]?'ok':'no')+'">'+(c[0]?'✓ ':'○ ')+c[1]+'</li>';}).join('');
+  }
+  upd();
+  $('cpCopy').addEventListener('click',function(){
+    var names=['agent loop & patterns','custom tools, MCP & memory','traces & self-correction','multi-agent & evaluation'];
+    var parts=rows.filter(function(r){return r.querySelector('input[type=checkbox]').checked;}).map(function(r){ var h=+r.querySelector('input[type=checkbox]').dataset.h; return '- HOS '+h+' ('+names[h-1]+'): '+r.querySelector('input[type=text]').value; });
+    var t='TERM PROJECT CHECK-IN — AI 420 (Week 6)\n\nTeam: '+team.value+'\n\nProcess: '+idea.value+'\n\nHOS pieces it combines:\n'+(parts.join('\n')||'(none yet)');
+    var s=$('cpStatus');
+    if(navigator.clipboard){ navigator.clipboard.writeText(t).then(function(){ s.textContent='Copied — share it with your group.'; },function(){ s.textContent='Copy blocked — select the fields manually.'; }); }
+    else s.textContent='Copy not supported — select the fields manually.';
+  });
+})();
+
+/* request-path walkthrough (Module 4 review) */
+(function(){
+  var P=L.paths; if(!P) return;
+  [].slice.call(document.querySelectorAll('[data-path]')).forEach(function(host){
+    var steps=P[host.dataset.path], i=0, out=host.querySelector('.path-out'), lbl=host.querySelector('.path-n');
+    function show(){ var s=steps[i]; out.innerHTML='<p><b>Step '+(i+1)+' of '+steps.length+':</b> '+s[0]+' <span class="tag">'+s[1]+'</span></p><p class="small"><b>What can go wrong here:</b> '+s[2]+'</p>'; lbl.textContent=(i+1)+' / '+steps.length; }
+    host.querySelector('.path-prev').addEventListener('click',function(){ if(i>0){ i--; show(); } });
+    host.querySelector('.path-next').addEventListener('click',function(){ if(i<steps.length-1){ i++; show(); } });
+    show();
+  });
+})();
+
+/* week tabs: show one week at a time; links and #hash jumps switch tabs */
+(function(){
+  var panels=[].slice.call(document.querySelectorAll('.week-panel')); if(!panels.length) return;
+  var tabs=[].slice.call(document.querySelectorAll('.week-tabs [data-week]')), all=document.querySelector('.week-tabs .show-all');
+  var key='ai420-tab-'+location.pathname;
+  function save(v){ try{ localStorage.setItem(key,v); }catch(e){} }
+  function load(){ try{ return localStorage.getItem(key); }catch(e){ return null; } }
+  function show(w){
+    panels.forEach(function(p){ p.hidden = !(w==='all' || p.getAttribute('data-week')===w); });
+    tabs.forEach(function(t){ t.setAttribute('aria-pressed', String(t.getAttribute('data-week')===w)); });
+    if(all) all.textContent = w==='all' ? 'Show one week at a time' : 'Show both weeks';
+  }
+  function weekOf(id){ var el=id && document.getElementById(id); var p=el && el.closest('.week-panel'); return p ? p.getAttribute('data-week') : null; }
+  document.body.classList.add('tabs-on');
+  var start = weekOf(location.hash.slice(1)) || load() || panels[0].getAttribute('data-week');
+  show(start);
+  if(location.hash){ var tgt=document.getElementById(location.hash.slice(1)); if(tgt){ var go=function(){ tgt.scrollIntoView({block:'start', behavior:'instant'}); }; setTimeout(go,0); window.addEventListener('load',go); } }
+  tabs.forEach(function(t){ t.addEventListener('click',function(){ var w=t.getAttribute('data-week'); show(w); save(w); var p=document.querySelector('.week-panel[data-week="'+w+'"]'); if(p) p.scrollIntoView({block:'start'}); }); });
+  if(all) all.addEventListener('click',function(){ var cur=tabs.filter(function(t){return t.getAttribute('aria-pressed')==='true';})[0]; var w = cur ? 'all' : (load()&&load()!=='all'?load():panels[0].getAttribute('data-week')); show(w); save(w); });
+  document.addEventListener('click',function(e){
+    var a=e.target.closest && e.target.closest('a[href^="#"]'); if(!a) return;
+    var w=weekOf(a.getAttribute('href').slice(1)); if(!w) return;
+    var cur=panels.filter(function(p){return !p.hidden;}).map(function(p){return p.getAttribute('data-week');});
+    if(cur.indexOf(w)===-1){ show(w); save(w); }
+  }, true);
+  window.addEventListener('hashchange',function(){ var w=weekOf(location.hash.slice(1)); if(w && document.querySelector('.week-panel[data-week="'+w+'"]').hidden){ show(w); var el=document.getElementById(location.hash.slice(1)); if(el) el.scrollIntoView(); } });
+  [].slice.call(document.querySelectorAll('.due-card input[data-k]')).forEach(function(cb){
+    var k='ai420-due-'+cb.getAttribute('data-k'); try{ cb.checked = localStorage.getItem(k)==='1'; }catch(e){}
+    cb.addEventListener('change',function(){ try{ localStorage.setItem(k, cb.checked?'1':'0'); }catch(e){} });
+  });
+})();
+</script>
+</body>
+</html>

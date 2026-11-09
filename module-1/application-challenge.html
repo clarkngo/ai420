@@ -1,0 +1,203 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AI 420 — Application Challenge 1: Evergreen Getaways Trip Planner</title>
+    <link rel="stylesheet" href="../assets/course.css">
+    <style>
+        .rules-box { background:var(--surface2); border-left:3px solid var(--border); padding:8px 14px; margin:0 0 18px; font-size:0.85rem; border-radius:0 4px 4px 0; color:var(--muted); }
+        .goal-box { background:var(--blue-bg); border-left:5px solid var(--blue); padding:15px 18px; margin:18px 0; border-radius:4px; }
+        .goal-box h4 { margin:0 0 6px; color:var(--blue); font-size:0.95rem; }
+        .goal-box p { margin:0; }
+        .scenario { background:var(--surface); border:1px solid var(--border); border-radius:8px; padding:16px 20px; margin:12px 0; }
+        .scenario p:last-child { margin-bottom:0; }
+        .decision-box { background:var(--violet-bg); border:1px solid var(--border); border-left:5px solid var(--violet); padding:15px 18px; margin:14px 0; border-radius:4px; }
+        .decision-box h4 { margin:0 0 6px; color:var(--violet); }
+        .stage-block { border:1px solid var(--border); border-radius:8px; padding:18px 22px; margin-bottom:14px; }
+        .stage-block h3 { margin:0 0 6px; font-size:1.02rem; }
+        .stage-num { display:inline-block; width:26px; height:26px; border-radius:50%; background:var(--accent-light); color:var(--accent2); font-weight:700; font-size:0.85rem; text-align:center; line-height:26px; margin-right:8px; }
+        pre { background:var(--code-bg); color:var(--code-text); padding:14px 16px; border-radius:6px; overflow-x:auto; font-size:0.8rem; line-height:1.5; }
+        code { font-family: 'SFMono-Regular', Consolas, 'Liberation Mono', Menlo, monospace; }
+        p code, li code, td code { background:var(--surface2); color:var(--rose); padding:1px 5px; border-radius:4px; font-size:0.88em; }
+        p code, li code, td code { overflow-wrap:anywhere; }
+        table.mini { width:100%; border-collapse:collapse; font-size:0.86rem; margin:10px 0; }
+        table.mini th, table.mini td { border:1px solid var(--border); padding:8px 10px; text-align:left; vertical-align:top; }
+        table.mini th { background:var(--surface2); font-size:0.75rem; text-transform:uppercase; letter-spacing:0.03em; color:var(--muted); }
+        table.mini td.wt { white-space:nowrap; font-weight:700; color:var(--accent); }
+        .table-scroll { overflow-x:auto; }
+        table.rubric { min-width:760px; }
+        table.rubric td:nth-child(n+4) { width:22%; }
+        .submit-box { background:var(--accent-light); border-left:5px solid var(--accent); padding:14px 18px; margin:14px 0 0; border-radius:0 4px 4px 0; font-size:0.9rem; }
+        .submit-box h5 { margin:0 0 8px; color:var(--accent2); font-size:0.85rem; text-transform:uppercase; letter-spacing:0.03em; }
+        .submit-box ul, .submit-box ol { margin:0; padding-left:20px; }
+        .snag-box { background:var(--amber-bg); border-left:5px solid var(--amber); padding:15px 18px; margin:20px 0; border-radius:4px; }
+        .snag-box h4 { margin:0 0 8px; color:var(--amber); }
+        details.faculty { background:var(--surface2); border:1px solid var(--border); border-radius:8px; padding:12px 16px; margin:22px 0; }
+        details.faculty summary { cursor:pointer; font-weight:700; color:var(--text); }
+        details.faculty h4 { margin:16px 0 6px; font-size:0.92rem; color:var(--text); }
+        details.faculty p, details.faculty li { font-size:0.88rem; }
+        .guide-nav { display:flex; justify-content:space-between; gap:12px; margin-top:30px; padding-top:16px; border-top:1px solid var(--border); font-size:0.9rem; }
+        .guide-nav a { color:var(--link); text-decoration:none; font-weight:600; }
+    </style>
+</head>
+<body>
+<a class="skip-link" href="#main">Skip to content</a>
+<header class="top">
+  <div class="top-inner">
+    <a class="brand" href="../index.html"><span class="brand-icon">420</span><span><b>AI 420: Agentic AI</b><small>Course guides</small></span></a>
+    <div class="top-right"><a class="pill-btn" href="../index.html">Course home</a><button class="pill-btn" id="themeToggle" type="button">🌙 Dark</button></div>
+  </div>
+</header>
+<section class="hero">
+  <div class="hero-inner">
+    <div class="eyebrow">AI 420 · Module 1 · Application Challenge</div>
+    <h1>Application Challenge 1: Evergreen Getaways Trip Planner</h1>
+    <p class="lede">Take your HOS 1 agent skills to a business you haven't seen: build a travel agency's planning agent in ADK from a written spec, make one decision the spec leaves open, and decide which of the agency's requests need an agent at all.</p>
+    <div class="chips"><span class="chip">Est. 60–90 min</span><span class="chip">CO1 · CO2</span><span class="chip">Module 1 · end of Week 2</span><span class="chip">Individual</span><span class="chip">AI assistant allowed — disclose it</span><span class="chip">5% of final grade</span></div>
+  </div>
+</section>
+<main id="main">
+
+<nav class="secnav no-print" aria-label="Page sections">
+  <div class="secnav-inner">
+    <a href="#rules">Ground rules</a>
+    <a href="#scenario">Scenario</a>
+    <a href="#spec">Spec</a>
+    <a href="#second">Five requests</a>
+    <a href="#steps">Steps</a>
+    <a href="#grading">Grading</a>
+    <a href="#snags">Common snags</a>
+  </div>
+</nav>
+
+<section class="module card" id="rules">
+  <div class="module-head"><div class="module-icon">📏</div><div><h2>Ground rules</h2></div></div>
+        <div class="rules-box">Everything here runs on your own computer (or in a Codespace) on free tiers, with no credit card. The provided tests use a scripted stand-in model, so they need no API key; the live run uses your free Gemini key.</div>
+</section>
+
+<section class="module card" id="scenario">
+  <div class="module-head"><div class="module-icon">🏢</div><div><h2>The scenario</h2></div></div>
+        <div class="scenario">
+            <p><strong>Evergreen Getaways</strong> (fictional) is a three-person travel agency in Bellingham. Customers email requests like "three days in Victoria, B.C., under $900, with one rainy-day option." An agent drafts the itinerary for a travel agent to check. A teammate already wrote the tools (<code>planner/tools.py</code>: <code>search_ferries</code>, <code>search_hotels</code>, <code>get_forecast</code> and <code>add_up</code>). The ADK agent that uses them, and the <code>run()</code> function the agency's email system calls, are missing. That's your job.</p>
+            <p>Two things about the app you should know before you start:</p>
+            <p><ul><li><strong>The tests use a scripted stand-in model</strong> (<code>tests/fake_model.py</code>, an ADK model class) that replies with tool calls in a fixed order, so the tests are the same every run.</li><li><strong>The agency's clock is fixed:</strong> Monday, November 2, 2026. Use <code>planner.tools.today()</code>, never <code>date.today()</code>.</li></ul></p>
+        </div>
+</section>
+
+<section class="module card" id="spec">
+  <div class="module-head"><div class="module-icon">📐</div><div><h2>The spec</h2></div></div>
+        <p>Every requirement below is checked by a provided test in <code>tests/test_agent.py</code>.</p>
+        <div class="table-scroll">
+        <div class="table-wrap" tabindex="0"><table class="mini">
+            <tr><th>Part</th><th>Must do</th><th>Must not do</th></tr>
+            <tr><td><code>root_agent</code> in <code>planner/agent.py</code></td><td>An ADK <code>Agent</code> with the four tools, and an instruction that quotes prices and sailings only from tool results and totals with <code>add_up</code>.</td><td>Give it tools it doesn't need, or let it invent a price.</td></tr><tr><td><code>run(request, max_llm_calls=6, model=None)</code> in <code>planner/run.py</code></td><td>Run <code>root_agent</code> with ADK's <code>InMemoryRunner</code> and <code>RunConfig(max_llm_calls=...)</code>. Return a dict with <code>answer</code>, <code>status</code> (<code>"done"</code>, <code>"out_of_steps"</code> or <code>"error"</code>), <code>model_calls</code>, <code>tool_calls</code> and <code>log</code>.</td><td>Raise. Every outcome is a dict, including ADK's budget error.</td></tr><tr><td>The log</td><td>Build <code>log</code> from the run's events: every tool call with its name, arguments and result, in order.</td><td>Log what you expected to happen instead of what the events show.</td></tr><tr><td>Tool errors</td><td>A tool's <code>{"error": ...}</code> reaches the model as a function response, and the run keeps going.</td><td>Stop the run on the first tool error, or hide the error from the model.</td></tr><tr><td>Step budget</td><td>When ADK stops the run at <code>max_llm_calls</code>, return <code>status="out_of_steps"</code> with your out-of-steps answer.</td><td>Retry with a bigger budget "to wrap up".</td></tr>
+        </table></div>
+        </div>
+        <div class="decision-box">
+            <h4>The open decision: running out of steps</h4>
+            <p>The agency owner's only instruction was: <em>"Never send a customer a half-planned trip as if it were finished."</em> When the budget runs out, the run has partial findings in its events: maybe a ferry and a forecast, but no hotel. What does the customer-facing <code>answer</code> say? The partial plan, clearly marked? Nothing but an apology? A hand-off to a travel agent with the findings attached?</p>
+            <p style="margin-bottom:0">There's no single right answer, and no provided test for this case. You decide, implement it in <code>run()</code>, prove it with your own tests, and defend it in <code>DECISIONS.md</code>.</p>
+        </div>
+</section>
+
+<section class="module card" id="second">
+  <div class="module-head"><div class="module-icon">🗂️</div><div><h2>The agency's five requests</h2></div></div>
+        <p>The owner also wants to "use the agent for everything." You <strong>don't build these</strong>. In your memo, decide for each: an agent, a single model call, or a plain script, and say why. "A script" with a good reason is a strong answer.</p>
+        <ol>
+            <li>Turn a customer's email into a draft itinerary.</li>
+            <li>Send every customer a reminder 48 hours before departure.</li>
+            <li>Rewrite a finished itinerary in a friendlier tone.</li>
+            <li>Rebook a whole group when a ferry sailing is cancelled.</li>
+            <li>Total the agency's bookings for the month.</li>
+        </ol>
+</section>
+
+<section class="module card" id="steps">
+  <div class="module-head"><div class="module-icon">🪜</div><div><h2>Steps &amp; what to submit</h2></div></div>
+        <div class="stage-block">
+            <h3><span class="stage-num">1</span>Open it and run the tests</h3>
+            <p>Accept the <a href="https://classroom50.org/cityuseattle/ai420/assignments/ac01/accept?k=ai420" target="_blank" rel="noopener">AC 1 invite</a>, clone your repo and open it in Antigravity (or a Codespace). Make the <code>.venv</code>, <code>pip install -r requirements.txt</code>, then run:</p>
+<pre tabindex="0">pytest</pre>
+            <p>Almost everything fails with <code>NotImplementedError</code>. That's your to-do list.</p>
+        </div>
+        <div class="stage-block">
+            <h3><span class="stage-num">2</span>Build the agent and <code>run()</code></h3>
+            <p>Fill in <code>planner/agent.py</code> and <code>planner/run.py</code> until <code>pytest</code> passes. You may use Antigravity. If you do, ask for a plan first (<code>/plan</code>), tell it to keep <code>MODEL = "gemini-3.8-flash"</code> and not to change the tests, and read what it writes: you'll defend it.</p>
+        </div>
+        <div class="stage-block">
+            <h3><span class="stage-num">3</span>Make the out-of-steps call</h3>
+            <p>Implement your rule for running out of steps. Write at least two tests in <code>tests/test_my_rules.py</code>: one showing your rule, and one for the edge you think is most likely to go wrong. The fake model has a script that never finishes; the file shows how to use it.</p>
+        </div>
+        <div class="stage-block">
+            <h3><span class="stage-num">4</span>Run the planner</h3>
+            <p>Put your free Gemini key in <code>.env</code> (copied from <code>.env.example</code>), then run one request with the full budget and one with a budget of 2. The planner prints every tool call from the events, so the transcript shows what actually ran. You can also watch a run in <code>adk web</code>.</p>
+<pre tabindex="0">python -m planner &quot;3 days in Victoria, B.C., under $900, with one rainy-day option&quot;
+python -m planner --max-llm-calls 2 &quot;3 days in Victoria, B.C., under $900&quot;</pre>
+            <p>Copy both runs, tool lines included, into <code>TRANSCRIPT.md</code>. If the planner does something you didn't expect, keep it in and say so in your memo.</p>
+        </div>
+        <div class="stage-block">
+            <h3><span class="stage-num">5</span>Write the memo</h3>
+            <p>Fill in <code>DECISIONS.md</code>, about one page: your out-of-steps rule and why, your call on each of the five requests, and what Antigravity (or another assistant) wrote, got wrong, or missed.</p>
+        </div>
+
+        <div class="submit-box">
+            <h5>Submit (via Brightspace)</h5>
+            <ul>
+                <li><code>planner/agent.py</code>, <code>planner/run.py</code> and <code>tests/test_my_rules.py</code></li>
+                <li>The output of <code>pytest</code>, pasted as text (all tests passing, including yours)</li>
+                <li><code>TRANSCRIPT.md</code></li>
+                <li><code>DECISIONS.md</code></li>
+            </ul>
+        </div>
+</section>
+
+<section class="module card" id="grading">
+  <div class="module-head"><div class="module-icon">📊</div><div><h2>How it's graded</h2></div></div>
+        <p>Each criterion is graded on one part of your submission, at one of three levels.</p>
+        <div class="table-scroll">
+        <div class="table-wrap" tabindex="0"><table class="mini rubric">
+            <tr><th>Criterion</th><th>Weight</th><th>Graded on</th><th>Full</th><th>Partial</th><th>Missing</th></tr>
+            <tr><td><strong>Application</strong></td><td class="wt">10%</td><td><code>TRANSCRIPT.md</code></td><td>Your agent runs on the agency's request, with the tools firing in a sensible order, and the budget-2 run ends with your rule.</td><td>It runs, but one run misbehaves and you don't explain why.</td><td>It restates the HOS 1 research agent, or doesn't run.</td></tr>
+            <tr><td><strong>Analysis</strong></td><td class="wt">20%</td><td><code>DECISIONS.md</code>, section 2 (five requests)</td><td>For each request, you break down what it needs: several steps, tool use, judgment, or none of these.</td><td>You give a verdict for each, but the reasons are generic ("it's complex").</td><td>No breakdown.</td></tr>
+            <tr><td><strong>Evaluation</strong></td><td class="wt">30%</td><td><code>DECISIONS.md</code>, section 1 (out of steps)</td><td>A clear rule, judged against stated criteria (what the customer could do with it, what it risks), with an alternative you rejected and why.</td><td>A rule with a reason, but no criteria or no rejected alternative.</td><td>No rule, or no justification.</td></tr>
+            <tr><td><strong>Design</strong></td><td class="wt">40%</td><td><code>planner/agent.py</code>, <code>planner/run.py</code>, your tests, and the <code>pytest</code> output</td><td>All provided tests pass, and your own tests check your rule, including an edge case.</td><td>Most provided tests pass, or your own tests cover only the easy case.</td><td>It doesn't run, or you wrote no tests of your own.</td></tr>
+            
+        </table></div>
+        </div>
+        <p style="font-size:0.88rem;color:var(--muted)">How this differs from HOS 1's Understand &amp; Refine: there you extended code you already understood, by hand, with no AI. Here the business, the code, and the decisions are new, AI help is allowed, and half the grade (Analysis and Evaluation) is for the calls you make, not the typing.</p>
+</section>
+
+<section class="module card" id="snags">
+  <div class="module-head"><div class="module-icon">🧯</div><div><h2>Common snags</h2></div></div>
+        <div class="snag-box">
+            <ul>
+                <li><strong><code>test_budget_returns_dict</code> fails with an exception.</strong> ADK raises an error when <code>max_llm_calls</code> is spent. Catch that one error in <code>run()</code> and return <code>status="out_of_steps"</code>; let other errors become <code>status="error"</code>.</li>
+                <li><strong>The live run never calls a tool.</strong> Check the tool docstrings and the instruction: the model only calls a tool when it can tell what the tool is for.</li>
+                <li><strong>The log is empty.</strong> Collect events from the runner as they arrive; function calls and responses are in each event's content parts.</li>
+                <li><strong>A date test fails by one day.</strong> Somewhere you used <code>date.today()</code>. Use <code>planner.tools.today()</code>.</li>
+                <li><strong>502, 404 or "model not found" when you run the agent.</strong> The model is set to <code>gemini-3.8-flash</code>. If your assistant changed it, change it back. See the <a href="hos-guide.html">HOS 1 guide's</a> Common snags.</li>
+            </ul>
+        </div>
+</section>
+
+<div class="guide-nav">
+            <a href="hos-guide.html">← HOS 1 guide</a>
+            <a href="index.html">Module 1 lesson →</a>
+        </div>
+
+</main>
+<footer class="foot">AI 420: Agentic AI · City University of Seattle, School of Technology &amp; Computing<br>Course design &amp; materials: Clark Ngo · Simulators are illustrative HTML models — no real LLM, database, or network calls. <br>© 2026 Clark Ngo · Free to reuse and adapt under <a href="https://creativecommons.org/licenses/by/4.0/" rel="license">CC BY 4.0</a>, except where noted · <a href="https://github.com/cityuseattle/ai420/blob/main/LICENSE.md">How to credit</a></footer>
+<script src="../assets/course.js"></script>
+<script>
+/* section nav highlight (scrolls only the nav row, never the page) */
+(function(){
+  var links=[].slice.call(document.querySelectorAll('.secnav a')); var map={};
+  links.forEach(function(a){ map[a.getAttribute('href').slice(1)]=a; });
+  if(!('IntersectionObserver' in window)) return;
+  var io=new IntersectionObserver(function(es){ es.forEach(function(e){ if(e.isIntersecting){ links.forEach(function(l){l.classList.remove('active');}); var a=map[e.target.id]; if(a){ a.classList.add('active'); var c=a.parentElement, ar=a.getBoundingClientRect(), cr=c.getBoundingClientRect(); c.scrollLeft += (ar.left+ar.width/2)-(cr.left+cr.width/2); } } }); },{rootMargin:'-45% 0px -50% 0px'});
+  Object.keys(map).forEach(function(id){ var s=document.getElementById(id); if(s) io.observe(s); });
+})();
+</script>
+</body>
+</html>

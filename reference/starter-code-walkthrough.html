@@ -1,0 +1,317 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AI 420 — Starter Code Walkthrough</title>
+    <link rel="stylesheet" href="../assets/course.css">
+    <style>
+        .rule-box { background:var(--accent-light); border-left:5px solid var(--accent); padding:13px 18px; margin:18px 0; border-radius:0 6px 6px 0; font-size:0.9rem; }
+        .rule-box strong { color:var(--accent2); }
+        .spoiler-box { background:var(--amber-bg); border:2px solid var(--amber); border-radius:8px; padding:14px 18px; margin:18px 0; font-size:0.9rem; }
+        .spoiler-box strong { color:var(--amber); }
+        .intro-box { background:var(--blue-bg); border-left:5px solid var(--blue); padding:15px 18px; margin:18px 0; border-radius:0 6px 6px 0; font-size:0.92rem; }
+        .intro-box h4 { margin:0 0 6px; color:var(--blue); font-size:0.95rem; }
+        .jump-table { width:100%; border-collapse:collapse; margin:14px 0; font-size:0.86rem; }
+        .jump-table th, .jump-table td { border:1px solid var(--border); padding:9px 12px; text-align:left; vertical-align:top; }
+        .jump-table th { background:var(--surface2); font-size:0.72rem; text-transform:uppercase; letter-spacing:0.03em; color:var(--muted); }
+        .jump-table td.hos { font-weight:700; color:var(--accent); white-space:nowrap; }
+        .hos-tag { display:inline-block; font-size:0.74rem; font-weight:700; padding:3px 10px; border-radius:999px; background:var(--accent-light); color:var(--accent2); margin-bottom:12px; }
+        .hos-tag.empty { background:var(--surface2); color:var(--muted); }
+        .have-list { margin:8px 0 14px; padding-left:20px; font-size:0.9rem; }
+        .have-list li { margin-bottom:4px; }
+        details.file-block { border:1px solid var(--border); border-radius:8px; margin:10px 0; background:var(--surface); }
+        details.file-block > summary { cursor:pointer; padding:11px 16px; font-weight:700; font-size:0.93rem; list-style:none; display:flex; flex-wrap:wrap; gap:6px 12px; align-items:baseline; }
+        details.file-block > summary::-webkit-details-marker { display:none; }
+        details.file-block > summary::before { content:"▸"; color:var(--accent); font-size:0.85rem; }
+        details.file-block[open] > summary::before { content:"▾"; }
+        details.file-block > summary .role { font-weight:400; color:var(--muted); font-size:0.85rem; }
+        .file-body { padding:2px 18px 16px; font-size:0.9rem; }
+        .file-body p { margin:8px 0; }
+        .file-body ul { margin:6px 0 8px; padding-left:20px; }
+        .file-body li { margin-bottom:5px; }
+        .watch { background:var(--amber-bg); border-left:4px solid var(--amber); padding:9px 14px; margin:10px 0; border-radius:0 4px 4px 0; font-size:0.86rem; }
+        .watch strong { color:var(--amber); }
+        .think { background:var(--blue-bg); border-left:4px solid var(--blue); padding:9px 14px; margin:10px 0; border-radius:0 4px 4px 0; font-size:0.86rem; }
+        .think strong { color:var(--violet); }
+        pre { background:var(--code-bg); color:var(--code-text); padding:13px 15px; border-radius:6px; overflow-x:auto; font-size:0.78rem; line-height:1.5; }
+        code { font-family: 'SFMono-Regular', Consolas, 'Liberation Mono', Menlo, monospace; }
+        p code, li code, td code { background:var(--surface2); color:var(--rose); padding:1px 5px; border-radius:4px; font-size:0.88em; }
+        .diagram { border:1px solid var(--border); border-radius:8px; background:var(--surface2); padding:10px; margin:14px 0; overflow-x:auto; }
+        .diagram svg { display:block; min-width:640px; width:100%; height:auto; }
+        .diagram-cap { font-size:0.8rem; color:var(--muted); margin:6px 4px 0; }
+        .flow-list { font-size:0.9rem; padding-left:22px; }
+        .flow-list li { margin-bottom:6px; }
+        .guide-nav { display:flex; justify-content:space-between; margin-top:30px; padding-top:16px; border-top:1px solid var(--border); font-size:0.9rem; }
+        .guide-nav a { color:var(--link); text-decoration:none; font-weight:600; }
+    details summary { overflow-wrap:anywhere; }
+</style>
+</head>
+<body>
+<a class="skip-link" href="#main">Skip to content</a>
+<header class="top">
+  <div class="top-inner">
+    <a class="brand" href="../index.html"><span class="brand-icon">420</span><span><b>AI 420: Agentic AI</b><small>Course guides</small></span></a>
+    <div class="top-right"><a class="pill-btn" href="../index.html">Course home</a><button class="pill-btn" id="themeToggle" type="button">🌙 Dark</button></div>
+  </div>
+</header>
+<section class="hero">
+  <div class="hero-inner">
+    <div class="eyebrow">AI 420 · Reference · Read as you start each HOS</div>
+    <h1>Starter Code Walkthrough</h1>
+    <p class="lede">What every file in each module's starter code does, and how a request moves through it. Read the section for the HOS you're starting, not the ones after it.</p>
+    <div class="chips"><span class="chip">Reference — read as you go, not up front</span><span class="chip">Antigravity + Google ADK</span><span class="chip">Free tiers only</span></div>
+  </div>
+</section>
+<main id="main">
+
+<nav class="secnav no-print" aria-label="Page sections">
+  <div class="secnav-inner">
+    <a href="#overview">How to use</a>
+    <a href="#hos1">HOS 1</a>
+    <a href="#hos2">HOS 2</a>
+    <a href="#hos3">HOS 3</a>
+    <a href="#hos4">HOS 4</a>
+    <a href="#run">Run it</a>
+    <a href="#reading">Reading code</a>
+  </div>
+</nav>
+
+<section class="module card" id="overview">
+  <div class="module-head"><div class="module-icon">🧭</div><div><h2>How to use this page</h2></div></div>
+        <div class="rule-box">
+            <strong>Course rules this page follows:</strong> everything below runs on your own computer, in Google Antigravity (or in a GitHub Codespace), and needs no credit card. Gemini has a free tier; Google ADK, Open-Meteo, Wikipedia and SQLite need no account.
+        </div>
+
+        <div class="intro-box">
+            <h4>What "starter code" means in this course</h4>
+            <p>Each HOS has a starter-code template repository on GitHub. You get your own copy by accepting that HOS's invite, linked from its lesson. Unlike a course where one app grows all term, each HOS here starts from its own small project, so you don't carry bugs from one HOS to the next. Your first job in each HOS is reading working code you didn't type. This page explains that code, one HOS at a time.</p>
+        </div>
+
+        <div class="spoiler-box">
+            <strong>Don't read ahead.</strong> HOS 4's starter contains the repaired agent and the guards you build in HOS 3. Read a section only when you're <em>starting</em> that HOS.
+        </div>
+
+        <div class="table-wrap" tabindex="0"><table class="jump-table">
+            <tr><th>You're starting…</th><th>The repo hands you</th><th>Jump</th></tr>
+            <tr><td class="hos">HOS 1</td><td>Three working tools, a baseline, five test questions, a comparison script and an empty ADK agent</td><td><a href="#hos1">Read →</a></td></tr>
+            <tr><td class="hos">HOS 2</td><td>A store database, an MCP server with one tool, and a connected ADK agent</td><td><a href="#hos2">Read →</a></td></tr>
+            <tr><td class="hos">HOS 3</td><td>A support agent with planted failures, six scenarios and a scenario runner</td><td><a href="#hos3">Read →</a></td></tr>
+            <tr><td class="hos">HOS 4</td><td>The repaired agent with guards, twelve scenarios and a price sheet</td><td><a href="#hos4">Read →</a></td></tr>
+            <tr><td class="hos">Any</td><td>Running it, and how to read code you didn't write</td><td><a href="#run">Run →</a> · <a href="#reading">Read →</a></td></tr>
+        </table></div>
+</section>
+
+<section class="module card" id="hos1">
+  <div class="module-head"><div class="module-icon">1️⃣</div><div><h2>Starting HOS 1</h2></div></div>
+            <span class="hos-tag">Working tools, an empty agent</span>
+            <p>The tools, the baseline and the comparison are finished. The ADK agent that uses the tools is yours to build, with Antigravity, and the plan-and-execute version is yours to write by hand.</p>
+            <details class="file-block">
+                <summary>requirements.txt + .devcontainer/ <span class="role">— setup on your computer, or in a Codespace</span></summary>
+                <div class="file-body">
+                    <p>On your computer, <code>pip install -r requirements.txt</code> inside your <code>.venv</code> installs everything, including <code>google-adk</code>. The <code>.devcontainer/</code> folder is only for the Codespaces fallback: there, GitHub builds a Python container, copies <code>.env.example</code> to <code>.env</code> and installs the same requirements for you.</p>
+                </div>
+            </details>
+            <details class="file-block">
+                <summary>.env.example <span class="role">— where your API key goes</span></summary>
+                <div class="file-body">
+                    <pre tabindex="0"># Your free Gemini API key — https://aistudio.google.com/apikey
+GOOGLE_API_KEY=paste-your-key-here
+GOOGLE_GENAI_USE_VERTEXAI=FALSE</pre><p>A template, safe to commit. Copy it to <code>.env</code> and put your real key there; <code>.env</code> is git-ignored. Treat the key like a password: see the <a href="../start-here/accounts.html#google">Account &amp; Service Setup Guide</a>.</p>
+                </div>
+            </details>
+            <details class="file-block">
+                <summary>common.py <span class="role">— shared setup</span></summary>
+                <div class="file-body">
+                    <p>Loads <code>.env</code> and defines <code>MODEL</code> (<code>"gemini-3.8-flash"</code>), so the model name lives in one place. Everything else imports it from here.</p>
+                </div>
+            </details>
+            <details class="file-block">
+                <summary>research_agent/tools.py <span class="role">— the three tools</span></summary>
+                <div class="file-body">
+                    <p><code>search_wikipedia</code> finds article titles, <code>wikipedia_intro</code> reads an article's introduction, and <code>calculate</code> does arithmetic exactly. They're plain Python functions: ADK builds each tool's description for the model from the function's name, type hints and docstring, so the docstrings matter. Each tool returns a dict, and errors come back as data.</p>
+                    <div class="watch"><strong>Watch out:</strong> Wikipedia blocks requests without a descriptive <code>User-Agent</code>. Keep <code>HEADERS</code> as it is if Antigravity rewrites a tool.</div>
+                </div>
+            </details>
+            <details class="file-block">
+                <summary>research_agent/agent.py <span class="role">— yours (Create, Part B)</span></summary>
+                <div class="file-body">
+                    <p>Empty except for a TODO. Your prompt has Antigravity define <code>root_agent</code> here: an ADK <code>Agent</code> with the model, the three tools and an instruction. <code>adk web</code> and <code>compare.py</code> both look for <code>root_agent</code>.</p>
+                </div>
+            </details>
+            <details class="file-block">
+                <summary>baseline.py <span class="role">— the "before" picture</span></summary>
+                <div class="file-body">
+                    <p>One request, one response, no tools and no agent. Its <code>run()</code> returns the same dict shape <code>compare.py</code> reads from your agent, so they line up side by side.</p>
+                </div>
+            </details>
+            <details class="file-block">
+                <summary>tasks.json + compare.py <span class="role">— the test questions and the comparison</span></summary>
+                <div class="file-body">
+                    <p>Five multi-step questions with expected answers, and a script that runs each through the baseline and your agent (and <code>plan_execute/</code>, once it exists) and prints model calls, tool calls, tokens and seconds, counted from ADK's events. Flags: <code>--verbose</code>, <code>--with-plan</code>, <code>--max-llm-calls</code> (the step budget, through ADK's <code>RunConfig</code>), <code>--only</code> and <code>--pause</code>.</p>
+                </div>
+            </details>
+            <details class="file-block">
+                <summary>plan_execute/ <span class="role">— yours (Understand &amp; Refine, by hand)</span></summary>
+                <div class="file-body">
+                    <p>An empty folder for the second pattern: a <code>SequentialAgent</code> of planner, executor and writer that passes the plan along through session state.</p>
+                </div>
+            </details>
+</section>
+
+<section class="module card" id="hos2">
+  <div class="module-head"><div class="module-icon">2️⃣</div><div><h2>Starting HOS 2</h2></div></div>
+            <span class="hos-tag">A worked example, ready to extend</span>
+            <p>A store database, an MCP server with one finished tool, and an agent already connected to it. You add the rest.</p>
+            <details class="file-block">
+                <summary>requirements.txt + .devcontainer/ <span class="role">— setup on your computer, or in a Codespace</span></summary>
+                <div class="file-body">
+                    <p>On your computer, <code>pip install -r requirements.txt</code> inside your <code>.venv</code> installs everything, including <code>google-adk</code>. The <code>.devcontainer/</code> folder is only for the Codespaces fallback: there, GitHub builds a Python container, copies <code>.env.example</code> to <code>.env</code> and installs the same requirements for you.</p>
+                </div>
+            </details>
+            <details class="file-block">
+                <summary>data/seed_db.py <span class="role">— builds harbor.db</span></summary>
+                <div class="file-body">
+                    <p>Creates Harbor Supply Co.'s SQLite database: customers, products, orders and order items. It's built for you the first time; rebuild it any time with <code>python data/seed_db.py</code>.</p>
+                </div>
+            </details>
+            <details class="file-block">
+                <summary>mcp_server/server.py <span class="role">— your MCP server</span></summary>
+                <div class="file-body">
+                    <p>A separate process that serves tools. <code>get_marine_weather</code> is your worked example: it calls Open-Meteo (free, no key), and returns errors as data. New tools follow the same pattern.</p>
+                    <div class="watch"><strong>Watch out:</strong> never <code>print()</code> here. Stdout carries the MCP connection, so use <code>logging</code>. And it's the MCP 2.x import: <code>from mcp.server.mcpserver import MCPServer</code>.</div>
+                </div>
+            </details>
+            <details class="file-block">
+                <summary>ops_agent/agent.py <span class="role">— the agent</span></summary>
+                <div class="file-body">
+                    <p>An ADK agent whose only tool is a <code>McpToolset</code>. That toolset starts <code>server.py</code> as a subprocess, asks for its tool list, and forwards calls over stdio. This is also where you add memory: tools that read and write session state with the <code>app:</code> or <code>user:</code> prefix. Started with <code>adk web --session_service_uri "sqlite:///./sessions.db"</code>, that state is saved in <code>sessions.db</code> and survives a restart.</p>
+                </div>
+            </details>
+</section>
+
+<section class="module card" id="hos3">
+  <div class="module-head"><div class="module-icon">3️⃣</div><div><h2>Starting HOS 3</h2></div></div>
+            <span class="hos-tag">A support agent that looks fine</span>
+            <p><strong>Read this section, but don't open <code>support_agent/tools.py</code> or <code>agent.py</code> until Week 6.</strong> You diagnose from traces first, so this section says what the files are for, not what's in them.</p>
+            <details class="file-block">
+                <summary>requirements.txt + .devcontainer/ <span class="role">— setup on your computer, or in a Codespace</span></summary>
+                <div class="file-body">
+                    <p>On your computer, <code>pip install -r requirements.txt</code> inside your <code>.venv</code> installs everything, including <code>google-adk</code>. The <code>.devcontainer/</code> folder is only for the Codespaces fallback: there, GitHub builds a Python container, copies <code>.env.example</code> to <code>.env</code> and installs the same requirements for you.</p>
+                </div>
+            </details>
+            <details class="file-block">
+                <summary>scenarios.json <span class="role">— six customer messages</span></summary>
+                <div class="file-body">
+                    <p>Each has an <code>id</code> and a <code>message</code>. There are no expected answers: deciding whether each run succeeded is your job.</p>
+                </div>
+            </details>
+            <details class="file-block">
+                <summary>run_scenarios.py <span class="role">— runs them and records traces</span></summary>
+                <div class="file-body">
+                    <p>Runs each scenario through the agent and prints only its final reply, which is why every run looks fine. Flags: <code>--only</code>, <code>--max-calls</code> (the step budget) and <code>--pause</code>. It already imports <code>support_agent/tracing.py</code> if one exists, which is where your trace recorder plugs in: with <code>TRACE=1</code> set, it saves each trace under <code>traces/</code>.</p>
+                </div>
+            </details>
+            <details class="file-block">
+                <summary>support_agent/ <span class="role">— the agent under test</span></summary>
+                <div class="file-body">
+                    <p>An ADK agent and its tools, over the same Harbor Supply database. Leave it closed for Week 5.</p>
+                    <div class="watch"><strong>Watch out:</strong> Antigravity reading these files for you counts as opening them. Tell it not to, and keep it to the recorder task.</div>
+                </div>
+            </details>
+</section>
+
+<section class="module card" id="hos4">
+  <div class="module-head"><div class="module-icon">4️⃣</div><div><h2>Starting HOS 4</h2></div></div>
+            <span class="hos-tag">The repaired agent, plus test data</span>
+            <p>The single agent from HOS 3 with its bugs fixed and its guards on, so everyone compares from the same baseline. The team, the eval set, the eval config and the report are yours.</p>
+            <details class="file-block">
+                <summary>requirements.txt + .devcontainer/ <span class="role">— setup on your computer, or in a Codespace</span></summary>
+                <div class="file-body">
+                    <p>On your computer, <code>pip install -r requirements.txt</code> inside your <code>.venv</code> installs everything, including <code>google-adk</code>. The <code>.devcontainer/</code> folder is only for the Codespaces fallback: there, GitHub builds a Python container, copies <code>.env.example</code> to <code>.env</code> and installs the same requirements for you.</p>
+                </div>
+            </details>
+            <details class="file-block">
+                <summary>single_agent/tools.py + agent.py <span class="role">— the repaired agent</span></summary>
+                <div class="file-body">
+                    <p>The same support agent, now with a real <code>create_support_ticket</code>, a <code>list_orders</code> that reports its count and combined value, and retail prices only. Your team imports these tools; don't copy them.</p>
+                </div>
+            </details>
+            <details class="file-block">
+                <summary>single_agent/guards.py <span class="role">— the two guards</span></summary>
+                <div class="file-body">
+                    <p><code>error_as_observation</code> turns a tool that raises into an error the model can read. <code>repeat_call_guard</code> blocks the same tool with the same arguments after two calls. Both are generic: they know nothing about any specific bug.</p>
+                </div>
+            </details>
+            <details class="file-block">
+                <summary>evals/scenarios.json <span class="role">— twelve test scenarios</span></summary>
+                <div class="file-body">
+                    <p>Each has a persona, a goal and a success rule. You turn them into <code>evals/support.evalset.json</code> for <code>adk eval</code>: the persona and goal become the simulated user's conversation plan, and the success rule becomes what the judge grades against.</p>
+                </div>
+            </details>
+            <details class="file-block">
+                <summary>evals/pricing.json <span class="role">— the price sheet</span></summary>
+                <div class="file-body">
+                    <p>Example prices per million tokens. Look up the current list price and replace them before you report cost per task. You pay nothing on the free tier; this is the "shadow cost" of the same run on the paid tier.</p>
+                </div>
+            </details>
+</section>
+
+<section class="module card" id="run">
+  <div class="module-head"><div class="module-icon">▶️</div><div><h2>Running it</h2></div></div>
+        <p><b>On your computer (the default):</b> clone your HOS repo and open the folder in Antigravity. In its terminal, once per repo:</p>
+<pre tabindex="0">python3 -m venv .venv
+source .venv/bin/activate          # Windows: .venv\Scripts\activate
+pip install -r requirements.txt
+cp .env.example .env               # then put your Gemini key in .env</pre>
+        <p>Then, from the repo's top folder:</p>
+<pre tabindex="0"># HOS 1
+python baseline.py "How many years before the first iPhone was the Space Needle completed?"
+python compare.py --verbose
+
+# Any HOS: the ADK developer UI, at http://localhost:8000
+adk web
+
+# HOS 2: keep sessions (and memory) across restarts
+adk web --session_service_uri "sqlite:///./sessions.db"
+
+# HOS 3: run the scenarios, with your recorder on
+TRACE=1 python run_scenarios.py
+
+# HOS 4 (start small: free-tier limits)
+adk eval single_agent evals/support.evalset.json:refund-cancelled,order-status --config_file_path evals/test_config.json --print_detailed_results</pre>
+        <p>Open a new terminal later? Run the <code>activate</code> line again first. The full setup, with screenshots of a first run, is in <a href="../start-here/tools.html#first-run">Tools &amp; Setup</a>.</p>
+        <p><b>In a Codespace (the fallback):</b> Code → Codespaces → Create codespace on main. The devcontainer installs everything and creates <code>.env</code>; add your key to it. You don't need the <code>.venv</code> there, and you start the developer UI as <code>adk web --allow_origins "*"</code>, or it shows a blank page. Stop your Codespace when you're done, because free hours are limited.</p>
+</section>
+
+<section class="module card" id="reading">
+  <div class="module-head"><div class="module-icon">🔎</div><div><h2>How to read code you didn't write</h2></div></div>
+        <ol class="flow-list">
+            <li><strong>Start at the entry point.</strong> That's <code>compare.py</code>, <code>agent.py</code> or <code>run_scenarios.py</code>, depending on the HOS.</li>
+            <li><strong>Follow one request end to end.</strong> Pick a single question and trace it file by file before you read anything else.</li>
+            <li><strong>Run it before you change it.</strong> Ask something it can answer, then something it can't. Watching real behavior beats guessing.</li>
+            <li><strong>Break it on purpose.</strong> Blank the API key, send a bad argument, ask for something no tool can do. Knowing how it fails is how you know you understand it.</li>
+        </ol>
+        <p>This is the same habit the Evaluate and Analyze stages of every HOS are training.</p>
+</section>
+
+<div class="guide-nav">
+            <a href="../index.html">← Course home</a>
+            <a href="../start-here/accounts.html">Account &amp; Service Setup Guide →</a>
+        </div>
+
+</main>
+<footer class="foot">AI 420: Agentic AI · City University of Seattle, School of Technology &amp; Computing<br>Course design &amp; materials: Clark Ngo <br>© 2026 Clark Ngo · Free to reuse and adapt under <a href="https://creativecommons.org/licenses/by/4.0/" rel="license">CC BY 4.0</a>, except where noted · <a href="https://github.com/cityuseattle/ai420/blob/main/LICENSE.md">How to credit</a></footer>
+<script src="../assets/course.js"></script>
+<script>
+/* section nav highlight (scrolls only the nav row, never the page) */
+(function(){
+  var links=[].slice.call(document.querySelectorAll('.secnav a')); var map={};
+  links.forEach(function(a){ map[a.getAttribute('href').slice(1)]=a; });
+  if(!('IntersectionObserver' in window)) return;
+  var io=new IntersectionObserver(function(es){ es.forEach(function(e){ if(e.isIntersecting){ links.forEach(function(l){l.classList.remove('active');}); var a=map[e.target.id]; if(a){ a.classList.add('active'); var c=a.parentElement, ar=a.getBoundingClientRect(), cr=c.getBoundingClientRect(); c.scrollLeft += (ar.left+ar.width/2)-(cr.left+cr.width/2); } } }); },{rootMargin:'-45% 0px -50% 0px'});
+  Object.keys(map).forEach(function(id){ var s=document.getElementById(id); if(s) io.observe(s); });
+})();
+</script>
+</body>
+</html>

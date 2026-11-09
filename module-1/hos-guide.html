@@ -1,0 +1,210 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AI 420 — HOS 1 Hands-On Guide: Anatomy of an Agent</title>
+    <link rel="stylesheet" href="../assets/course.css">
+    <style>
+        .goal-box { background:var(--blue-bg); border-left:5px solid var(--blue); padding:15px 18px; margin:18px 0; border-radius:4px; }
+        .goal-box h4 { margin:0 0 6px; color:var(--blue); font-size:0.95rem; }
+        .needs-list li { margin-bottom:6px; }
+        .stage-tagline { color:var(--muted); font-size:0.85rem; margin:0 0 14px; }
+        pre { background:var(--code-bg); color:var(--code-text); padding:14px 16px; border-radius:6px; overflow-x:auto; font-size:0.8rem; line-height:1.5; }
+        code { font-family: 'SFMono-Regular', Consolas, 'Liberation Mono', Menlo, monospace; }
+        p code, li code { background:var(--surface2); color:var(--rose); padding:1px 5px; border-radius:4px; font-size:0.88em; }
+        .not-graded { background:var(--surface2); border-left:3px solid var(--border); padding:8px 14px; margin:10px 0; font-size:0.85rem; border-radius:0 4px 4px 0; color:var(--muted); }
+        .submit-box { background:var(--accent-light); border-left:5px solid var(--accent); padding:14px 18px; margin:14px 0 0; border-radius:0 4px 4px 0; font-size:0.9rem; }
+        .submit-box h5 { margin:0 0 8px; color:var(--accent2); font-size:0.85rem; text-transform:uppercase; letter-spacing:0.03em; }
+        .submit-box ul { margin:0; padding-left:20px; }
+        .snag-box { background:var(--amber-bg); border-left:5px solid var(--amber); padding:15px 18px; margin:20px 0; border-radius:4px; }
+        .snag-box h4 { margin:0 0 8px; color:var(--amber); }
+        .shot { margin:14px 0; }
+        .shot img { max-width:100%; height:auto; border:1px solid var(--border); border-radius:6px; display:block; }
+        .shot figcaption { font-size:0.84rem; color:var(--muted); margin-top:6px; }
+        .shot-grid { display:grid; grid-template-columns:repeat(auto-fit, minmax(min(280px, 100%), 1fr)); gap:14px; align-items:start; }
+        .shot-grid .shot { margin:0; }
+        details.sample-run { background:var(--surface2); border:1px solid var(--border); border-radius:8px; padding:12px 16px; margin:16px 0; }
+        details.sample-run summary { cursor:pointer; font-weight:600; color:var(--text); }
+        details.sample-run > p { font-size:0.88rem; }
+        .guide-nav { display:flex; justify-content:space-between; margin-top:30px; padding-top:16px; border-top:1px solid var(--border); font-size:0.9rem; }
+        .guide-nav a { color:var(--link); text-decoration:none; font-weight:600; }
+    
+        .ref-box { background:var(--surface2); border:1px solid var(--border); padding:12px 16px; margin:16px 0; border-radius:6px; font-size:0.9rem; }
+        .ref-box h4 { margin:0 0 6px; font-size:0.9rem; }
+        blockquote { border-left:4px solid var(--border); margin:12px 0; padding:4px 14px; color:var(--text); }
+</style>
+</head>
+<body>
+<a class="skip-link" href="#main">Skip to content</a>
+<header class="top">
+  <div class="top-inner">
+    <a class="brand" href="../index.html"><span class="brand-icon">420</span><span><b>AI 420: Agentic AI</b><small>Course guides</small></span></a>
+    <div class="top-right"><a class="pill-btn" href="../index.html">Course home</a><button class="pill-btn" id="themeToggle" type="button">🌙 Dark</button></div>
+  </div>
+</header>
+<section class="hero">
+  <div class="hero-inner">
+    <div class="eyebrow">AI 420 · Module 1 · Hands-On Skill (HOS) guide</div>
+    <h1>HOS 1: Anatomy of an Agent</h1>
+    <p class="lede">Watch Antigravity, a coding agent, plan and do a real job. Then build a research agent in Google ADK with it, answer the same multi-step questions with one plain LLM call and with your agent, and point at the events where reasoning, planning, tool use, and memory happen.</p>
+    <div class="chips"><span class="chip">Est. 3–4 hrs</span><span class="chip">CO1 · CO2</span><span class="chip">Module 1 · Weeks 1–2</span><span class="chip">10% of final grade</span></div>
+  </div>
+</section>
+<main id="main">
+
+<nav class="secnav no-print" aria-label="Page sections">
+  <div class="secnav-inner">
+    <a href="#before">Before you start</a>
+    <a href="#create">Create</a>
+    <a href="#evaluate">Evaluate</a>
+    <a href="#analyze">Analyze</a>
+    <a href="#refine">Understand &amp; Refine</a>
+    <a href="#snags">Common snags</a>
+  </div>
+</nav>
+
+<section class="module card" id="before">
+  <div class="module-head"><div class="module-icon">🧭</div><div><h2>Before you start</h2></div></div>
+        <div class="before-box">
+            <ol>
+                <li><b>Set up and do the first run.</b> This module needs <a href="../start-here/accounts.html">GitHub, Antigravity and a free Gemini API key</a>, and the <a href="../start-here/tools.html#first-run">first run</a> working on your computer.</li>
+                <li><b>Know the concepts.</b> Read <a href="../reference/concept-companion.html#module-1">Concept Companion → Module 1</a> before you open the starter code.</li>
+            </ol>
+        </div>
+        <h4>What you'll need</h4>
+        <ul class="needs-list">
+            <li><strong>Starter code:</strong> your <b>HOS 1</b> repo, created when you <a href="https://classroom50.org/cityuseattle/ai420/assignments/hos01/accept?k=ai420" target="_blank" rel="noopener">accept the HOS 1 invite</a>. Clone it and open the folder in Antigravity. Not sure what a file does? See the <a href="../reference/starter-code-walkthrough.html#hos1">starter code walkthrough for this HOS</a>.</li>
+            <li>A <code>.venv</code> with <code>pip install -r requirements.txt</code> (it includes <code>google-adk</code>), and your Gemini key in <code>.env</code> as <code>GOOGLE_API_KEY</code>.</li>
+            <li>Google Antigravity, signed in. No install possible? Use the repo's Codespace with Copilot, as the <a href="../start-here/tools.html#codespaces">tools page</a> describes.</li>
+        </ul>
+        <div class="ref-box"><h4>Reference reading (optional, before you start)</h4><ul>
+            <li><a href="https://adk.dev/get-started/python/" target="_blank" rel="noopener">ADK Python quickstart</a>: the smallest possible ADK agent, and <code>adk web</code>.</li>
+            <li><a href="https://adk.dev/tools-custom/function-tools/" target="_blank" rel="noopener">ADK function tools</a>: how a Python function becomes a tool the model can call.</li>
+            <li><a href="https://codelabs.developers.google.com/getting-started-google-antigravity" target="_blank" rel="noopener">Getting Started with Google Antigravity</a> (Google codelab): the Agent panel, plans and artifacts.</li>
+        </ul></div>
+        <p>This HOS is graded across four stages instead of on code correctness alone: <strong>Engagement</strong> (Create/Scaffold) is 20% of the HOS grade, and <strong>Skills</strong> is 80%: Evaluate, Analyze, Apply (the change you make by hand in Understand &amp; Refine) and Understand (your own explanation of it), 20% each. Each stage below says exactly what to submit. Everything goes in your Module 1 GitHub Classroom repo: written work under the matching heading in <code>NOTES.md</code>, screenshots in <code>screenshots/</code>. Commit and push as you go, then submit the repo link to the HOS 1 assignment in Brightspace by the end of Week 2.</p>
+</section>
+
+<section class="module card" id="create">
+  <div class="module-head"><div class="module-icon">🛠️</div><div><h2>1 · Create / Scaffold</h2></div></div>
+            <p class="stage-tagline">Graded as Engagement: 20% of this HOS. The agent-built starting point, not the deliverable.</p>
+            <p>The starter already has three working tools (<code>research_agent/tools.py</code>: Wikipedia search, Wikipedia intro, calculator), a single-call baseline (<code>baseline.py</code>), five test questions (<code>tasks.json</code>), and a comparison script (<code>compare.py</code>). <code>research_agent/agent.py</code> is empty except for a TODO. First run the baseline alone to see what plain inference does with a multi-step question:</p>
+<pre tabindex="0">python baseline.py "How many years before the first iPhone was the Space Needle completed?"</pre>
+            <h3>Part A · Watch an agent work</h3>
+            <p>In Antigravity's Agent panel, give it this small, safe job:</p>
+<pre tabindex="0">/plan Add a "Tools" section to README.md that lists each function in
+research_agent/tools.py with a one-line description and one example
+call. Then run pytest and tell me the result. Don't change any .py file.</pre>
+            <ul>
+                <li><b>Before approving:</b> read the Implementation Plan and task list. Comment on anything wrong or missing.</li>
+                <li><b>While it works:</b> read each terminal command before you approve it.</li>
+                <li><b>After:</b> read its walkthrough, then check the README yourself.</li>
+            </ul>
+            <p>Write 3–4 lines in <code>NOTES.md</code>: where you saw it <b>reason</b>, <b>plan</b>, <b>use a tool</b>, and <b>remember</b> something.</p>
+            <h3>Part B · Build your ADK agent</h3>
+            <p>Give Antigravity this prompt as given, and review its plan before you approve it:</p>
+<pre tabindex="0">/plan In research_agent/agent.py, define root_agent with Google ADK:
+Agent(name="research_agent", model=MODEL from common.py,
+tools=[search_wikipedia, wikipedia_intro, calculate] from tools.py).
+Write an instruction that makes it answer multi-step questions by
+looking facts up with its tools, doing every calculation with
+calculate, and saying "I couldn't verify that" when no tool confirms
+a fact. Keep MODEL as "gemini-3.8-flash". Don't change tools.py,
+common.py or compare.py. Don't create a new project or folder.</pre>
+            <p>Then try it in the developer UI, and run all five questions through both approaches:</p>
+<pre tabindex="0">adk web                    # from the repo's top folder; open http://localhost:8000
+python compare.py --verbose</pre>
+            <div class="submit-box"><h5>Submit (Engagement)</h5>
+                <ul><li>Your Part A notes; the Part B prompt and a short summary of the plan Antigravity proposed, with anything you changed in it; and a screenshot of <code>compare.py</code>'s summary table.</li></ul>
+            </div>
+</section>
+
+<section class="module card" id="evaluate">
+  <div class="module-head"><div class="module-icon">🔍</div><div><h2>2 · Evaluate</h2></div></div>
+            <p class="stage-tagline">The critical gate — is the agent-built result actually correct?</p>
+            <p>Check every answer from <code>compare.py</code> against the <code>expected</code> line printed under each question. At minimum, work out:</p>
+            <ul>
+                <li>Which questions did the <strong>baseline</strong> get right anyway, and why? (Some facts are in the model's memory. Being right from memory isn't the same as being right from evidence.)</li>
+                <li>For the <strong>agent</strong>: is every piece of arithmetic a <code>calculate</code> call in <code>adk web</code>'s Events tab, or does it do some math in its reply?</li>
+                <li>What does the agent cost you? Compare model calls, tool calls, tokens, and seconds against the baseline in the summary table.</li>
+                <li>Run <code>python compare.py --max-llm-calls 2</code>. ADK stops each run when the budget is spent. What does the user see, and is it honest?</li>
+                <li>Did Antigravity's plan in Part B match what it actually changed? Name one difference.</li>
+            </ul>
+            <div class="submit-box"><h5>Submit</h5>
+                <ul>
+                    <li>The comparison table from <code>compare.py</code>, and a short note: which answers were right, which were right for the wrong reason, what the agent cost compared with the baseline, and where Antigravity's plan and its work differed.</li>
+                </ul>
+            </div>
+</section>
+
+<section class="module card" id="analyze">
+  <div class="module-head"><div class="module-icon">🔬</div><div><h2>3 · Analyze</h2></div></div>
+            <p class="stage-tagline">Why does this work, mechanically?</p>
+            <p>Pick <strong>one</strong> of these and explain it in your own words:</p>
+            <ul>
+                <li><b>The four components in ADK.</b> Ask the Space Needle question in <code>adk web</code> and open the Events tab. Say which event shows reasoning and which shows tool use, where memory grows, and where planning happens when there's no plan anywhere. Explain why ADK sends the whole session back on every call, and what that does to the token count as the run goes on.</li>
+                <li><b>Antigravity vs. your agent.</b> Both are agents. Using your Part A notes and your Events tab, compare how each one reasons, plans, uses tools and remembers. What does Antigravity's visible plan cost, and what does it buy?</li>
+                <li><b>The step budget.</b> Walk through a run that hits <code>max_llm_calls</code>. What does the user see, why is that better than a silent partial answer, and how would you choose the budget for a real product?</li>
+            </ul>
+            <div class="submit-box"><h5>Submit</h5>
+                <ul>
+                    <li>A short written walkthrough of the one you chose, with a screenshot of the Events tab for the run you describe.</li>
+                </ul>
+            </div>
+</section>
+
+<section class="module card" id="refine">
+  <div class="module-head"><div class="module-icon">✋</div><div><h2>4 · Understand &amp; Refine</h2></div></div>
+            <p class="stage-tagline">The mastery check — by hand, no AI assistance for this stage.</p>
+            <div class="not-graded">By hand this time — no AI assistance for this stage. Close Antigravity's Agent panel.</div>
+            <p>Your agent plans one step at a time. Write the other pattern yourself: <strong>plan-and-execute</strong>, in <code>plan_execute/agent.py</code>, from ADK building blocks:</p>
+<pre tabindex="0">from google.adk.agents import Agent, SequentialAgent
+
+planner  = Agent(..., output_key="plan")        # no tools: writes 2-4 steps
+executor = Agent(..., tools=[...],               # instruction includes {plan}
+                 output_key="findings")
+writer   = Agent(...)                           # answers from {findings} alone
+
+root_agent = SequentialAgent(name="plan_execute",
+                             sub_agents=[planner, executor, writer])</pre>
+            <ul>
+                <li><code>output_key</code> saves an agent's final reply in session state; <code>{plan}</code> in a later agent's instruction inserts it.</li>
+                <li>Reuse the tools from <code>research_agent/tools.py</code>; don't copy them.</li>
+                <li>Run <code>python compare.py --with-plan</code>, and check in <code>adk web</code> that the plan appears before any tool call.</li>
+            </ul>
+            <div class="submit-box"><h5>Submit</h5>
+                <ul>
+                    <li>Your <code>plan_execute/agent.py</code>.</li>
+                    <li>The <code>compare.py --with-plan</code> table, and two or three sentences: on these questions, which pattern was more accurate, and which was cheaper?</li>
+                </ul>
+            </div>
+</section>
+
+<section class="module card" id="snags">
+  <div class="module-head"><div class="module-icon">🧯</div><div><h2>Common snags</h2></div></div>
+        <div class="snag-box">
+            <ul>
+                <li><strong><code>adk: command not found</code></strong> — the <code>.venv</code> isn't active in this terminal tab. Run <code>source .venv/bin/activate</code> (Windows: <code>.venv\Scripts\activate</code>) and try again.</li>
+                <li><strong><code>adk web</code> shows no agents, or folders that aren't agents</strong> — it lists every folder in the directory you started it from. Start it from the repo's top folder and pick <code>research_agent</code> (or <code>plan_execute</code>).</li>
+                <li><strong><code>GOOGLE_API_KEY is not set</code></strong> — ADK reads the <code>.env</code> next to the agent; <code>compare.py</code> reads the one in the repo's top folder. The starter links them, so edit the top-level <code>.env</code> only.</li>
+                <li><strong>The agent answers without calling any tool</strong> — read its instruction and each tool's docstring. ADK builds the tool descriptions from the docstrings, so a vague one means the model doesn't know when to use it.</li>
+                <li><strong>A Wikipedia tool returns <code>403 Forbidden</code></strong> — Wikipedia blocks requests without a descriptive <code>User-Agent</code>. The starter's <code>HEADERS</code> already has one. If Antigravity rewrote the tools, check it didn't drop that header.</li>
+                <li><strong><code>429 RESOURCE_EXHAUSTED</code></strong> — you hit the free tier's per-minute limit. Wait a minute and rerun; <code>compare.py --pause 5</code> adds a gap between questions.</li>
+                <li><strong><code>502 Bad Gateway</code>, a 404 or "model not found"</strong> — almost always the model name. Coding agents default to whatever model they learned about, such as <code>gemini-2.5-flash</code>, which new API keys can't use. Set it back to <code>gemini-3.8-flash</code>. If that ever stops working, check <a href="https://ai.google.dev/gemini-api/docs/models" target="_blank" rel="noopener">ai.google.dev/gemini-api/docs/models</a>.</li>
+                <li><strong>Antigravity says you've reached your limit</strong> — the free plan's limit resets weekly. Keep going by hand or with Copilot; disclose it in <code>NOTES.md</code>. Nothing is graded on how much the agent did.</li>
+                <li><strong>In Codespaces, <code>adk web</code> opens a blank page with <code>403 Forbidden</code></strong> — start it as <code>adk web --allow_origins "*"</code>, then hard-refresh. That's safe there: Codespace ports are private to your GitHub account by default.</li>
+            </ul>
+            <p class="small" style="margin:10px 0 0">Most snags trace back to a concept. If one doesn't make sense, see <a href="../reference/concept-companion.html#module-1">Concept Companion → Module 1</a>.</p>
+        </div>
+</section>
+<div class="guide-nav">
+            <span></span>
+            <a href="index.html">Module 1 lesson →</a>
+        </div>
+
+</main>
+<footer class="foot">AI 420: Agentic AI · City University of Seattle, School of Technology &amp; Computing<br>Course design &amp; materials: Clark Ngo · Simulators are illustrative HTML models — no real LLM, database, or network calls. <br>© 2026 Clark Ngo · Free to reuse and adapt under <a href="https://creativecommons.org/licenses/by/4.0/" rel="license">CC BY 4.0</a>, except where noted · <a href="https://github.com/cityuseattle/ai420/blob/main/LICENSE.md">How to credit</a></footer>
+<script src="../assets/course.js"></script>
+</body>
+</html>

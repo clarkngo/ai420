@@ -1,0 +1,204 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AI 420 — Application Challenge 3: Northgate Food Bank Volunteer Scheduler</title>
+    <link rel="stylesheet" href="../assets/course.css">
+    <style>
+        .rules-box { background:var(--surface2); border-left:3px solid var(--border); padding:8px 14px; margin:0 0 18px; font-size:0.85rem; border-radius:0 4px 4px 0; color:var(--muted); }
+        .goal-box { background:var(--blue-bg); border-left:5px solid var(--blue); padding:15px 18px; margin:18px 0; border-radius:4px; }
+        .goal-box h4 { margin:0 0 6px; color:var(--blue); font-size:0.95rem; }
+        .goal-box p { margin:0; }
+        .scenario { background:var(--surface); border:1px solid var(--border); border-radius:8px; padding:16px 20px; margin:12px 0; }
+        .scenario p:last-child { margin-bottom:0; }
+        .decision-box { background:var(--violet-bg); border:1px solid var(--border); border-left:5px solid var(--violet); padding:15px 18px; margin:14px 0; border-radius:4px; }
+        .decision-box h4 { margin:0 0 6px; color:var(--violet); }
+        .stage-block { border:1px solid var(--border); border-radius:8px; padding:18px 22px; margin-bottom:14px; }
+        .stage-block h3 { margin:0 0 6px; font-size:1.02rem; }
+        .stage-num { display:inline-block; width:26px; height:26px; border-radius:50%; background:var(--accent-light); color:var(--accent2); font-weight:700; font-size:0.85rem; text-align:center; line-height:26px; margin-right:8px; }
+        pre { background:var(--code-bg); color:var(--code-text); padding:14px 16px; border-radius:6px; overflow-x:auto; font-size:0.8rem; line-height:1.5; }
+        code { font-family: 'SFMono-Regular', Consolas, 'Liberation Mono', Menlo, monospace; }
+        p code, li code, td code { background:var(--surface2); color:var(--rose); padding:1px 5px; border-radius:4px; font-size:0.88em; }
+        p code, li code, td code { overflow-wrap:anywhere; }
+        table.mini { width:100%; border-collapse:collapse; font-size:0.86rem; margin:10px 0; }
+        table.mini th, table.mini td { border:1px solid var(--border); padding:8px 10px; text-align:left; vertical-align:top; }
+        table.mini th { background:var(--surface2); font-size:0.75rem; text-transform:uppercase; letter-spacing:0.03em; color:var(--muted); }
+        table.mini td.wt { white-space:nowrap; font-weight:700; color:var(--accent); }
+        .table-scroll { overflow-x:auto; }
+        table.rubric { min-width:760px; }
+        table.rubric td:nth-child(n+4) { width:22%; }
+        .submit-box { background:var(--accent-light); border-left:5px solid var(--accent); padding:14px 18px; margin:14px 0 0; border-radius:0 4px 4px 0; font-size:0.9rem; }
+        .submit-box h5 { margin:0 0 8px; color:var(--accent2); font-size:0.85rem; text-transform:uppercase; letter-spacing:0.03em; }
+        .submit-box ul, .submit-box ol { margin:0; padding-left:20px; }
+        .snag-box { background:var(--amber-bg); border-left:5px solid var(--amber); padding:15px 18px; margin:20px 0; border-radius:4px; }
+        .snag-box h4 { margin:0 0 8px; color:var(--amber); }
+        details.faculty { background:var(--surface2); border:1px solid var(--border); border-radius:8px; padding:12px 16px; margin:22px 0; }
+        details.faculty summary { cursor:pointer; font-weight:700; color:var(--text); }
+        details.faculty h4 { margin:16px 0 6px; font-size:0.92rem; color:var(--text); }
+        details.faculty p, details.faculty li { font-size:0.88rem; }
+        .guide-nav { display:flex; justify-content:space-between; gap:12px; margin-top:30px; padding-top:16px; border-top:1px solid var(--border); font-size:0.9rem; }
+        .guide-nav a { color:var(--link); text-decoration:none; font-weight:600; }
+    </style>
+</head>
+<body>
+<a class="skip-link" href="#main">Skip to content</a>
+<header class="top">
+  <div class="top-inner">
+    <a class="brand" href="../index.html"><span class="brand-icon">420</span><span><b>AI 420: Agentic AI</b><small>Course guides</small></span></a>
+    <div class="top-right"><a class="pill-btn" href="../index.html">Course home</a><button class="pill-btn" id="themeToggle" type="button">🌙 Dark</button></div>
+  </div>
+</header>
+<section class="hero">
+  <div class="hero-inner">
+    <div class="eyebrow">AI 420 · Module 3 · Application Challenge</div>
+    <h1>Application Challenge 3: Northgate Food Bank Volunteer Scheduler</h1>
+    <p class="lede">Take traces and self-correction from HOS 3 to an agent you haven't seen: diagnose three of its failures from exported traces alone, then add the guards its spec asks for, decide when it should hand a change to a human, and say what your guards would still miss.</p>
+    <div class="chips"><span class="chip">Est. 60–90 min</span><span class="chip">CO3</span><span class="chip">Module 3 · end of Week 6</span><span class="chip">Individual</span><span class="chip">AI assistant allowed — disclose it</span><span class="chip">5% of final grade</span></div>
+  </div>
+</section>
+<main id="main">
+
+<nav class="secnav no-print" aria-label="Page sections">
+  <div class="secnav-inner">
+    <a href="#rules">Ground rules</a>
+    <a href="#scenario">Scenario</a>
+    <a href="#spec">Spec</a>
+    <a href="#second">Three traces</a>
+    <a href="#steps">Steps</a>
+    <a href="#grading">Grading</a>
+    <a href="#snags">Common snags</a>
+  </div>
+</nav>
+
+<section class="module card" id="rules">
+  <div class="module-head"><div class="module-icon">📏</div><div><h2>Ground rules</h2></div></div>
+        <div class="rules-box">Everything here runs on your own computer in Antigravity (or in GitHub Codespaces) on free tiers, with no credit card. The provided tests use a scripted stand-in model, so they need no API key; the live run uses your free Gemini key. Your HOS 3 trace recorder is optional here: the guards and tests work without it.</div>
+</section>
+
+<section class="module card" id="scenario">
+  <div class="module-head"><div class="module-icon">🏢</div><div><h2>The scenario</h2></div></div>
+        <div class="scenario">
+            <p><strong>Northgate Community Food Bank</strong> (fictional) runs three distribution shifts a week with about 60 volunteers. A scheduling agent fills open shifts, swaps volunteers who can't make it, and sends reminders. Last week it misbehaved three times, and the volunteer coordinator exported the traces (<code>traces/t1.json</code> to <code>t3.json</code>) before anyone looked at the code.</p>
+            <p>Two things you should know before you start:</p>
+            <p><ul><li><strong>Diagnose first.</strong> Write <code>FAILURES.md</code> from the traces alone and commit it <em>before</em> you open <code>scheduler/</code>. Your commit history shows the order.</li><li><strong>The food bank's clock is fixed:</strong> Wednesday, November 4, 2026. Use <code>scheduler.clock.now()</code>.</li></ul></p>
+        </div>
+</section>
+
+<section class="module card" id="spec">
+  <div class="module-head"><div class="module-icon">📐</div><div><h2>The spec</h2></div></div>
+        <p>Every requirement below is checked by a provided test in <code>tests/test_guards.py</code>. The guards go in <code>scheduler/guards.py</code> as ADK callbacks, and <code>scheduler/agent.py</code> already registers them.</p>
+        <div class="table-scroll">
+        <div class="table-wrap" tabindex="0"><table class="mini">
+            <tr><th>Guard</th><th>Must do</th><th>Must not do</th></tr>
+            <tr><td><code>error_as_observation</code> (<code>on_tool_error_callback</code>)</td><td>Turn any exception from a tool into <code>{"status": "error", "error": ..., "hint": ...}</code>.</td><td>Hide the error: the message must name the tool and the exception.</td></tr><tr><td><code>repeat_call_guard</code> (<code>before_tool_callback</code>)</td><td>Block the same tool with the same arguments after two calls in one run, and tell the model to answer with what it has. <code>1002</code> and <code>"1002"</code> count as the same argument.</td><td>Block a call whose arguments changed.</td></tr><tr><td><code>step_budget</code> (<code>before_model_callback</code>)</td><td>Stop the run after 10 model calls with an honest "couldn't finish" reply.</td><td>Let a short cycle (A → B → A → B) run forever.</td></tr><tr><td>Tracing (optional)</td><td>Record each run with your HOS 3 trace recorder (ADK callbacks) when <code>TRACE=1</code> is set.</td><td>Change how the agent behaves, or fail when <code>TRACE</code> isn't set.</td></tr>
+        </table></div>
+        </div>
+
+        <div class="decision-box">
+            <h4>The open decision: when to hand off to a coordinator</h4>
+            <p>The coordinator's only instruction was: <em>"Don't let the bot make a mess of the schedule."</em> A guard that retries is fine for a lookup. But a swap that half-worked, a shift with fewer than the minimum volunteers, or a request from someone not on the roster might be better handed to a human. When should the agent stop and hand a shift change to the coordinator instead of retrying?</p>
+            <p style="margin-bottom:0">There's no single right answer, and no provided test for this case. You decide, implement it in <code>needs_handoff()</code> (called by the <code>before_tool_callback</code>), prove it with your own tests, and defend it in <code>DECISIONS.md</code>.</p>
+        </div>
+</section>
+
+<section class="module card" id="second">
+  <div class="module-head"><div class="module-icon">🗂️</div><div><h2>Diagnose three traces, before the code</h2></div></div>
+        <p>Open the three traces in <code>traces/</code>. Each is one run: every model call and tool call, in order, with arguments and results. For each, write in <code>FAILURES.md</code>:</p>
+        <ul>
+            <li>the failure type (tool-call error, invented action, logic loop, wrong data, or wrong tool),</li>
+            <li>the first step where it shows, and your evidence from the trace,</li>
+            <li>the smallest change that would prevent it: a tool fix, a description fix, or a guard.</li>
+        </ul>
+        <p>Then, in your memo: which of the three would you fix first in production, and which would your guards still miss?</p>
+</section>
+
+<section class="module card" id="steps">
+  <div class="module-head"><div class="module-icon">🪜</div><div><h2>Steps &amp; what to submit</h2></div></div>
+        <div class="stage-block">
+            <h3><span class="stage-num">1</span>Diagnose first</h3>
+            <p>Open your own <b>AC 3</b> repo (<a href="https://classroom50.org/cityuseattle/ai420/assignments/ac03/accept?k=ai420" target="_blank" rel="noopener">accept the AC 3 invite</a>): clone it and open it in Antigravity (or a Codespace). Read the three traces, write <code>FAILURES.md</code>, and commit and push it before you open <code>scheduler/</code>.</p>
+        </div>
+        <div class="stage-block">
+            <h3><span class="stage-num">2</span>Run the tests</h3>
+            <p>Run <code>pytest</code>. The guard tests fail with <code>NotImplementedError</code>. That's your to-do list.</p>
+        </div>
+        <div class="stage-block">
+            <h3><span class="stage-num">3</span>Build the guards</h3>
+            <p>Fill in <code>scheduler/guards.py</code> until <code>pytest</code> passes. You may use Antigravity. If you do, ask for a plan first, and tell it not to change <code>tools.py</code> or the tests. Read what it writes: you'll defend it.</p>
+        </div>
+        <div class="stage-block">
+            <h3><span class="stage-num">4</span>Make the hand-off call</h3>
+            <p>Implement <code>needs_handoff()</code> with your rule. Write at least two tests in <code>tests/test_my_rules.py</code>: one that hands off and one that doesn't, and add the edge you think is most likely to go wrong.</p>
+        </div>
+        <div class="stage-block">
+            <h3><span class="stage-num">5</span>Run the scheduler</h3>
+            <p>Put your free Gemini key in <code>.env</code>, then replay the three requests from the traces with your guards on:</p>
+<pre tabindex="0">python run_requests.py --guards on</pre>
+            <p>Copy the three runs, tool calls included, into <code>TRANSCRIPT.md</code>, and say for each whether it now recovers, stops safely, or hands off.</p>
+        </div>
+        <div class="stage-block">
+            <h3><span class="stage-num">6</span>Write the memo</h3>
+            <p>Fill in <code>DECISIONS.md</code>, about one page: your hand-off rule and why, which failure you'd fix first, what your guards would still miss, and what Antigravity (or another assistant) wrote, got wrong, or missed.</p>
+        </div>
+
+        <div class="submit-box">
+            <h5>Submit (via Brightspace)</h5>
+            <ul>
+                <li><code>FAILURES.md</code>, committed before any change to <code>scheduler/</code></li>
+                <li><code>scheduler/guards.py</code> and <code>tests/test_my_rules.py</code></li>
+                <li>The output of <code>pytest</code>, pasted as text (all tests passing, including yours)</li>
+                <li><code>TRANSCRIPT.md</code></li>
+                <li><code>DECISIONS.md</code></li>
+            </ul>
+        </div>
+</section>
+
+<section class="module card" id="grading">
+  <div class="module-head"><div class="module-icon">📊</div><div><h2>How it's graded</h2></div></div>
+        <p>Each criterion is graded on one part of your submission, at one of three levels.</p>
+        <div class="table-scroll">
+        <div class="table-wrap" tabindex="0"><table class="mini rubric">
+            <tr><th>Criterion</th><th>Weight</th><th>Graded on</th><th>Full</th><th>Partial</th><th>Missing</th></tr>
+            <tr><td><strong>Application</strong></td><td class="wt">10%</td><td><code>TRANSCRIPT.md</code></td><td>Your guards run in the food bank scenario, and each replayed request recovers, stops safely, or hands off as you predicted.</td><td>It runs, but one request misbehaves and you don't explain why.</td><td>It restates the Harbor Supply build, or doesn't run.</td></tr>
+            <tr><td><strong>Analysis</strong></td><td class="wt">20%</td><td><code>FAILURES.md</code></td><td>For each trace, the right failure type, the first step where it shows, and evidence quoted from the trace.</td><td>Types are right, but first steps or evidence are missing.</td><td>No diagnosis, or written after reading the code.</td></tr>
+            <tr><td><strong>Evaluation</strong></td><td class="wt">30%</td><td><code>DECISIONS.md</code> (hand-off rule, fix-first, what guards miss)</td><td>A clear hand-off rule judged against stated criteria (cost of a wrong change, coordinator's time), a fix-first call, and an honest account of what the guards miss.</td><td>A rule with a reason, but no criteria, or no account of what the guards miss.</td><td>No rule, or no justification.</td></tr>
+            <tr><td><strong>Design</strong></td><td class="wt">40%</td><td><code>guards.py</code>, your tests, and the <code>pytest</code> output</td><td>All provided tests pass, and your own tests check your rule, including an edge case.</td><td>Most provided tests pass, or your own tests cover only the easy case.</td><td>It doesn't run, or you wrote no tests of your own.</td></tr>
+            
+        </table></div>
+        </div>
+        <p style="font-size:0.88rem;color:var(--muted)">How this differs from HOS 3's Understand &amp; Refine: there you extended code you already understood, by hand, with no AI. Here the business, the code, and the decisions are new, AI help is allowed, and half the grade (Analysis and Evaluation) is for the calls you make, not the typing.</p>
+</section>
+
+<section class="module card" id="snags">
+  <div class="module-head"><div class="module-icon">🧯</div><div><h2>Common snags</h2></div></div>
+        <div class="snag-box">
+            <ul>
+                <li><strong><code>test_repeat_guard_normalises_args</code> fails.</strong> You compared arguments as-is. Compare them after turning every value into a string.</li>
+                <li><strong><code>test_short_cycle_is_stopped</code> fails.</strong> The repeat guard can't catch A → B → A → B; only the step budget can. Check the budget counts model calls, not tool calls.</li>
+                <li><strong>You want to see what a test run did.</strong> Copy your HOS 3 <code>tracing.py</code> in and run the live agent with <code>TRACE=1</code>, or open it in <code>adk web</code> and use the Trace view.</li>
+                <li><strong>502, 404 or "model not found" when you run the agent.</strong> The model is set to <code>gemini-3.8-flash</code>. If Antigravity changed it, change it back. See the <a href="hos-guide.html">HOS 3 guide's</a> Common snags.</li>
+            </ul>
+        </div>
+</section>
+
+<div class="guide-nav">
+            <a href="hos-guide.html">← HOS 3 guide</a>
+            <a href="index.html">Module 3 lesson →</a>
+        </div>
+
+</main>
+<footer class="foot">AI 420: Agentic AI · City University of Seattle, School of Technology &amp; Computing<br>Course design &amp; materials: Clark Ngo · Simulators are illustrative HTML models — no real LLM, database, or network calls. <br>© 2026 Clark Ngo · Free to reuse and adapt under <a href="https://creativecommons.org/licenses/by/4.0/" rel="license">CC BY 4.0</a>, except where noted · <a href="https://github.com/cityuseattle/ai420/blob/main/LICENSE.md">How to credit</a></footer>
+<script src="../assets/course.js"></script>
+<script>
+/* section nav highlight (scrolls only the nav row, never the page) */
+(function(){
+  var links=[].slice.call(document.querySelectorAll('.secnav a')); var map={};
+  links.forEach(function(a){ map[a.getAttribute('href').slice(1)]=a; });
+  if(!('IntersectionObserver' in window)) return;
+  var io=new IntersectionObserver(function(es){ es.forEach(function(e){ if(e.isIntersecting){ links.forEach(function(l){l.classList.remove('active');}); var a=map[e.target.id]; if(a){ a.classList.add('active'); var c=a.parentElement, ar=a.getBoundingClientRect(), cr=c.getBoundingClientRect(); c.scrollLeft += (ar.left+ar.width/2)-(cr.left+cr.width/2); } } }); },{rootMargin:'-45% 0px -50% 0px'});
+  Object.keys(map).forEach(function(id){ var s=document.getElementById(id); if(s) io.observe(s); });
+})();
+</script>
+</body>
+</html>
