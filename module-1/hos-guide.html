@@ -66,6 +66,11 @@
 
 <section class="module card" id="before">
   <div class="module-head"><div class="module-icon">🧭</div><div><h2>Before you start</h2></div></div>
+        <div class="callout blue antigravity-box"><span class="label">Do this HOS in Antigravity</span>
+            <p>Antigravity runs on your own computer: open your local clone of the HOS 1 repo in the <strong>Google Antigravity</strong> desktop app and do Stage 1 (Create / Scaffold) in its Agent panel. This time you're given both prompts: first watch it do a small, safe job (Part A), then have it build your ADK agent (Part B). Read its plan before you approve it, and keep your prompt and a summary of its plan for <code>NOTES.md</code>. If it asks to open a website, say no: everything it needs is in the repo and the prompt.</p>
+            <p>In Stages 2 and 3 the judgment and the words are yours; the agent can help as the <a href="../start-here/ai-use.html">AI Use Guide</a> describes. Stage 4 is by hand: close the Agent panel.</p>
+            <p>Not set up yet? <a href="../start-here/tools.html#install">Install Antigravity</a> (free, about 30 minutes, once). Its free plan's limit resets weekly, so don't leave Stage 1 for the last day. Can't install it? Use the repo's <a href="../start-here/tools.html#codespaces">Codespace</a> instead, with <strong>GitHub Copilot in Agent mode</strong> as your coding agent: ask it for its plan first, and read the plan before it changes anything.</p>
+        </div>
         <div class="before-box">
             <ol>
                 <li><b>Set up and do the first run.</b> This module needs <a href="../start-here/accounts.html">GitHub, Antigravity and a free Gemini API key</a>, and the <a href="../start-here/tools.html#first-run">first run</a> working on your computer.</li>
@@ -76,7 +81,7 @@
         <ul class="needs-list">
             <li><strong>Starter code:</strong> your <b>HOS 1</b> repo, created when you <a href="https://classroom50.org/cityuseattle/ai420/assignments/hos01/accept?k=ai420" target="_blank" rel="noopener">accept the HOS 1 invite</a>. Clone it and open the folder in Antigravity. Not sure what a file does? See the <a href="../reference/starter-code-walkthrough.html#hos1">starter code walkthrough for this HOS</a>.</li>
             <li>A <code>.venv</code> with <code>pip install -r requirements.txt</code> (it includes <code>google-adk</code>), and your Gemini key in <code>.env</code> as <code>GOOGLE_API_KEY</code>.</li>
-            <li>Google Antigravity, signed in. No install possible? Use the repo's Codespace with Copilot, as the <a href="../start-here/tools.html#codespaces">tools page</a> describes.</li>
+            <li>Google Antigravity, the free desktop app on your own computer, signed in. No install possible? Use the repo's Codespace with GitHub Copilot in Agent mode, as the <a href="../start-here/tools.html#codespaces">tools page</a> describes.</li>
         </ul>
         <div class="ref-box"><h4>Reference reading (optional, before you start)</h4><ul>
             <li><a href="https://adk.dev/get-started/python/" target="_blank" rel="noopener">ADK Python quickstart</a>: the smallest possible ADK agent, and <code>adk web</code>.</li>
@@ -192,7 +197,7 @@ root_agent = SequentialAgent(name="plan_execute",
                 <li><strong>A Wikipedia tool returns <code>403 Forbidden</code></strong> — Wikipedia blocks requests whose <code>User-Agent</code> doesn't name the tool and a contact URL. The starter's <code>HEADERS</code> already has one. If Antigravity rewrote the tools, check it didn't drop that header.</li>
                 <li><strong><code>429 RESOURCE_EXHAUSTED</code></strong> — you hit the free tier's per-minute limit. Wait a minute and rerun; <code>compare.py --pause 5</code> adds a gap between questions.</li>
                 <li><strong><code>502 Bad Gateway</code>, a 404 or "model not found"</strong> — almost always the model name. Coding agents default to whatever model they learned about, such as <code>gemini-2.5-flash</code>, which new API keys can't use. Set it back to <code>gemini-3.8-flash</code>. If that ever stops working, check <a href="https://ai.google.dev/gemini-api/docs/models" target="_blank" rel="noopener">ai.google.dev/gemini-api/docs/models</a>.</li>
-                <li><strong>Antigravity says you've reached your limit</strong> — the free plan's limit resets weekly. Keep going by hand or with Copilot; disclose it in <code>NOTES.md</code>. Nothing is graded on how much the agent did.</li>
+                <li><strong>Antigravity says you've reached your limit</strong> — the free plan's limit resets weekly. Keep going by hand, or in the repo's Codespace with Copilot in Agent mode; disclose it in <code>NOTES.md</code>. Nothing is graded on how much the agent did.</li>
                 <li><strong>In Codespaces, <code>adk web</code> opens a blank page with <code>403 Forbidden</code></strong> — start it as <code>adk web --allow_origins "*"</code>, then hard-refresh. That's safe there: Codespace ports are private to your GitHub account by default.</li>
             </ul>
             <p class="small" style="margin:10px 0 0">Most snags trace back to a concept. If one doesn't make sense, see <a href="../reference/concept-companion.html#module-1">Concept Companion → Module 1</a>.</p>

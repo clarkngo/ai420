@@ -66,6 +66,11 @@
 
 <section class="module card" id="before">
   <div class="module-head"><div class="module-icon">🧭</div><div><h2>Before you start</h2></div></div>
+        <div class="callout blue antigravity-box"><span class="label">Do this HOS in Antigravity</span>
+            <p>Antigravity runs on your own computer: open your local clone of the HOS 2 repo in the <strong>Google Antigravity</strong> desktop app and do Stage 1 (Create / Scaffold) in its Agent panel. The prompt you're given says what to build, not how: you and Antigravity decide the how. Read its plan before you approve it, and keep your prompt and a summary of its plan for <code>NOTES.md</code>. If it asks to open a website, say no: everything it needs is in the repo and the prompt.</p>
+            <p>In Stages 2 and 3 the judgment and the words are yours; the agent can help as the <a href="../start-here/ai-use.html">AI Use Guide</a> describes. Stage 4 is by hand: close the Agent panel.</p>
+            <p>Not set up yet? <a href="../start-here/tools.html#install">Install Antigravity</a> (free, about 30 minutes, once). Its free plan's limit resets weekly, so don't leave Stage 1 for the last day. Can't install it? Use the repo's <a href="../start-here/tools.html#codespaces">Codespace</a> instead, with <strong>GitHub Copilot in Agent mode</strong> as your coding agent: ask it for its plan first, and read the plan before it changes anything.</p>
+        </div>
         <div class="before-box">
             <ol>
                 <li><b>Check your account setup.</b> Nothing new: the same <a href="../start-here/accounts.html#github">GitHub account</a> and <a href="../start-here/accounts.html#google">Gemini API key</a> as HOS 1. Open-Meteo, the web pages and SQLite need no account.</li>
@@ -77,7 +82,7 @@
         <ul class="needs-list">
             <li><strong>Starter code:</strong> your <b>HOS 2</b> repo, created when you <a href="https://classroom50.org/cityuseattle/ai420/assignments/hos02/accept?k=ai420" target="_blank" rel="noopener">accept the HOS 2 invite</a>. Clone it and open the folder in Antigravity, then make the <code>.venv</code> and <code>pip install -r requirements.txt</code>. Not sure what a file does? See the <a href="../reference/starter-code-walkthrough.html#hos2">starter code walkthrough for this HOS</a>.</li>
             <li>Your free Gemini API key (no credit card) from <a href="https://aistudio.google.com/apikey" target="_blank" rel="noopener">aistudio.google.com/apikey</a>. In the HOS folder: <code>cp .env.example .env</code>, then paste it in as <code>GOOGLE_API_KEY</code>.</li>
-            <li>Google Antigravity, signed in (or the repo's Codespace with Copilot if you can't install it).</li>
+            <li>Google Antigravity on your own computer, signed in (or the repo's Codespace with GitHub Copilot in Agent mode if you can't install it).</li>
             <li>Nothing else to sign up for: the weather API (Open-Meteo), the web pages, and the SQLite databases (the store's data and your agent's sessions) are all free and need no account.</li>
         </ul>
         <div class="ref-box"><h4>Reference reading (optional, before you start)</h4><ul>
