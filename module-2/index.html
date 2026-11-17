@@ -289,7 +289,7 @@ tool_context.state["app:customer_facts"] = facts   # assign it back to save it</
   </div>
   <p>This time the prompt says <em>what</em> to build, not how. You and Antigravity decide the design: read its plan before you approve it. It's the starting point, not the deliverable.</p>
   <ol>
-    <li>Accept the <a href="https://classroom50.org/cityuseattle/ai420/assignments/hos02/accept?k=ai420" target="_blank" rel="noopener">HOS 2 invite</a>, clone your repo and open it in Antigravity. Make the <code>.venv</code>, <code>pip install -r requirements.txt</code>, and put your Gemini key in <code>.env</code>.</li>
+    <li>Accept the <a href="https://classroom50.org/cityuseattle/ai420/assignments/hos02/accept?k=ai420" target="_blank" rel="noopener">HOS 2 invite</a>, clone your repo and open it in Antigravity. Set up its Python environment and install its packages, as in <a href="../start-here/tools.html#first-run">step 2 of the first run</a>, and put your Gemini key in <code>.env</code>.</li>
     <li>Try the worked example first: run <code>adk web --session_service_uri "sqlite:///./sessions.db"</code>, pick <code>ops_agent</code>, and ask about the wind in Anacortes. The Events tab should show a <code>get_marine_weather</code> call.</li>
     <li>Give Antigravity the prompt below, review its plan, and test each new tool in <code>adk web</code> as you go. Nothing else needs an account: Open-Meteo, the web pages and SQLite are all free.</li>
   </ol>

@@ -109,7 +109,7 @@
             <details class="file-block">
                 <summary>requirements.txt + .devcontainer/ <span class="role">— setup on your computer, or in a Codespace</span></summary>
                 <div class="file-body">
-                    <p>On your computer, <code>pip install -r requirements.txt</code> inside your <code>.venv</code> installs everything, including <code>google-adk</code>. The <code>.devcontainer/</code> folder is only for the Codespaces fallback: there, GitHub builds a Python container, copies <code>.env.example</code> to <code>.env</code> and installs the same requirements for you.</p>
+                    <p>On your computer, <code>pip install -r requirements.txt</code> inside the repo's virtual environment (the <code>.venv</code> folder, made as in <a href="../start-here/tools.html#first-run">step 2 of the first run</a>) installs everything, including <code>google-adk</code>. The <code>.devcontainer/</code> folder is only for the Codespaces fallback: there, GitHub builds a Python container, copies <code>.env.example</code> to <code>.env</code> and installs the same requirements for you.</p>
                 </div>
             </details>
             <details class="file-block">
@@ -166,7 +166,7 @@ GOOGLE_GENAI_USE_VERTEXAI=FALSE</pre><p>A template, safe to commit. Copy it to <
             <details class="file-block">
                 <summary>requirements.txt + .devcontainer/ <span class="role">— setup on your computer, or in a Codespace</span></summary>
                 <div class="file-body">
-                    <p>On your computer, <code>pip install -r requirements.txt</code> inside your <code>.venv</code> installs everything, including <code>google-adk</code>. The <code>.devcontainer/</code> folder is only for the Codespaces fallback: there, GitHub builds a Python container, copies <code>.env.example</code> to <code>.env</code> and installs the same requirements for you.</p>
+                    <p>On your computer, <code>pip install -r requirements.txt</code> inside the repo's virtual environment (the <code>.venv</code> folder, made as in <a href="../start-here/tools.html#first-run">step 2 of the first run</a>) installs everything, including <code>google-adk</code>. The <code>.devcontainer/</code> folder is only for the Codespaces fallback: there, GitHub builds a Python container, copies <code>.env.example</code> to <code>.env</code> and installs the same requirements for you.</p>
                 </div>
             </details>
             <details class="file-block">
@@ -197,7 +197,7 @@ GOOGLE_GENAI_USE_VERTEXAI=FALSE</pre><p>A template, safe to commit. Copy it to <
             <details class="file-block">
                 <summary>requirements.txt + .devcontainer/ <span class="role">— setup on your computer, or in a Codespace</span></summary>
                 <div class="file-body">
-                    <p>On your computer, <code>pip install -r requirements.txt</code> inside your <code>.venv</code> installs everything, including <code>google-adk</code>. The <code>.devcontainer/</code> folder is only for the Codespaces fallback: there, GitHub builds a Python container, copies <code>.env.example</code> to <code>.env</code> and installs the same requirements for you.</p>
+                    <p>On your computer, <code>pip install -r requirements.txt</code> inside the repo's virtual environment (the <code>.venv</code> folder, made as in <a href="../start-here/tools.html#first-run">step 2 of the first run</a>) installs everything, including <code>google-adk</code>. The <code>.devcontainer/</code> folder is only for the Codespaces fallback: there, GitHub builds a Python container, copies <code>.env.example</code> to <code>.env</code> and installs the same requirements for you.</p>
                 </div>
             </details>
             <details class="file-block">
@@ -228,7 +228,7 @@ GOOGLE_GENAI_USE_VERTEXAI=FALSE</pre><p>A template, safe to commit. Copy it to <
             <details class="file-block">
                 <summary>requirements.txt + .devcontainer/ <span class="role">— setup on your computer, or in a Codespace</span></summary>
                 <div class="file-body">
-                    <p>On your computer, <code>pip install -r requirements.txt</code> inside your <code>.venv</code> installs everything, including <code>google-adk</code>. The <code>.devcontainer/</code> folder is only for the Codespaces fallback: there, GitHub builds a Python container, copies <code>.env.example</code> to <code>.env</code> and installs the same requirements for you.</p>
+                    <p>On your computer, <code>pip install -r requirements.txt</code> inside the repo's virtual environment (the <code>.venv</code> folder, made as in <a href="../start-here/tools.html#first-run">step 2 of the first run</a>) installs everything, including <code>google-adk</code>. The <code>.devcontainer/</code> folder is only for the Codespaces fallback: there, GitHub builds a Python container, copies <code>.env.example</code> to <code>.env</code> and installs the same requirements for you.</p>
                 </div>
             </details>
             <details class="file-block">
@@ -259,8 +259,8 @@ GOOGLE_GENAI_USE_VERTEXAI=FALSE</pre><p>A template, safe to commit. Copy it to <
 
 <section class="module card" id="run">
   <div class="module-head"><div class="module-icon">▶️</div><div><h2>Running it</h2></div></div>
-        <p><b>On your computer (the default):</b> clone your HOS repo and open the folder in Antigravity. In its terminal, once per repo:</p>
-<pre tabindex="0">python3 -m venv .venv
+        <p><b>On your computer (the default):</b> clone your HOS repo and open the folder in Antigravity. In its terminal, once per repo, make a virtual environment (a <code>.venv</code> folder with this project's own Python and packages), switch to it, install the packages and add your key:</p>
+<pre tabindex="0">python3 -m venv .venv              # Windows: py -m venv .venv
 source .venv/bin/activate          # Windows: .venv\Scripts\activate
 pip install -r requirements.txt
 cp .env.example .env               # then put your Gemini key in .env</pre>
@@ -281,7 +281,7 @@ TRACE=1 python run_scenarios.py
 # HOS 4 (start small: free-tier limits)
 adk eval single_agent evals/support.evalset.json:refund-cancelled,order-status --config_file_path evals/test_config.json --print_detailed_results</pre>
         <p>Open a new terminal later? Run the <code>activate</code> line again first. The full setup, with screenshots of a first run, is in <a href="../start-here/tools.html#first-run">Tools &amp; Setup</a>.</p>
-        <p><b>In a Codespace (the fallback):</b> Code → Codespaces → Create codespace on main. The devcontainer installs everything and creates <code>.env</code>; add your key to it. You don't need the <code>.venv</code> there, and you start the developer UI as <code>adk web --allow_origins "*"</code>, or it shows a blank page. Stop your Codespace when you're done, because free hours are limited.</p>
+        <p><b>In a Codespace (the fallback):</b> Code → Codespaces → Create codespace on main. The devcontainer installs everything and creates <code>.env</code>; add your key to it. You don't need a virtual environment there, and you start the developer UI as <code>adk web --allow_origins "*"</code>, or it shows a blank page. Stop your Codespace when you're done, because free hours are limited.</p>
 </section>
 
 <section class="module card" id="reading">

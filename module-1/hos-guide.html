@@ -67,9 +67,9 @@
 <section class="module card" id="before">
   <div class="module-head"><div class="module-icon">🧭</div><div><h2>Before you start</h2></div></div>
         <div class="callout blue antigravity-box"><span class="label">Do this HOS in Antigravity</span>
-            <p>Antigravity runs on your own computer: open your local clone of the HOS 1 repo in the <strong>Google Antigravity</strong> desktop app and do Stage 1 (Create / Scaffold) in its Agent panel. This time you're given both prompts: first watch it do a small, safe job (Part A), then have it build your ADK agent (Part B). Read its plan before you approve it, and keep your prompt and a summary of its plan for <code>NOTES.md</code>. If it asks to open a website, say no: everything it needs is in the repo and the prompt.</p>
+            <p>Antigravity runs on your own computer: open your local clone of the HOS 1 repo in the <strong>Google Antigravity IDE</strong> and do Stage 1 (Create / Scaffold) in its Agent panel. This time you're given both prompts: first watch it do a small, safe job (Part A), then have it build your ADK agent (Part B). Read its plan before you approve it, and keep your prompt and a summary of its plan for <code>NOTES.md</code>. If it asks to open a website, say no: everything it needs is in the repo and the prompt.</p>
             <p>In Stages 2 and 3 the judgment and the words are yours; the agent can help as the <a href="../start-here/ai-use.html">AI Use Guide</a> describes. Stage 4 is by hand: close the Agent panel.</p>
-            <p>Not set up yet? <a href="../start-here/tools.html#install">Install Antigravity</a> (free, about 30 minutes, once). Its free plan's limit resets weekly, so don't leave Stage 1 for the last day. Can't install it? Use the repo's <a href="../start-here/tools.html#codespaces">Codespace</a> instead, with <strong>GitHub Copilot in Agent mode</strong> as your coding agent: ask it for its plan first, and read the plan before it changes anything.</p>
+            <p>Not set up yet? <b>Download the Antigravity IDE</b> (free) from <a href="https://antigravity.google/download" rel="noopener">antigravity.google/download</a> and install it, following the <a href="../start-here/tools.html#install">install steps</a> (about 30 minutes, once). Its free plan's limit resets weekly, so don't leave Stage 1 for the last day. Can't install it? Use the repo's <a href="../start-here/tools.html#codespaces">Codespace</a> instead, with <strong>GitHub Copilot in Agent mode</strong> as your coding agent: ask it for its plan first, and read the plan before it changes anything.</p>
         </div>
         <div class="before-box">
             <ol>
@@ -80,8 +80,8 @@
         <h4>What you'll need</h4>
         <ul class="needs-list">
             <li><strong>Starter code:</strong> your <b>HOS 1</b> repo, created when you <a href="https://classroom50.org/cityuseattle/ai420/assignments/hos01/accept?k=ai420" target="_blank" rel="noopener">accept the HOS 1 invite</a>. Clone it and open the folder in Antigravity. Not sure what a file does? See the <a href="../reference/starter-code-walkthrough.html#hos1">starter code walkthrough for this HOS</a>.</li>
-            <li>A <code>.venv</code> with <code>pip install -r requirements.txt</code> (it includes <code>google-adk</code>), and your Gemini key in <code>.env</code> as <code>GOOGLE_API_KEY</code>.</li>
-            <li>Google Antigravity, the free desktop app on your own computer, signed in. No install possible? Use the repo's Codespace with GitHub Copilot in Agent mode, as the <a href="../start-here/tools.html#codespaces">tools page</a> describes.</li>
+            <li>Python set up for the repo: a virtual environment with its packages installed (they include <code>google-adk</code>), as in <a href="../start-here/tools.html#first-run">step 2 of the first run</a>, and your Gemini key in <code>.env</code> as <code>GOOGLE_API_KEY</code>.</li>
+            <li>The Google Antigravity IDE, downloaded free from <a href="https://antigravity.google/download" rel="noopener">antigravity.google/download</a>, installed on your own computer and signed in. No install possible? Use the repo's Codespace with GitHub Copilot in Agent mode, as the <a href="../start-here/tools.html#codespaces">tools page</a> describes.</li>
         </ul>
         <div class="ref-box"><h4>Reference reading (optional, before you start)</h4><ul>
             <li><a href="https://adk.dev/get-started/python/" target="_blank" rel="noopener">ADK Python quickstart</a>: the smallest possible ADK agent, and <code>adk web</code>.</li>
@@ -190,7 +190,7 @@ root_agent = SequentialAgent(name="plan_execute",
   <div class="module-head"><div class="module-icon">🧯</div><div><h2>Common snags</h2></div></div>
         <div class="snag-box">
             <ul>
-                <li><strong><code>adk: command not found</code></strong> — the <code>.venv</code> isn't active in this terminal tab. Run <code>source .venv/bin/activate</code> (Windows: <code>.venv\Scripts\activate</code>) and try again.</li>
+                <li><strong><code>adk: command not found</code></strong> — the repo's virtual environment (<code>.venv</code>) isn't active in this terminal tab; when it is, the line starts with <code>(.venv)</code>. Run <code>source .venv/bin/activate</code> (Windows: <code>.venv\Scripts\activate</code>) and try again.</li>
                 <li><strong><code>adk web</code> shows no agents</strong> — it lists the agent folders inside the directory you started it from. Start it from the repo's top folder and pick <code>research_agent</code> (or <code>plan_execute</code>). Picking one whose <code>agent.py</code> doesn't define <code>root_agent</code> yet gives an error.</li>
                 <li><strong><code>GOOGLE_API_KEY is not set</code></strong> — the key goes in the one <code>.env</code> in the repo's top folder (copy it from <code>.env.example</code>). <code>adk web</code> finds it by looking upward from the agent's folder, and the scripts load it through <code>common.py</code>. Don't make a second <code>.env</code> inside an agent folder.</li>
                 <li><strong>The agent answers without calling any tool</strong> — read its instruction and each tool's docstring. ADK builds the tool descriptions from the docstrings, so a vague one means the model doesn't know when to use it.</li>
