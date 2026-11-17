@@ -120,7 +120,7 @@
             <li><b>Google Chrome</b>, if you don't have it. Antigravity's browser agent drives Chrome.</li>
         </ol>
         <p>Check it in Antigravity's terminal (<b>Terminal → New Terminal</b>):</p>
-<pre><code>python3 --version    # Windows: py --version
+<pre tabindex="0"><code>python3 --version    # Windows: py --version
 git --version</code></pre>
 </section>
 
@@ -130,7 +130,7 @@ git --version</code></pre>
         <ol class="steps">
             <li><b>Clone your repo.</b> In Antigravity: <b>File → Open Folder</b> on an empty folder for the course, then in the terminal: <code>git clone &lt;your repo URL&gt;</code>, and open the cloned folder.</li>
             <li><b>Make a virtual environment and install.</b>
-<pre><code>python3 -m venv .venv
+<pre tabindex="0"><code>python3 -m venv .venv
 source .venv/bin/activate        # Windows: .venv\Scripts\activate
 pip install -r requirements.txt  # includes google-adk</code></pre></li>
             <li><b>Add your key.</b> Copy <code>.env.example</code> to <code>.env</code> and paste your Gemini key after <code>GOOGLE_API_KEY=</code>. Leave <code>GOOGLE_GENAI_USE_VERTEXAI=FALSE</code> as it is.</li>
@@ -146,9 +146,10 @@ pip install -r requirements.txt  # includes google-adk</code></pre></li>
 
 <section class="module card" id="codespaces">
   <div class="module-head"><div class="module-icon">☁️</div><div><h2>No install? Use Codespaces</h2></div></div>
-        <p class="why-line">On a Chromebook, a locked work laptop, or when Antigravity won't install, open the same repo in GitHub Codespaces (<b>Code → Codespaces → Create codespace on main</b>). Everything is graded the same way.</p>
+        <p class="why-line">On a Chromebook, a locked work laptop, or when Antigravity won't install, open the same repo in GitHub Codespaces (<b>Code → Codespaces → Create codespace on main</b>). Antigravity is a desktop app, so it runs only on your own computer, not in a Codespace. Everything is graded the same way.</p>
         <ul>
-            <li>The coding assistant there is <b>GitHub Copilot</b> (free for verified students) instead of Antigravity. In Module 1's Antigravity warm-up, watch the demo video and answer from it.</li>
+            <li>The coding agent there is <b>GitHub Copilot in Agent mode</b> (free for verified students) instead of Antigravity. Open Copilot Chat and switch its mode from <b>Ask</b> to <b>Agent</b>. Like Antigravity, it plans, edits files and runs terminal commands after you approve them.</li>
+            <li>Where a HOS gives a <code>/plan</code> prompt for Antigravity, give Copilot the same prompt and ask it to show its plan and wait for your OK before it changes anything. That includes Module 1's Part A warm-up.</li>
             <li>The Codespace installs the requirements for you. Add your key to <code>.env</code> as above.</li>
             <li>Start the UI with <code>adk web --allow_origins "*"</code>. Plain <code>adk web</code> returns 403 errors in Codespaces. Open the forwarded port 8000 when VS Code offers it.</li>
             <li>Stop the Codespace when you finish (<b>Codespaces → Stop current codespace</b>) to save your free monthly hours.</li>
