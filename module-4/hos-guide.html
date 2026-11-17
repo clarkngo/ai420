@@ -94,6 +94,7 @@
 <section class="module card" id="create">
   <div class="module-head"><div class="module-icon">🛠️</div><div><h2>1 · Create / Scaffold</h2></div></div>
             <p class="stage-tagline">Graded as Engagement: 20% of this HOS. The AI-assisted starting point, not the deliverable.</p>
+            <p><b>Start a new conversation in the Agent panel first</b>, not one from an earlier HOS. Antigravity keeps the rules from earlier prompts for the rest of a conversation, such as "Don't change any .py file", and they would get in the way of your directions.</p>
             <p>The starter gives you the repaired single agent from HOS 3 (<code>single_agent/</code>), twelve test scenarios (<code>evals/scenarios.json</code>: a persona, a goal, and a success rule each), and a price sheet (<code>evals/pricing.json</code>). <strong>There's no prompt this time.</strong> Here's the goal. You decide the design and direct Antigravity; start with <code>/plan</code> and read the plan before you approve it:</p>
             <ol>
                 <li><strong>A team version</strong> in <code>team_agent/</code>: a coordinator with no tools whose <code>sub_agents</code> are the specialists, each specialist holding only the tools it needs. Reuse <code>single_agent/tools.py</code> and <code>guards.py</code>; don't copy them. Try it in <code>adk web</code> and watch the transfer in the Events tab.</li>
@@ -158,6 +159,7 @@ adk eval team_agent evals/support.evalset.json --config_file_path evals/test_con
   <div class="module-head"><div class="module-icon">🧯</div><div><h2>Common snags</h2></div></div>
         <div class="snag-box">
             <ul>
+                <li><strong>Antigravity won't edit a file you ask for, or brings up rules from an earlier HOS</strong> — you're directing it in an earlier HOS's conversation, so the agent is still following that conversation's rules, such as "Don't change any .py file". Start a new conversation and give your directions again.</li>
                 <li><strong>The coordinator answers questions itself instead of transferring</strong> — its instruction has to say plainly that it doesn't answer, only routes, and each specialist's <code>description</code> has to make ownership obvious. The coordinator reads those descriptions to decide where to send a request.</li>
                 <li><strong>A two-part question only gets half answered</strong> — after transferring, the specialist owns the conversation. Tell specialists to transfer back to the coordinator when the rest of the request isn't theirs.</li>
                 <li><strong>The simulated customer never stops</strong> — its conversation plan has to say when it's done, and the simulator needs a turn limit (check the ADK eval docs for the setting in your version). Without one, one confused conversation can use up your free-tier quota.</li>
