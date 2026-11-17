@@ -102,11 +102,27 @@
 research_agent/tools.py with a one-line description and one example
 call. Then run pytest and tell me the result. Don't change any .py file.</pre>
             <ul>
-                <li><b>Before approving:</b> read the Implementation Plan and task list. Comment on anything wrong or missing.</li>
+                <li><b>Before approving:</b> click <b>plan.md</b> and read the Implementation Plan. Comment on anything wrong or missing before you click <b>Proceed</b>.</li>
                 <li><b>While it works:</b> read each terminal command before you approve it.</li>
-                <li><b>After:</b> read its walkthrough, then check the README yourself.</li>
+                <li><b>After:</b> read its summary and click <b>Review</b> on the changed-files card, then check the README yourself.</li>
             </ul>
             <p>Write 3–4 lines in <code>NOTES.md</code>: where you saw it <b>reason</b>, <b>plan</b>, <b>use a tool</b>, and <b>remember</b> something.</p>
+            <div class="callout violet"><span class="label">Where to look in the Agent panel</span>
+                <ul style="margin:4px 0 0;padding-left:20px">
+                    <li><b>Reason:</b> the notes it writes between steps that say <em>why</em>, such as a <b>Key Decision</b> under its plan, and the order of its steps: what it chose to look at before deciding. Some models also show a grey <b>Thought for Ns</b> line you can click open.</li>
+                    <li><b>Plan:</b> after <code>/plan</code>, it says it has created the plan in <b>plan.md</b> and waits for you to click <b>Proceed</b>. Click <b>plan.md</b> to read the whole Implementation Plan before you do.</li>
+                    <li><b>Use a tool:</b> click <b>Worked for …</b> under a reply, then the summary line under it (for example "Explored files, ran commands, edited file"). Each line is one tool call: <b>Analyzed</b> means it read a file, <b>Edited</b> means it changed one, and <b>Ran</b> means a terminal command such as "Ran run pytest". The <b>1 file changed</b> card with its <b>Review</b> button shows the edit.</li>
+                    <li><b>Remember:</b> compare the two lists of steps. Before planning it read <code>tools.py</code>; after you click Proceed it edits the README without reading <code>tools.py</code> again, because the function names are already in the conversation. A new install has no saved knowledge yet, so in Part A "remember" means memory within this one conversation. Past conversations stay in the panel's conversation list (<kbd>Cmd</kbd>/<kbd>Ctrl</kbd>+<kbd>K</kbd> searches them).</li>
+                </ul>
+                <p style="margin:8px 0 0">For each, write one line: what you saw and where, for example "Plan: plan.md listed 3 steps; I commented that it had left out one function."</p>
+            </div>
+            <p>What it looks like (a faculty test run of this exact prompt; your wording and step list will differ). Click a screenshot to open it full size.</p>
+            <div class="shot-grid">
+                <figure class="shot"><a href="../assets/files/ai-420-guides/images/hos-01-part-a/01-slash-plan.webp" target="_blank" rel="noopener"><img src="../assets/files/ai-420-guides/images/hos-01-part-a/01-slash-plan.webp" alt="Antigravity Agent panel: typing a slash lists commands, including plan, described as Plan carefully before executing" loading="lazy"></a><figcaption>Type <code>/</code> in the Agent panel to see its commands. <b>plan</b> is the one these prompts use.</figcaption></figure>
+                <figure class="shot"><a href="../assets/files/ai-420-guides/images/hos-01-part-a/02-plan-ready.webp" target="_blank" rel="noopener"><img src="../assets/files/ai-420-guides/images/hos-01-part-a/02-plan-ready.webp" alt="Agent panel after the /plan prompt: Worked for 1m, a note that the plan is in plan.md, a Key Decision about where the Tools section goes, and a request to click Proceed" loading="lazy"></a><figcaption><b>Plan</b> and <b>reason</b>: it worked for a minute, wrote its plan to <b>plan.md</b>, explained one decision, and is waiting for <b>Proceed</b>.</figcaption></figure>
+                <figure class="shot"><a href="../assets/files/ai-420-guides/images/hos-01-part-a/03-steps-before-plan.webp" target="_blank" rel="noopener"><img src="../assets/files/ai-420-guides/images/hos-01-part-a/03-steps-before-plan.webp" alt="Worked for 1m opened: steps such as Ran list directory contents, Analyzed tools.py, Analyzed README.md, Ran run pytest, Analyzed test_tools.py, then Created Plan" loading="lazy"></a><figcaption><b>Use a tool</b>, before the plan: it listed the folder, read <code>tools.py</code>, the README and the tests, and ran pytest, then created the plan.</figcaption></figure>
+                <figure class="shot"><a href="../assets/files/ai-420-guides/images/hos-01-part-a/04-steps-while-working.webp" target="_blank" rel="noopener"><img src="../assets/files/ai-420-guides/images/hos-01-part-a/04-steps-while-working.webp" alt="Worked for 20s opened after Proceed: Analyzed README.md, Edited README.md plus 11 lines, Ran check git status, Ran run pytest, then a summary that no .py files were modified" loading="lazy"></a><figcaption><b>Use a tool</b> and <b>remember</b>, after Proceed: it edits the README and runs pytest, but never reads <code>tools.py</code> again.</figcaption></figure>
+            </div>
             <h3>Part B · Build your ADK agent</h3>
             <p>Give Antigravity this prompt as given, and review its plan before you approve it:</p>
 <pre tabindex="0">/plan In research_agent/agent.py, define root_agent with Google ADK:
