@@ -284,7 +284,7 @@ a ticket. It does NOT claim the refund was issued.</code></pre>
   </div>
   <p>No prompt this time: the guide gives only the goal. You design it and direct Antigravity, starting with <code>/plan</code>.</p>
   <ol>
-    <li>Open your own <b>HOS 4</b> repo (<a href="https://classroom50.org/cityuseattle/ai420/assignments/hos04/accept?k=ai420" target="_blank" rel="noopener">accept the HOS 4 invite</a>): clone it, open it in Antigravity, make the <code>.venv</code>, run <code>pip install -r requirements.txt</code> and put your Gemini key in <code>.env</code>. It holds the repaired single agent, 12 scenarios in <code>evals/scenarios.json</code> and a price sheet.</li>
+    <li>Open your own <b>HOS 4</b> repo (<a href="https://classroom50.org/cityuseattle/ai420/assignments/hos04/accept?k=ai420" target="_blank" rel="noopener">accept the HOS 4 invite</a>): clone it, open it in Antigravity, set up its Python environment and install its packages, as in <a href="../start-here/tools.html#first-run">step 2 of the first run</a>, and put your Gemini key in <code>.env</code>. It holds the repaired single agent, 12 scenarios in <code>evals/scenarios.json</code> and a price sheet.</li>
     <li>Build to the goal below. Get it working on 2–3 scenarios first: <code>adk eval single_agent evals/support.evalset.json:refund-cancelled,order-status --config_file_path evals/test_config.json --print_detailed_results</code>.</li>
   </ol>
 <pre tabindex="0"><code>Goal (write your own prompt from this; no prompt is given):
