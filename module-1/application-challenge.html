@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>AI 420 — Application Challenge 1: Evergreen Getaways Trip Planner</title>
+    <title>AI 420 — AIC 1 Part B Challenge: Evergreen Getaways Trip Planner</title>
     <link rel="stylesheet" href="../assets/course.css">
     <style>
         .rules-box { background:var(--surface2); border-left:3px solid var(--border); padding:8px 14px; margin:0 0 18px; font-size:0.85rem; border-radius:0 4px 4px 0; color:var(--muted); }
@@ -51,10 +51,10 @@
 </header>
 <section class="hero">
   <div class="hero-inner">
-    <div class="eyebrow">AI 420 · Module 1 · Application Challenge</div>
-    <h1>Application Challenge 1: Evergreen Getaways Trip Planner</h1>
-    <p class="lede">Take your HOS 1 agent skills to a business you haven't seen: build a travel agency's planning agent in ADK from a written spec, make one decision the spec leaves open, and decide which of the agency's requests need an agent at all.</p>
-    <div class="chips"><span class="chip">Est. 60–90 min</span><span class="chip">CO1 · CO2</span><span class="chip">Module 1 · end of Week 2</span><span class="chip">Individual</span><span class="chip">AI assistant allowed — disclose it</span><span class="chip">5% of final grade</span></div>
+    <div class="eyebrow">AI 420 · Module 1 · AIC 1 Part B: Apply</div>
+    <h1>AIC 1 Part B Challenge: Evergreen Getaways Trip Planner</h1>
+    <p class="lede">Take your AIC 1 agent skills to a business you haven't seen: build a travel agency's planning agent in ADK from a written spec, make one decision the spec leaves open, and decide which of the agency's requests need an agent at all.</p>
+    <div class="chips"><span class="chip">Est. 60–90 min</span><span class="chip">CO1 · CO2</span><span class="chip">Module 1 · end of Week 2</span><span class="chip">Individual</span><span class="chip">AI assistant allowed — disclose it</span><span class="chip">4% of final grade</span></div>
   </div>
 </section>
 <main id="main">
@@ -117,7 +117,7 @@
   <div class="module-head"><div class="module-icon">🪜</div><div><h2>Steps &amp; what to submit</h2></div></div>
         <div class="stage-block">
             <h3><span class="stage-num">1</span>Open it and run the tests</h3>
-            <p>Accept the <a href="https://classroom50.org/cityuseattle/ai420/assignments/ac01/accept?k=ai420" target="_blank" rel="noopener">AC 1 invite</a>, clone your repo and open it in Antigravity (or a Codespace). Set up its Python environment and install its packages, as in <a href="../start-here/tools.html#first-run">step 2 of the first run</a>, then run:</p>
+            <p>Open your AIC 1 repo in the same Antigravity workspace (or Codespace) you used for the build, and move into its <code>challenge/</code> folder (<code>cd challenge</code>). Set up its Python environment and install its packages, as in <a href="../start-here/tools.html#first-run">step 2 of the first run</a>, then run:</p>
 <pre tabindex="0">pytest</pre>
             <p>Almost everything fails with <code>NotImplementedError</code>. That's your to-do list.</p>
         </div>
@@ -142,10 +142,10 @@ python -m planner --max-llm-calls 2 &quot;3 days in Victoria, B.C., under $900&q
         </div>
 
         <div class="submit-box">
-            <h5>Submit (via Brightspace)</h5>
+            <h5>What goes in <code>challenge/</code> (pushed with your AIC 1 repo)</h5>
             <ul>
                 <li><code>planner/agent.py</code>, <code>planner/run.py</code> and <code>tests/test_my_rules.py</code></li>
-                <li>The output of <code>pytest</code>, pasted as text (all tests passing, including yours)</li>
+                <li>The output of <code>pytest</code>, saved as <code>challenge/pytest-output.txt</code> (all tests passing, including yours)</li>
                 <li><code>TRANSCRIPT.md</code></li>
                 <li><code>DECISIONS.md</code></li>
             </ul>
@@ -154,18 +154,19 @@ python -m planner --max-llm-calls 2 &quot;3 days in Victoria, B.C., under $900&q
 
 <section class="module card" id="grading">
   <div class="module-head"><div class="module-icon">📊</div><div><h2>How it's graded</h2></div></div>
-        <p>Each criterion is graded on one part of your submission, at one of three levels.</p>
+        <p>The challenge is the <b>Challenge half of the AIC 1 grade: 40 of its 100 points</b>, graded with the build at the end of Week 2. It has four criteria, weighted as in the syllabus: Application 4, Analysis 8, Evaluation 12 and Design 16. Each is graded on part of what you push.</p>
+        <p>When the challenge is done, finish AIC 1 with the <a href="index.html#postmortem"><b>Post Mortem</b></a>: three short answers in <code>NOTES.md</code>, written without AI and graded under the build's Understand criterion. Your instructor answers the most common "still unclear" points at the start of the next module.</p>
         <div class="table-scroll">
         <div class="table-wrap" tabindex="0"><table class="mini rubric">
             <tr><th>Criterion</th><th>Weight</th><th>Graded on</th><th>Full</th><th>Partial</th><th>Missing</th></tr>
-            <tr><td><strong>Application</strong></td><td class="wt">10%</td><td><code>TRANSCRIPT.md</code></td><td>Your agent runs on the agency's request, with the tools firing in a sensible order, and the budget-2 run ends with your rule.</td><td>It runs, but one run misbehaves and you don't explain why.</td><td>It restates the HOS 1 research agent, or doesn't run.</td></tr>
-            <tr><td><strong>Analysis</strong></td><td class="wt">20%</td><td><code>DECISIONS.md</code>, section 2 (five requests)</td><td>For each request, you break down what it needs: several steps, tool use, judgment, or none of these.</td><td>You give a verdict for each, but the reasons are generic ("it's complex").</td><td>No breakdown.</td></tr>
-            <tr><td><strong>Evaluation</strong></td><td class="wt">30%</td><td><code>DECISIONS.md</code>, section 1 (out of steps)</td><td>A clear rule, judged against stated criteria (what the customer could do with it, what it risks), with an alternative you rejected and why.</td><td>A rule with a reason, but no criteria or no rejected alternative.</td><td>No rule, or no justification.</td></tr>
-            <tr><td><strong>Design</strong></td><td class="wt">40%</td><td><code>planner/agent.py</code>, <code>planner/run.py</code>, your tests, and the <code>pytest</code> output</td><td>All provided tests pass, and your own tests check your rule, including an edge case.</td><td>Most provided tests pass, or your own tests cover only the easy case.</td><td>It doesn't run, or you wrote no tests of your own.</td></tr>
+            <tr><td><strong>Application</strong></td><td class="wt">4 pts</td><td><code>TRANSCRIPT.md</code></td><td>Your agent runs on the agency's request, with the tools firing in a sensible order, and the budget-2 run ends with your rule.</td><td>It runs, but one run misbehaves and you don't explain why.</td><td>It restates the AIC 1 research agent, or doesn't run.</td></tr>
+            <tr><td><strong>Analysis</strong></td><td class="wt">8 pts</td><td><code>DECISIONS.md</code>, section 2 (five requests)</td><td>For each request, you break down what it needs: several steps, tool use, judgment, or none of these.</td><td>You give a verdict for each, but the reasons are generic ("it's complex").</td><td>No breakdown.</td></tr>
+            <tr><td><strong>Evaluation</strong></td><td class="wt">12 pts</td><td><code>DECISIONS.md</code>, section 1 (out of steps)</td><td>A clear rule, judged against stated criteria (what the customer could do with it, what it risks), with an alternative you rejected and why.</td><td>A rule with a reason, but no criteria or no rejected alternative.</td><td>No rule, or no justification.</td></tr>
+            <tr><td><strong>Design</strong></td><td class="wt">16 pts</td><td><code>planner/agent.py</code>, <code>planner/run.py</code>, your tests, and the <code>pytest</code> output</td><td>All provided tests pass, and your own tests check your rule, including an edge case.</td><td>Most provided tests pass, or your own tests cover only the easy case.</td><td>It doesn't run, or you wrote no tests of your own.</td></tr>
             
         </table></div>
         </div>
-        <p style="font-size:0.88rem;color:var(--muted)">How this differs from HOS 1's Understand &amp; Refine: there you extended code you already understood, by hand, with no AI. Here the business, the code, and the decisions are new, AI help is allowed, and half the grade (Analysis and Evaluation) is for the calls you make, not the typing.</p>
+        <p style="font-size:0.88rem;color:var(--muted)">How this differs from AIC 1's Understand &amp; Refine: there you extended code you already understood, by hand, with no AI. Here the business, the code, and the decisions are new, AI help is allowed, and half the challenge grade (Analysis and Evaluation, 20 of the 40 points) is for the calls you make, not the typing.</p>
 </section>
 
 <section class="module card" id="snags">
@@ -176,13 +177,13 @@ python -m planner --max-llm-calls 2 &quot;3 days in Victoria, B.C., under $900&q
                 <li><strong>The live run never calls a tool.</strong> Check the tool docstrings and the instruction: the model only calls a tool when it can tell what the tool is for.</li>
                 <li><strong>The log is empty.</strong> Collect events from the runner as they arrive; function calls and responses are in each event's content parts.</li>
                 <li><strong>A date test fails by one day.</strong> Somewhere you used <code>date.today()</code>. Use <code>planner.tools.today()</code>.</li>
-                <li><strong>502, 404 or "model not found" when you run the agent.</strong> The model is set to <code>gemini-3.8-flash</code>. If your assistant changed it, change it back. See the <a href="hos-guide.html">HOS 1 guide's</a> Common snags.</li>
+                <li><strong>502, 404 or "model not found" when you run the agent.</strong> The model is set to <code>gemini-3.8-flash</code>. If your assistant changed it, change it back. See the <a href="hos-guide.html">AIC 1 build guide's</a> Common snags.</li>
             </ul>
         </div>
 </section>
 
 <div class="guide-nav">
-            <a href="hos-guide.html">← HOS 1 guide</a>
+            <a href="hos-guide.html">← AIC 1 build guide</a>
             <a href="index.html">Module 1 lesson →</a>
         </div>
 

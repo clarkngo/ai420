@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>AI 420 — HOS 2 Hands-On Guide: Custom Tools, MCP &amp; Memory</title>
+    <title>AI 420 — AIC 2 Hands-On Guide: Custom Tools, MCP &amp; Memory</title>
     <link rel="stylesheet" href="../assets/course.css">
     <style>
         .goal-box { background:var(--blue-bg); border-left:5px solid var(--blue); padding:15px 18px; margin:18px 0; border-radius:4px; }
@@ -45,8 +45,8 @@
 </header>
 <section class="hero">
   <div class="hero-inner">
-    <div class="eyebrow">AI 420 · Module 2 · Hands-On Skill (HOS) guide</div>
-    <h1>HOS 2: Custom Tools, MCP &amp; Memory</h1>
+    <div class="eyebrow">AI 420 · Module 2 · AI Challenge (AIC) guide</div>
+    <h1>AIC 2: Custom Tools, MCP &amp; Memory</h1>
     <p class="lede">Give an operations agent for Harbor Supply Co., a marine supply store, the three kinds of external tools the course description names — an API, a web browser, and a database — served from your own MCP server. Then give it memory: short-term for the current conversation, long-term that survives a restart.</p>
     <div class="chips"><span class="chip">Est. 3.5–4.5 hrs</span><span class="chip">CO1 · CO2</span><span class="chip">Module 2 · Weeks 3–4</span><span class="chip">10% of final grade</span></div>
   </div>
@@ -66,22 +66,22 @@
 
 <section class="module card" id="before">
   <div class="module-head"><div class="module-icon">🧭</div><div><h2>Before you start</h2></div></div>
-        <div class="callout blue antigravity-box"><span class="label">Do this HOS in Antigravity</span>
-            <p>Antigravity runs on your own computer: open your local clone of the HOS 2 repo in the <strong>Google Antigravity IDE</strong> and do Stage 1 (Create / Scaffold) in its Agent panel. The prompt you're given says what to build, not how: you and Antigravity decide the how. Read its plan before you approve it, and keep your prompt and a summary of its plan for <code>NOTES.md</code>. If it asks to open a website, say no: everything it needs is in the repo and the prompt.</p>
+        <div class="callout blue antigravity-box"><span class="label">Do this AIC in Antigravity</span>
+            <p>Antigravity runs on your own computer: open your local clone of the AIC 2 repo in the <strong>Google Antigravity IDE</strong> and do Stage 1 (Create / Scaffold) in its Agent panel. The prompt you're given says what to build, not how: you and Antigravity decide the how. Read its plan before you approve it, and keep your prompt and a summary of its plan for <code>NOTES.md</code>. If it asks to open a website, say no: everything it needs is in the repo and the prompt.</p>
             <p>In Stages 2 and 3 the judgment and the words are yours; the agent can help as the <a href="../start-here/ai-use.html">AI Use Guide</a> describes. Stage 4 is by hand: close the Agent panel.</p>
             <p>Not set up yet? <b>Download the Antigravity IDE</b> (free) from <a href="https://antigravity.google/download" rel="noopener">antigravity.google/download</a> and install it, following the <a href="../start-here/tools.html#install">install steps</a> (about 30 minutes, once). Its free plan's limit resets weekly, so don't leave Stage 1 for the last day. Can't install it? Use the repo's <a href="../start-here/tools.html#codespaces">Codespace</a> instead, with <strong>GitHub Copilot in Agent mode</strong> as your coding agent: ask it for its plan first, and read the plan before it changes anything.</p>
         </div>
         <div class="before-box">
             <ol>
-                <li><b>Check your account setup.</b> Nothing new: the same <a href="../start-here/accounts.html#github">GitHub account</a> and <a href="../start-here/accounts.html#google">Gemini API key</a> as HOS 1. Open-Meteo, the web pages and SQLite need no account.</li>
+                <li><b>Check your account setup.</b> Nothing new: the same <a href="../start-here/accounts.html#github">GitHub account</a> and <a href="../start-here/accounts.html#google">Gemini API key</a> as AIC 1. Open-Meteo, the web pages and SQLite need no account.</li>
                 <li><b>Know the concepts.</b> Read <a href="../reference/concept-companion.html#module-2">Concept Companion → Module 2</a> before you open the starter code.</li>
             </ol>
         </div>
 
         <h4>What you'll need</h4>
         <ul class="needs-list">
-            <li><strong>Starter code:</strong> your <b>HOS 2</b> repo, created when you <a href="https://classroom50.org/cityuseattle/ai420/assignments/hos02/accept?k=ai420" target="_blank" rel="noopener">accept the HOS 2 invite</a>. Clone it and open the folder in Antigravity, then set up its Python environment and install its packages, as in <a href="../start-here/tools.html#first-run">step 2 of the first run</a>. Not sure what a file does? See the <a href="../reference/starter-code-walkthrough.html#hos2">starter code walkthrough for this HOS</a>.</li>
-            <li>Your free Gemini API key (no credit card) from <a href="https://aistudio.google.com/apikey" target="_blank" rel="noopener">aistudio.google.com/apikey</a>. In the HOS folder: <code>cp .env.example .env</code>, then paste it in as <code>GOOGLE_API_KEY</code>.</li>
+            <li><strong>Starter code:</strong> your <b>AIC 2</b> repo, created when you <a href="https://classroom50.org/cityuseattle/ai420/assignments/aic02/accept?k=ai420" target="_blank" rel="noopener">accept the AIC 2 invite</a>. Clone it and open the folder in Antigravity, then set up its Python environment and install its packages, as in <a href="../start-here/tools.html#first-run">step 2 of the first run</a>. Not sure what a file does? See the <a href="../reference/starter-code-walkthrough.html#hos2">starter code walkthrough for this AIC</a>.</li>
+            <li>Your free Gemini API key (no credit card) from <a href="https://aistudio.google.com/apikey" target="_blank" rel="noopener">aistudio.google.com/apikey</a>. In the AIC folder: <code>cp .env.example .env</code>, then paste it in as <code>GOOGLE_API_KEY</code>.</li>
             <li>The Google Antigravity IDE (free from <a href="https://antigravity.google/download" rel="noopener">antigravity.google/download</a>), installed on your own computer and signed in (or the repo's Codespace with GitHub Copilot in Agent mode if you can't install it).</li>
             <li>Nothing else to sign up for: the weather API (Open-Meteo), the web pages, and the SQLite databases (the store's data and your agent's sessions) are all free and need no account.</li>
         </ul>
@@ -91,19 +91,19 @@
             <li><a href="https://github.com/clarkngo/agent-development/tree/main/hos-google-adk/hos07-manager-supervisor-agent" target="_blank" rel="noopener">agent-development hos07 — manager agent</a>: tools that call real external APIs.</li>
         </ul></div>
 
-        <p>This HOS is graded across four stages instead of on code correctness alone: <strong>Engagement</strong> (Create/Scaffold) is 20% of the HOS grade, and <strong>Skills</strong> is 80%: Evaluate, Analyze, Apply (the change you make by hand in Understand &amp; Refine) and Understand (your own explanation of it), 20% each. Each stage below says exactly what to submit. Everything goes in your Module 2 GitHub Classroom repo: written work under the matching heading in <code>NOTES.md</code>, screenshots in <code>screenshots/</code>. Commit and push as you go, then submit the repo link to the HOS 2 assignment in Brightspace by the end of Week 4.</p>
+        <p>This guide covers the <strong>build</strong>: Part A (Create / Scaffold, Evaluate) and the first half of Part B (Analyze, Understand &amp; Refine). It is graded across those stages instead of on code correctness alone, for <strong>60 of the 100 AIC points</strong>: 12 points each for Create, Evaluate, Analyze, Apply (the change you make by hand in Understand &amp; Refine) and Understand (your own explanation of it, plus the short <a href="index.html#postmortem">Post Mortem</a> you write after the challenge). The other 40 points are the <a href="application-challenge.html">Part B challenge</a>, in the <code>challenge/</code> folder of the same repo. The whole AIC is graded once, at the end of Week 4. Each stage below says exactly what to submit. Everything goes in your Module 2 GitHub Classroom repo: written work under the matching heading in <code>NOTES.md</code>, screenshots in <code>screenshots/</code>. Commit and push as you go. By the end of Week 4, push your final work: your repo is your submission, so there is nothing to submit in Brightspace, and your last push before the deadline is what counts.</p>
 </section>
 
 <section class="module card" id="create">
   <div class="module-head"><div class="module-icon">🛠️</div><div><h2>1 · Create / Scaffold</h2></div></div>
-            <p class="stage-tagline">Graded as Engagement: 20% of this HOS. The AI-assisted starting point, not the deliverable.</p>
+            <p class="stage-tagline">Graded under Build: Create, 12 of the 100 AIC points. The AI-assisted starting point, not the deliverable.</p>
             <p>What's already working: <code>data/harbor.db</code> (built automatically; rebuild any time with <code>python data/seed_db.py</code>), an MCP server with one finished tool (<code>get_marine_weather</code>, your worked example), and an ADK agent already connected to that server. Try it first: run <code>adk web --session_service_uri "sqlite:///./sessions.db"</code>, pick <code>ops_agent</code>, and ask about the wind in Anacortes. (In a Codespace, add <code>--allow_origins "*"</code>.)</p>
             <p>What working looks like (from a faculty test in a Codespace; the <code>adk web</code> page is the same on your own computer):</p>
             <div class="shot-grid">
                 <figure class="shot"><a href="../assets/files/ai-420-guides/images/hos-02-sample-run/02-codespace-adk-web-running.webp" target="_blank" rel="noopener"><img src="../assets/files/ai-420-guides/images/hos-02-sample-run/02-codespace-adk-web-running.webp" alt="VS Code in a Codespace: the terminal runs adk web --allow_origins "*" and logs 200 OK responses" loading="lazy"></a><figcaption>The terminal after <code>adk web --allow_origins "*"</code>: requests come back <code>200 OK</code>. If you see <code>403 Forbidden</code> instead, see Common snags below.</figcaption></figure>
                 <figure class="shot"><a href="../assets/files/ai-420-guides/images/hos-02-sample-run/01-worked-example-anacortes.webp" target="_blank" rel="noopener"><img src="../assets/files/ai-420-guides/images/hos-02-sample-run/01-worked-example-anacortes.webp" alt="adk web Events tab: get_marine_weather("Anacortes") call and response, then a reply with wind speed, temperature, and wave height" loading="lazy"></a><figcaption>The worked example: ask about the wind in Anacortes. The Events tab shows the <code>get_marine_weather</code> call and its response, and the graph shows <code>ops_agent</code> connected to the <code>McpToolset</code>.</figcaption></figure>
             </div>
-            <p><b>Start a new conversation in the Agent panel first</b>, not the one from HOS 1. Antigravity keeps the rules from earlier prompts for the rest of a conversation, such as "Don't change any .py file", and this prompt needs it to edit .py files.</p>
+            <p><b>Start a new conversation in the Agent panel first</b>, not the one from AIC 1. Antigravity keeps the rules from earlier prompts for the rest of a conversation, such as "Don't change any .py file", and this prompt needs it to edit .py files.</p>
             <p>This time the prompt only says <em>what</em> to build. You and Antigravity decide how; read its plan before you approve it:</p>
 <pre tabindex="0">/plan Work in this repo; don&#x27;t create a new project. Keep the model
 &quot;gemini-3.8-flash&quot;.
@@ -122,7 +122,7 @@ Then give ops_agent memory:
    service). One customer&#x27;s facts must never come back for another.
 Tools should return errors as data the model can read, not raise.</pre>
             <p>Test it in <code>adk web</code> as you go.</p>
-            <div class="submit-box"><h5>Submit (Engagement)</h5>
+            <div class="submit-box"><h5>Submit (Create)</h5>
                 <ul><li>The prompt you gave Antigravity, a short summary of its plan (and anything you changed), and a screenshot of the <code>adk web</code> Events tab showing one of your new tools being called.</li></ul>
             </div>
 </section>
@@ -193,7 +193,7 @@ Tools should return errors as data the model can read, not raise.</pre>
   <div class="module-head"><div class="module-icon">🧯</div><div><h2>Common snags</h2></div></div>
         <div class="snag-box">
             <ul>
-                <li><strong>Antigravity won't edit <code>server.py</code> or <code>agent.py</code>, or brings up rules from HOS 1</strong> — you gave the prompt in your HOS 1 conversation, so the agent is still following that conversation's rules, such as "Don't change any .py file". Start a new conversation and paste the prompt again.</li>
+                <li><strong>Antigravity won't edit <code>server.py</code> or <code>agent.py</code>, or brings up rules from AIC 1</strong> — you gave the prompt in your AIC 1 conversation, so the agent is still following that conversation's rules, such as "Don't change any .py file". Start a new conversation and paste the prompt again.</li>
                 <li><strong><code>ModuleNotFoundError: No module named 'mcp.server.fastmcp'</code></strong> — you're on MCP 2.x, where <code>FastMCP</code> became <code>MCPServer</code> (<code>from mcp.server.mcpserver import MCPServer</code>). Most tutorials, and many coding agents, still write the 1.x import.</li>
                 <li><strong>The agent says it has no tools, or <code>adk web</code> hangs connecting</strong> — the MCP server crashed on startup. Run <code>python mcp_server/server.py</code> directly to see the error (then Ctrl+C). Anything the server <code>print()</code>s to stdout also corrupts the MCP connection: use logging (stderr) instead.</li>
                 <li><strong>Memory "forgets" after a restart</strong> — <code>adk web</code> was started without <code>--session_service_uri</code>, so sessions lived in memory. Or a tool edited <code>state["app:customer_facts"]</code> in place: change a copy and assign it back. <code>sessions.db</code> is gitignored on purpose (it can hold customer data).</li>

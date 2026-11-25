@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<meta name="description" content="AI 420 HOS 3 simulator: diagnose five planted agent failures from their traces alone, then see which ones generic guards fix and which need root-cause fixes.">
+<meta name="description" content="AI 420 AIC 3 simulator: diagnose five planted agent failures from their traces alone, then see which ones generic guards fix and which need root-cause fixes.">
 <title>Trace Detective</title>
 <link rel="stylesheet" href="../assets/course.css">
 <style>
@@ -74,7 +74,7 @@
 </header>
 <section class="hero">
   <div class="hero-inner">
-    <div class="eyebrow">Simulator 3 · Pairs with HOS 3 (Weeks 5–6)</div>
+    <div class="eyebrow">Simulator 3 · Pairs with AIC 3 (Weeks 5–6)</div>
     <h1>Trace Detective</h1>
     <p class="lede">Five traces from Harbor Supply Co.'s support agent. No source code. For each: name the failure type and click the first step where it shows. Then switch on guards and root-cause fixes, and see which failures each one actually cures.</p>
     <div class="chips"><span class="chip">CO3</span><span class="chip">Trace diagnosis</span><span class="chip">Failure types</span><span class="chip">Guards vs. fixes</span></div>
@@ -119,7 +119,7 @@
 <div class="card"><h2>What this teaches</h2><ul>
 <li><b>Three of five failures never crash.</b> The refund, the total, and the price all end with a polite, wrong answer.</li>
 <li><b>Guards are generic; they catch failure <em>shapes</em>.</b> The error guard rescues the "#1004" crash; the repeat guard ends the loop. Neither can see that $1,622.79 is wrong.</li>
-<li><b>Confident wrong answers need root-cause fixes</b> — a tool that reports its count, a tool that returns retail price — or an evaluation that checks the numbers (HOS 4).</li></ul></div>
+<li><b>Confident wrong answers need root-cause fixes</b> — a tool that reports its count, a tool that returns retail price — or an evaluation that checks the numbers (AIC 4).</li></ul></div>
 <div class="project-tip"><b class="h">For your Term Project</b>The minimum bar needs at least one self-correction mechanism shown working in a real trace. Which of your process's steps is most likely to end in a confident wrong answer — and what would catch it?</div>
 
 </main>
@@ -204,7 +204,7 @@ render();
   'do':'Press <b>Set this up for me</b>. It turns every guard off and opens trace s1. Pick a failure type, click the first step where it goes wrong, then press <b>Check diagnosis</b>.',
   watch:'The argument in step 1, and the step after it.',
   expect:'A tool-call error: <code>"#1004"</code> goes into a tool that expects a number, and the run crashes.',
-  why:'This is how you build your HOS 3 failure log: type, first step, symptom, from the trace alone.',
+  why:'This is how you build your AIC 3 failure log: type, first step, symptom, from the trace alone.',
   setup:function(h){ ['gErr','gRep','gBudget','fix'].forEach(function(id){ h.set(id,false); }); h.click(h.q('#scen button[data-i="0"]')); }},
  {title:'2 · A refund that never happened',
   'do':'Press <b>Set this up for me</b> to open trace s2, then diagnose it.',
@@ -228,12 +228,12 @@ render();
   'do':'Press <b>Set this up for me</b>. It turns on all three guards. Click through s1 to s5, then tick <b>Root-cause fixes</b>.',
   watch:'The <b>Which failures recover?</b> table.',
   expect:'The error guard rescues s1 and the repeat guard ends s3, but s4 and s5 are unchanged and s2 only stops safely. Only the root-cause fixes make every scenario correct.',
-  why:'Guards catch failure <em>shapes</em>; they can\'t see a wrong number. That\'s why HOS 3 Refine asks for both fixes and guards.',
+  why:'Guards catch failure <em>shapes</em>; they can\'t see a wrong number. That\'s why AIC 3 Refine asks for both fixes and guards.',
   setup:function(h){ h.set('fix',false); h.set('gErr',true); h.set('gRep',true); h.set('gBudget',true); h.click(h.q('#scen button[data-i="0"]')); }},
  {title:'Your turn',
   'do':'Diagnose s5, the price question, and aim for 5 / 5. The <b>What this teaches</b> box below lists more.',
   expect:'You can explain which failures crash, which don\'t, and why a guard can\'t fix a confident wrong answer.',
-  why:'That is the heart of HOS 3 Analyze. Now go back to the <a href="index.html#lecture">lesson</a>.'}
+  why:'That is the heart of AIC 3 Analyze. Now go back to the <a href="index.html#lecture">lesson</a>.'}
 ];</script>
 <script src="../assets/sim-tour.js"></script>
 </body>

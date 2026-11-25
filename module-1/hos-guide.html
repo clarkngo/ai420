@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>AI 420 — HOS 1 Hands-On Guide: Anatomy of an Agent</title>
+    <title>AI 420 — AIC 1 Hands-On Guide: Anatomy of an Agent</title>
     <link rel="stylesheet" href="../assets/course.css">
     <style>
         .goal-box { background:var(--blue-bg); border-left:5px solid var(--blue); padding:15px 18px; margin:18px 0; border-radius:4px; }
@@ -45,8 +45,8 @@
 </header>
 <section class="hero">
   <div class="hero-inner">
-    <div class="eyebrow">AI 420 · Module 1 · Hands-On Skill (HOS) guide</div>
-    <h1>HOS 1: Anatomy of an Agent</h1>
+    <div class="eyebrow">AI 420 · Module 1 · AI Challenge (AIC) guide</div>
+    <h1>AIC 1: Anatomy of an Agent</h1>
     <p class="lede">Watch Antigravity, a coding agent, plan and do a real job. Then build a research agent in Google ADK with it, answer the same multi-step questions with one plain LLM call and with your agent, and point at the events where reasoning, planning, tool use, and memory happen.</p>
     <div class="chips"><span class="chip">Est. 3–4 hrs</span><span class="chip">CO1 · CO2</span><span class="chip">Module 1 · Weeks 1–2</span><span class="chip">10% of final grade</span></div>
   </div>
@@ -66,8 +66,8 @@
 
 <section class="module card" id="before">
   <div class="module-head"><div class="module-icon">🧭</div><div><h2>Before you start</h2></div></div>
-        <div class="callout blue antigravity-box"><span class="label">Do this HOS in Antigravity</span>
-            <p>Antigravity runs on your own computer: open your local clone of the HOS 1 repo in the <strong>Google Antigravity IDE</strong> and do Stage 1 (Create / Scaffold) in its Agent panel. This time you're given both prompts: first watch it do a small, safe job (Part A), then have it build your ADK agent (Part B). Read its plan before you approve it, and keep your prompt and a summary of its plan for <code>NOTES.md</code>. If it asks to open a website, say no: everything it needs is in the repo and the prompt.</p>
+        <div class="callout blue antigravity-box"><span class="label">Do this AIC in Antigravity</span>
+            <p>Antigravity runs on your own computer: open your local clone of the AIC 1 repo in the <strong>Google Antigravity IDE</strong> and do Stage 1 (Create / Scaffold) in its Agent panel. This time you're given both prompts: first watch it do a small, safe job (Part A), then have it build your ADK agent (Part B). Read its plan before you approve it, and keep your prompt and a summary of its plan for <code>NOTES.md</code>. If it asks to open a website, say no: everything it needs is in the repo and the prompt.</p>
             <p>In Stages 2 and 3 the judgment and the words are yours; the agent can help as the <a href="../start-here/ai-use.html">AI Use Guide</a> describes. Stage 4 is by hand: close the Agent panel.</p>
             <p>Not set up yet? <b>Download the Antigravity IDE</b> (free) from <a href="https://antigravity.google/download" rel="noopener">antigravity.google/download</a> and install it, following the <a href="../start-here/tools.html#install">install steps</a> (about 30 minutes, once). Its free plan's limit resets weekly, so don't leave Stage 1 for the last day. Can't install it? Use the repo's <a href="../start-here/tools.html#codespaces">Codespace</a> instead, with <strong>GitHub Copilot in Agent mode</strong> as your coding agent: ask it for its plan first, and read the plan before it changes anything.</p>
         </div>
@@ -79,7 +79,7 @@
         </div>
         <h4>What you'll need</h4>
         <ul class="needs-list">
-            <li><strong>Starter code:</strong> your <b>HOS 1</b> repo, created when you <a href="https://classroom50.org/cityuseattle/ai420/assignments/hos01/accept?k=ai420" target="_blank" rel="noopener">accept the HOS 1 invite</a>. Clone it and open the folder in Antigravity. Not sure what a file does? See the <a href="../reference/starter-code-walkthrough.html#hos1">starter code walkthrough for this HOS</a>.</li>
+            <li><strong>Starter code:</strong> your <b>AIC 1</b> repo, created when you <a href="https://classroom50.org/cityuseattle/ai420/assignments/aic01/accept?k=ai420" target="_blank" rel="noopener">accept the AIC 1 invite</a>. Clone it and open the folder in Antigravity. Not sure what a file does? See the <a href="../reference/starter-code-walkthrough.html#hos1">starter code walkthrough for this AIC</a>.</li>
             <li>Python set up for the repo: a virtual environment with its packages installed (they include <code>google-adk</code>), as in <a href="../start-here/tools.html#first-run">step 2 of the first run</a>, and your Gemini key in <code>.env</code> as <code>GOOGLE_API_KEY</code>.</li>
             <li>The Google Antigravity IDE, downloaded free from <a href="https://antigravity.google/download" rel="noopener">antigravity.google/download</a>, installed on your own computer and signed in. No install possible? Use the repo's Codespace with GitHub Copilot in Agent mode, as the <a href="../start-here/tools.html#codespaces">tools page</a> describes.</li>
         </ul>
@@ -88,12 +88,12 @@
             <li><a href="https://adk.dev/tools-custom/function-tools/" target="_blank" rel="noopener">ADK function tools</a>: how a Python function becomes a tool the model can call.</li>
             <li><a href="https://codelabs.developers.google.com/getting-started-google-antigravity" target="_blank" rel="noopener">Getting Started with Google Antigravity</a> (Google codelab): the Agent panel, plans and artifacts.</li>
         </ul></div>
-        <p>This HOS is graded across four stages instead of on code correctness alone: <strong>Engagement</strong> (Create/Scaffold) is 20% of the HOS grade, and <strong>Skills</strong> is 80%: Evaluate, Analyze, Apply (the change you make by hand in Understand &amp; Refine) and Understand (your own explanation of it), 20% each. Each stage below says exactly what to submit. Everything goes in your Module 1 GitHub Classroom repo: written work under the matching heading in <code>NOTES.md</code>, screenshots in <code>screenshots/</code>. Commit and push as you go, then submit the repo link to the HOS 1 assignment in Brightspace by the end of Week 2.</p>
+        <p>This guide covers the <strong>build</strong>: Part A (Create / Scaffold, Evaluate) and the first half of Part B (Analyze, Understand &amp; Refine). It is graded across those stages instead of on code correctness alone, for <strong>60 of the 100 AIC points</strong>: 12 points each for Create, Evaluate, Analyze, Apply (the change you make by hand in Understand &amp; Refine) and Understand (your own explanation of it, plus the short <a href="index.html#postmortem">Post Mortem</a> you write after the challenge). The other 40 points are the <a href="application-challenge.html">Part B challenge</a>, in the <code>challenge/</code> folder of the same repo. The whole AIC is graded once, at the end of Week 2. Each stage below says exactly what to submit. Everything goes in your Module 1 GitHub Classroom repo: written work under the matching heading in <code>NOTES.md</code>, screenshots in <code>screenshots/</code>. Commit and push as you go. By the end of Week 2, push your final work: your repo is your submission, so there is nothing to submit in Brightspace, and your last push before the deadline is what counts.</p>
 </section>
 
 <section class="module card" id="create">
   <div class="module-head"><div class="module-icon">🛠️</div><div><h2>1 · Create / Scaffold</h2></div></div>
-            <p class="stage-tagline">Graded as Engagement: 20% of this HOS. The agent-built starting point, not the deliverable.</p>
+            <p class="stage-tagline">Graded under Build: Create, 12 of the 100 AIC points. The agent-built starting point, not the deliverable.</p>
             <p>The starter already has three working tools (<code>research_agent/tools.py</code>: Wikipedia search, Wikipedia intro, calculator), a single-call baseline (<code>baseline.py</code>), five test questions (<code>tasks.json</code>), and a comparison script (<code>compare.py</code>). <code>research_agent/agent.py</code> is empty except for a TODO. First run the baseline alone to see what plain inference does with a multi-step question:</p>
 <pre tabindex="0">python baseline.py "How many years before the first iPhone was the Space Needle completed?"</pre>
             <h3>Part A · Watch an agent work</h3>
@@ -136,7 +136,7 @@ common.py or compare.py. Don't create a new project or folder.</pre>
             <p>Then try it in the developer UI, and run all five questions through both approaches:</p>
 <pre tabindex="0">adk web                    # from the repo's top folder; open http://localhost:8000
 python compare.py --verbose</pre>
-            <div class="submit-box"><h5>Submit (Engagement)</h5>
+            <div class="submit-box"><h5>Submit (Create)</h5>
                 <ul><li>Your Part A notes; the Part B prompt and a short summary of the plan Antigravity proposed, with anything you changed in it; and a screenshot of <code>compare.py</code>'s summary table.</li></ul>
             </div>
 </section>

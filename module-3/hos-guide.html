@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>AI 420 — HOS 3 Hands-On Guide: Traces &amp; Self-Correction</title>
+    <title>AI 420 — AIC 3 Hands-On Guide: Traces &amp; Self-Correction</title>
     <link rel="stylesheet" href="../assets/course.css">
     <style>
         .goal-box { background:var(--blue-bg); border-left:5px solid var(--blue); padding:15px 18px; margin:18px 0; border-radius:4px; }
@@ -45,8 +45,8 @@
 </header>
 <section class="hero">
   <div class="hero-inner">
-    <div class="eyebrow">AI 420 · Module 3 · Hands-On Skill (HOS) guide</div>
-    <h1>HOS 3: Traces &amp; Self-Correction</h1>
+    <div class="eyebrow">AI 420 · Module 3 · AI Challenge (AIC) guide</div>
+    <h1>AIC 3: Traces &amp; Self-Correction</h1>
     <p class="lede">Harbor Supply Co.'s customer-support agent looks fine and fails in several different ways. Find every failure <strong>from the traces alone</strong>, before you read its source code — the way on-call engineers debug agents they didn't write. Then make it correct itself.</p>
     <div class="chips"><span class="chip">Est. 3–4 hrs</span><span class="chip">Outcome 3</span><span class="chip">Module 3 · Weeks 5–6</span><span class="chip">10% of final grade</span></div>
   </div>
@@ -66,45 +66,45 @@
 
 <section class="module card" id="before">
   <div class="module-head"><div class="module-icon">🧭</div><div><h2>Before you start</h2></div></div>
-        <div class="callout blue antigravity-box"><span class="label">Do this HOS in Antigravity</span>
-            <p>Antigravity runs on your own computer: open your local clone of the HOS 3 repo in the <strong>Google Antigravity IDE</strong> and do Stage 1 (Create / Scaffold) in its Agent panel. This time you write the prompt yourself, from the spec in Stage 1. Read its plan before you approve it, and keep your prompt and a summary of its plan for <code>NOTES.md</code>. If it asks to open a website, say no: everything it needs is in the repo and the prompt.</p>
+        <div class="callout blue antigravity-box"><span class="label">Do this AIC in Antigravity</span>
+            <p>Antigravity runs on your own computer: open your local clone of the AIC 3 repo in the <strong>Google Antigravity IDE</strong> and do Stage 1 (Create / Scaffold) in its Agent panel. This time you write the prompt yourself, from the spec in Stage 1. Read its plan before you approve it, and keep your prompt and a summary of its plan for <code>NOTES.md</code>. If it asks to open a website, say no: everything it needs is in the repo and the prompt.</p>
             <p>In Stages 2 and 3 the judgment and the words are yours; the agent can help as the <a href="../start-here/ai-use.html">AI Use Guide</a> describes. Stage 4 is by hand: close the Agent panel.</p>
             <p>Not set up yet? <b>Download the Antigravity IDE</b> (free) from <a href="https://antigravity.google/download" rel="noopener">antigravity.google/download</a> and install it, following the <a href="../start-here/tools.html#install">install steps</a> (about 30 minutes, once). Its free plan's limit resets weekly, so don't leave Stage 1 for the last day. Can't install it? Use the repo's <a href="../start-here/tools.html#codespaces">Codespace</a> instead, with <strong>GitHub Copilot in Agent mode</strong> as your coding agent: ask it for its plan first, and read the plan before it changes anything.</p>
         </div>
         <div class="before-box">
             <ol>
-                <li><b>Check your setup.</b> No new accounts this module: your GitHub account, Antigravity and your Gemini key are enough. If <code>adk web</code> hasn't run on your computer since HOS 2, run through <a href="../start-here/tools.html#first-run">your first run</a> again before Week 5.</li>
+                <li><b>Check your setup.</b> No new accounts this module: your GitHub account, Antigravity and your Gemini key are enough. If <code>adk web</code> hasn't run on your computer since AIC 2, run through <a href="../start-here/tools.html#first-run">your first run</a> again before Week 5.</li>
                 <li><b>Know the concepts.</b> Read <a href="../reference/concept-companion.html#module-3">Concept Companion → Module 3</a> before you open the starter code.</li>
             </ol>
         </div>
 
         <h4>What you'll need</h4>
         <ul class="needs-list">
-            <li><strong>Starter code:</strong> your <b>HOS 3</b> repo, created when you <a href="https://classroom50.org/cityuseattle/ai420/assignments/hos03/accept?k=ai420" target="_blank" rel="noopener">accept the HOS 3 invite</a>. Clone it, open the folder in Antigravity, set up its Python environment and install its packages, as in <a href="../start-here/tools.html#first-run">step 2 of the first run</a> (or open it in a Codespace, where that happens for you). Not sure what a file does? See the <a href="../reference/starter-code-walkthrough.html#hos3">starter code walkthrough for this HOS</a>.</li>
-            <li>Your free Gemini API key (no credit card) from <a href="https://aistudio.google.com/apikey" target="_blank" rel="noopener">aistudio.google.com/apikey</a>. In the HOS folder: <code>cp .env.example .env</code>, then paste it in as <code>GOOGLE_API_KEY</code>.</li>
+            <li><strong>Starter code:</strong> your <b>AIC 3</b> repo, created when you <a href="https://classroom50.org/cityuseattle/ai420/assignments/aic03/accept?k=ai420" target="_blank" rel="noopener">accept the AIC 3 invite</a>. Clone it, open the folder in Antigravity, set up its Python environment and install its packages, as in <a href="../start-here/tools.html#first-run">step 2 of the first run</a> (or open it in a Codespace, where that happens for you). Not sure what a file does? See the <a href="../reference/starter-code-walkthrough.html#hos3">starter code walkthrough for this AIC</a>.</li>
+            <li>Your free Gemini API key (no credit card) from <a href="https://aistudio.google.com/apikey" target="_blank" rel="noopener">aistudio.google.com/apikey</a>. In the AIC folder: <code>cp .env.example .env</code>, then paste it in as <code>GOOGLE_API_KEY</code>.</li>
             <li>The Google Antigravity IDE for Stage 1, downloaded free from <a href="https://antigravity.google/download" rel="noopener">antigravity.google/download</a> and installed (<a href="../start-here/tools.html#install">install steps</a>). In a Codespace, use GitHub Copilot in Agent mode instead.</li>
         </ul>
         <div class="ref-box"><h4>Reference reading (optional, before you start)</h4><ul>
             <li><a href="https://adk.dev/" target="_blank" rel="noopener">Google ADK documentation</a>: read the pages on <b>callbacks</b> (the before/after hooks you'll use in Stages 1 and 4) and on <b>loop agents</b> (how a loop is <em>supposed</em> to end, with <code>exit_loop</code> or <code>max_iterations</code>).</li>
         </ul></div>
 
-        <p>This HOS is graded across four stages instead of on code correctness alone: <strong>Engagement</strong> (Create/Scaffold) is 20% of the HOS grade, and <strong>Skills</strong> is 80%: Evaluate, Analyze, Apply (the change you make by hand in Understand &amp; Refine) and Understand (your own explanation of it), 20% each. Each stage below says exactly what to submit. Everything goes in your Module 3 GitHub Classroom repo: written work under the matching heading in <code>NOTES.md</code>, screenshots in <code>screenshots/</code>. Commit and push as you go, then submit the repo link to the HOS 3 assignment in Brightspace by the end of Week 6.</p>
+        <p>This guide covers the <strong>build</strong>: Part A (Create / Scaffold, Evaluate) and the first half of Part B (Analyze, Understand &amp; Refine). It is graded across those stages instead of on code correctness alone, for <strong>60 of the 100 AIC points</strong>: 12 points each for Create, Evaluate, Analyze, Apply (the change you make by hand in Understand &amp; Refine) and Understand (your own explanation of it, plus the short <a href="index.html#postmortem">Post Mortem</a> you write after the challenge). The other 40 points are the <a href="application-challenge.html">Part B challenge</a>, in the <code>challenge/</code> folder of the same repo. The whole AIC is graded once, at the end of Week 6. Each stage below says exactly what to submit. Everything goes in your Module 3 GitHub Classroom repo: written work under the matching heading in <code>NOTES.md</code>, screenshots in <code>screenshots/</code>. Commit and push as you go. By the end of Week 6, push your final work: your repo is your submission, so there is nothing to submit in Brightspace, and your last push before the deadline is what counts.</p>
 </section>
 
 <section class="module card" id="create">
   <div class="module-head"><div class="module-icon">🛠️</div><div><h2>1 · Create / Scaffold</h2></div></div>
-            <p class="stage-tagline">Graded as Engagement: 20% of this HOS. The AI-assisted starting point, not the deliverable.</p>
+            <p class="stage-tagline">Graded under Build: Create, 12 of the 100 AIC points. The AI-assisted starting point, not the deliverable.</p>
             <p><strong>Don't open <code>support_agent/tools.py</code> or <code>agent.py</code> yet.</strong> First run the six scenarios and read what comes out:</p>
 <pre tabindex="0">python run_scenarios.py</pre>
             <p>Each scenario prints only its final reply, and every reply sounds reasonable. To see what the agent actually did, you need a trace. Open one scenario in the dev UI first:</p>
 <pre tabindex="0">adk web</pre>
             <p>Pick <code>support_agent</code>, type the s1 request ("Where is order #1004?"), then open the <b>Trace</b> view: each model call and each tool call is a timed span. That's ADK's own trace. Now you'll build a recorder that writes the same steps to a file for every scenario, so you can compare runs. <strong>This time you write the prompt for Antigravity yourself</strong>, from this spec:</p>
             <blockquote><p>Add <code>support_agent/tracing.py</code>, which records a run with ADK callbacks (<code>before_model_callback</code>, <code>after_model_callback</code>, <code>before_tool_callback</code>, <code>after_tool_callback</code>): one line per model call and per tool call, with seconds since the run started, each tool's arguments and result (or error), and the tokens each model call used. <code>run_scenarios.py</code> already imports <code>support_agent.tracing</code> if it exists; it should save each scenario's trace to <code>traces/&lt;id&gt;.txt</code> and print it. Recording turns on only when <code>TRACE=1</code> is set. The callbacks only record and always return <code>None</code>. Don't open or change <code>tools.py</code>, or what <code>agent.py</code> does.</p></blockquote>
-            <p><b>Start a new conversation in the Agent panel first</b>, not one from an earlier HOS. Antigravity keeps the rules from earlier prompts for the rest of a conversation, such as "Don't change any .py file", and they would get in the way of your prompt.</p>
+            <p><b>Start a new conversation in the Agent panel first</b>, not one from an earlier AIC. Antigravity keeps the rules from earlier prompts for the rest of a conversation, such as "Don't change any .py file", and they would get in the way of your prompt.</p>
             <p>Use <code>/plan</code> and read Antigravity's plan before you approve it. Check one thing in particular: does it attach the callbacks to the agent without changing its instruction or tools? Then run the scenarios with recording on:</p>
 <pre tabindex="0">TRACE=1 python run_scenarios.py</pre>
             <p>On Windows PowerShell, run <code>$env:TRACE=1</code> first, then <code>python run_scenarios.py</code>. Keep your prompt; you'll submit it.</p>
-            <div class="submit-box"><h5>Submit (Engagement)</h5>
+            <div class="submit-box"><h5>Submit (Create)</h5>
                 <ul><li>The prompt you wrote from the spec and a two-line summary of Antigravity's plan, under <b>Create</b> in <code>NOTES.md</code>.</li><li>Screenshots of one file in <code>traces/</code> and of the same scenario in <code>adk web</code>'s Trace view.</li></ul>
             </div>
 </section>
@@ -169,7 +169,7 @@
   <div class="module-head"><div class="module-icon">🧯</div><div><h2>Common snags</h2></div></div>
         <div class="snag-box">
             <ul>
-                <li><strong>Antigravity won't edit a file your prompt asks for, or brings up rules from an earlier HOS</strong> — you gave your prompt in an earlier HOS's conversation, so the agent is still following that conversation's rules, such as "Don't change any .py file". Start a new conversation and paste your prompt again.</li>
+                <li><strong>Antigravity won't edit a file your prompt asks for, or brings up rules from an earlier AIC</strong> — you gave your prompt in an earlier AIC's conversation, so the agent is still following that conversation's rules, such as "Don't change any .py file". Start a new conversation and paste your prompt again.</li>
                 <li><strong>A scenario ends with <code>LlmCallsLimitExceededError</code></strong> — that's the step budget from <code>--max-calls</code> stopping a runaway loop. It's a finding, not a problem with the script.</li>
                 <li><strong>A trace looks different each run</strong> — expected; the model isn't deterministic. If a failure doesn't show up, run that scenario again with <code>--only</code>. Base your log on what you saw, and note when behavior varied.</li>
                 <li><strong><code>traces/</code> stays empty</strong> — recording is off. Check that <code>TRACE=1</code> is set in the same terminal (on PowerShell, <code>$env:TRACE=1</code>), and that the callbacks are attached to the agent <code>run_scenarios.py</code> actually runs.</li>

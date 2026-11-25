@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<meta name="description" content="AI 420 HOS 4 simulator: agent-on-agent evaluation of a single agent vs. a coordinator with specialists — success rate, cost per task, p50/p95 latency, and judge agreement.">
+<meta name="description" content="AI 420 AIC 4 simulator: agent-on-agent evaluation of a single agent vs. a coordinator with specialists — success rate, cost per task, p50/p95 latency, and judge agreement.">
 <title>Multi-Agent Eval Lab</title>
 <link rel="stylesheet" href="../assets/course.css">
 <style>
@@ -73,7 +73,7 @@
 </header>
 <section class="hero">
   <div class="hero-inner">
-    <div class="eyebrow">Simulator 4 · Pairs with HOS 4 (Weeks 7–8)</div>
+    <div class="eyebrow">Simulator 4 · Pairs with AIC 4 (Weeks 7–8)</div>
     <h1>Multi-Agent Eval Lab</h1>
     <p class="lede">Run 12 simulated-customer scenarios against a single agent and a coordinator-plus-specialists team. Tune routing, the judge's strictness, and prices — and compare the success rate you'd report with the one that's actually true.</p>
     <div class="chips"><span class="chip">CO4</span><span class="chip">Success · cost · latency</span><span class="chip">LLM judge</span><span class="chip">Single vs. team</span></div>
@@ -184,19 +184,19 @@ $('run').addEventListener('click',function(){
   'do':'Press <b>Set this up for me</b>. It resets the settings and runs both systems with seed 4. Then change the seed to 1 and press <b>Run both systems</b> again.',
   watch:'The <b>Side-by-side report</b>: success, cost per task, tokens and latency, and the verdict under it.',
   expect:'With seed 4 the team wins clearly on true success. With seed 1 the two tie, and the team just costs about half as much again. Same settings, different conclusion.',
-  why:'The HOS 4 deliverable is this comparison, not a winner, and one run of 12 scenarios is weak evidence.',
+  why:'The AIC 4 deliverable is this comparison, not a winner, and one run of 12 scenarios is weak evidence.',
   setup:function(h){ h.set('sAcc',82); h.set('rAcc',92); h.set('tAcc',95); h.set('lenient',0); h.set('simStop',90); h.set('seed','4'); h.click('run'); }},
  {title:'2 · Worse routing',
   'do':'Press <b>Set this up for me</b>. It drops the coordinator\'s routing accuracy to 60% and runs seed 1 again.',
   watch:'The team\'s true success rate and its cost per task.',
   expect:'The team\'s true success falls, but its cost per task doesn\'t move: it pays for every routing call whether it routes well or not.',
-  why:'Where the extra cost comes from is one of the HOS 4 Analyze choices. Count the calls.',
+  why:'Where the extra cost comes from is one of the AIC 4 Analyze choices. Count the calls.',
   setup:function(h){ h.set('sAcc',82); h.set('rAcc',60); h.set('tAcc',95); h.set('lenient',0); h.set('simStop',90); h.set('seed','1'); h.click('run'); }},
  {title:'3 · A lenient judge',
   'do':'Press <b>Set this up for me</b>. It sets judge leniency to +30 and runs seed 3.',
   watch:'The two success-rate rows, judge agreement, and the ⚠ marks in <b>Scenario detail</b>.',
   expect:'For both systems, the success rate you\'d report is about 8 points above the true one. Judge agreement drops below 100%, and that is the only row that shows the problem.',
-  why:'This is why HOS 4 Refine has you grade six transcripts by hand and write <code>agreement.py</code>.',
+  why:'This is why AIC 4 Refine has you grade six transcripts by hand and write <code>agreement.py</code>.',
   setup:function(h){ h.set('sAcc',82); h.set('rAcc',92); h.set('tAcc',95); h.set('lenient',30); h.set('simStop',90); h.set('seed','3'); h.click('run'); }},
  {title:'4 · A simulated customer that won\'t stop',
   'do':'Press <b>Set this up for me</b>. It makes the simulated customer worse at stopping (60%) and runs seed 1. Compare with step 1\'s seed-1 run.',
@@ -207,7 +207,7 @@ $('run').addEventListener('click',function(){
  {title:'Your turn',
   'do':'Keep the same settings and change only the seed a few times. The <b>What this teaches</b> box below lists more experiments.',
   expect:'You can explain why one run of 12 scenarios is weak evidence, and what you\'d need before trusting a vendor\'s success rate.',
-  why:'That\'s Application Challenge 4. Now go back to the <a href="index.html#lecture">lesson</a>.'}
+  why:'That\'s the AIC 4 Part B challenge. Now go back to the <a href="index.html#lecture">lesson</a>.'}
 ];</script>
 <script src="../assets/sim-tour.js"></script>
 </body>

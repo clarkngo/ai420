@@ -77,7 +77,7 @@
   <div class="hero-inner">
     <div class="eyebrow">AI 420 · Start here · Read before Week 1</div>
     <h1>Tools You'll Use All Term</h1>
-    <p class="lede">Google Antigravity, the terminal, Python environments, Google ADK, keys and git: the tools every module uses. Set them up once here instead of under deadline pressure in HOS 1.</p>
+    <p class="lede">Google Antigravity, the terminal, Python environments, Google ADK, keys and git: the tools every module uses. Set them up once here instead of under deadline pressure in AIC 1.</p>
     <div class="chips"><span class="chip">Read before Week 1</span><span class="chip">Antigravity on your own computer</span><span class="chip">Free tiers only</span></div>
   </div>
 </section>
@@ -114,7 +114,7 @@
   <div class="module-head"><div class="module-icon">💻</div><div><h2>Install on your computer</h2><div class="module-meta"><span class="tag blue">About 30 minutes, once</span></div></div></div>
         <p class="why-line">You need a Mac, Windows or Linux computer you can install software on. Can't install? Use <a href="#codespaces">Codespaces</a> instead and skip this section.</p>
         <ol class="steps">
-            <li><b>Google Antigravity IDE.</b> An IDE is the program you write and run code in; Antigravity's has a coding agent built in. Download it from <a href="https://antigravity.google/download" rel="noopener">antigravity.google/download</a> (macOS, Windows or Linux), install it, open it and sign in with a <b>personal</b> Google account. The free Individual plan is enough for this course. Its usage limit resets weekly, so don't leave a whole HOS for the last night.</li>
+            <li><b>Google Antigravity IDE.</b> An IDE is the program you write and run code in; Antigravity's has a coding agent built in. Download it from <a href="https://antigravity.google/download" rel="noopener">antigravity.google/download</a> (macOS, Windows or Linux), install it, open it and sign in with a <b>personal</b> Google account. The free Individual plan is enough for this course. Its usage limit resets weekly, so don't leave a whole AIC for the last night.</li>
             <li><b>Python 3.11 or newer</b> from <a href="https://www.python.org/downloads/" rel="noopener">python.org</a>. On Windows, tick <b>Add python.exe to PATH</b> in the installer.</li>
             <li><b>Git</b> from <a href="https://git-scm.com/downloads" rel="noopener">git-scm.com</a> (macOS: run <code>git --version</code> once and accept the prompt to install the developer tools).</li>
             <li><b>Google Chrome</b>, if you don't have it. Antigravity's browser agent drives Chrome.</li>
@@ -125,8 +125,8 @@ git --version</code></pre>
 </section>
 
 <section class="module card" id="first-run">
-  <div class="module-head"><div class="module-icon">▶️</div><div><h2>First run: one HOS repo, start to finish</h2></div></div>
-        <p class="why-line">Every HOS starts with these same six steps. The repo URL comes from the HOS invite link in each module.</p>
+  <div class="module-head"><div class="module-icon">▶️</div><div><h2>First run: one AIC repo, start to finish</h2></div></div>
+        <p class="why-line">Every AIC starts with these same six steps. The repo URL comes from the AIC invite link in each module.</p>
         <ol class="steps">
             <li><b>Clone your repo.</b> In Antigravity: <b>File → Open Folder</b> on an empty folder for the course, then in the terminal: <code>git clone &lt;your repo URL&gt;</code>, and open the cloned folder.</li>
             <li><b>Make a virtual environment and install.</b> A virtual environment is a folder named <code>.venv</code> inside your repo. It holds this project's own copy of Python and the packages it needs, so they don't clash with anything else on your computer. You make it once per repo. In the terminal, from the repo's top folder:
@@ -136,7 +136,7 @@ pip install -r requirements.txt  # includes google-adk</code></pre>
 The first line makes the folder. The second switches this terminal to it: the start of the line now shows <code>(.venv)</code>. The third installs the packages into it. <b>Each time you open a new terminal, run the second line again.</b> The folder's name starts with a dot, so your file browser may hide it; that's normal, and Git leaves it out of your commits.</li>
             <li><b>Add your key.</b> Copy <code>.env.example</code> to <code>.env</code> and paste your Gemini key after <code>GOOGLE_API_KEY=</code>. Leave <code>GOOGLE_GENAI_USE_VERTEXAI=FALSE</code> as it is.</li>
             <li><b>Start the developer UI.</b> From the repo's top folder: <code>adk web</code>, then open <code>http://localhost:8000</code> in your browser, pick the agent, and say hello.</li>
-            <li><b>Look at the Events tab.</b> Every model call and tool call is listed there. You'll use it in every HOS.</li>
+            <li><b>Look at the Events tab.</b> Every model call and tool call is listed there. You'll use it in every AIC.</li>
             <li><b>Commit and push</b> when you finish a stage: <code>git add -A &amp;&amp; git commit -m "Stage 1" &amp;&amp; git push</code>. Your NOTES.md and code in the repo are what gets graded.</li>
         </ol>
         <div class="intro-box">
@@ -150,7 +150,7 @@ The first line makes the folder. The second switches this terminal to it: the st
         <p class="why-line">On a Chromebook, a locked work laptop, or when Antigravity won't install, open the same repo in GitHub Codespaces (<b>Code → Codespaces → Create codespace on main</b>). The Antigravity IDE is installed on your own computer, so it doesn't run in a Codespace. Everything is graded the same way.</p>
         <ul>
             <li>The coding agent there is <b>GitHub Copilot in Agent mode</b> (free for verified students) instead of Antigravity. Open Copilot Chat and switch its mode from <b>Ask</b> to <b>Agent</b>. Like Antigravity, it plans, edits files and runs terminal commands after you approve them.</li>
-            <li>Where a HOS gives a <code>/plan</code> prompt for Antigravity, give Copilot the same prompt and ask it to show its plan and wait for your OK before it changes anything. That includes Module 1's Part A warm-up.</li>
+            <li>Where an AIC gives a <code>/plan</code> prompt for Antigravity, give Copilot the same prompt and ask it to show its plan and wait for your OK before it changes anything. That includes Module 1's Part A warm-up.</li>
             <li>The Codespace installs the requirements for you. Add your key to <code>.env</code> as above.</li>
             <li>Start the UI with <code>adk web --allow_origins "*"</code>. Plain <code>adk web</code> returns 403 errors in Codespaces. Open the forwarded port 8000 when VS Code offers it.</li>
             <li>Stop the Codespace when you finish (<b>Codespaces → Stop current codespace</b>) to save your free monthly hours.</li>
@@ -159,10 +159,10 @@ The first line makes the folder. The second switches this terminal to it: the st
 
 <section class="module card" id="module-0">
   <div class="module-head"><div class="module-icon">🧰</div><div><h2>Universal tooling</h2><div class="module-meta"><span class="tag blue">Read before Week 1</span></div></div></div>
-            <p class="why-line">These tools show up in <strong>every HOS</strong> of this course, not just one. Get comfortable with them once, here.</p>
+            <p class="why-line">These tools show up in <strong>every AIC</strong> of this course, not just one. Get comfortable with them once, here.</p>
 
             <div class="diagram-box">
-                <svg viewBox="0 0 700 130" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="The setup path: clone the repo, create a virtual environment (.venv), pip install the requirements, add your key to .env, run adk web. Every HOS starts with it.">
+                <svg viewBox="0 0 700 130" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="The setup path: clone the repo, create a virtual environment (.venv), pip install the requirements, add your key to .env, run adk web. Every AIC starts with it.">
                     <defs><marker id="m0arrow" markerWidth="8" markerHeight="8" refX="6" refY="3" orient="auto"><path d="M0,0 L6,3 L0,6 Z" style="fill:var(--code-bg)"/></marker></defs>
                     <g font-family="Inter,system-ui,sans-serif">
                         <rect x="0" y="35" width="120" height="50" rx="8" style="fill:var(--blue-bg);stroke:var(--blue)"/>
@@ -180,21 +180,21 @@ The first line makes the folder. The second switches this terminal to it: the st
                         <rect x="608" y="35" width="90" height="50" rx="8" style="fill:var(--accent-light);stroke:var(--accent)"/>
                         <text x="653" y="65" text-anchor="middle" font-size="11" font-weight="700" style="fill:var(--accent2)">adk web</text>
                     </g>
-                    <text x="350" y="115" text-anchor="middle" font-size="11" style="fill:var(--muted)" font-family="Inter,system-ui,sans-serif">Every HOS starts with this same setup path.</text>
+                    <text x="350" y="115" text-anchor="middle" font-size="11" style="fill:var(--muted)" font-family="Inter,system-ui,sans-serif">Every AIC starts with this same setup path.</text>
                 </svg>
-                <div class="diagram-caption">The setup path you'll repeat at the start of every HOS.</div>
+                <div class="diagram-caption">The setup path you'll repeat at the start of every AIC.</div>
             </div>
 
             <div class="concept-grid">
                 <div class="concept-card">
                     <h4>Google Antigravity: an agent-first IDE</h4>
                     <p>An editor with a coding agent built in. You describe a task in the Agent panel; with <code>/plan</code> it first writes an <b>Implementation Plan</b> (<code>plan.md</code>) and waits for you to click <b>Proceed</b>. Then it edits files and runs commands, and ends with a summary of what it did and a card listing the files it changed. Files like the plan are called artifacts.</p>
-                    <div class="why"><strong>Why it matters:</strong> you are responsible for everything it builds. Read the plan before you approve it, and comment on it when it's wrong. That habit is the Evaluate stage of every HOS.</div>
+                    <div class="why"><strong>Why it matters:</strong> you are responsible for everything it builds. Read the plan before you approve it, and comment on it when it's wrong. That habit is the Evaluate stage of every AIC.</div>
                 </div>
                 <div class="concept-card">
                     <h4>Google ADK (Agent Development Kit)</h4>
                     <p>Google's open-source Python framework for agents. An agent is a <code>root_agent = Agent(name=..., model=..., instruction=..., tools=[...])</code> in <code>agent.py</code>; ADK runs the loop of model calls and tool calls for you and records each step as an <b>event</b>.</p>
-                    <div class="why"><strong>Why it matters:</strong> ADK is what this course teaches. Antigravity writes code fast, but the HOS ask you to explain, test and extend the ADK parts yourself.</div>
+                    <div class="why"><strong>Why it matters:</strong> ADK is what this course teaches. Antigravity writes code fast, but the AIC ask you to explain, test and extend the ADK parts yourself.</div>
                 </div>
                 <div class="concept-card">
                     <h4><code>adk web</code>, <code>adk run</code> and <code>adk eval</code></h4>
@@ -217,12 +217,12 @@ The first line makes the folder. The second switches this terminal to it: the st
                 </div>
                 <div class="concept-card">
                     <h4>Git and your Classroom repo</h4>
-                    <p>Each HOS and AC has its own GitHub repo, created from the invite link. You clone it, work locally, then <code>commit</code> and <code>push</code>. The pushed repo, with your NOTES.md, is your submission.</p>
+                    <p>Each AIC has its own GitHub repo, created from the invite link; its Part B challenge goes in the same repo's <code>challenge/</code> folder. You clone it, work locally, then <code>commit</code> and <code>push</code>. The pushed repo, with your NOTES.md, is your submission.</p>
                 </div>
                 <div class="concept-card">
                     <h4>Working with a coding agent</h4>
-                    <p>The first stage of each HOS (<strong>Create/Scaffold</strong>) is deliberately agent-driven: Antigravity builds with you. The rest of the HOS proves, in writing and by hand, that you understand what was built.</p>
-                    <div class="why"><strong>Why it matters:</strong> getting the agent-built code running is only 20% of each HOS grade (Create). The other 80% is whether <em>you</em> can evaluate it, explain it, and extend it without AI help.</div>
+                    <p>The first stage of each AIC (<strong>Create/Scaffold</strong>) is deliberately agent-driven: Antigravity builds with you. The rest of the AIC proves, in writing and by hand, that you understand what was built.</p>
+                    <div class="why"><strong>Why it matters:</strong> getting the agent-built code running is only 12 of each AIC's 100 points (Build: Create). The other 88 are for whether <em>you</em> can evaluate it, explain it, and extend it without AI help.</div>
                 </div>
             </div>
 
@@ -231,7 +231,7 @@ The first line makes the folder. The second switches this terminal to it: the st
                 <ul>
                     <li>Does <code>adk web</code> open in your browser, and can you find the Events tab?</li>
                     <li>Do you know where your Gemini API key is stored, and why it's not inside a <code>.py</code> file?</li>
-                    <li>Do you know which part of each HOS is done with Antigravity, and which parts you must do and explain yourself?</li>
+                    <li>Do you know which part of each AIC is done with Antigravity, and which parts you must do and explain yourself?</li>
                 </ul>
             </div>
             <p class="module-nav"><a href="../module-1/index.html">Next: Module 1 — Anatomy of an Agent →</a></p>
