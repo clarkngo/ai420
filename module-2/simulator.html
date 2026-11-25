@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<meta name="description" content="AI 420 HOS 2 simulator: how tool descriptions steer tool choice, how read-only protections hold against crafted SQL, and how memory is scoped.">
+<meta name="description" content="AI 420 AIC 2 simulator: how tool descriptions steer tool choice, how read-only protections hold against crafted SQL, and how memory is scoped.">
 <title>Tool Schema & MCP Simulator</title>
 <link rel="stylesheet" href="../assets/course.css">
 <style>
@@ -73,7 +73,7 @@
 </header>
 <section class="hero">
   <div class="hero-inner">
-    <div class="eyebrow">Simulator 2 · Pairs with HOS 2 (Weeks 3–4)</div>
+    <div class="eyebrow">Simulator 2 · Pairs with AIC 2 (Weeks 3–4)</div>
     <h1>Tool Schema &amp; MCP Simulator</h1>
     <p class="lede">Three experiments for Harbor Supply Co.'s operations agent: rewrite tool descriptions and watch tool choice change, attack the database tool with its protections switched off one at a time, and see what memory remembers — and for whom.</p>
     <div class="chips"><span class="chip">CO1 · CO2</span><span class="chip">Tool descriptions</span><span class="chip">Read-only SQL</span><span class="chip">Memory scope</span></div>
@@ -228,13 +228,13 @@ renderMem();
   'do':'Press <b>Set this up for me</b>. It makes <code>query_database</code>\'s description vague and leaves the other two precise.',
   watch:'The <b>Picked</b> column in panel A\'s table.',
   expect:'Requests that belong to <code>order_status</code> and <code>low_stock_report</code> now go to <code>query_database</code>. The verdict turns red or amber.',
-  why:'The model only reads the name and the description. HOS 2 asks you to write schemas precise enough that it picks the right tool.',
+  why:'The model only reads the name and the description. AIC 2 asks you to write schemas precise enough that it picks the right tool.',
   setup:function(h){ h.set('d_order_status','good'); h.set('d_low_stock_report','good'); h.set('d_query_database','bad'); }},
  {title:'2 · "Cancel order 1003", protected twice',
   'do':'Press <b>Set this up for me</b>. It resets the database with both protections on and sends "Cancel order 1003". Then untick the single-SELECT check and send it again.',
   watch:'The log in <b>What happened</b>, and order 1003\'s status.',
   expect:'The tool\'s check refuses it. With the check off, SQLite\'s read-only mode refuses it. Order 1003 stays <b>processing</b>.',
-  why:'Either protection alone stops most attacks. HOS 2 Evaluate asks where your protection lives: the check, the connection, or both.',
+  why:'Either protection alone stops most attacks. AIC 2 Evaluate asks where your protection lives: the check, the connection, or both.',
   setup:function(h){ h.set('pSelect',true); h.set('pRO',true); h.click('dbReset'); h.click(h.q('#attacks button[data-a="cancel"]')); }},
  {title:'3 · Both protections off',
   'do':'Press <b>Set this up for me</b>. It turns both protections off, resets, and sends "Cancel order 1003". Then try the stacked <code>DROP TABLE</code>.',
@@ -246,7 +246,7 @@ renderMem();
   'do':'Press <b>Set this up for me</b>. It turns long-term memory off and plays session 1, the restart and session 2.',
   watch:'<b>Session state</b> and <b>Long-term store</b>.',
   expect:'Ana\'s name is in session state until the restart, then it\'s gone, and the agent has to ask how to contact her.',
-  why:'Short-term memory lasts one conversation. Long-term memory is what you add in HOS 2 so preferences survive.',
+  why:'Short-term memory lasts one conversation. Long-term memory is what you add in AIC 2 so preferences survive.',
   setup:function(h){ h.set('mLong',false); h.set('mScope',true); ['1','restart','2'].forEach(function(s){ h.click(h.q('#memBtns button[data-s="'+s+'"]')); }); }},
  {title:'5 · Long-term memory without scoping',
   'do':'Press <b>Set this up for me</b>. It turns long-term memory on and scoping off, then plays all four buttons. Reload the page and try again with scoping on.',
@@ -257,7 +257,7 @@ renderMem();
  {title:'Your turn',
   'do':'Make every description precise and see if 5 / 5 is possible. The <b>What this teaches</b> box below lists more experiments.',
   expect:'You can explain what the model reads to pick a tool, why you protect the database twice, and what customer memory should be scoped to.',
-  why:'Those are the HOS 2 Analyze choices. Now go back to the <a href="index.html#lecture">lesson</a>.'}
+  why:'Those are the AIC 2 Analyze choices. Now go back to the <a href="index.html#lecture">lesson</a>.'}
 ];</script>
 <script src="../assets/sim-tour.js"></script>
 </body>

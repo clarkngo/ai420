@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<meta name="description" content="AI 420 HOS 1 simulator: compare a single model call with a ReAct loop and plan-and-execute, with a step budget and a calculator toggle.">
+<meta name="description" content="AI 420 AIC 1 simulator: compare a single model call with a ReAct loop and plan-and-execute, with a step budget and a calculator toggle.">
 <title>Agent Loop Simulator</title>
 <link rel="stylesheet" href="../assets/course.css">
 <style>
@@ -73,7 +73,7 @@
 </header>
 <section class="hero">
   <div class="hero-inner">
-    <div class="eyebrow">Simulator 1 · Pairs with HOS 1 (Weeks 1–2)</div>
+    <div class="eyebrow">Simulator 1 · Pairs with AIC 1 (Weeks 1–2)</div>
     <h1>Agent Loop Simulator</h1>
     <p class="lede">Ask a multi-step research question three ways — one model call, a ReAct loop, and plan-and-execute — and compare what each costs, how it got its answer, and whether it stopped honestly.</p>
     <div class="chips"><span class="chip">CO1 · CO2</span><span class="chip">Inference vs. agent</span><span class="chip">ReAct</span><span class="chip">Plan-and-execute</span><span class="chip">Step budget</span></div>
@@ -206,25 +206,25 @@ $('runAll').addEventListener('click',function(){ ['single','react','plan'].forEa
   'do':'Press <b>Set this up for me</b>. It picks <b>Single call</b> and runs the Space Needle question. Then press <b>Run</b> four more times.',
   watch:'Panel 2 and the <b>Runs so far</b> table.',
   expect:'One step, no tool calls, and an answer stated with the same confidence every time, even when the number changes.',
-  why:'A single call is inference, not an agent: there\'s no evidence to check. HOS 1 Evaluate asks you to tell these two apart.',
+  why:'A single call is inference, not an agent: there\'s no evidence to check. AIC 1 Evaluate asks you to tell these two apart.',
   setup:function(h){ h.set('q',0); h.click(h.q('.seg button[data-m="single"]')); h.set('budget',8); h.set('calc',true); h.click('run'); }},
  {title:'2 · The same question as a ReAct loop',
   'do':'Press <b>Set this up for me</b>. It switches to <b>ReAct loop</b> and runs the same question.',
   watch:'Each step\'s Thought → Action → Observation, and panel 3, the message list the model receives on its last call.',
   expect:'Several reason → act steps, a <code>calculate</code> call, and the same correct answer on every run. The memory panel grows with every observation.',
-  why:'This is the loop you build with Google ADK in HOS 1 Create: reasoning, tool use and memory, all visible in the trace.',
+  why:'This is the loop you build with Google ADK in AIC 1 Create: reasoning, tool use and memory, all visible in the trace.',
   setup:function(h){ h.set('q',0); h.click(h.q('.seg button[data-m="react"]')); h.set('budget',8); h.set('calc',true); h.click('run'); }},
  {title:'3 · Plan-and-execute: the plan made visible',
   'do':'Press <b>Set this up for me</b>. It runs <b>Plan-and-execute</b>, then <b>Run all 3 approaches</b> so you can compare.',
   watch:'Step 1, the planning call, and the tokens column in <b>Runs so far</b>.',
   expect:'A written plan before any tool call, then the steps it promised. Compare the tokens each approach used.',
-  why:'Planning is the fourth component of an agent. HOS 1 asks you to choose ReAct or plan-and-execute for a task, and justify it.',
+  why:'Planning is the fourth component of an agent. AIC 1 asks you to choose ReAct or plan-and-execute for a task, and justify it.',
   setup:function(h){ h.set('q',1); h.click(h.q('.seg button[data-m="plan"]')); h.set('budget',8); h.set('calc',true); h.click('runAll'); }},
  {title:'4 · A step budget of 2: an honest stop',
   'do':'Press <b>Set this up for me</b>. It sets the step budget to 2 and runs the ReAct loop.',
   watch:'The last step and the verdict.',
   expect:'The loop stops early and says it couldn\'t finish, instead of guessing an answer.',
-  why:'A step budget bounds the cost of a confused agent. Your HOS 1 agent needs one, and it should stop honestly.',
+  why:'A step budget bounds the cost of a confused agent. Your AIC 1 agent needs one, and it should stop honestly.',
   setup:function(h){ h.set('q',2); h.click(h.q('.seg button[data-m="react"]')); h.set('budget',2); h.set('calc',true); h.click('run'); }},
  {title:'5 · No calculator: right answers that were never checked',
   'do':'Press <b>Set this up for me</b>. It turns the calculator off and runs the loop. Press <b>Run</b> a few more times.',
@@ -235,7 +235,7 @@ $('runAll').addEventListener('click',function(){ ['single','react','plan'].forEa
  {title:'Your turn',
   'do':'Try the third question, or each approach with different budgets. The <b>What this teaches</b> box below lists more experiments.',
   expect:'You can explain, in one sentence each: what makes a loop an agent, what a step budget is for, and when an agent isn\'t worth its cost.',
-  why:'Those three sentences are most of the HOS 1 Analyze stage. Now go back to the <a href="index.html#lecture">lesson</a>.'}
+  why:'Those three sentences are most of the AIC 1 Analyze stage. Now go back to the <a href="index.html#lecture">lesson</a>.'}
 ];</script>
 <script src="../assets/sim-tour.js"></script>
 </body>

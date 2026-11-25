@@ -89,7 +89,7 @@
     <div class="eyebrow">AI 420 · Reference · Read before each module</div>
     <h1>Concept Companion</h1>
     <p class="lede">Every concept and piece of vocabulary you should understand before you open a module's hands-on guide, gathered in one place. Read the module you're about to start, not the whole page.</p>
-    <div class="chips"><span class="chip">Read before you start, not while debugging</span><span class="chip">One module per HOS</span><span class="chip">Modules 1–4, then putting it together</span></div>
+    <div class="chips"><span class="chip">Read before you start, not while debugging</span><span class="chip">One module per AIC</span><span class="chip">Modules 1–4, then putting it together</span></div>
   </div>
 </section>
 <main id="main">
@@ -110,15 +110,15 @@
         <div class="intro-box">
             <h4>What this page is</h4>
             <p>The Hands-On Guides tell you <em>what to build, step by step</em>. This page is different: it's every concept and piece of vocabulary you should already understand <strong>before</strong> you open one of those guides, gathered in one place instead of scattered across the term. Read the module for what you're about to start, not the whole page at once — each module is written to stand on its own.</p>
-            <p style="margin-bottom:0"><strong>Modular by design:</strong> Its four modules match the <a href="../index.html">course's Modules 1–4</a>, one per HOS. Module 5, the Term Project, adds no new concepts, so the last section, <a href="#module-5">Putting it together</a>, connects the four HOS instead: read it before the Week 8 architecture review. The tools you'll use all term (Antigravity, Google ADK, the terminal, git) are on their own page: <a href="../start-here/tools.html">Tools you'll use all term</a>. See any concept in motion in the simulators: <a href="../module-1/simulator.html">agent loop</a>, <a href="../module-2/simulator.html">tool schemas &amp; MCP</a>, <a href="../module-3/simulator.html">trace detective</a>, <a href="../module-4/simulator.html">eval lab</a>.</p>
+            <p style="margin-bottom:0"><strong>Modular by design:</strong> Its four modules match the <a href="../index.html">course's Modules 1–4</a>, one per AIC. Module 5, the Term Project, adds no new concepts, so the last section, <a href="#module-5">Putting it together</a>, connects the four AICs instead: read it before the Week 8 architecture review. The tools you'll use all term (Antigravity, Google ADK, the terminal, git) are on their own page: <a href="../start-here/tools.html">Tools you'll use all term</a>. See any concept in motion in the simulators: <a href="../module-1/simulator.html">agent loop</a>, <a href="../module-2/simulator.html">tool schemas &amp; MCP</a>, <a href="../module-3/simulator.html">trace detective</a>, <a href="../module-4/simulator.html">eval lab</a>.</p>
         </div>
         <div class="table-wrap" tabindex="0"><table class="map-table">
             <tr><th>Module</th><th>When</th><th>Outcome(s)</th><th>Jump</th></tr>
-            <tr><td class="mod-name">1 — Anatomy of an Agent</td><td>Before HOS 1</td><td>CO1 · CO2</td><td><a class="jump" href="#module-1">Read →</a></td></tr>
-            <tr><td class="mod-name">2 — Custom Tools, MCP &amp; Memory</td><td>Before HOS 2</td><td>CO1 · CO2</td><td><a class="jump" href="#module-2">Read →</a></td></tr>
-            <tr><td class="mod-name">3 — Traces &amp; Self-Correction</td><td>Before HOS 3</td><td>CO3</td><td><a class="jump" href="#module-3">Read →</a></td></tr>
-            <tr><td class="mod-name">4 — Multi-Agent Orchestration &amp; Evaluation</td><td>Before HOS 4</td><td>CO4</td><td><a class="jump" href="#module-4">Read →</a></td></tr>
-            <tr><td class="mod-name">Putting it together — all 4 HOS</td><td>Before the Week 8 review and the Term Project</td><td>CO4, CO5</td><td><a class="jump" href="#module-5">Read →</a></td></tr>
+            <tr><td class="mod-name">1 — Anatomy of an Agent</td><td>Before AIC 1</td><td>CO1 · CO2</td><td><a class="jump" href="#module-1">Read →</a></td></tr>
+            <tr><td class="mod-name">2 — Custom Tools, MCP &amp; Memory</td><td>Before AIC 2</td><td>CO1 · CO2</td><td><a class="jump" href="#module-2">Read →</a></td></tr>
+            <tr><td class="mod-name">3 — Traces &amp; Self-Correction</td><td>Before AIC 3</td><td>CO3</td><td><a class="jump" href="#module-3">Read →</a></td></tr>
+            <tr><td class="mod-name">4 — Multi-Agent Orchestration &amp; Evaluation</td><td>Before AIC 4</td><td>CO4</td><td><a class="jump" href="#module-4">Read →</a></td></tr>
+            <tr><td class="mod-name">Putting it together — all 4 AICs</td><td>Before the Week 8 review and the Term Project</td><td>CO4, CO5</td><td><a class="jump" href="#module-5">Read →</a></td></tr>
         </table></div>
         <p style="font-size:0.85rem;color:var(--muted);margin-top:6px">Skipped a module and got confused later? That's the signal to come back and read it — every "common snag" box in the Hands-On Guides traces back to one of the concepts below.</p>
 </section>
@@ -128,14 +128,14 @@
             <button type="button" data-mod="2" aria-controls="module-2">Module 2<span class="tab-sub"> · Tools &amp; MCP</span></button>
             <button type="button" data-mod="3" aria-controls="module-3">Module 3<span class="tab-sub"> · Traces</span></button>
             <button type="button" data-mod="4" aria-controls="module-4">Module 4<span class="tab-sub"> · Multi-agent</span></button>
-            <button type="button" data-mod="5" aria-controls="module-5">Putting it together<span class="tab-sub"> · all 4 HOS</span></button>
+            <button type="button" data-mod="5" aria-controls="module-5">Putting it together<span class="tab-sub"> · all 4 AICs</span></button>
             <button type="button" class="show-all">Show all modules</button>
         </div>
         <p class="small muted tabs-hint">Pick your module. Searching the page (Ctrl/Cmd+F) only looks in the open tab; use "Show all modules" to search everything.</p>
 
 <section class="module card" id="module-1">
-  <div class="module-head"><div class="module-icon">1️⃣</div><div><h2>Module 1: Anatomy of an Agent</h2><div class="module-meta"><span class="tag blue">HOS 1</span><span class="tag">Outcome 1</span></div></div></div>
-            <p class="why-line"><strong>Why before you start:</strong> This course's whole idea is the difference between asking a model once and putting it in a loop. If you can point at the loop's parts, every later HOS is "the same loop, plus one more thing."</p>
+  <div class="module-head"><div class="module-icon">1️⃣</div><div><h2>Module 1: Anatomy of an Agent</h2><div class="module-meta"><span class="tag blue">AIC 1</span><span class="tag">Outcome 1</span></div></div></div>
+            <p class="why-line"><strong>Why before you start:</strong> This course's whole idea is the difference between asking a model once and putting it in a loop. If you can point at the loop's parts, every later AIC is "the same loop, plus one more thing."</p>
 
             <div class="diagram-box">
                 <svg role="img" aria-label="The agent loop: a question goes to the model, which reasons and decides the next step. A tool call runs your code, and the observation is added to memory. The loop repeats, with the history growing each step, until the model gives a final answer or the step budget runs out." viewBox="0 0 720 175" xmlns="http://www.w3.org/2000/svg"><defs><marker id="arra" markerWidth="8" markerHeight="8" refX="6" refY="3" orient="auto"><path d="M0,0 L6,3 L0,6 Z" style="fill:var(--muted)"/></marker></defs><g font-family="Inter,system-ui,sans-serif"><rect x="10" y="40" width="119" height="58" rx="8" style="fill:var(--blue-bg);stroke:var(--blue)"/><text x="70" y="64" text-anchor="middle" font-size="11" font-weight="700" style="fill:var(--blue)">Question</text><text x="70" y="82" text-anchor="middle" font-size="9.5" style="fill:var(--muted)">the task</text><line x1="129" y1="69" x2="151" y2="69" class="flow-line" stroke-width="1.5" marker-end="url(#arra)" style="stroke:var(--muted)"/><rect x="155" y="40" width="119" height="58" rx="8" style="fill:var(--ok-bg);stroke:var(--ok)"/><text x="215" y="64" text-anchor="middle" font-size="11" font-weight="700" style="fill:var(--ok)">Model reasons</text><text x="215" y="82" text-anchor="middle" font-size="9.5" style="fill:var(--muted)">decides the next step</text><line x1="274" y1="69" x2="296" y2="69" class="flow-line" stroke-width="1.5" marker-end="url(#arra)" style="stroke:var(--muted)"/><rect x="300" y="40" width="119" height="58" rx="8" style="fill:var(--amber-bg);stroke:var(--amber)"/><text x="360" y="64" text-anchor="middle" font-size="11" font-weight="700" style="fill:var(--amber)">Tool call</text><text x="360" y="82" text-anchor="middle" font-size="9.5" style="fill:var(--muted)">your code runs it</text><line x1="420" y1="69" x2="442" y2="69" class="flow-line" stroke-width="1.5" marker-end="url(#arra)" style="stroke:var(--muted)"/><rect x="446" y="40" width="119" height="58" rx="8" style="fill:var(--violet-bg);stroke:var(--violet)"/><text x="505" y="64" text-anchor="middle" font-size="11" font-weight="700" style="fill:var(--violet)">Observation</text><text x="505" y="82" text-anchor="middle" font-size="9.5" style="fill:var(--muted)">result added to memory</text><line x1="565" y1="69" x2="587" y2="69" class="flow-line" stroke-width="1.5" marker-end="url(#arra)" style="stroke:var(--muted)"/><rect x="591" y="40" width="119" height="58" rx="8" style="fill:var(--rose-bg);stroke:var(--rose)"/><text x="650" y="64" text-anchor="middle" font-size="11" font-weight="700" style="fill:var(--rose)">Final answer</text><text x="650" y="82" text-anchor="middle" font-size="9.5" style="fill:var(--muted)">when done</text><path d="M 650 98 C 650 128, 70 128, 70 102" fill="none" class="flow-line slow" stroke-width="1.5" marker-end="url(#arra)" style="stroke:var(--muted)"/><text x="360" y="138" text-anchor="middle" font-size="10" style="fill:var(--muted)">loop: the history grows each step (memory), capped by max_llm_calls</text><text x="360" y="163" text-anchor="middle" font-size="11" style="fill:var(--muted)">Reason → act → observe, until the model answers or the step budget runs out.</text></g></svg>
@@ -165,12 +165,12 @@
                 <div class="concept-card">
                     <h4>Agentic patterns</h4>
                     <p><strong>ReAct</strong>: one step at a time. <strong>Plan-and-execute</strong>: a full plan first, then each step. <strong>Reflection</strong>: review your own output and retry. <strong>Routing</strong>: send each request to a specialist.</p>
-                    <div class="why"><strong>Why it matters:</strong> Your ADK agent works ReAct-style in Week 1, and you build plan-and-execute from a <code>SequentialAgent</code> in Week 2; reflection and routing return in HOS 3–4.</div>
+                    <div class="why"><strong>Why it matters:</strong> Your ADK agent works ReAct-style in Week 1, and you build plan-and-execute from a <code>SequentialAgent</code> in Week 2; reflection and routing return in AIC 3–4.</div>
                 </div>
                 <div class="concept-card">
                     <h4>When <em>not</em> to use an agent</h4>
                     <p>A fixed workflow is cheaper, faster, and testable. Use an agent when the next step genuinely depends on what the last one returned.</p>
-                    <div class="why"><strong>Why it matters:</strong> "No agent needed" with a good reason is a strong Application Challenge answer.</div>
+                    <div class="why"><strong>Why it matters:</strong> "No agent needed" with a good reason is a strong Part B challenge answer.</div>
                 </div>
             </div>
 
@@ -204,8 +204,8 @@
 </section>
 
 <section class="module card" id="module-2">
-  <div class="module-head"><div class="module-icon">2️⃣</div><div><h2>Module 2: Custom Tools, MCP &amp; Memory</h2><div class="module-meta"><span class="tag blue">HOS 2</span><span class="tag">Outcomes 2 &amp; 1</span></div></div></div>
-            <p class="why-line"><strong>Why before you start:</strong> the model never sees your tool's code — only its schema. Writing schemas the model reads correctly, and packaging tools so any agent can use them, is most of HOS 2.</p>
+  <div class="module-head"><div class="module-icon">2️⃣</div><div><h2>Module 2: Custom Tools, MCP &amp; Memory</h2><div class="module-meta"><span class="tag blue">AIC 2</span><span class="tag">Outcomes 2 &amp; 1</span></div></div></div>
+            <p class="why-line"><strong>Why before you start:</strong> the model never sees your tool's code — only its schema. Writing schemas the model reads correctly, and packaging tools so any agent can use them, is most of AIC 2.</p>
 
             <div class="diagram-box">
                 <svg role="img" aria-label="A tool call across MCP: the ADK agent decides to call a tool, McpToolset forwards the call to the MCP server in a separate process over stdio, the server reaches an API, the web or SQLite, and the result comes back as data." viewBox="0 0 720 150" xmlns="http://www.w3.org/2000/svg"><defs><marker id="arrb" markerWidth="8" markerHeight="8" refX="6" refY="3" orient="auto"><path d="M0,0 L6,3 L0,6 Z" style="fill:var(--muted)"/></marker></defs><g font-family="Inter,system-ui,sans-serif"><rect x="10" y="40" width="119" height="58" rx="8" style="fill:var(--blue-bg);stroke:var(--blue)"/><text x="70" y="64" text-anchor="middle" font-size="11" font-weight="700" style="fill:var(--blue)">ADK agent</text><text x="70" y="82" text-anchor="middle" font-size="9.5" style="fill:var(--muted)">decides to call a tool</text><line x1="129" y1="69" x2="151" y2="69" class="flow-line" stroke-width="1.5" marker-end="url(#arrb)" style="stroke:var(--muted)"/><rect x="155" y="40" width="119" height="58" rx="8" style="fill:var(--ok-bg);stroke:var(--ok)"/><text x="215" y="64" text-anchor="middle" font-size="11" font-weight="700" style="fill:var(--ok)">McpToolset</text><text x="215" y="82" text-anchor="middle" font-size="9.5" style="fill:var(--muted)">forwards the call</text><line x1="274" y1="69" x2="296" y2="69" class="flow-line" stroke-width="1.5" marker-end="url(#arrb)" style="stroke:var(--muted)"/><rect x="300" y="40" width="119" height="58" rx="8" style="fill:var(--amber-bg);stroke:var(--amber)"/><text x="360" y="64" text-anchor="middle" font-size="11" font-weight="700" style="fill:var(--amber)">MCP server</text><text x="360" y="82" text-anchor="middle" font-size="9.5" style="fill:var(--muted)">separate process</text><line x1="420" y1="69" x2="442" y2="69" class="flow-line" stroke-width="1.5" marker-end="url(#arrb)" style="stroke:var(--muted)"/><rect x="446" y="40" width="119" height="58" rx="8" style="fill:var(--violet-bg);stroke:var(--violet)"/><text x="505" y="64" text-anchor="middle" font-size="11" font-weight="700" style="fill:var(--violet)">API · web · SQLite</text><text x="505" y="82" text-anchor="middle" font-size="9.5" style="fill:var(--muted)">the real world</text><line x1="565" y1="69" x2="587" y2="69" class="flow-line" stroke-width="1.5" marker-end="url(#arrb)" style="stroke:var(--muted)"/><rect x="591" y="40" width="119" height="58" rx="8" style="fill:var(--rose-bg);stroke:var(--rose)"/><text x="650" y="64" text-anchor="middle" font-size="11" font-weight="700" style="fill:var(--rose)">Result</text><text x="650" y="82" text-anchor="middle" font-size="9.5" style="fill:var(--muted)">back as data</text><text x="360" y="138" text-anchor="middle" font-size="11" style="fill:var(--muted)">Tools run in their own process and speak MCP over stdio.</text></g></svg>
@@ -220,12 +220,12 @@
                 </div>
                 <div class="concept-card">
                     <h4>Three kinds of external tools</h4>
-                    <p>The course description names <strong>APIs</strong>, <strong>web browsers</strong>, and <strong>databases</strong>. HOS 2 builds one of each: marine weather (Open-Meteo), a page reader (httpx + trafilatura), and read-only SQL against a store database.</p>
+                    <p>The course description names <strong>APIs</strong>, <strong>web browsers</strong>, and <strong>databases</strong>. AIC 2 builds one of each: marine weather (Open-Meteo), a page reader (httpx + trafilatura), and read-only SQL against a store database.</p>
                 </div>
                 <div class="concept-card">
                     <h4>Errors as data</h4>
                     <p>A tool returns <code>{"status": "error", "error": "..."}</code> instead of raising. The model can read the error and fix its input; an exception just ends the run.</p>
-                    <div class="why"><strong>Why it matters:</strong> This is the first self-correction mechanism — HOS 3 builds on it.</div>
+                    <div class="why"><strong>Why it matters:</strong> This is the first self-correction mechanism — AIC 3 builds on it.</div>
                 </div>
                 <div class="concept-card">
                     <h4>MCP (Model Context Protocol)</h4>
@@ -272,18 +272,18 @@
 </section>
 
 <section class="module card" id="module-3">
-  <div class="module-head"><div class="module-icon">3️⃣</div><div><h2>Module 3: Traces &amp; Self-Correction</h2><div class="module-meta"><span class="tag blue">HOS 3</span><span class="tag">Outcome 3</span></div></div></div>
-            <p class="why-line"><strong>Why before you start:</strong> HOS 3's agent looks fine and fails in five ways — three of them without any error. You'll diagnose them from traces alone, so know what to look for first.</p>
+  <div class="module-head"><div class="module-icon">3️⃣</div><div><h2>Module 3: Traces &amp; Self-Correction</h2><div class="module-meta"><span class="tag blue">AIC 3</span><span class="tag">Outcome 3</span></div></div></div>
+            <p class="why-line"><strong>Why before you start:</strong> AIC 3's agent looks fine and fails in five ways — three of them without any error. You'll diagnose them from traces alone, so know what to look for first.</p>
 
             <div class="diagram-box">
                 <svg role="img" aria-label="The diagnosis workflow: run a scenario with run_scenarios.py, read its trace of every call and result, write a failure log with type, first step and symptom, fix the root cause in the tools and instruction, then add guards as callbacks." viewBox="0 0 720 150" xmlns="http://www.w3.org/2000/svg"><defs><marker id="arrc" markerWidth="8" markerHeight="8" refX="6" refY="3" orient="auto"><path d="M0,0 L6,3 L0,6 Z" style="fill:var(--muted)"/></marker></defs><g font-family="Inter,system-ui,sans-serif"><rect x="10" y="40" width="119" height="58" rx="8" style="fill:var(--blue-bg);stroke:var(--blue)"/><text x="70" y="64" text-anchor="middle" font-size="11" font-weight="700" style="fill:var(--blue)">Run scenario</text><text x="70" y="82" text-anchor="middle" font-size="9.5" style="fill:var(--muted)">run_scenarios.py</text><line x1="129" y1="69" x2="151" y2="69" class="flow-line" stroke-width="1.5" marker-end="url(#arrc)" style="stroke:var(--muted)"/><rect x="155" y="40" width="119" height="58" rx="8" style="fill:var(--ok-bg);stroke:var(--ok)"/><text x="215" y="64" text-anchor="middle" font-size="11" font-weight="700" style="fill:var(--ok)">Trace</text><text x="215" y="82" text-anchor="middle" font-size="9.5" style="fill:var(--muted)">every call &amp; result</text><line x1="274" y1="69" x2="296" y2="69" class="flow-line" stroke-width="1.5" marker-end="url(#arrc)" style="stroke:var(--muted)"/><rect x="300" y="40" width="119" height="58" rx="8" style="fill:var(--amber-bg);stroke:var(--amber)"/><text x="360" y="64" text-anchor="middle" font-size="11" font-weight="700" style="fill:var(--amber)">Failure log</text><text x="360" y="82" text-anchor="middle" font-size="9.5" style="fill:var(--muted)">type · first step · symptom</text><line x1="420" y1="69" x2="442" y2="69" class="flow-line" stroke-width="1.5" marker-end="url(#arrc)" style="stroke:var(--muted)"/><rect x="446" y="40" width="119" height="58" rx="8" style="fill:var(--violet-bg);stroke:var(--violet)"/><text x="505" y="64" text-anchor="middle" font-size="11" font-weight="700" style="fill:var(--violet)">Fix root cause</text><text x="505" y="82" text-anchor="middle" font-size="9.5" style="fill:var(--muted)">tools &amp; instruction</text><line x1="565" y1="69" x2="587" y2="69" class="flow-line" stroke-width="1.5" marker-end="url(#arrc)" style="stroke:var(--muted)"/><rect x="591" y="40" width="119" height="58" rx="8" style="fill:var(--rose-bg);stroke:var(--rose)"/><text x="650" y="64" text-anchor="middle" font-size="11" font-weight="700" style="fill:var(--rose)">Guards</text><text x="650" y="82" text-anchor="middle" font-size="9.5" style="fill:var(--muted)">callbacks</text><text x="360" y="138" text-anchor="middle" font-size="11" style="fill:var(--muted)">Diagnose from the trace before reading the code.</text></g></svg>
-                <div class="diagram-caption">The HOS 3 workflow.</div>
+                <div class="diagram-caption">The AIC 3 workflow.</div>
             </div>
 
             <div class="concept-grid">
                 <div class="concept-card">
                     <h4>Reasoning trace</h4>
-                    <p>The step-by-step record of a run: each model input and output, each tool call with arguments and result, with timing and tokens. In <code>adk web</code>'s Trace view, and in the file your HOS 3 recorder writes from ADK callbacks.</p>
+                    <p>The step-by-step record of a run: each model input and output, each tool call with arguments and result, with timing and tokens. In <code>adk web</code>'s Trace view, and in the file your AIC 3 recorder writes from ADK callbacks.</p>
                     <div class="why"><strong>Why it matters:</strong> In production you usually have the trace, not the code.</div>
                 </div>
                 <div class="concept-card">
@@ -339,8 +339,8 @@
 </section>
 
 <section class="module card" id="module-4">
-  <div class="module-head"><div class="module-icon">4️⃣</div><div><h2>Module 4: Multi-Agent Orchestration &amp; Evaluation</h2><div class="module-meta"><span class="tag blue">HOS 4</span><span class="tag">Outcome 4</span></div></div></div>
-            <p class="why-line"><strong>Why before you start:</strong> HOS 4 asks whether a team of agents actually beats one agent — and answers with numbers. Know how the numbers are made, and how they can lie, before you trust any.</p>
+  <div class="module-head"><div class="module-icon">4️⃣</div><div><h2>Module 4: Multi-Agent Orchestration &amp; Evaluation</h2><div class="module-meta"><span class="tag blue">AIC 4</span><span class="tag">Outcome 4</span></div></div></div>
+            <p class="why-line"><strong>Why before you start:</strong> AIC 4 asks whether a team of agents actually beats one agent — and answers with numbers. Know how the numbers are made, and how they can lie, before you trust any.</p>
 
             <div class="diagram-box">
                 <svg role="img" aria-label="Agent-on-agent testing: a scenario with a persona, goal and rule goes to a simulated user, an LLM in character, which talks to the agent system, single or team. A judge gives a JSON verdict, and metrics report success, cost and latency. This repeats for every scenario, for both systems." viewBox="0 0 720 175" xmlns="http://www.w3.org/2000/svg"><defs><marker id="arrd" markerWidth="8" markerHeight="8" refX="6" refY="3" orient="auto"><path d="M0,0 L6,3 L0,6 Z" style="fill:var(--muted)"/></marker></defs><g font-family="Inter,system-ui,sans-serif"><rect x="10" y="40" width="119" height="58" rx="8" style="fill:var(--blue-bg);stroke:var(--blue)"/><text x="70" y="64" text-anchor="middle" font-size="11" font-weight="700" style="fill:var(--blue)">Scenario</text><text x="70" y="82" text-anchor="middle" font-size="9.5" style="fill:var(--muted)">persona · goal · rule</text><line x1="129" y1="69" x2="151" y2="69" class="flow-line" stroke-width="1.5" marker-end="url(#arrd)" style="stroke:var(--muted)"/><rect x="155" y="40" width="119" height="58" rx="8" style="fill:var(--ok-bg);stroke:var(--ok)"/><text x="215" y="64" text-anchor="middle" font-size="11" font-weight="700" style="fill:var(--ok)">Simulated user</text><text x="215" y="82" text-anchor="middle" font-size="9.5" style="fill:var(--muted)">an LLM in character</text><line x1="274" y1="69" x2="296" y2="69" class="flow-line" stroke-width="1.5" marker-end="url(#arrd)" style="stroke:var(--muted)"/><rect x="300" y="40" width="119" height="58" rx="8" style="fill:var(--amber-bg);stroke:var(--amber)"/><text x="360" y="64" text-anchor="middle" font-size="11" font-weight="700" style="fill:var(--amber)">Agent system</text><text x="360" y="82" text-anchor="middle" font-size="9.5" style="fill:var(--muted)">single or team</text><line x1="420" y1="69" x2="442" y2="69" class="flow-line" stroke-width="1.5" marker-end="url(#arrd)" style="stroke:var(--muted)"/><rect x="446" y="40" width="119" height="58" rx="8" style="fill:var(--violet-bg);stroke:var(--violet)"/><text x="505" y="64" text-anchor="middle" font-size="11" font-weight="700" style="fill:var(--violet)">Judge</text><text x="505" y="82" text-anchor="middle" font-size="9.5" style="fill:var(--muted)">LLM, JSON verdict</text><line x1="565" y1="69" x2="587" y2="69" class="flow-line" stroke-width="1.5" marker-end="url(#arrd)" style="stroke:var(--muted)"/><rect x="591" y="40" width="119" height="58" rx="8" style="fill:var(--rose-bg);stroke:var(--rose)"/><text x="650" y="64" text-anchor="middle" font-size="11" font-weight="700" style="fill:var(--rose)">Metrics</text><text x="650" y="82" text-anchor="middle" font-size="9.5" style="fill:var(--muted)">success · cost · latency</text><path d="M 650 98 C 650 128, 70 128, 70 102" fill="none" class="flow-line slow" stroke-width="1.5" marker-end="url(#arrd)" style="stroke:var(--muted)"/><text x="360" y="138" text-anchor="middle" font-size="10" style="fill:var(--muted)">repeat for every scenario, for both systems</text><text x="360" y="163" text-anchor="middle" font-size="11" style="fill:var(--muted)">Agent-on-agent testing: one model plays the user, another grades.</text></g></svg>
@@ -408,46 +408,46 @@
 </section>
 
 <section class="module card" id="module-5">
-  <div class="module-head"><div class="module-icon">🧩</div><div><h2>Putting it together: all 4 HOS</h2><div class="module-meta"><span class="tag blue">Week 8 review</span><span class="tag">Term Project</span><span class="tag">Outcomes 4 &amp; 5</span></div></div></div>
+  <div class="module-head"><div class="module-icon">🧩</div><div><h2>Putting it together: all 4 AICs</h2><div class="module-meta"><span class="tag blue">Week 8 review</span><span class="tag">Term Project</span><span class="tag">Outcomes 4 &amp; 5</span></div></div></div>
             <p class="why-line"><strong>Why before you start:</strong> by Week 8 you've built every piece once. The Week 8 architecture review and your Term Project ask a different question: how the pieces connect, and which one catches which problem. Nothing here is new; it's the four modules, joined up.</p>
 
             <div class="concept-grid">
                 <div class="concept-card">
                     <h4>The path of a customer request</h4>
-                    <p>Message → coordinator routes it (HOS 4) → a specialist reasons within its step budget (HOS 1) → a guard checks each tool call (HOS 3) → the tool runs over MCP, and memory is recalled for this customer (HOS 2) → reply. The whole run is one trace, with a span per call (HOS 3).</p>
+                    <p>Message → coordinator routes it (AIC 4) → a specialist reasons within its step budget (AIC 1) → a guard checks each tool call (AIC 3) → the tool runs over MCP, and memory is recalled for this customer (AIC 2) → reply. The whole run is one trace, with a span per call (AIC 3).</p>
                 </div>
                 <div class="concept-card">
                     <h4>The path of an evaluation run</h4>
-                    <p>Scenario → simulated customer → the agent system, with tokens and seconds recorded → next message or DONE → judge's JSON verdict → success, cost and p50/p95 (HOS 4) → compare with your own labels, the only check on the judge.</p>
+                    <p>Scenario → simulated customer → the agent system, with tokens and seconds recorded → next message or DONE → judge's JSON verdict → success, cost and p50/p95 (AIC 4) → compare with your own labels, the only check on the judge.</p>
                 </div>
             </div>
 
             <h3 style="margin:18px 0 8px;font-size:1rem">Which layer catches what</h3>
             <div class="table-wrap" tabindex="0"><table class="t layer-table">
                 <tr><th>Problem</th><th>What catches it</th></tr>
-                <tr><td>A loop that runs forever</td><td>The step budget (HOS 1), and the repeat-call guard for identical calls (HOS 3)</td></tr>
-                <tr><td>The model picks the wrong tool</td><td>A precise description, and narrow typed tools (HOS 2); seen in the trace (HOS 3)</td></tr>
-                <tr><td>A crafted request tries to change data</td><td>The single-SELECT check and the read-only connection, both (HOS 2)</td></tr>
-                <tr><td>One customer hears another's facts</td><td>Memory scoped to the customer (HOS 2)</td></tr>
-                <tr><td>A tool raises an exception</td><td>The error guard turns it into an observation (HOS 3)</td></tr>
-                <tr><td>The agent claims an action it never took</td><td>The instruction and a real tool (HOS 3); a success rule that checks for it (HOS 4)</td></tr>
-                <tr><td>A confident wrong answer</td><td>No guard. Fix the tool that misled it (HOS 3), and catch the rest with an evaluation (HOS 4)</td></tr>
-                <tr><td>A request sent to the wrong specialist</td><td>Scenarios in the eval, and the trace of the transfer (HOS 3, HOS 4)</td></tr>
-                <tr><td>A team that only costs more</td><td>The side-by-side report: success, cost per task, p50/p95 (HOS 4)</td></tr>
-                <tr><td>A judge that's too lenient</td><td>Your own grading of some transcripts (HOS 4)</td></tr>
+                <tr><td>A loop that runs forever</td><td>The step budget (AIC 1), and the repeat-call guard for identical calls (AIC 3)</td></tr>
+                <tr><td>The model picks the wrong tool</td><td>A precise description, and narrow typed tools (AIC 2); seen in the trace (AIC 3)</td></tr>
+                <tr><td>A crafted request tries to change data</td><td>The single-SELECT check and the read-only connection, both (AIC 2)</td></tr>
+                <tr><td>One customer hears another's facts</td><td>Memory scoped to the customer (AIC 2)</td></tr>
+                <tr><td>A tool raises an exception</td><td>The error guard turns it into an observation (AIC 3)</td></tr>
+                <tr><td>The agent claims an action it never took</td><td>The instruction and a real tool (AIC 3); a success rule that checks for it (AIC 4)</td></tr>
+                <tr><td>A confident wrong answer</td><td>No guard. Fix the tool that misled it (AIC 3), and catch the rest with an evaluation (AIC 4)</td></tr>
+                <tr><td>A request sent to the wrong specialist</td><td>Scenarios in the eval, and the trace of the transfer (AIC 3, AIC 4)</td></tr>
+                <tr><td>A team that only costs more</td><td>The side-by-side report: success, cost per task, p50/p95 (AIC 4)</td></tr>
+                <tr><td>A judge that's too lenient</td><td>Your own grading of some transcripts (AIC 4)</td></tr>
             </table></div>
 
             <div class="check-box">
                 <h5>Quick self-check before the Week 8 review</h5>
                 <ul>
-                    <li>Can you draw both paths above from memory, labelling each arrow with the HOS it came from?</li>
+                    <li>Can you draw both paths above from memory, labelling each arrow with the AIC it came from?</li>
                     <li>Name one problem no guard can catch, and what catches it instead.</li>
                     <li>Your team's success rate went up 2 points. What else do you need to know before you call that a win?</li>
                 </ul>
                 <details class="check-answers">
                     <summary>Check your thinking</summary>
                     <ol>
-                        <li>If an arrow won't come to mind, reread that HOS's module above. Then step through the same paths in the Week 8 review.</li>
+                        <li>If an arrow won't come to mind, reread that AIC's module above. Then step through the same paths in the Week 8 review.</li>
                         <li>A confident wrong answer. Nothing in the trace is an error, so it takes a root-cause fix or an evaluation that checks the result.</li>
                         <li>What it cost per task, what happened to p95, how far you trust the judge, and whether 2 points is more than the difference between two runs.</li>
                     </ol>
