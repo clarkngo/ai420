@@ -1,0 +1,47 @@
+{
+  "title": "AI 420 · Module 1 · Lecture audio overview: From one call to an agent",
+  "voice": "af_heart",
+  "speed": 1.0,
+  "gap": 0.5,
+  "section_gap": 1.2,
+  "sections": [
+    { "heading": "Introduction", "lines": [
+      "This is the audio overview for AI 420, Agentic AI, Module 1: from one call to an agent.",
+      "It's narrated with a synthetic voice, and there's a written transcript with it.",
+      "Use it to preview the lecture before you start, or to review it afterwards. It covers the same three parts as the written lecture, in about four minutes."
+    ]},
+    { "heading": "Part 1: Inference vs. an agent", "lines": [
+      "Part 1 is the idea the whole course is built on.",
+      "Inference is one request and one response. The model answers from whatever it learned in training, and it has no way to check anything.",
+      "An agent puts the same model in a loop. It can ask for an action, called a tool call. It sees the result, called an observation. Then it decides what to do next, until it's done, or it runs out of steps.",
+      "Here's the example from the lecture. How many years before the first iPhone was the Space Needle completed?",
+      "A single call often gets it right from memory. But sometimes it says 47, and it sounds exactly as sure as when it's right.",
+      "An agent looks up the Space Needle, 1962, then the iPhone, 2007, and calls a calculator: 45.",
+      "The lesson isn't that the agent was right. It's that a single call's right and wrong answers look identical, while an agent shows how it got there."
+    ]},
+    { "heading": "Part 2: The four components", "lines": [
+      "Part 2 names the four components from the course description: reasoning, planning, tool use, and memory.",
+      "In Google's Agent Development Kit, ADK for short, an agent is only a few lines of Python: a name, a model, an instruction, and a list of tools.",
+      "The instruction steers reasoning. The tools list is tool use. Each step the agent takes shows up as an event you can read in the ADK web interface.",
+      "Memory is the session. ADK sends every earlier event back to the model on each call, because the model itself remembers nothing.",
+      "Planning is the one you can't see. In a plain agent it happens one step at a time, inside each model call.",
+      "Two habits to build now. Give every tool a clear docstring, because that's what the model reads when it decides which tool to call. And always set a step budget, so a confused agent can't call tools again and again at your expense."
+    ]},
+    { "heading": "Part 3: Patterns and frameworks", "lines": [
+      "Part 3 is about patterns. There are four you'll use this term.",
+      "ReAct: reason, act, observe, one step at a time. It's good when each step depends on the last result.",
+      "Plan-and-execute: write the whole plan first, then run it. It's good when the steps are predictable, and you'd like to review the plan.",
+      "Reflection: review your own output, then retry or accept it. You'll build it in AIC 3.",
+      "And routing: sort the request, then send it to a specialist. That's AIC 4.",
+      "ADK gives you each one as a building block, and the coding agent you'll use, Antigravity, works the same way when it shows you a plan before it acts.",
+      "One rule for the whole term: if you can't say which event a pattern produces, you can't debug it."
+    ]},
+    { "heading": "Before you start the build", "lines": [
+      "Three questions to carry into the week.",
+      "Can you name one question a single call answers reliably, and one it can't?",
+      "If you remove the step budget, what's the worst case, and who pays for it?",
+      "And for comparing three competitors' pricing pages, would you choose ReAct, or plan-and-execute?",
+      "Then open the Agent Loop Simulator, and run one question all three ways."
+    ]}
+  ]
+}

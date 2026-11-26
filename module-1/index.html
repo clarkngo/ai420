@@ -105,8 +105,36 @@
   <div class="module-head"><div class="module-icon">🎓</div><div><h2>Lecture: from one call to an agent</h2><div class="module-meta"><span class="tag">≈ 60 min with videos</span><span class="tag blue">3 short parts</span><span class="tag">CO1</span></div></div></div>
   <p class="small muted">Three short segments instead of one long one: watch the video, read the notes, then try the quick check before moving on. The notes cover everything you need, so the videos are a second explanation rather than a requirement. If something stays fuzzy, note it: that's exactly what your <a href="#postmortem">Post Mortem</a> is for.</p>
 
+  <div class="watch">
+    <div class="watch-head"><span class="label">Listen: audio overview</span><span class="small muted">3:45 · all three parts · synthetic voice</span></div>
+    <audio class="lecture-audio" controls preload="none" src="../media/module-1/lecture-overview.mp3">Your browser can't play this audio. <a href="../media/module-1/lecture-overview.mp3">Download the MP3</a>.</audio>
+    <p class="watch-note">A short spoken summary of this lecture, for previewing it before you start or reviewing it afterwards, away from a screen. It doesn't replace the notes below. Narrated with a synthetic (AI) voice.</p>
+    <details class="transcript">
+      <summary>Transcript</summary>
+        <h4>Introduction</h4>
+        <p>This is the audio overview for AI 420, Agentic AI, Module 1: from one call to an agent. It&#x27;s narrated with a synthetic voice, and there&#x27;s a written transcript with it. Use it to preview the lecture before you start, or to review it afterwards. It covers the same three parts as the written lecture, in about four minutes.</p>
+        <h4>Part 1: Inference vs. an agent</h4>
+        <p>Part 1 is the idea the whole course is built on. Inference is one request and one response. The model answers from whatever it learned in training, and it has no way to check anything. An agent puts the same model in a loop. It can ask for an action, called a tool call. It sees the result, called an observation. Then it decides what to do next, until it&#x27;s done, or it runs out of steps. Here&#x27;s the example from the lecture. How many years before the first iPhone was the Space Needle completed? A single call often gets it right from memory. But sometimes it says 47, and it sounds exactly as sure as when it&#x27;s right. An agent looks up the Space Needle, 1962, then the iPhone, 2007, and calls a calculator: 45. The lesson isn&#x27;t that the agent was right. It&#x27;s that a single call&#x27;s right and wrong answers look identical, while an agent shows how it got there.</p>
+        <h4>Part 2: The four components</h4>
+        <p>Part 2 names the four components from the course description: reasoning, planning, tool use, and memory. In Google&#x27;s Agent Development Kit, ADK for short, an agent is only a few lines of Python: a name, a model, an instruction, and a list of tools. The instruction steers reasoning. The tools list is tool use. Each step the agent takes shows up as an event you can read in the ADK web interface. Memory is the session. ADK sends every earlier event back to the model on each call, because the model itself remembers nothing. Planning is the one you can&#x27;t see. In a plain agent it happens one step at a time, inside each model call. Two habits to build now. Give every tool a clear docstring, because that&#x27;s what the model reads when it decides which tool to call. And always set a step budget, so a confused agent can&#x27;t call tools again and again at your expense.</p>
+        <h4>Part 3: Patterns and frameworks</h4>
+        <p>Part 3 is about patterns. There are four you&#x27;ll use this term. ReAct: reason, act, observe, one step at a time. It&#x27;s good when each step depends on the last result. Plan-and-execute: write the whole plan first, then run it. It&#x27;s good when the steps are predictable, and you&#x27;d like to review the plan. Reflection: review your own output, then retry or accept it. You&#x27;ll build it in AIC 3. And routing: sort the request, then send it to a specialist. That&#x27;s AIC 4. ADK gives you each one as a building block, and the coding agent you&#x27;ll use, Antigravity, works the same way when it shows you a plan before it acts. One rule for the whole term: if you can&#x27;t say which event a pattern produces, you can&#x27;t debug it.</p>
+        <h4>Before you start the build</h4>
+        <p>Three questions to carry into the week. Can you name one question a single call answers reliably, and one it can&#x27;t? If you remove the step budget, what&#x27;s the worst case, and who pays for it? And for comparing three competitors&#x27; pricing pages, would you choose ReAct, or plan-and-execute? Then open the Agent Loop Simulator, and run one question all three ways.</p>
+    </details>
+  </div>
+
   <div class="lecture-part">
     <h3>Part 1 — Inference vs. an agent <small>≈ 20 min</small></h3>
+    <div class="watch">
+      <div class="watch-head"><span class="label">Course video</span><span class="small muted">2:20 · AI 420 · synthetic voice, captions on</span></div>
+      <div class="watch-frame"><video controls preload="none" poster="../media/module-1/lecture-part1-poster.jpg" aria-label="Lecture Part 1: Inference vs. an agent (2 minutes 20 seconds)">
+        <source src="../media/module-1/lecture-part1.mp4" type="video/mp4">
+        <track kind="captions" src="../media/module-1/lecture-part1.vtt" srclang="en" label="English" default>
+        Your browser can't play this video. <a href="../media/module-1/lecture-part1.mp4">Download the MP4</a>.
+      </video></div>
+      <p class="watch-note">This part in a little over two minutes: inference, the agent loop, the Space Needle example and the common mistakes. Narrated with a synthetic (AI) voice. <a href="../media/module-1/lecture-part1.vtt">Captions file</a>.</p>
+    </div>
     <div class="watch">
       <div class="watch-head"><span class="label">Watch first</span><span class="small muted">12:28 · IBM Technology</span></div>
       <div class="watch-frame"><iframe src="https://www.youtube-nocookie.com/embed/F8NKVhkZZWI" title="What are AI Agents? (IBM Technology)" loading="lazy" referrerpolicy="strict-origin-when-cross-origin" allow="encrypted-media; picture-in-picture; fullscreen" allowfullscreen></iframe></div>

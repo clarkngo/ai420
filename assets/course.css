@@ -232,6 +232,12 @@ details.gloss-box dl { margin-top:10px; }
 .watch-head .label { font-size:.7rem; font-weight:800; letter-spacing:.08em; text-transform:uppercase; color:var(--accent2); }
 .watch-frame { position:relative; width:100%; max-width:720px; aspect-ratio:16/9; border-radius:8px; overflow:hidden; background:#000; }
 .watch-frame iframe { position:absolute; inset:0; width:100%; height:100%; border:0; }
+.watch-frame video { position:absolute; inset:0; width:100%; height:100%; background:#000; }
+.lecture-audio { width:100%; max-width:720px; display:block; }
+.transcript { margin-top:10px; font-size:.9rem; }
+.transcript summary { cursor:pointer; font-weight:700; }
+.transcript h4 { margin:12px 0 4px; font-size:.9rem; }
+.transcript p { margin:0 0 8px; }
 .watch-note { font-size:.88rem; margin:10px 0 0; }
 .watch .deeper { font-size:.84rem; color:var(--muted); margin:6px 0 0; }
 @media print { .watch-frame { display:none; } }
