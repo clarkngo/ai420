@@ -1,0 +1,50 @@
+{
+  "title": "AI 420 · Module 1 · Lecture Part 2: The Four Components, in About 60 Lines",
+  "voice": "af_heart",
+  "speed": 1.0,
+  "gap": 0.45,
+  "slide_tail": 0.6,
+  "slides": [
+    { "id": "s1", "lines": [
+      "This is AI 420, Module 1, Lecture Part 2: the four components of an agent, in about sixty lines of code."
+    ]},
+    { "id": "s2", "lines": [
+      "The course description names four components.",
+      "Reasoning: deciding the next move.",
+      "Planning: working out the steps.",
+      "Tool use: acting on the outside world.",
+      "And memory: keeping track of what's already happened."
+    ]},
+    { "id": "s3", "lines": [
+      "In Google's Agent Development Kit, ADK for short, an agent is only a few lines.",
+      "The instruction steers its reasoning: look facts up, do every sum with the calculator, and say so if no tool confirms a fact.",
+      "The tools list is tool use: two Wikipedia tools and a calculator."
+    ]},
+    { "id": "s4", "lines": [
+      "Here's one question, as it appears in ADK's Events tab.",
+      "The model doesn't answer yet. It asks for a function call: search Wikipedia for the Space Needle.",
+      "ADK runs the tool, and the result comes back as an observation: completed in 1962.",
+      "Two more rounds follow, the iPhone, then the calculator. Only then does the model answer in text: 45 years."
+    ]},
+    { "id": "s5", "lines": [
+      "So where are the other two components?",
+      "Memory is the session. ADK sends every earlier event back to the model on each call, because the model itself remembers nothing.",
+      "Planning is the one you can't see. Here, it happens one step at a time, inside each model call. In Week 2, plan-and-execute turns the plan into a list you can inspect."
+    ]},
+    { "id": "s6", "lines": [
+      "There's one more thing the model reads: each tool's description.",
+      "ADK builds it from the function's name, its type hints, and its docstring. That's all the model sees when it chooses a tool."
+    ]},
+    { "id": "s7", "lines": [
+      "Three common mistakes.",
+      "A tool with no docstring. The model sees only a name and argument types, so it guesses when to call it.",
+      "Running adk web from the wrong folder. Run it from the folder above your agent's folder, or the agent list is empty.",
+      "And no step budget. A confused model can call tools again and again, and every call costs tokens. Set a limit on model calls in the run config."
+    ]},
+    { "id": "s8", "lines": [
+      "A quick check before you move on.",
+      "Remove the step budget. What's the worst case, and who pays for it?",
+      "Next, in Part 3: agentic patterns, and the framework you'll build with all term."
+    ]}
+  ]
+}

@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>AI 420 · M1 Part 2 slides</title>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Open+Sans:wght@400;600;700;800&family=JetBrains+Mono:wght@500&display=swap">
+<link rel="stylesheet" href="slides.css">
+</head>
+<body>
+
+<section class="slide s1" id="s1">
+  <div class="eyebrow">AI 420 · Agentic AI · Module 1</div>
+  <h1>Lecture Part 2:<br>The Four Components, in About 60 Lines</h1>
+  <div class="bar"></div>
+  <div class="foot"><span><b>City University of Seattle</b> · School of Technology &amp; Computing</span><span>Narrated with a synthetic voice · captions available</span></div>
+</section>
+
+<section class="slide" id="s2">
+  <div class="eyebrow">From the course description</div>
+  <h2>Four components of an agent</h2>
+  <div class="cards4">
+    <div class="card4" data-step="2"><h4>Reasoning</h4><p>Deciding the next move</p></div>
+    <div class="card4" data-step="3"><h4>Planning</h4><p>Working out the steps</p></div>
+    <div class="card4" data-step="4"><h4>Tool use</h4><p>Acting on the outside world</p></div>
+    <div class="card4" data-step="5"><h4>Memory</h4><p>Keeping track of what's happened</p></div>
+  </div>
+  <div class="foot"><span><b>AI 420</b> · Module 1 · Part 2</span><span>The four components</span></div>
+</section>
+
+<section class="slide" id="s3">
+  <div class="eyebrow">Google ADK</div>
+  <h2 style="margin-bottom:36px">An agent in a few lines</h2>
+<pre class="code"><span class="k">from</span> google.adk.agents <span class="k">import</span> Agent
+<span class="k">from</span> .tools <span class="k">import</span> search_wikipedia, wikipedia_intro, calculate
+
+root_agent = Agent(
+    name="research_agent",
+    model="gemini-3.8-flash",
+    <span data-step="2" class="hl">instruction="Look facts up with your tools, do every calculation
+                with calculate. If no tool confirms a fact, say so."</span>,<span data-step="2" class="tag">REASONING</span>
+    <span data-step="3" class="hl">tools=[search_wikipedia, wikipedia_intro, calculate]</span>,<span data-step="3" class="tag">TOOL USE</span>
+)</pre>
+  <div class="foot"><span><b>AI 420</b> · Module 1 · Part 2</span><span>The four components</span></div>
+</section>
+
+<section class="slide" id="s4">
+  <div class="eyebrow">adk web · Events tab</div>
+  <h2 style="margin-bottom:30px">One question, step by step</h2>
+  <div class="ev"><span class="who">user</span><span class="kind">text</span><span>"How many years before the first iPhone…?"</span></div>
+  <div class="ev" data-step="2"><span class="who">model</span><span class="kind">function_call</span><span>search_wikipedia("Space Needle")</span></div>
+  <div class="ev obs" data-step="3"><span class="who">tool</span><span class="kind">function_response</span><span>"…completed in 1962…"</span></div>
+  <div class="ev" data-step="4"><span class="who">model</span><span class="kind">function_call</span><span>search_wikipedia("iPhone")</span></div>
+  <div class="ev obs" data-step="4"><span class="who">tool</span><span class="kind">function_response</span><span>"…released June 29, 2007…"</span></div>
+  <div class="ev" data-step="4"><span class="who">model</span><span class="kind">function_call</span><span>calculate("2007 - 1962") → 45</span></div>
+  <div class="ev" data-step="4"><span class="who">model</span><span class="kind">text</span><span>"…45 years before the first iPhone."</span></div>
+  <div class="foot"><span><b>AI 420</b> · Module 1 · Part 2</span><span>The four components</span></div>
+</section>
+
+<section class="slide" id="s5">
+  <div class="eyebrow">The other two</div>
+  <h2>Memory and planning</h2>
+  <div class="cols">
+    <div class="col" data-step="2"><h3>Memory = the session</h3><p class="ans">ADK sends every earlier event back to the model on each call.</p><p class="same">The model itself remembers nothing.</p></div>
+    <div class="col" data-step="3"><h3>Planning = invisible here</h3><p class="ans">One step at a time, inside each model call.</p><p class="same">Week 2: plan-and-execute makes the plan a list you can inspect.</p></div>
+  </div>
+  <div class="foot"><span><b>AI 420</b> · Module 1 · Part 2</span><span>The four components</span></div>
+</section>
+
+<section class="slide" id="s6">
+  <div class="eyebrow">What the model reads</div>
+  <h2 style="margin-bottom:36px">A tool's description</h2>
+<pre class="code"><span class="k">def</span> <span class="hl">calculate</span>(<span class="hl">expression: str</span>) -> str:
+    <span class="hl">"""Evaluate an arithmetic expression such as '2007 - 1962'.
+    Use for every calculation; never do math in your head."""</span></pre>
+  <div class="notes" style="margin-top:50px">
+    <div class="note" data-step="2">Name + type hints + docstring = all the model sees when it chooses a tool</div>
+  </div>
+  <div class="foot"><span><b>AI 420</b> · Module 1 · Part 2</span><span>The four components</span></div>
+</section>
+
+<section class="slide" id="s7">
+  <div class="eyebrow">Common mistakes</div>
+  <h2 style="margin-bottom:44px">Three to avoid</h2>
+  <div class="mist">
+    <div class="mi" data-step="2"><div class="n">1</div><div><h4>A tool with no docstring</h4><p>The model sees only a name and argument types, so it guesses when to call it.</p></div></div>
+    <div class="mi" data-step="3"><div class="n">2</div><div><h4>Running <code>adk web</code> from the wrong folder</h4><p>Run it from the folder above your agent's folder, or the agent list is empty.</p></div></div>
+    <div class="mi" data-step="4"><div class="n">3</div><div><h4>No step budget</h4><p>Every call costs tokens. Set one: <code>RunConfig(max_llm_calls=...)</code></p></div></div>
+  </div>
+  <div class="foot"><span><b>AI 420</b> · Module 1 · Part 2</span><span>The four components</span></div>
+</section>
+
+<section class="slide" id="s8">
+  <div class="eyebrow">Quick check</div>
+  <h2>Before you move on</h2>
+  <div class="check" data-step="2">Remove the step budget.<br>What's the worst case, and who pays for it?</div>
+  <div class="next" data-step="3"><span>Next →</span> Part 3: agentic patterns and the framework you'll build with all term</div>
+  <div class="foot"><span><b>AI 420</b> · Module 1 · Part 2</span><span>The four components</span></div>
+</section>
+
+<script>
+function show() {
+  var m = (location.hash || '#s1-1').slice(1).split('-'), id = m[0], step = +m[1] || 1;
+  document.querySelectorAll('.slide').forEach(function (s) { s.classList.toggle('on', s.id === id); });
+  document.querySelectorAll('#' + id + ' [data-step]').forEach(function (e) { e.classList.toggle('shown', +e.dataset.step <= step); });
+}
+addEventListener('hashchange', show); show();
+</script>
+</body>
+</html>

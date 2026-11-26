@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>AI 420 · M1 Part 3 slides</title>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Open+Sans:wght@400;600;700;800&family=JetBrains+Mono:wght@500&display=swap">
+<link rel="stylesheet" href="slides.css">
+</head>
+<body>
+
+<section class="slide s1" id="s1">
+  <div class="eyebrow">AI 420 · Agentic AI · Module 1</div>
+  <h1>Lecture Part 3:<br>Agentic Patterns and Frameworks</h1>
+  <div class="bar"></div>
+  <div class="foot"><span><b>City University of Seattle</b> · School of Technology &amp; Computing</span><span>Narrated with a synthetic voice · captions available</span></div>
+</section>
+
+<section class="slide" id="s2">
+  <div class="eyebrow">Patterns</div>
+  <h2 style="margin-bottom:30px">Four you'll use this term</h2>
+  <table class="pat">
+    <tr><th>Pattern</th><th>How it works</th><th>Good for</th><th>Cost</th></tr>
+    <tr data-step="2"><td>ReAct</td><td>Reason, act, observe: one step at a time</td><td>Each step depends on the last result</td><td>Many small model calls</td></tr>
+    <tr data-step="3"><td>Plan-and-execute</td><td>Write the whole plan, then run each step</td><td>Predictable steps; plans you want to review</td><td>One planning call + steps</td></tr>
+    <tr data-step="4"><td>Reflection</td><td>Review your own output, then retry or accept</td><td>Quality checks (AIC 3)</td><td>An extra call per review</td></tr>
+    <tr data-step="5"><td>Routing</td><td>Classify the request, send it to a specialist</td><td>Different kinds of requests (AIC 4)</td><td>A routing call per request</td></tr>
+  </table>
+  <div class="foot"><span><b>AI 420</b> · Module 1 · Part 3</span><span>Patterns and frameworks</span></div>
+</section>
+
+<section class="slide" id="s3">
+  <div class="eyebrow">Google ADK</div>
+  <h2>Each pattern is a building block</h2>
+  <div class="map">
+    <div class="mrow" data-step="2"><span class="l">Agent + tools</span><span class="a">→</span><span class="r">ReAct</span></div>
+    <div class="mrow" data-step="3"><span class="l">SequentialAgent</span><span class="a">→</span><span class="r">Plan-and-execute (Week 2)</span></div>
+    <div class="mrow" data-step="4"><span class="l">LoopAgent</span><span class="a">→</span><span class="r">Reflection (AIC 3)</span></div>
+    <div class="mrow" data-step="5"><span class="l">Coordinator + sub_agents</span><span class="a">→</span><span class="r">Routing (AIC 4)</span></div>
+  </div>
+  <div class="foot"><span><b>AI 420</b> · Module 1 · Part 3</span><span>Patterns and frameworks</span></div>
+</section>
+
+<section class="slide" id="s4">
+  <div class="eyebrow">Your coding agent</div>
+  <h2>Antigravity is an agent too</h2>
+  <div class="flow" data-step="2">
+    <div class="box model">/plan<small>it writes the plan</small></div><div class="arrow">→</div>
+    <div class="box" style="border-color:var(--orange);color:var(--orange)">You review<small>approve or change it</small></div><div class="arrow">→</div>
+    <div class="box">It executes<small>step by step</small></div>
+  </div>
+  <div class="notes"><div class="note" data-step="2">Plan-and-execute, with you as the reviewer</div></div>
+  <div class="foot"><span><b>AI 420</b> · Module 1 · Part 3</span><span>Patterns and frameworks</span></div>
+</section>
+
+<section class="slide" id="s5">
+  <div class="eyebrow">The rule all term</div>
+  <div class="insight" style="margin-top:80px" data-step="2">If you can't say which event a pattern produces, <em>you can't debug it.</em></div>
+  <div class="foot"><span><b>AI 420</b> · Module 1 · Part 3</span><span>Patterns and frameworks</span></div>
+</section>
+
+<section class="slide" id="s6">
+  <div class="eyebrow">Common mistakes</div>
+  <h2 style="margin-bottom:44px">Two to avoid</h2>
+  <div class="mist">
+    <div class="mi" data-step="2"><div class="n">1</div><div><h4>Plain <code>adk web</code> in Codespaces</h4><p>It returns 403 Forbidden there. Use <code>adk web --allow_origins "*"</code>. On your own computer, plain <code>adk web</code> is fine.</p></div></div>
+    <div class="mi" data-step="3"><div class="n">2</div><div><h4>Picking a pattern by fashion</h4><p>Plan-and-execute isn't "more advanced" than ReAct. It suits different tasks, so measure both.</p></div></div>
+  </div>
+  <div class="foot"><span><b>AI 420</b> · Module 1 · Part 3</span><span>Patterns and frameworks</span></div>
+</section>
+
+<section class="slide" id="s7">
+  <div class="eyebrow">Quick check</div>
+  <h2>Before the build</h2>
+  <div class="check" data-step="2">To compare three competitors' pricing pages: ReAct or plan-and-execute?<br>What would change your answer?</div>
+  <div class="next" data-step="3"><span>Then →</span> the Agent Loop Simulator: one question as a single call, as ReAct, and as plan-and-execute</div>
+  <div class="foot"><span><b>AI 420</b> · Module 1 · Part 3</span><span>Patterns and frameworks</span></div>
+</section>
+
+<script>
+function show() {
+  var m = (location.hash || '#s1-1').slice(1).split('-'), id = m[0], step = +m[1] || 1;
+  document.querySelectorAll('.slide').forEach(function (s) { s.classList.toggle('on', s.id === id); });
+  document.querySelectorAll('#' + id + ' [data-step]').forEach(function (e) { e.classList.toggle('shown', +e.dataset.step <= step); });
+}
+addEventListener('hashchange', show); show();
+</script>
+</body>
+</html>
