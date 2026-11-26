@@ -1,0 +1,44 @@
+{
+  "title": "AI 420 · Module 1 · Lecture Part 3: Agentic Patterns and Frameworks",
+  "voice": "af_heart",
+  "speed": 1.0,
+  "gap": 0.45,
+  "slide_tail": 0.6,
+  "slides": [
+    { "id": "s1", "lines": [
+      "This is AI 420, Module 1, Lecture Part 3: agentic patterns, and the framework you'll build with all term."
+    ]},
+    { "id": "s2", "lines": [
+      "There are four patterns you'll use this term.",
+      "ReAct: reason, act, observe, one step at a time. It's good when each step depends on the last result, and it costs many small model calls.",
+      "Plan-and-execute: write the whole plan first, then run each step. It's good when the steps are predictable, or you'd like to review the plan. It costs one planning call, plus the steps.",
+      "Reflection: review your own output, then retry or accept it. It's a quality check, which you'll build in AIC 3, and it costs an extra call per review.",
+      "Routing: classify the request, then send it to a specialist. That's AIC 4, with one routing call per request."
+    ]},
+    { "id": "s3", "lines": [
+      "ADK gives you each pattern as a building block.",
+      "An agent with tools is a ReAct loop.",
+      "A sequential agent runs fixed steps in order. That's how you'll write plan-and-execute in Week 2.",
+      "A loop agent repeats until a check passes. That's reflection.",
+      "And a coordinator with sub-agents routes each request to a specialist."
+    ]},
+    { "id": "s4", "lines": [
+      "The coding agent you'll use, Antigravity, is an agent too.",
+      "When it shows you a plan and waits for your approval, that's plan-and-execute, with you as the reviewer."
+    ]},
+    { "id": "s5", "lines": [
+      "Here's one rule for the whole term.",
+      "If you can't say which event a pattern produces, you can't debug it."
+    ]},
+    { "id": "s6", "lines": [
+      "Two common mistakes.",
+      "Working in Codespaces? Plain adk web returns a 403 Forbidden error there. Add the allow origins option, set to star. On your own computer, plain adk web is fine.",
+      "And picking a pattern by fashion. Plan-and-execute isn't more advanced than ReAct. It suits different tasks, so measure both."
+    ]},
+    { "id": "s7", "lines": [
+      "A quick check before the build.",
+      "To compare three competitors' pricing pages, would you choose ReAct, or plan-and-execute? And what would change your answer?",
+      "Then open the Agent Loop Simulator, and run one question three ways: as a single call, as ReAct, and as plan-and-execute."
+    ]}
+  ]
+}

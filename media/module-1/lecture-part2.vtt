@@ -1,0 +1,101 @@
+WEBVTT
+
+1
+00:00:00.350 --> 00:00:08.350
+This is AI 420, Module 1, Lecture Part 2: the four components of an agent, in about sixty lines of code.
+
+2
+00:00:09.750 --> 00:00:12.675
+The course description names four components.
+
+3
+00:00:13.125 --> 00:00:15.750
+Reasoning: deciding the next move.
+
+4
+00:00:16.200 --> 00:00:18.425
+Planning: working out the steps.
+
+5
+00:00:18.875 --> 00:00:21.850
+Tool use: acting on the outside world.
+
+6
+00:00:22.300 --> 00:00:25.700
+And memory: keeping track of what's already happened.
+
+7
+00:00:27.100 --> 00:00:33.075
+In Google's Agent Development Kit, ADK for short, an agent is only a few lines.
+
+8
+00:00:33.525 --> 00:00:41.850
+The instruction steers its reasoning: look facts up, do every sum with the calculator, and say so if no tool confirms a fact.
+
+9
+00:00:42.300 --> 00:00:47.175
+The tools list is tool use: two Wikipedia tools and a calculator.
+
+10
+00:00:48.575 --> 00:00:52.750
+Here's one question, as it appears in ADK's Events tab.
+
+11
+00:00:53.200 --> 00:00:59.425
+The model doesn't answer yet. It asks for a function call: search Wikipedia for the Space Needle.
+
+12
+00:00:59.875 --> 00:01:06.975
+ADK runs the tool, and the result comes back as an observation: completed in 1962.
+
+13
+00:01:07.425 --> 00:01:15.100
+Two more rounds follow, the iPhone, then the calculator. Only then does the model answer in text: 45 years.
+
+14
+00:01:16.500 --> 00:01:18.925
+So where are the other two components?
+
+15
+00:01:19.375 --> 00:01:28.150
+Memory is the session. ADK sends every earlier event back to the model on each call, because the model itself remembers nothing.
+
+16
+00:01:28.600 --> 00:01:39.950
+Planning is the one you can't see. Here, it happens one step at a time, inside each model call. In Week 2, plan-and-execute turns the plan into a list you can inspect.
+
+17
+00:01:41.350 --> 00:01:45.550
+There's one more thing the model reads: each tool's description.
+
+18
+00:01:46.000 --> 00:01:54.100
+ADK builds it from the function's name, its type hints, and its docstring. That's all the model sees when it chooses a tool.
+
+19
+00:01:55.500 --> 00:01:57.400
+Three common mistakes.
+
+20
+00:01:57.850 --> 00:02:04.675
+A tool with no docstring. The model sees only a name and argument types, so it guesses when to call it.
+
+21
+00:02:05.125 --> 00:02:12.925
+Running adk web from the wrong folder. Run it from the folder above your agent's folder, or the agent list is empty.
+
+22
+00:02:13.375 --> 00:02:23.700
+And no step budget. A confused model can call tools again and again, and every call costs tokens. Set a limit on model calls in the run config.
+
+23
+00:02:25.100 --> 00:02:27.300
+A quick check before you move on.
+
+24
+00:02:27.750 --> 00:02:31.850
+Remove the step budget. What's the worst case, and who pays for it?
+
+25
+00:02:32.300 --> 00:02:37.725
+Next, in Part 3: agentic patterns, and the framework you'll build with all term.

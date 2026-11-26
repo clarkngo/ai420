@@ -20,9 +20,11 @@ PRE = 0.35   # silence before the first line of each slide
 
 def spoken(text):
     # Pronunciation fixes; captions keep the real text. [word](/.../) pins phonemes.
-    text = text.replace('AI 420', 'AI four twenty').replace('1962', 'nineteen sixty-two').replace('2007', 'two thousand seven')
-    text = re.sub(r"\bAI\b", '[AI](/ˈAˌI/)', text)
-    return text
+    text = (text.replace('AI 420', 'AI four twenty').replace('1962', 'nineteen sixty-two').replace('2007', 'two thousand seven')
+                .replace('AIC 3', '[AIC](/ˌAˌIsˈi/) three').replace('AIC 4', '[AIC](/ˌAˌIsˈi/) four')
+                .replace('adk web', 'ADK web').replace('ADK', '[ADK](/ˌAdˌikˈA/)')
+                .replace('Codespaces', 'Code spaces').replace('403', 'four oh three'))
+    return re.sub(r"(?<!\[)\bAI\b", '[AI](/ˈAˌI/)', text)
 
 def duration(path):
     return float(subprocess.check_output(['ffprobe', '-v', 'error', '-show_entries', 'format=duration',
