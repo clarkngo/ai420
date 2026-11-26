@@ -1,0 +1,101 @@
+WEBVTT
+
+1
+00:00:00.350 --> 00:00:08.250
+Welcome to AI 420, Agentic AI. This is Module 1, Lecture Part 1: inference versus an agent.
+
+2
+00:00:08.700 --> 00:00:13.450
+In about three minutes, you'll see the one idea this whole course is built on.
+
+3
+00:00:14.850 --> 00:00:18.900
+Start with inference. That's one request, and one response.
+
+4
+00:00:19.350 --> 00:00:22.675
+The model answers from whatever it learned in training.
+
+5
+00:00:23.125 --> 00:00:26.575
+It can't look anything up, and it can't check its own work.
+
+6
+00:00:27.975 --> 00:00:30.700
+An agent puts the same model in a loop.
+
+7
+00:00:31.150 --> 00:00:34.700
+It can ask for an action. That's called a tool call.
+
+8
+00:00:35.150 --> 00:00:38.725
+It sees the result. That's called an observation.
+
+9
+00:00:39.175 --> 00:00:44.825
+Then it decides what to do next, until it decides it's done, or it runs out of steps.
+
+10
+00:00:46.225 --> 00:00:48.825
+Here's a question to try both ways.
+
+11
+00:00:49.275 --> 00:00:53.825
+How many years before the first iPhone was the Space Needle completed?
+
+12
+00:00:55.225 --> 00:00:58.450
+A single call often gets it right, from memory.
+
+13
+00:00:58.900 --> 00:01:07.475
+But sometimes it says 47, or mixes up the year the Needle opened with the year it was designed. And it sounds just as sure.
+
+14
+00:01:07.925 --> 00:01:14.050
+The agent looks up the Space Needle: 1962. Then the iPhone: 2007.
+
+15
+00:01:14.500 --> 00:01:17.550
+Then it calls the calculator: 45.
+
+16
+00:01:18.950 --> 00:01:22.425
+The interesting part isn't that the agent got it right.
+
+17
+00:01:22.875 --> 00:01:28.250
+It's that the single call's right answers and wrong answers look exactly the same.
+
+18
+00:01:28.700 --> 00:01:32.550
+The agent shows how it got there, so you can check every step.
+
+19
+00:01:33.950 --> 00:01:35.850
+Three common mistakes.
+
+20
+00:01:36.300 --> 00:01:44.975
+First: calling anything with a model in it an agent. A chatbot that answers in one call is inference. The loop is what makes an agent.
+
+21
+00:01:45.425 --> 00:01:50.025
+Second: treating a right answer as proof. Ask how the answer was reached.
+
+22
+00:01:50.475 --> 00:01:59.450
+Third: reaching for an agent first. Agents cost more calls, tokens and time. Many tasks are better as one call, or a fixed script.
+
+23
+00:02:00.850 --> 00:02:03.250
+Before you move on, a quick check.
+
+24
+00:02:03.700 --> 00:02:12.400
+Name one question a single call can answer reliably, and one it can't. Then say what the second one needs that the model doesn't have.
+
+25
+00:02:12.850 --> 00:02:19.025
+Next, in Part 2, you'll see the four components of an agent, in about sixty lines of code.

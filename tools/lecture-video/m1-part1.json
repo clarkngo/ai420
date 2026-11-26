@@ -1,0 +1,50 @@
+{
+  "title": "AI 420 · Module 1 · Lecture Part 1: Inference vs. an Agent",
+  "voice": "af_heart",
+  "speed": 1.0,
+  "gap": 0.45,
+  "slide_tail": 0.6,
+  "slides": [
+    { "id": "s1", "lines": [
+      "Welcome to AI 420, Agentic AI. This is Module 1, Lecture Part 1: inference versus an agent.",
+      "In about three minutes, you'll see the one idea this whole course is built on."
+    ]},
+    { "id": "s2", "lines": [
+      "Start with inference. That's one request, and one response.",
+      "The model answers from whatever it learned in training.",
+      "It can't look anything up, and it can't check its own work."
+    ]},
+    { "id": "s3", "lines": [
+      "An agent puts the same model in a loop.",
+      "It can ask for an action. That's called a tool call.",
+      "It sees the result. That's called an observation.",
+      "Then it decides what to do next, until it decides it's done, or it runs out of steps."
+    ]},
+    { "id": "s4", "lines": [
+      "Here's a question to try both ways.",
+      "How many years before the first iPhone was the Space Needle completed?"
+    ]},
+    { "id": "s5", "lines": [
+      "A single call often gets it right, from memory.",
+      "But sometimes it says 47, or mixes up the year the Needle opened with the year it was designed. And it sounds just as sure.",
+      "The agent looks up the Space Needle: 1962. Then the iPhone: 2007.",
+      "Then it calls the calculator: 45."
+    ]},
+    { "id": "s6", "lines": [
+      "The interesting part isn't that the agent got it right.",
+      "It's that the single call's right answers and wrong answers look exactly the same.",
+      "The agent shows how it got there, so you can check every step."
+    ]},
+    { "id": "s7", "lines": [
+      "Three common mistakes.",
+      "First: calling anything with a model in it an agent. A chatbot that answers in one call is inference. The loop is what makes an agent.",
+      "Second: treating a right answer as proof. Ask how the answer was reached.",
+      "Third: reaching for an agent first. Agents cost more calls, tokens and time. Many tasks are better as one call, or a fixed script."
+    ]},
+    { "id": "s8", "lines": [
+      "Before you move on, a quick check.",
+      "Name one question a single call can answer reliably, and one it can't. Then say what the second one needs that the model doesn't have.",
+      "Next, in Part 2, you'll see the four components of an agent, in about sixty lines of code."
+    ]}
+  ]
+}

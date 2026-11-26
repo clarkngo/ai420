@@ -1,0 +1,178 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>AI 420 · M1 Part 1 slides</title>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Open+Sans:wght@400;600;700;800&family=JetBrains+Mono:wght@500&display=swap">
+<style>
+:root { --marine:#002D5C; --orange:#F63E02; --ink:#0f1e33; --muted:#5b6b80; --line:#d7dee8; --paper:#ffffff; --soft:#f2f5f9; }
+* { box-sizing:border-box; margin:0; padding:0; }
+html, body { width:1920px; height:1080px; overflow:hidden; background:var(--paper); font-family:"Open Sans",sans-serif; color:var(--ink); }
+.slide { display:none; position:absolute; inset:0; padding:110px 140px 0; }
+.slide.on { display:block; }
+.eyebrow { font-weight:700; font-size:26px; letter-spacing:.14em; text-transform:uppercase; color:var(--orange); margin-bottom:22px; }
+h1 { font-size:84px; font-weight:800; line-height:1.08; color:var(--marine); max-width:1500px; }
+h2 { font-size:64px; font-weight:800; line-height:1.12; color:var(--marine); margin-bottom:54px; max-width:1600px; }
+p.lead { font-size:40px; line-height:1.4; color:var(--muted); max-width:1450px; }
+.foot { position:absolute; left:140px; right:140px; bottom:56px; display:flex; justify-content:space-between; font-size:22px; color:var(--muted); border-top:2px solid var(--line); padding-top:20px; }
+.foot b { color:var(--marine); }
+[data-step] { opacity:0; transform:translateY(14px); transition:none; }
+[data-step].shown { opacity:1; transform:none; }
+.dim { opacity:.28 !important; }
+/* title slide */
+.s1 { background:var(--marine); }
+.s1 h1 { color:#fff; font-size:104px; margin-top:120px; }
+.s1 .eyebrow { color:#ffb08f; }
+.s1 p.lead { color:#cfdbea; margin-top:40px; }
+.s1 .bar { width:160px; height:12px; background:var(--orange); margin-top:56px; }
+.s1 .foot { color:#cfdbea; border-top-color:rgba(255,255,255,.25); }
+.s1 .foot b { color:#fff; }
+/* flow boxes */
+.flow { display:flex; align-items:center; gap:36px; margin-top:20px; }
+.box { border:4px solid var(--marine); border-radius:22px; padding:34px 44px; font-size:42px; font-weight:700; color:var(--marine); background:#fff; min-width:280px; text-align:center; }
+.box.model { background:var(--marine); color:#fff; }
+.box small { display:block; font-size:26px; font-weight:600; color:var(--muted); margin-top:8px; }
+.box.model small { color:#cfdbea; }
+.arrow { font-size:64px; color:var(--orange); font-weight:800; }
+.notes { margin-top:70px; display:grid; gap:26px; }
+.note { font-size:40px; line-height:1.35; padding-left:34px; border-left:10px solid var(--orange); }
+/* loop */
+.loop { position:relative; width:1640px; height:600px; margin-top:-10px; }
+.loop .box { position:absolute; }
+.loop svg { position:absolute; inset:0; }
+/* question */
+.q { font-size:76px; font-weight:800; line-height:1.2; color:var(--marine); max-width:1500px; margin-top:60px; border-left:16px solid var(--orange); padding-left:50px; }
+/* compare */
+.cols { display:grid; grid-template-columns:1fr 1fr; gap:70px; }
+.col { background:var(--soft); border-radius:26px; padding:44px 50px; min-height:560px; }
+.col h3 { font-size:40px; color:var(--marine); margin-bottom:30px; }
+.ans { font-size:38px; line-height:1.4; margin-bottom:24px; }
+.big { font-family:"JetBrains Mono",monospace; font-weight:500; font-size:46px; color:var(--marine); background:#fff; border:3px solid var(--line); border-radius:14px; padding:6px 20px; }
+.big.bad { color:#b42318; border-color:#f3b4ad; }
+.step { font-family:"JetBrains Mono",monospace; font-size:32px; background:#fff; border:3px solid var(--line); border-radius:14px; padding:16px 22px; margin-bottom:18px; }
+.step .obs { color:var(--orange); font-weight:500; }
+.same { font-size:30px; color:var(--muted); font-style:italic; }
+/* insight */
+.insight { font-size:70px; font-weight:800; line-height:1.2; color:var(--marine); max-width:1500px; }
+.insight em { font-style:normal; color:var(--orange); }
+/* list */
+.mist { display:grid; gap:34px; }
+.mi { display:grid; grid-template-columns:90px 1fr; gap:26px; align-items:start; }
+.mi .n { width:84px; height:84px; border-radius:50%; background:var(--orange); color:#fff; font-size:44px; font-weight:800; display:grid; place-items:center; }
+.mi h4 { font-size:42px; color:var(--marine); margin-bottom:6px; }
+.mi p { font-size:32px; line-height:1.35; color:var(--muted); }
+.check { background:var(--soft); border-radius:26px; padding:50px 60px; font-size:44px; line-height:1.4; border-left:16px solid var(--orange); }
+.next { margin-top:60px; font-size:38px; color:var(--marine); font-weight:700; }
+.next span { color:var(--orange); }
+</style>
+</head>
+<body>
+
+<section class="slide s1" id="s1">
+  <div class="eyebrow">AI 420 · Agentic AI · Module 1</div>
+  <h1>Lecture Part 1:<br>Inference vs. an Agent</h1>
+  <div class="bar"></div>
+  <p class="lead" data-step="2">The one idea this whole course is built on.</p>
+  <div class="foot"><span><b>City University of Seattle</b> · School of Technology &amp; Computing</span><span>Narrated with a synthetic voice · captions available</span></div>
+</section>
+
+<section class="slide" id="s2">
+  <div class="eyebrow">Inference</div>
+  <h2>One request. One response.</h2>
+  <div class="flow">
+    <div class="box">Question</div><div class="arrow">→</div>
+    <div class="box model">Model<small>what it learned in training</small></div><div class="arrow">→</div>
+    <div class="box">Answer</div>
+  </div>
+  <div class="notes">
+    <div class="note" data-step="2">Answers from training data only</div>
+    <div class="note" data-step="3">Can't look anything up · can't check its own work</div>
+  </div>
+  <div class="foot"><span><b>AI 420</b> · Module 1 · Part 1</span><span>Inference vs. an agent</span></div>
+</section>
+
+<section class="slide" id="s3">
+  <div class="eyebrow">Agent</div>
+  <h2>The same model, in a loop.</h2>
+  <div class="loop">
+    <svg viewBox="0 0 1640 600" aria-hidden="true">
+      <defs><marker id="ah" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="5" markerHeight="5" orient="auto"><path d="M0,0 L10,5 L0,10 z" fill="#F63E02"/></marker></defs>
+      <g data-step="2"><path d="M560,150 L960,150" stroke="#F63E02" stroke-width="8" fill="none" marker-end="url(#ah)"/></g>
+      <g data-step="3"><path d="M1080,230 C1080,420 860,470 700,470 L560,470" stroke="#F63E02" stroke-width="8" fill="none" marker-end="url(#ah)"/>
+        <path d="M330,420 L330,240" stroke="#F63E02" stroke-width="8" fill="none" marker-end="url(#ah)"/></g>
+    </svg>
+    <div class="box model" style="left:120px;top:80px;width:420px">Model<small>decides the next step</small></div>
+    <div class="box" style="left:980px;top:80px;width:400px" data-step="2">Tool call<small>search · calculator · API</small></div>
+    <div class="box" style="left:120px;top:410px;width:420px" data-step="3">Observation<small>the result it sees</small></div>
+    <div class="box" style="left:1180px;top:430px;width:440px;border-color:var(--orange);color:var(--orange)" data-step="4">Done, or out of steps<small>then it answers</small></div>
+  </div>
+  <div class="foot"><span><b>AI 420</b> · Module 1 · Part 1</span><span>Inference vs. an agent</span></div>
+</section>
+
+<section class="slide" id="s4">
+  <div class="eyebrow">Worked example</div>
+  <h2>Try it both ways.</h2>
+  <div class="q" data-step="2">How many years before the first iPhone was the Space Needle completed?</div>
+  <div class="foot"><span><b>AI 420</b> · Module 1 · Part 1</span><span>Inference vs. an agent</span></div>
+</section>
+
+<section class="slide" id="s5">
+  <div class="eyebrow">Worked example</div>
+  <h2 style="margin-bottom:40px">Space Needle vs. first iPhone</h2>
+  <div class="cols">
+    <div class="col">
+      <h3>Single call</h3>
+      <div class="ans">Often: <span class="big">45</span></div>
+      <div class="ans" data-step="2">Sometimes: <span class="big bad">47</span></div>
+      <div class="ans" data-step="2">or opening year confused with design year</div>
+      <div class="same" data-step="2">Same tone, same confidence, either way.</div>
+    </div>
+    <div class="col">
+      <h3 data-step="3">Agent</h3>
+      <div class="step" data-step="3">search("Space Needle") → <span class="obs">1962</span></div>
+      <div class="step" data-step="3">search("iPhone") → <span class="obs">2007</span></div>
+      <div class="step" data-step="4">calculator(2007 − 1962) → <span class="obs">45</span></div>
+    </div>
+  </div>
+  <div class="foot"><span><b>AI 420</b> · Module 1 · Part 1</span><span>Inference vs. an agent</span></div>
+</section>
+
+<section class="slide" id="s6">
+  <div class="eyebrow">The real lesson</div>
+  <div class="insight" style="margin-top:60px">The single call's right answers and wrong answers <em>look identical.</em></div>
+  <div class="notes" style="margin-top:80px">
+    <div class="note" data-step="3">An agent shows how it got there, so every step can be checked.</div>
+  </div>
+  <div class="foot"><span><b>AI 420</b> · Module 1 · Part 1</span><span>Inference vs. an agent</span></div>
+</section>
+
+<section class="slide" id="s7">
+  <div class="eyebrow">Common mistakes</div>
+  <h2 style="margin-bottom:44px">Three to avoid</h2>
+  <div class="mist">
+    <div class="mi" data-step="2"><div class="n">1</div><div><h4>Calling anything with a model in it an agent</h4><p>One call is inference, however clever the prompt. The loop makes the agent.</p></div></div>
+    <div class="mi" data-step="3"><div class="n">2</div><div><h4>Treating a right answer as proof</h4><p>Ask how the answer was reached.</p></div></div>
+    <div class="mi" data-step="4"><div class="n">3</div><div><h4>Reaching for an agent first</h4><p>More calls, tokens and time. Many tasks are better as one call or a fixed script.</p></div></div>
+  </div>
+  <div class="foot"><span><b>AI 420</b> · Module 1 · Part 1</span><span>Inference vs. an agent</span></div>
+</section>
+
+<section class="slide" id="s8">
+  <div class="eyebrow">Quick check</div>
+  <h2>Before you move on</h2>
+  <div class="check" data-step="2">Name one question a single call can answer reliably, and one it can't.<br>What does the second one need that the model doesn't have?</div>
+  <div class="next" data-step="3"><span>Next →</span> Part 2: the four components of an agent, in about 60 lines of code</div>
+  <div class="foot"><span><b>AI 420</b> · Module 1 · Part 1</span><span>Inference vs. an agent</span></div>
+</section>
+
+<script>
+// #s3-2 shows slide s3 with every element whose data-step <= 2.
+function show() {
+  var m = (location.hash || '#s1-1').slice(1).split('-'), id = m[0], step = +m[1] || 1;
+  document.querySelectorAll('.slide').forEach(function (s) { s.classList.toggle('on', s.id === id); });
+  document.querySelectorAll('#' + id + ' [data-step]').forEach(function (e) { e.classList.toggle('shown', +e.dataset.step <= step); });
+}
+addEventListener('hashchange', show); show();
+</script>
+</body>
+</html>
